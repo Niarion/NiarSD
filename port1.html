@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lira&Matos - Clínica de Massoterapia - Bem-estar e Qualidade de Vida</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        sage: '#9CAF88',
+                        softBlue: '#A8DADC',
+                        warmBeige: '#F1E5D1',
+                        deepSage: '#7A8B6B'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        
+        .zen-gradient {
+            background: linear-gradient(135deg, #daffda 0%, #afffaf 50%, #d0ffd0 100%);
+        }
+        
+        .floating-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .pulse-animation {
+            animation: pulse 4s ease-in-out infinite;
+        }
+        
+        .slide-in-left {
+            animation: slideInLeft 1s ease-out;
+        }
+        
+        .slide-in-right {
+            animation: slideInRight 1s ease-out;
+        }
+        
+        .fade-in-up {
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.05); opacity: 1; }
+        }
+        
+        @keyframes slideInLeft {
+            0% { transform: translateX(-100px); opacity: 0; }
+            100% { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes slideInRight {
+            0% { transform: translateX(100px); opacity: 0; }
+            100% { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes fadeInUp {
+            0% { transform: translateY(30px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+        
+        .service-card {
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(156, 175, 136, 0.3);
+        }
+        
+        .leaf-decoration {
+            position: absolute;
+            opacity: 0.08;
+            pointer-events: none;
+            animation: float 8s ease-in-out infinite;
+        }
+        
+        .leaf-decoration:nth-child(even) {
+            animation-delay: -2s;
+        }
+        
+        .leaf-decoration:nth-child(3n) {
+            animation-delay: -4s;
+        }
+        
+        @media (max-width: 768px) {
+            .leaf-decoration {
+                font-size: 2rem !important;
+            }
+        }
+    </style>
+</head>
+<body class="zen-gradient min-h-screen">
+    <!-- Decorative Elements -->
+    <div class="leaf-decoration top-20 left-10 text-6xl">🍃</div>
+    <div class="leaf-decoration top-40 right-20 text-4xl">🌿</div>
+    <div class="leaf-decoration bottom-40 left-20 text-5xl">🪨</div>
+    <div class="leaf-decoration top-60 left-1/4 text-3xl">🌱</div>
+    <div class="leaf-decoration top-80 right-1/3 text-4xl">🍀</div>
+    <div class="leaf-decoration bottom-60 right-10 text-5xl">🌾</div>
+    <div class="leaf-decoration bottom-20 left-1/3 text-3xl">🌸</div>
+    <div class="leaf-decoration top-1/3 right-5 text-4xl">🕯️</div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/90 backdrop-blur-md z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-3 md:py-4">
+                <div class="flex items-center space-x-2">
+                    <h1 class="text-lg md:text-xl font-semibold text-deepSage">Lira&Matos</h1>
+                </div>
+                <div class="hidden md:flex space-x-6 lg:space-x-8">
+                    <a href="#inicio" class="text-deepSage hover:text-sage transition-colors">Início</a>
+                    <a href="#sobre" class="text-deepSage hover:text-sage transition-colors">Sobre</a>
+                    <a href="#servicos" class="text-deepSage hover:text-sage transition-colors">Serviços</a>
+                    <a href="#beneficios" class="text-deepSage hover:text-sage transition-colors">Benefícios</a>
+                    <a href="#contato" class="text-deepSage hover:text-sage transition-colors">Contato</a>
+                </div>
+                <button class="bg-sage text-white px-4 py-2 md:px-6 md:py-2 text-sm md:text-base rounded-full hover:bg-deepSage transition-all transform hover:scale-105">
+                    Agendar
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="pt-20 md:pt-24 pb-12 md:pb-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
+                <div class="space-y-6 md:space-y-8 slide-in-left order-2 lg:order-1">
+                    <div class="space-y-3 md:space-y-4">
+                        <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-deepSage leading-tight">
+                            Seu momento de
+                            <span class="font-medium text-sage">bem-estar</span>
+                        </h2>
+                        <p class="text-lg md:text-xl text-gray-600 leading-relaxed">
+                            Desperte seu potencial de cura natural através de técnicas milenares e modernas de massoterapia. Aqui, cada sessão é uma jornada de autocuidado e renovação.
+                        </p>
+                    </div>
+                    <div class="flex flex-col sm:flex-row gap-3 md:gap-4">
+                        <button class="bg-sage text-white px-6 md:px-8 py-3 md:py-4 rounded-full text-base md:text-lg font-medium hover:bg-deepSage transition-all transform hover:scale-105 shadow-lg">
+                            Agendar Consulta
+                        </button>
+                        <button class="border-2 border-sage text-sage px-6 md:px-8 py-3 md:py-4 rounded-full text-base md:text-lg font-medium hover:bg-sage hover:text-white transition-all">
+                            Conhecer Serviços
+                        </button>
+                    </div>
+                </div>
+                <div class="relative order-1 lg:order-2 slide-in-right">
+                    <div class="floating-animation bg-white/70 backdrop-blur-sm rounded-3xl p-6 md:p-8 shadow-xl">
+                        <div class="text-center space-y-4 md:space-y-6">
+                            <div class="text-6xl md:text-8xl pulse-animation">🧘‍♀️</div>
+                            <div class="space-y-2">
+                                <h3 class="text-xl md:text-2xl font-medium text-deepSage">Equilíbrio & Harmonia</h3>
+                                <p class="text-gray-600 text-sm md:text-base">Técnicas personalizadas para seu bem-estar</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="sobre" class="py-12 md:py-16 bg-white/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
+                <div class="relative fade-in-up">
+                    <div class="bg-gradient-to-br from-sage/20 to-softBlue/20 rounded-3xl p-6 md:p-8 text-center shadow-lg">
+                        <div class="flex justify-center space-x-4 md:space-x-6 mb-4 md:mb-6">
+                            <div class="w-20 h-20 md:w-28 md:h-28 rounded-full bg-white/80 flex items-center justify-center shadow-md">
+                                <img src="lira.png" alt="Lira - Massoterapeuta" class="w-18 h-18 md:w-26 md:h-26 rounded-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                                <div class="text-3xl md:text-4xl hidden">👨‍⚕️</div>
+                            </div>
+                            <div class="w-20 h-20 md:w-28 md:h-28 rounded-full bg-white/80 flex items-center justify-center shadow-md">
+                                <img src="matos.png" alt="Matos - Massoterapeuta" class="w-18 h-18 md:w-26 md:h-26 rounded-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                                <div class="text-3xl md:text-4xl hidden">👩‍⚕️</div>
+                            </div>
+                        </div>
+                        <div class="space-y-3 md:space-y-4">
+                            <h3 class="text-xl md:text-2xl font-medium text-deepSage">Lira & Matos</h3>
+                            <p class="text-gray-600 text-sm md:text-base">Massoterapeutas Especializados</p>
+                            <div class="flex justify-center space-x-3 md:space-x-4 text-2xl md:text-3xl pulse-animation">
+                                <span>🌿</span>
+                                <span>🤲</span>
+                                <span>✨</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-y-4 md:space-y-6 slide-in-right">
+                    <h2 class="text-2xl sm:text-3xl md:text-4xl font-light text-deepSage">
+                        Uma jornada dedicada ao
+                        <span class="font-medium text-sage">seu bem-estar</span>
+                    </h2>
+                    <p class="text-base md:text-lg text-gray-600 leading-relaxed">
+                        Com anos de experiência e formação em diversas técnicas terapêuticas, nossa equipe Lira&Matos dedica-se a proporcionar um atendimento humanizado e personalizado para cada cliente.
+                    </p>
+                    <p class="text-base md:text-lg text-gray-600 leading-relaxed">
+                        Acreditamos que cada pessoa possui um potencial único de cura e renovação. Nossa missão é criar um espaço seguro e acolhedor onde você possa reconectar-se consigo mesmo e descobrir o caminho para uma vida mais equilibrada e saudável.
+                    </p>
+                    <div class="flex items-center space-x-3 md:space-x-4 pt-3 md:pt-4">
+                        <div class="text-xl md:text-2xl pulse-animation">🏆</div>
+                        <span class="text-deepSage font-medium text-sm md:text-base">Certificados em múltiplas técnicas terapêuticas</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="servicos" class="py-12 md:py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10 md:mb-16 fade-in-up">
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-light text-deepSage mb-3 md:mb-4">
+                    Nossos <span class="font-medium text-sage">Serviços</span>
+                </h2>
+                <p class="text-base md:text-xl text-gray-600 max-w-3xl mx-auto px-4">
+                    Técnicas cuidadosamente selecionadas para atender suas necessidades específicas de saúde e bem-estar
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
+                <!-- Service Cards -->
+                <div class="service-card bg-white/80 backdrop-blur-sm rounded-2xl p-4 md:p-6 text-center fade-in-up">
+                    <div class="text-3xl md:text-4xl mb-3 md:mb-4 pulse-animation">🤲</div>
+                    <h3 class="text-lg md:text-xl font-medium text-deepSage mb-2">Liberação Miofascial</h3>
+                    <p class="text-gray-600 text-sm md:text-base">Alívio de tensões profundas e melhora da mobilidade</p>
+                </div>
+                
+                <div class="service-card bg-white/80 backdrop-blur-sm rounded-2xl p-4 md:p-6 text-center fade-in-up">
+                    <div class="text-3xl md:text-4xl mb-3 md:mb-4 pulse-animation">🔥</div>
+                    <h3 class="text-lg md:text-xl font-medium text-deepSage mb-2">Ventosaterapia</h3>
+                    <p class="text-gray-600 text-sm md:text-base">Técnica milenar para desintoxicação e relaxamento</p>
+                </div>
+                
+                <div class="service-card bg-white/80 backdrop-blur-sm rounded-2xl p-4 md:p-6 text-center fade-in-up">
+                    <div class="text-3xl md:text-4xl mb-3 md:mb-4 pulse-animation">💪</div>
+                    <h3 class="text-lg md:text-xl font-medium text-deepSage mb-2">Deep Tissue</h3>
+                    <p class="text-gray-600 text-sm md:text-base">Massagem profunda para atletas e tensões crônicas</p>
+                </div>
+                
+                <div class="service-card bg-white/80 backdrop-blur-sm rounded-2xl p-4 md:p-6 text-center fade-in-up">
+                    <div class="text-3xl md:text-4xl mb-3 md:mb-4 pulse-animation">🎯</div>
+                    <h3 class="text-lg md:text-xl font-medium text-deepSage mb-2">Agulhamento a Seco</h3>
+                    <p class="text-gray-600 text-sm md:text-base">Tratamento preciso para pontos de gatilho</p>
+                </div>
+                
+                <div class="service-card bg-white/80 backdrop-blur-sm rounded-2xl p-4 md:p-6 text-center fade-in-up">
+                    <div class="text-3xl md:text-4xl mb-3 md:mb-4 pulse-animation">✨</div>
+                    <h3 class="text-lg md:text-xl font-medium text-deepSage mb-2">Reiki</h3>
+                    <p class="text-gray-600 text-sm md:text-base">Harmonização energética e equilíbrio interior</p>
+                </div>
+                
+                <div class="service-card bg-white/80 backdrop-blur-sm rounded-2xl p-4 md:p-6 text-center fade-in-up">
+                    <div class="text-3xl md:text-4xl mb-3 md:mb-4 pulse-animation">🕯️</div>
+                    <h3 class="text-lg md:text-xl font-medium text-deepSage mb-2">Cone Chinês</h3>
+                    <p class="text-gray-600 text-sm md:text-base">Limpeza auricular natural e relaxante</p>
+                </div>
+                
+                <div class="service-card bg-white/80 backdrop-blur-sm rounded-2xl p-4 md:p-6 text-center fade-in-up">
+                    <div class="text-3xl md:text-4xl mb-3 md:mb-4 pulse-animation">🌿</div>
+                    <h3 class="text-lg md:text-xl font-medium text-deepSage mb-2">Moxabustão</h3>
+                    <p class="text-gray-600 text-sm md:text-base">Terapia térmica da medicina tradicional chinesa</p>
+                </div>
+                
+                <div class="service-card bg-white/80 backdrop-blur-sm rounded-2xl p-4 md:p-6 text-center fade-in-up">
+                    <div class="text-3xl md:text-4xl mb-3 md:mb-4 pulse-animation">🧘</div>
+                    <h3 class="text-lg md:text-xl font-medium text-deepSage mb-2">Massagem Relaxante</h3>
+                    <p class="text-gray-600 text-sm md:text-base">Momento de paz e renovação completa</p>
+                </div>
+                
+                <div class="service-card bg-white/80 backdrop-blur-sm rounded-2xl p-4 md:p-6 text-center fade-in-up">
+                    <div class="text-3xl md:text-4xl mb-3 md:mb-4 pulse-animation">🪨</div>
+                    <h3 class="text-lg md:text-xl font-medium text-deepSage mb-2">Pedras Quentes</h3>
+                    <p class="text-gray-600 text-sm md:text-base">Calor terapêutico para relaxamento profundo</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="beneficios" class="py-16 bg-white/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-light text-deepSage mb-4">
+                    Benefícios que <span class="font-medium text-sage">Transformam</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Descubra como nossas terapias podem melhorar sua qualidade de vida
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center space-y-4">
+                    <div class="text-5xl">😌</div>
+                    <h3 class="text-xl font-medium text-deepSage">Alívio de Dores</h3>
+                    <p class="text-gray-600">Redução significativa de tensões musculares e dores crônicas</p>
+                </div>
+                
+                <div class="text-center space-y-4">
+                    <div class="text-5xl">🧘‍♀️</div>
+                    <h3 class="text-xl font-medium text-deepSage">Relaxamento Profundo</h3>
+                    <p class="text-gray-600">Diminuição do estresse e ansiedade do dia a dia</p>
+                </div>
+                
+                <div class="text-center space-y-4">
+                    <div class="text-5xl">⚡</div>
+                    <h3 class="text-xl font-medium text-deepSage">Mais Energia</h3>
+                    <p class="text-gray-600">Melhora da circulação e aumento da vitalidade</p>
+                </div>
+                
+                <div class="text-center space-y-4">
+                    <div class="text-5xl">⚖️</div>
+                    <h3 class="text-xl font-medium text-deepSage">Equilíbrio</h3>
+                    <p class="text-gray-600">Harmonização entre corpo, mente e espírito</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-light text-deepSage mb-4">
+                    O que nossos <span class="font-medium text-sage">clientes dizem</span>
+                </h2>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white/70 backdrop-blur-sm rounded-2xl p-8 text-center">
+                    <div class="text-4xl mb-4">⭐⭐⭐⭐⭐</div>
+                    <p class="text-gray-600 mb-4 italic">"Encontrei no Cláudio não apenas um profissional competente, mas alguém que realmente se importa com meu bem-estar. Cada sessão é transformadora."</p>
+                    <p class="font-medium text-deepSage">- Maria Silva</p>
+                </div>
+                
+                <div class="bg-white/70 backdrop-blur-sm rounded-2xl p-8 text-center">
+                    <div class="text-4xl mb-4">⭐⭐⭐⭐⭐</div>
+                    <p class="text-gray-600 mb-4 italic">"Depois de anos com dores nas costas, finalmente encontrei alívio. O ambiente é acolhedor e o atendimento excepcional."</p>
+                    <p class="font-medium text-deepSage">- João Santos</p>
+                </div>
+                
+                <div class="bg-white/70 backdrop-blur-sm rounded-2xl p-8 text-center">
+                    <div class="text-4xl mb-4">⭐⭐⭐⭐⭐</div>
+                    <p class="text-gray-600 mb-4 italic">"Um verdadeiro oásis de paz na correria do dia a dia. Saio renovada de cada sessão. Recomendo de coração!"</p>
+                    <p class="font-medium text-deepSage">- Ana Costa</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contato" class="py-12 md:py-16 bg-white/70">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10 md:mb-16 fade-in-up">
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-light text-deepSage mb-3 md:mb-4">
+                    Vamos cuidar do seu <span class="font-medium text-sage">bem-estar</span>
+                </h2>
+                <p class="text-base md:text-xl text-gray-600 px-4">Entre em contato e agende sua sessão</p>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-8 md:gap-12">
+                <div class="space-y-6 md:space-y-8 slide-in-left">
+                    <div class="flex items-center space-x-3 md:space-x-4 bg-white/60 rounded-xl p-4">
+                        <div class="text-2xl md:text-3xl pulse-animation">📱</div>
+                        <div>
+                            <h3 class="font-medium text-deepSage text-sm md:text-base">WhatsApp</h3>
+                            <p class="text-gray-600 text-sm md:text-base">(11) 1194210-5424</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center space-x-3 md:space-x-4 bg-white/60 rounded-xl p-4">
+                        <div class="text-2xl md:text-3xl pulse-animation">📍</div>
+                        <div>
+                            <h3 class="font-medium text-deepSage text-sm md:text-base">Endereço</h3>
+                            <p class="text-gray-600 text-sm md:text-base">Rua Dr. José Martini, 62<br>Butantã, São Paulo - SP</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center space-x-3 md:space-x-4 bg-white/60 rounded-xl p-4">
+                        <div class="text-2xl md:text-3xl pulse-animation">🕐</div>
+                        <div>
+                            <h3 class="font-medium text-deepSage text-sm md:text-base">Horário de Funcionamento</h3>
+                            <p class="text-gray-600 text-sm md:text-base">Segunda a Sexta: 8h às 18h<br>Sábado: 8h às 14h</p>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+                <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-6 md:p-8 text-center slide-in-right shadow-lg">
+                    <div class="space-y-4 md:space-y-6">
+                        <div class="text-4xl md:text-6xl floating-animation">💬</div>
+                        <h3 class="text-xl md:text-2xl font-medium text-deepSage">Agende pelo WhatsApp</h3>
+                        <p class="text-gray-600 text-sm md:text-lg px-2">
+                            Converse diretamente conosco e agende sua sessão de forma rápida e prática
+                        </p>
+                        <a href="https://wa.me/5511999999999?text=Olá! Gostaria de agendar uma sessão de massoterapia." 
+                           target="_blank"
+                           class="inline-flex items-center justify-center space-x-2 md:space-x-3 bg-green-500 text-white px-6 md:px-8 py-3 md:py-4 rounded-full text-base md:text-lg font-medium hover:bg-green-600 transition-all transform hover:scale-105 shadow-lg w-full sm:w-auto">
+                            <span class="text-xl md:text-2xl">📱</span>
+                            <span>Chamar no WhatsApp</span>
+                        </a>
+                        <p class="text-xs md:text-sm text-gray-500">
+                            Resposta rápida em horário comercial
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-deepSage text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="flex items-center justify-center space-x-2 mb-4">
+                <div class="text-2xl">🌿</div>
+                <h3 class="text-xl font-medium">Lira&Matos - Clínica de Massoterapia</h3>
+            </div>
+            <p class="text-sage mb-4">Cuidando do seu bem-estar com carinho e profissionalismo</p>
+            <p class="text-sm opacity-75">© 2025 Lira&Matos - Clínica de Massoterapia. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // WhatsApp button functionality is handled by the href link
+
+        // CTA buttons
+        document.querySelectorAll('button').forEach(button => {
+            if (button.textContent.includes('Agendar')) {
+                button.addEventListener('click', function() {
+                    document.querySelector('#contato').scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            }
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97216cb175dacaaa',t:'MTc1NTY4ODAyMC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
