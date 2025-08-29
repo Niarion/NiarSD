@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<!-- SEO -->
+<title>Portfólio - Sites e Projetos | Niar Soluções</title>
+<meta name="description" content="Veja os sites, projetos e artes desenvolvidos pela Niar Soluções. Criação personalizada com foco em resultados e estética profissional.">
+<meta property="og:title" content="Portfólio - Sites e Projetos | Niar Soluções">
+<meta property="og:description" content="Conheça nossos sites e projetos de marketing digital, com design moderno e foco em performance.">
+<meta property="og:image" content="img/apple-touch-icon.png">
+<meta property="og:url" content="https://www.niarsolucoes.com.br/portfolio.html">
+
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WWLX5TFF9K"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-WWLX5TFF9K');
+</script>
+
+
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'neon-blue': '#00D4FF',
+                        'neon-purple': '#A855F7',
+                        'purple-vibrant': '#9333EA',
+                        'dark-bg': '#0A0A0A',
+                        'dark-card': '#1A1A1A'
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #00D4FF 0%, #A855F7 50%, #9333EA 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient-shift 3s ease-in-out infinite;
+        }
+        
+        @keyframes gradient-shift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #00D4FF 0%, #A855F7 50%, #9333EA 100%);
+            background-size: 200% 200%;
+            animation: gradient-move 4s ease infinite;
+        }
+        
+        @keyframes gradient-move {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(168, 85, 247, 0.3);
+        }
+        
+        .whatsapp-float {
+            position: fixed;
+            width: 56px;
+            height: 56px;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 26px;
+            box-shadow: 2px 2px 3px #999;
+            z-index: 100;
+            animation: pulse-float 2s infinite;
+            transition: all 0.3s ease;
+        }
+        
+        @media (min-width: 768px) {
+            .whatsapp-float {
+                width: 60px;
+                height: 60px;
+                bottom: 40px;
+                right: 40px;
+                font-size: 30px;
+            }
+        }
+        
+        .whatsapp-float:hover {
+            background-color: #20ba5a;
+            transform: scale(1.1);
+        }
+        
+        @keyframes pulse-float {
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-5px);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+                transform: translateY(0);
+            }
+        }
+        
+        .smooth-scroll {
+            scroll-behavior: smooth;
+        }
+        
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .bounce-in {
+            animation: bounceIn 1s ease-out;
+        }
+        
+        @keyframes bounceIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.3);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.05);
+            }
+            70% {
+                transform: scale(0.9);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        .glow-effect {
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
+            animation: glow-pulse 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow-pulse {
+            from {
+                box-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
+            }
+            to {
+                box-shadow: 0 0 30px rgba(168, 85, 247, 0.8);
+            }
+        }
+        
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .filter-btn {
+            transition: all 0.3s ease;
+        }
+        
+        .filter-btn.active {
+            background: linear-gradient(135deg, #00D4FF 0%, #A855F7 50%, #9333EA 100%);
+            color: white;
+            transform: scale(1.05);
+        }
+        
+        .portfolio-item {
+            transition: all 0.5s ease;
+        }
+        
+        .portfolio-item.hidden {
+            opacity: 0;
+            transform: scale(0.8);
+            pointer-events: none;
+        }
+        
+        .tech-tag {
+            background: rgba(168, 85, 247, 0.2);
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            color: #A855F7;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .project-overlay {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.9) 0%, rgba(168, 85, 247, 0.9) 100%);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .portfolio-item:hover .project-overlay {
+            opacity: 1;
+        }
+        
+        .stats-counter {
+            animation: countUp 2s ease-out;
+        }
+        
+        @keyframes countUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-dark-bg text-white smooth-scroll">
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/5511991618831?text=Olá! Vi seu portfólio e gostaria de um orçamento!" 
+       class="whatsapp-float flex items-center justify-center" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-dark-bg/95 backdrop-blur-sm z-50 border-b border-gray-800">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <div class="text-xl md:text-2xl font-bold gradient-text">Niar | Soluções Digitais</div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="hover:text-neon-purple transition-colors duration-300">Home</a>
+                    <a href="#portfolio" class="hover:text-neon-purple transition-colors duration-300">Portfólio</a>
+                    <a href="#estatisticas" class="hover:text-neon-purple transition-colors duration-300">Estatísticas</a>
+                    <a href="#tecnologias" class="hover:text-neon-purple transition-colors duration-300">Tecnologias</a>
+                    <a href="#contato" class="hover:text-neon-purple transition-colors duration-300">Contato</a>
+                </div>
+                <button class="md:hidden text-white text-xl" onclick="toggleMenu()" id="menuButton">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="hidden md:hidden mt-4 pb-4 border-t border-gray-700">
+                <div class="flex flex-col space-y-3 pt-4">
+                    <a href="index.html" class="hover:text-neon-purple transition-colors duration-300 py-2" onclick="closeMobileMenu()">Home</a>
+                    <a href="#portfolio" class="hover:text-neon-purple transition-colors duration-300 py-2" onclick="closeMobileMenu()">Portfólio</a>
+                    <a href="#estatisticas" class="hover:text-neon-purple transition-colors duration-300 py-2" onclick="closeMobileMenu()">Estatísticas</a>
+                    <a href="#tecnologias" class="hover:text-neon-purple transition-colors duration-300 py-2" onclick="closeMobileMenu()">Tecnologias</a>
+                    <a href="#contato" class="hover:text-neon-purple transition-colors duration-300 py-2" onclick="closeMobileMenu()">Contato</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center pt-16 md:pt-20 bg-gradient-to-br from-dark-bg via-dark-bg to-purple-vibrant/10">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="text-center max-w-4xl mx-auto">
+                <div class="fade-in-up">
+                    <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+                        Meu <span class="gradient-text">Portfólio</span>
+                    </h1>
+                    <p class="text-lg md:text-xl text-gray-300 mb-8 px-4 leading-relaxed">
+                        Conheça os projetos que transformaram negócios e geraram resultados reais para meus clientes
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                        <a href="#portfolio" class="inline-block gradient-bg text-white px-6 md:px-8 py-3 md:py-4 rounded-lg font-semibold hover:opacity-90 transition-all duration-300 transform hover:scale-105 glow-effect">
+                            <i class="fas fa-eye mr-2"></i>Ver Projetos
+                        </a>
+                        <a href="https://wa.me/5511911618831?text=Olá! Vi seu portfólio e gostaria de um orçamento!" 
+                           class="inline-block border-2 border-neon-purple text-neon-purple px-6 md:px-8 py-3 md:py-4 rounded-lg font-semibold hover:bg-neon-purple hover:text-white transition-all duration-300 transform hover:scale-105">
+                            <i class="fab fa-whatsapp mr-2"></i>Quero o Meu
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Estatísticas Section -->
+    <section id="estatisticas" class="py-12 md:py-20 bg-dark-card/50">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 max-w-4xl mx-auto">
+                <div class="text-center fade-in-up stats-counter">
+                    <div class="text-3xl md:text-4xl font-bold gradient-text mb-2">10+</div>
+                    <div class="text-gray-400 text-sm md:text-base">Projetos Entregues</div>
+                </div>
+                <div class="text-center fade-in-up stats-counter" style="animation-delay: 0.1s;">
+                    <div class="text-3xl md:text-4xl font-bold gradient-text mb-2">100%</div>
+                    <div class="text-gray-400 text-sm md:text-base">Clientes Satisfeitos</div>
+                </div>
+                <div class="text-center fade-in-up stats-counter" style="animation-delay: 0.2s;">
+                    <div class="text-3xl md:text-4xl font-bold gradient-text mb-2">300%</div>
+                    <div class="text-gray-400 text-sm md:text-base">Aumento Médio Vendas</div>
+                </div>
+                <div class="text-center fade-in-up stats-counter" style="animation-delay: 0.3s;">
+                    <div class="text-3xl md:text-4xl font-bold gradient-text mb-2">24h</div>
+                    <div class="text-gray-400 text-sm md:text-base">Suporte Garantido</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filtros -->
+    <section class="py-8 md:py-12">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="flex flex-wrap justify-center gap-3 md:gap-4 mb-8 md:mb-12">
+                <button class="filter-btn active px-4 md:px-6 py-2 md:py-3 rounded-full bg-dark-card text-sm md:text-base font-semibold" onclick="filterProjects('all')">
+                    Todos os Projetos
+                </button>
+                <button class="filter-btn px-4 md:px-6 py-2 md:py-3 rounded-full bg-dark-card text-sm md:text-base font-semibold" onclick="filterProjects('institucional')">
+                    Sites Institucionais
+                </button>
+                <button class="filter-btn px-4 md:px-6 py-2 md:py-3 rounded-full bg-dark-card text-sm md:text-base font-semibold" onclick="filterProjects('ecommerce')">
+                    E-commerce
+                </button>
+                <button class="filter-btn px-4 md:px-6 py-2 md:py-3 rounded-full bg-dark-card text-sm md:text-base font-semibold" onclick="filterProjects('landing')">
+                    Landing Pages
+                </button>
+                <button class="filter-btn px-4 md:px-6 py-2 md:py-3 rounded-full bg-dark-card text-sm md:text-base font-semibold" onclick="filterProjects('sistema')">
+                    Sistemas
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Grid -->
+    <section id="portfolio" class="pb-12 md:pb-20">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                
+                <!-- Projeto 1 - Site Institucional -->
+                <div class="portfolio-item bg-dark-card rounded-2xl overflow-hidden card-hover fade-in-up" data-category="institucional" style="animation-delay: 0.1s;">
+                    <div class="relative h-48 md:h-56 overflow-hidden">
+                        <img src="https://via.placeholder.com/400x300/1A1A1A/A855F7?text=Empresa+Tech" alt="Site Empresa Tech" class="w-full h-full object-cover">
+                        <div class="project-overlay absolute inset-0 flex items-center justify-center">
+                            <div class="text-center">
+                                <i class="fas fa-external-link-alt text-2xl md:text-3xl mb-2"></i>
+                                <p class="font-semibold text-sm md:text-base">Ver Projeto</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4 md:p-6">
+                        <div class="flex flex-wrap gap-2 mb-3">
+                            <span class="tech-tag">HTML/CSS</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">Responsivo</span>
+                        </div>
+                        <h3 class="text-lg md:text-xl font-bold mb-2">TechCorp Solutions</h3>
+                        <p class="text-gray-300 mb-4 text-sm md:text-base">Site institucional moderno para empresa de tecnologia com foco em conversão</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-neon-purple font-semibold text-sm">Site Institucional</span>
+                            <a href="#" class="text-neon-purple hover:text-purple-vibrant transition-colors text-sm">
+                                Ver mais <i class="fas fa-arrow-right ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projeto 2 - E-commerce -->
+                <div class="portfolio-item bg-dark-card rounded-2xl overflow-hidden card-hover fade-in-up" data-category="ecommerce" style="animation-delay: 0.2s;">
+                    <div class="relative h-48 md:h-56 overflow-hidden">
+                        <img src="https://via.placeholder.com/400x300/1A1A1A/00D4FF?text=Loja+Fashion" alt="E-commerce Fashion" class="w-full h-full object-cover">
+                        <div class="project-overlay absolute inset-0 flex items-center justify-center">
+                            <div class="text-center">
+                                <i class="fas fa-shopping-cart text-2xl md:text-3xl mb-2"></i>
+                                <p class="font-semibold text-sm md:text-base">Ver Loja</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4 md:p-6">
+                        <div class="flex flex-wrap gap-2 mb-3">
+                            <span class="tech-tag">E-commerce</span>
+                            <span class="tech-tag">Pagamentos</span>
+                            <span class="tech-tag">Mobile</span>
+                        </div>
+                        <h3 class="text-lg md:text-xl font-bold mb-2">Fashion Store</h3>
+                        <p class="text-gray-300 mb-4 text-sm md:text-base">Loja virtual completa com sistema de pagamentos e gestão de estoque</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-neon-blue font-semibold text-sm">E-commerce</span>
+                            <a href="#" class="text-neon-purple hover:text-purple-vibrant transition-colors text-sm">
+                                Ver mais <i class="fas fa-arrow-right ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projeto 3 - Restaurante -->
+                <div class="portfolio-item bg-dark-card rounded-2xl overflow-hidden card-hover fade-in-up" data-category="institucional" style="animation-delay: 0.3s;">
+                    <div class="relative h-48 md:h-56 overflow-hidden">
+                        <img src="https://via.placeholder.com/400x300/1A1A1A/9333EA?text=Restaurante+Gourmet" alt="Site Restaurante" class="w-full h-full object-cover">
+                        <div class="project-overlay absolute inset-0 flex items-center justify-center">
+                            <div class="text-center">
+                                <i class="fas fa-utensils text-2xl md:text-3xl mb-2"></i>
+                                <p class="font-semibold text-sm md:text-base">Ver Cardápio</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4 md:p-6">
+                        <div class="flex flex-wrap gap-2 mb-3">
+                            <span class="tech-tag">Cardápio Digital</span>
+                            <span class="tech-tag">Reservas</span>
+                            <span class="tech-tag">WhatsApp</span>
+                        </div>
+                        <h3 class="text-lg md:text-xl font-bold mb-2">Bella Vista Ristorante</h3>
+                        <p class="text-gray-300 mb-4 text-sm md:text-base">Site elegante com cardápio digital e sistema de reservas online</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-purple-vibrant font-semibold text-sm">Restaurante</span>
+                            <a href="#" class="text-neon-purple hover:text-purple-vibrant transition-colors text-sm">
+                                Ver mais <i class="fas fa-arrow-right ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+<!--
+                <!-- Projeto 4 - Landing Page --
+                <div class="portfolio-item bg-dark-card rounded-2xl overflow-hidden card-hover fade-in-up" data-category="landing" style="animation-delay: 0.4s;">
+                    <div class="relative h-48 md:h-56 overflow-hidden">
+                        <img src="https://via.placeholder.com/400x300/1A1A1A/A855F7?text=Curso+Digital" alt="Landing Page Curso" class="w-full h-full object-cover">
+                        <div class="project-overlay absolute inset-0 flex items-center justify-center">
+                            <div class="text-center">
+                                <i class="fas fa-rocket text-2xl md:text-3xl mb-2"></i>
+                                <p class="font-semibold text-sm md:text-base">Ver Landing</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4 md:p-6">
+                        <div class="flex flex-wrap gap-2 mb-3">
+                            <span class="tech-tag">Landing Page</span>
+                            <span class="tech-tag">Conversão</span>
+                            <span class="tech-tag">Analytics</span>
+                        </div>
+                        <h3 class="text-lg md:text-xl font-bold mb-2">Curso Marketing Digital</h3>
+                        <p class="text-gray-300 mb-4 text-sm md:text-base">Landing page otimizada para conversão com taxa de 15% de vendas</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-neon-purple font-semibold text-sm">Landing Page</span>
+                            <a href="#" class="text-neon-purple hover:text-purple-vibrant transition-colors text-sm">
+                                Ver mais <i class="fas fa-arrow-right ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projeto 5 - Academia --
+                <div class="portfolio-item bg-dark-card rounded-2xl overflow-hidden card-hover fade-in-up" data-category="institucional" style="animation-delay: 0.5s;">
+                    <div class="relative h-48 md:h-56 overflow-hidden">
+                        <img src="https://via.placeholder.com/400x300/1A1A1A/00D4FF?text=Academia+Fitness" alt="Site Academia" class="w-full h-full object-cover">
+                        <div class="project-overlay absolute inset-0 flex items-center justify-center">
+                            <div class="text-center">
+                                <i class="fas fa-dumbbell text-2xl md:text-3xl mb-2"></i>
+                                <p class="font-semibold text-sm md:text-base">Ver Academia</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4 md:p-6">
+                        <div class="flex flex-wrap gap-2 mb-3">
+                            <span class="tech-tag">Agendamento</span>
+                            <span class="tech-tag">Área do Aluno</span>
+                            <span class="tech-tag">Planos</span>
+                        </div>
+                        <h3 class="text-lg md:text-xl font-bold mb-2">PowerGym Academia</h3>
+                        <p class="text-gray-300 mb-4 text-sm md:text-base">Site com sistema de agendamento de aulas e área exclusiva do aluno</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-neon-blue font-semibold text-sm">Academia</span>
+                            <a href="#" class="text-neon-purple hover:text-purple-vibrant transition-colors text-sm">
+                                Ver mais <i class="fas fa-arrow-right ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projeto 6 - Sistema --
+                <div class="portfolio-item bg-dark-card rounded-2xl overflow-hidden card-hover fade-in-up" data-category="sistema" style="animation-delay: 0.6s;">
+                    <div class="relative h-48 md:h-56 overflow-hidden">
+                        <img src="https://via.placeholder.com/400x300/1A1A1A/9333EA?text=Sistema+Gestão" alt="Sistema de Gestão" class="w-full h-full object-cover">
+                        <div class="project-overlay absolute inset-0 flex items-center justify-center">
+                            <div class="text-center">
+                                <i class="fas fa-cogs text-2xl md:text-3xl mb-2"></i>
+                                <p class="font-semibold text-sm md:text-base">Ver Sistema</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4 md:p-6">
+                        <div class="flex flex-wrap gap-2 mb-3">
+                            <span class="tech-tag">Dashboard</span>
+                            <span class="tech-tag">Relatórios</span>
+                            <span class="tech-tag">API</span>
+                        </div>
+                        <h3 class="text-lg md:text-xl font-bold mb-2">Sistema ERP Personalizado</h3>
+                        <p class="text-gray-300 mb-4 text-sm md:text-base">Sistema completo de gestão empresarial com dashboard e relatórios</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-purple-vibrant font-semibold text-sm">Sistema</span>
+                            <a href="#" class="text-neon-purple hover:text-purple-vibrant transition-colors text-sm">
+                                Ver mais <i class="fas fa-arrow-right ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projeto 7 - E-commerce 2 --
+                <div class="portfolio-item bg-dark-card rounded-2xl overflow-hidden card-hover fade-in-up" data-category="ecommerce" style="animation-delay: 0.7s;">
+                    <div class="relative h-48 md:h-56 overflow-hidden">
+                        <img src="https://via.placeholder.com/400x300/1A1A1A/A855F7?text=Loja+Eletrônicos" alt="Loja Eletrônicos" class="w-full h-full object-cover">
+                        <div class="project-overlay absolute inset-0 flex items-center justify-center">
+                            <div class="text-center">
+                                <i class="fas fa-mobile-alt text-2xl md:text-3xl mb-2"></i>
+                                <p class="font-semibold text-sm md:text-base">Ver Loja</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4 md:p-6">
+                        <div class="flex flex-wrap gap-2 mb-3">
+                            <span class="tech-tag">Marketplace</span>
+                            <span class="tech-tag">Comparador</span>
+                            <span class="tech-tag">Reviews</span>
+                        </div>
+                        <h3 class="text-lg md:text-xl font-bold mb-2">TechStore Eletrônicos</h3>
+                        <p class="text-gray-300 mb-4 text-sm md:text-base">E-commerce avançado com comparador de preços e sistema de avaliações</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-neon-purple font-semibold text-sm">E-commerce</span>
+                            <a href="#" class="text-neon-purple hover:text-purple-vibrant transition-colors text-sm">
+                                Ver mais <i class="fas fa-arrow-right ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projeto 8 - Landing Page 2 --
+                <div class="portfolio-item bg-dark-card rounded-2xl overflow-hidden card-hover fade-in-up" data-category="landing" style="animation-delay: 0.8s;">
+                    <div class="relative h-48 md:h-56 overflow-hidden">
+                        <img src="https://via.placeholder.com/400x300/1A1A1A/00D4FF?text=App+Mobile" alt="Landing App" class="w-full h-full object-cover">
+                        <div class="project-overlay absolute inset-0 flex items-center justify-center">
+                            <div class="text-center">
+                                <i class="fas fa-download text-2xl md:text-3xl mb-2"></i>
+                                <p class="font-semibold text-sm md:text-base">Ver App</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4 md:p-6">
+                        <div class="flex flex-wrap gap-2 mb-3">
+                            <span class="tech-tag">App Landing</span>
+                            <span class="tech-tag">Downloads</span>
+                            <span class="tech-tag">Features</span>
+                        </div>
+                        <h3 class="text-lg md:text-xl font-bold mb-2">FitTracker App</h3>
+                        <p class="text-gray-300 mb-4 text-sm md:text-base">Landing page para aplicativo fitness com mais de 10k downloads</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-neon-blue font-semibold text-sm">App Landing</span>
+                            <a href="#" class="text-neon-purple hover:text-purple-vibrant transition-colors text-sm">
+                                Ver mais <i class="fas fa-arrow-right ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projeto 9 - Clínica --
+                <div class="portfolio-item bg-dark-card rounded-2xl overflow-hidden card-hover fade-in-up" data-category="institucional" style="animation-delay: 0.9s;">
+                    <div class="relative h-48 md:h-56 overflow-hidden">
+                        <img src="https://via.placeholder.com/400x300/1A1A1A/9333EA?text=Clínica+Médica" alt="Site Clínica" class="w-full h-full object-cover">
+                        <div class="project-overlay absolute inset-0 flex items-center justify-center">
+                            <div class="text-center">
+                                <i class="fas fa-stethoscope text-2xl md:text-3xl mb-2"></i>
+                                <p class="font-semibold text-sm md:text-base">Ver Clínica</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4 md:p-6">
+                        <div class="flex flex-wrap gap-2 mb-3">
+                            <span class="tech-tag">Agendamento</span>
+                            <span class="tech-tag">Telemedicina</span>
+                            <span class="tech-tag">Prontuário</span>
+                        </div>
+                        <h3 class="text-lg md:text-xl font-bold mb-2">Clínica VidaSaúde</h3>
+                        <p class="text-gray-300 mb-4 text-sm md:text-base">Portal médico com agendamento online e sistema de telemedicina</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-purple-vibrant font-semibold text-sm">Clínica</span>
+                            <a href="#" class="text-neon-purple hover:text-purple-vibrant transition-colors text-sm">
+                                Ver mais <i class="fas fa-arrow-right ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        -->
+    </section>
+
+    <!-- Tecnologias Section -->
+    <section id="tecnologias" class="py-12 md:py-20 bg-dark-card/50">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="text-center mb-12 md:mb-16 fade-in-up">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    <span class="gradient-text">Tecnologias</span> que Domino
+                </h2>
+                <p class="text-lg md:text-xl text-gray-300 px-4">Ferramentas modernas para resultados excepcionais</p>
+            </div>
+            
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 md:gap-8 max-w-4xl mx-auto">
+                <div class="text-center card-hover p-4 md:p-6 bg-dark-card rounded-xl fade-in-up float-animation">
+                    <i class="fab fa-html5 text-3xl md:text-4xl text-orange-500 mb-2 md:mb-3"></i>
+                    <p class="text-sm md:text-base font-semibold">HTML5</p>
+                </div>
+                <div class="text-center card-hover p-4 md:p-6 bg-dark-card rounded-xl fade-in-up float-animation" style="animation-delay: 0.1s;">
+                    <i class="fab fa-css3-alt text-3xl md:text-4xl text-blue-500 mb-2 md:mb-3"></i>
+                    <p class="text-sm md:text-base font-semibold">CSS3</p>
+                </div>
+                <div class="text-center card-hover p-4 md:p-6 bg-dark-card rounded-xl fade-in-up float-animation" style="animation-delay: 0.2s;">
+                    <i class="fab fa-js-square text-3xl md:text-4xl text-yellow-500 mb-2 md:mb-3"></i>
+                    <p class="text-sm md:text-base font-semibold">JavaScript</p>
+                </div>
+                <div class="text-center card-hover p-4 md:p-6 bg-dark-card rounded-xl fade-in-up float-animation" style="animation-delay: 0.3s;">
+                    <i class="fab fa-react text-3xl md:text-4xl text-cyan-500 mb-2 md:mb-3"></i>
+                    <p class="text-sm md:text-base font-semibold">React</p>
+                </div>
+                <div class="text-center card-hover p-4 md:p-6 bg-dark-card rounded-xl fade-in-up float-animation" style="animation-delay: 0.4s;">
+                    <i class="fab fa-wordpress text-3xl md:text-4xl text-blue-600 mb-2 md:mb-3"></i>
+                    <p class="text-sm md:text-base font-semibold">WordPress</p>
+                </div>
+                <div class="text-center card-hover p-4 md:p-6 bg-dark-card rounded-xl fade-in-up float-animation" style="animation-delay: 0.5s;">
+                    <i class="fas fa-mobile-alt text-3xl md:text-4xl text-neon-purple mb-2 md:mb-3"></i>
+                    <p class="text-sm md:text-base font-semibold">Responsivo</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-12 md:py-20 bg-gradient-to-r from-neon-purple/10 to-purple-vibrant/10">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="max-w-4xl mx-auto text-center">
+                <div class="bg-dark-card p-6 md:p-12 rounded-2xl md:rounded-3xl card-hover border border-neon-purple/30 glow-effect fade-in-up">
+                    <div class="text-4xl md:text-6xl text-neon-purple mb-4 md:mb-6 bounce-in">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h2 class="text-2xl md:text-4xl font-bold mb-4 md:mb-6">
+                        Pronto para ter um site como esses?
+                    </h2>
+                    <p class="text-base md:text-xl text-gray-300 mb-6 md:mb-8 leading-relaxed px-2">
+                        Cada projeto é único e personalizado para as necessidades do seu negócio. 
+                        <strong class="text-neon-purple">Vamos criar algo incrível juntos!</strong>
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                        <a href="https://wa.me/5511911618831?text=Vi seu portfólio e quero um orçamento!" 
+                           class="inline-block gradient-bg text-white px-6 md:px-10 py-4 md:py-5 rounded-xl font-bold hover:opacity-90 transition-all duration-300 transform hover:scale-105 glow-effect">
+                            <i class="fab fa-whatsapp mr-2 md:mr-3"></i>
+                            Quero meu projeto!
+                        </a>
+                        <a href="index.html" 
+                           class="inline-block border-2 border-neon-purple text-neon-purple px-6 md:px-10 py-4 md:py-5 rounded-xl font-bold hover:bg-neon-purple hover:text-white transition-all duration-300 transform hover:scale-105">
+                            <i class="fas fa-arrow-left mr-2"></i>
+                            Voltar ao início
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark-card py-8 border-t border-gray-800">
+        <div class="container mx-auto px-4 md:px-6 text-center">
+            <div class="text-xl md:text-2xl font-bold gradient-text mb-4">Niar | Soluções Digitais</div>
+            <p class="text-gray-400 text-sm md:text-base">© 2025 Especialista em Soluções Digitais. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Filter functionality
+        function filterProjects(category) {
+            const items = document.querySelectorAll('.portfolio-item');
+            const buttons = document.querySelectorAll('.filter-btn');
+            
+            // Update active button
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Filter items
+            items.forEach(item => {
+                if (category === 'all' || item.dataset.category === category) {
+                    item.classList.remove('hidden');
+                } else {
+                    item.classList.add('hidden');
+                }
+            });
+        }
+
+        // Mobile menu toggle
+        function toggleMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuButton = document.getElementById('menuButton');
+            
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.remove('hidden');
+                menuButton.innerHTML = '<i class="fas fa-times"></i>';
+            } else {
+                mobileMenu.classList.add('hidden');
+                menuButton.innerHTML = '<i class="fas fa-bars"></i>';
+            }
+        }
+
+        function closeMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuButton = document.getElementById('menuButton');
+            
+            mobileMenu.classList.add('hidden');
+            menuButton.innerHTML = '<i class="fas fa-bars"></i>';
+        }
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in-up, .bounce-in, .stats-counter').forEach(el => {
+            el.style.animationPlayState = 'paused';
+            observer.observe(el);
+        });
+
+        // Counter animation
+        function animateCounters() {
+            const counters = document.querySelectorAll('.stats-counter .gradient-text');
+            
+            counters.forEach(counter => {
+                const target = counter.textContent;
+                const isPercentage = target.includes('%');
+                const isTime = target.includes('h');
+                const numericValue = parseInt(target.replace(/[^\d]/g, ''));
+                
+                let current = 0;
+                const increment = numericValue / 50;
+                
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= numericValue) {
+                        current = numericValue;
+                        clearInterval(timer);
+                    }
+                    
+                    if (isPercentage) {
+                        counter.textContent = Math.floor(current) + '%';
+                    } else if (isTime) {
+                        counter.textContent = Math.floor(current) + 'h';
+                    } else {
+                        counter.textContent = Math.floor(current) + '+';
+                    }
+                }, 40);
+            });
+        }
+
+        // Trigger counter animation when stats section is visible
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        });
+
+        const statsSection = document.getElementById('estatisticas');
+        if (statsSection) {
+            statsObserver.observe(statsSection);
+        }
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'975b41d496eacb08',t:'MTc1NjI5NDQzOS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
