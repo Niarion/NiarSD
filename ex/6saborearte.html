@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sabor & Arte - Restaurante Gourmet</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        .font-playfair { font-family: 'Playfair Display', serif; }
+        .font-inter { font-family: 'Inter', sans-serif; }
+        
+        .gold-gradient {
+            background: linear-gradient(135deg, #D4AF37 0%, #FFD700 50%, #B8860B 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .wine-gradient {
+            background: linear-gradient(135deg, #722F37 0%, #8B0000 50%, #4A0E0E 100%);
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .hover-gold {
+            transition: all 0.3s ease;
+        }
+        
+        .hover-gold:hover {
+            color: #D4AF37;
+            transform: translateY(-2px);
+        }
+        
+        .card-hover {
+            transition: all 0.4s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.2);
+        }
+        
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        @media (max-width: 768px) {
+            .parallax {
+                background-attachment: scroll;
+            }
+        }
+    </style>
+</head>
+<body class="bg-black text-white font-inter">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-black/90 backdrop-blur-sm z-50 border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="font-playfair text-2xl font-bold gold-gradient">
+                    Sabor & Arte
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="hover-gold">Início</a>
+                    <a href="#menu" class="hover-gold">Cardápio</a>
+                    <a href="#about" class="hover-gold">Sobre Nós</a>
+                    <a href="#testimonials" class="hover-gold">Depoimentos</a>
+                    <a href="#contact" class="hover-gold">Contato</a>
+                </div>
+                <button id="mobile-menu-btn" class="md:hidden">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-black/95 border-t border-gray-800">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="#home" class="block px-3 py-2 hover-gold">Início</a>
+                <a href="#menu" class="block px-3 py-2 hover-gold">Cardápio</a>
+                <a href="#about" class="block px-3 py-2 hover-gold">Sobre Nós</a>
+                <a href="#testimonials" class="block px-3 py-2 hover-gold">Depoimentos</a>
+                <a href="#contact" class="block px-3 py-2 hover-gold">Contato</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative h-screen flex items-center justify-center parallax" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1200 800%22><rect fill=%22%23111%22 width=%221200%22 height=%22800%22/><circle cx=%22600%22 cy=%22400%22 r=%22300%22 fill=%22%23222%22 opacity=%220.3%22/><rect x=%22400%22 y=%22300%22 width=%22400%22 height=%22200%22 rx=%2220%22 fill=%22%23333%22 opacity=%220.5%22/></svg>');">
+        <div class="text-center max-w-4xl mx-auto px-4 fade-in">
+            <h1 class="font-playfair text-5xl md:text-7xl font-bold mb-6 gold-gradient">
+                Sabor & Arte
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-300 mb-8 font-light">
+                Uma experiência gastronômica única onde cada prato é uma obra de arte
+            </p>
+            <button onclick="scrollToReservation()" class="wine-gradient px-8 py-4 rounded-full text-white font-semibold text-lg hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
+                Fazer Reserva
+            </button>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="py-20 bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="font-playfair text-4xl md:text-5xl font-bold mb-4 gold-gradient">
+                    Nosso Cardápio
+                </h2>
+                <p class="text-gray-400 text-lg max-w-2xl mx-auto">
+                    Pratos cuidadosamente elaborados com ingredientes selecionados
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Entradas -->
+                <div class="fade-in card-hover">
+                    <div class="bg-gray-800 rounded-lg p-6 h-full border border-gray-700">
+                        <h3 class="font-playfair text-2xl font-bold mb-4 text-yellow-400">Entradas</h3>
+                        <div class="space-y-4">
+                            <div class="border-b border-gray-700 pb-3">
+                                <h4 class="font-semibold text-white">Carpaccio de Salmão</h4>
+                                <p class="text-gray-400 text-sm">Com alcaparras e molho de mostarda</p>
+                                <p class="text-yellow-400 font-bold">R$ 45</p>
+                            </div>
+                            <div class="border-b border-gray-700 pb-3">
+                                <h4 class="font-semibold text-white">Bruschetta Trufada</h4>
+                                <p class="text-gray-400 text-sm">Pão artesanal com óleo de trufa</p>
+                                <p class="text-yellow-400 font-bold">R$ 38</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-white">Ostras Gratinadas</h4>
+                                <p class="text-gray-400 text-sm">Com queijo gruyère e ervas finas</p>
+                                <p class="text-yellow-400 font-bold">R$ 65</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pratos Principais -->
+                <div class="fade-in card-hover">
+                    <div class="bg-gray-800 rounded-lg p-6 h-full border border-gray-700">
+                        <h3 class="font-playfair text-2xl font-bold mb-4 text-yellow-400">Pratos Principais</h3>
+                        <div class="space-y-4">
+                            <div class="border-b border-gray-700 pb-3">
+                                <h4 class="font-semibold text-white">Filé Wellington</h4>
+                                <p class="text-gray-400 text-sm">Massa folhada com cogumelos</p>
+                                <p class="text-yellow-400 font-bold">R$ 125</p>
+                            </div>
+                            <div class="border-b border-gray-700 pb-3">
+                                <h4 class="font-semibold text-white">Risotto de Camarão</h4>
+                                <p class="text-gray-400 text-sm">Com açafrão e parmesão</p>
+                                <p class="text-yellow-400 font-bold">R$ 95</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-white">Pato Confitado</h4>
+                                <p class="text-gray-400 text-sm">Com molho de laranja e especiarias</p>
+                                <p class="text-yellow-400 font-bold">R$ 110</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sobremesas -->
+                <div class="fade-in card-hover">
+                    <div class="bg-gray-800 rounded-lg p-6 h-full border border-gray-700">
+                        <h3 class="font-playfair text-2xl font-bold mb-4 text-yellow-400">Sobremesas</h3>
+                        <div class="space-y-4">
+                            <div class="border-b border-gray-700 pb-3">
+                                <h4 class="font-semibold text-white">Tiramisù Clássico</h4>
+                                <p class="text-gray-400 text-sm">Receita tradicional italiana</p>
+                                <p class="text-yellow-400 font-bold">R$ 32</p>
+                            </div>
+                            <div class="border-b border-gray-700 pb-3">
+                                <h4 class="font-semibold text-white">Petit Gateau</h4>
+                                <p class="text-gray-400 text-sm">Com sorvete de baunilha</p>
+                                <p class="text-yellow-400 font-bold">R$ 28</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-white">Crème Brûlée</h4>
+                                <p class="text-gray-400 text-sm">Com frutas vermelhas</p>
+                                <p class="text-yellow-400 font-bold">R$ 35</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vinhos -->
+                <div class="fade-in card-hover">
+                    <div class="bg-gray-800 rounded-lg p-6 h-full border border-gray-700">
+                        <h3 class="font-playfair text-2xl font-bold mb-4 text-yellow-400">Vinhos</h3>
+                        <div class="space-y-4">
+                            <div class="border-b border-gray-700 pb-3">
+                                <h4 class="font-semibold text-white">Bordeaux Reserva</h4>
+                                <p class="text-gray-400 text-sm">França, 2018</p>
+                                <p class="text-yellow-400 font-bold">R$ 180</p>
+                            </div>
+                            <div class="border-b border-gray-700 pb-3">
+                                <h4 class="font-semibold text-white">Champagne Dom Pérignon</h4>
+                                <p class="text-gray-400 text-sm">França, 2015</p>
+                                <p class="text-yellow-400 font-bold">R$ 450</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-white">Brunello di Montalcino</h4>
+                                <p class="text-gray-400 text-sm">Itália, 2017</p>
+                                <p class="text-yellow-400 font-bold">R$ 220</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-black">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="fade-in">
+                    <h2 class="font-playfair text-4xl md:text-5xl font-bold mb-6 gold-gradient">
+                        Nossa História
+                    </h2>
+                    <p class="text-gray-300 text-lg mb-6 leading-relaxed">
+                        Fundado em 2015 pelo renomado chef Alexandre Dubois, o Sabor & Arte nasceu da paixão por transformar ingredientes simples em experiências gastronômicas extraordinárias.
+                    </p>
+                    <p class="text-gray-300 text-lg mb-8 leading-relaxed">
+                        Nosso ambiente sofisticado e acolhedor proporciona o cenário perfeito para momentos especiais, onde cada detalhe é pensado para criar memórias inesquecíveis.
+                    </p>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-yellow-400">8+</div>
+                            <div class="text-gray-400">Anos de Excelência</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-yellow-400">50k+</div>
+                            <div class="text-gray-400">Clientes Satisfeitos</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="fade-in">
+                    <div class="relative">
+                        <div class="bg-gray-800 rounded-lg p-8 border border-gray-700">
+                            <div class="text-center">
+                                <div class="w-32 h-32 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full mx-auto mb-6 flex items-center justify-center">
+                                    <span class="text-4xl">👨‍🍳</span>
+                                </div>
+                                <h3 class="font-playfair text-2xl font-bold mb-2 text-white">Chef Alexandre Dubois</h3>
+                                <p class="text-gray-400 mb-4">Chef Executivo</p>
+                                <p class="text-gray-300 text-sm leading-relaxed">
+                                    "Cada prato que servimos carrega nossa paixão pela gastronomia e o compromisso com a excelência. Aqui, a culinária é verdadeiramente uma arte."
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-20 wine-gradient">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="font-playfair text-4xl md:text-5xl font-bold mb-4 text-white">
+                    O Que Dizem Nossos Clientes
+                </h2>
+                <p class="text-gray-200 text-lg max-w-2xl mx-auto">
+                    Experiências que marcam e sabores que ficam na memória
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="fade-in card-hover">
+                    <div class="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-yellow-400 rounded-full flex items-center justify-center mr-4">
+                                <span class="text-xl">👩</span>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-white">Maria Silva</h4>
+                                <div class="flex text-yellow-400">
+                                    ⭐⭐⭐⭐⭐
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-gray-200 italic">
+                            "Uma experiência gastronômica inesquecível! O atendimento é impecável e cada prato é uma verdadeira obra de arte. Recomendo a todos!"
+                        </p>
+                    </div>
+                </div>
+
+                <div class="fade-in card-hover">
+                    <div class="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-yellow-400 rounded-full flex items-center justify-center mr-4">
+                                <span class="text-xl">👨</span>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-white">Carlos Mendes</h4>
+                                <div class="flex text-yellow-400">
+                                    ⭐⭐⭐⭐⭐
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-gray-200 italic">
+                            "O ambiente é sofisticado e acolhedor. O filé Wellington estava perfeito! Sem dúvida, um dos melhores restaurantes da cidade."
+                        </p>
+                    </div>
+                </div>
+
+                <div class="fade-in card-hover">
+                    <div class="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-yellow-400 rounded-full flex items-center justify-center mr-4">
+                                <span class="text-xl">👩</span>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-white">Ana Costa</h4>
+                                <div class="flex text-yellow-400">
+                                    ⭐⭐⭐⭐⭐
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-gray-200 italic">
+                            "Celebramos nosso aniversário de casamento aqui e foi perfeito! A carta de vinhos é excepcional e a sobremesa foi divina."
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reservation Section -->
+    <section id="reservation" class="py-20 bg-gray-900">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="fade-in">
+                <h2 class="font-playfair text-4xl md:text-5xl font-bold mb-6 gold-gradient">
+                    Faça Sua Reserva
+                </h2>
+                <p class="text-gray-400 text-lg mb-8 max-w-2xl mx-auto">
+                    Reserve sua mesa e desfrute de uma experiência gastronômica única
+                </p>
+                
+                <div class="bg-gray-800 rounded-lg p-8 border border-gray-700 max-w-md mx-auto">
+                    <form class="space-y-6">
+                        <div>
+                            <input type="text" placeholder="Nome completo" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-yellow-400 transition-colors">
+                        </div>
+                        <div>
+                            <input type="email" placeholder="E-mail" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-yellow-400 transition-colors">
+                        </div>
+                        <div>
+                            <input type="tel" placeholder="Telefone" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-yellow-400 transition-colors">
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <input type="date" class="px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-yellow-400 transition-colors">
+                            <input type="time" class="px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-yellow-400 transition-colors">
+                        </div>
+                        <div>
+                            <select class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-yellow-400 transition-colors">
+                                <option>Número de pessoas</option>
+                                <option>1 pessoa</option>
+                                <option>2 pessoas</option>
+                                <option>3 pessoas</option>
+                                <option>4 pessoas</option>
+                                <option>5+ pessoas</option>
+                            </select>
+                        </div>
+                        <button type="button" onclick="makeReservation()" class="w-full wine-gradient py-4 rounded-lg text-white font-semibold text-lg hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
+                            Confirmar Reserva
+                        </button>
+                    </form>
+                    
+                    <div class="mt-6 p-4 bg-yellow-400/10 border border-yellow-400/30 rounded-lg hidden" id="reservation-success">
+                        <p class="text-yellow-400 font-semibold">✓ Reserva solicitada com sucesso!</p>
+                        <p class="text-gray-300 text-sm mt-1">Entraremos em contato em breve para confirmar.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact/Footer Section -->
+    <section id="contact" class="py-20 bg-black border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-12">
+                <div class="fade-in">
+                    <h3 class="font-playfair text-2xl font-bold mb-6 gold-gradient">Contato</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center">
+                            <span class="text-yellow-400 mr-3">📍</span>
+                            <div>
+                                <p class="text-white font-semibold">Endereço</p>
+                                <p class="text-gray-400">Rua Gourmet, 123 - Jardins<br>São Paulo, SP - 01234-567</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="text-yellow-400 mr-3">📞</span>
+                            <div>
+                                <p class="text-white font-semibold">Telefone</p>
+                                <p class="text-gray-400">(11) 3456-7890</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="text-yellow-400 mr-3">✉️</span>
+                            <div>
+                                <p class="text-white font-semibold">E-mail</p>
+                                <p class="text-gray-400">contato@saborarte.com.br</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="fade-in">
+                    <h3 class="font-playfair text-2xl font-bold mb-6 gold-gradient">Horário de Funcionamento</h3>
+                    <div class="space-y-3">
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Segunda a Quinta</span>
+                            <span class="text-white">18h - 23h</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Sexta e Sábado</span>
+                            <span class="text-white">18h - 00h</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Domingo</span>
+                            <span class="text-white">18h - 22h</span>
+                        </div>
+                        <div class="flex justify-between border-t border-gray-700 pt-3 mt-4">
+                            <span class="text-gray-400">Almoço (Sáb/Dom)</span>
+                            <span class="text-white">12h - 15h</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="fade-in">
+                    <h3 class="font-playfair text-2xl font-bold mb-6 gold-gradient">Redes Sociais</h3>
+                    <div class="space-y-4">
+                        <a href="#" class="flex items-center hover-gold">
+                            <span class="text-2xl mr-3">📘</span>
+                            <span>Facebook</span>
+                        </a>
+                        <a href="#" class="flex items-center hover-gold">
+                            <span class="text-2xl mr-3">📷</span>
+                            <span>Instagram</span>
+                        </a>
+                        <a href="#" class="flex items-center hover-gold">
+                            <span class="text-2xl mr-3">🐦</span>
+                            <span>Twitter</span>
+                        </a>
+                    </div>
+                    
+                    <div class="mt-8">
+                        <p class="text-gray-400 text-sm">
+                            Siga-nos para acompanhar nossos pratos especiais e eventos exclusivos.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center">
+                <p class="text-gray-400">
+                    © 2025 Sabor & Arte. Todos os direitos reservados.<br>
+                    Site fictício para demonstração.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Close mobile menu if open
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+
+        // Scroll to reservation function
+        function scrollToReservation() {
+            document.getElementById('reservation').scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+
+        // Reservation form handling
+        function makeReservation() {
+            const form = document.querySelector('#reservation form');
+            const inputs = form.querySelectorAll('input, select');
+            let isValid = true;
+            
+            inputs.forEach(input => {
+                if (!input.value.trim()) {
+                    isValid = false;
+                    input.style.borderColor = '#ef4444';
+                } else {
+                    input.style.borderColor = '#D4AF37';
+                }
+            });
+            
+            if (isValid) {
+                document.getElementById('reservation-success').classList.remove('hidden');
+                form.reset();
+                setTimeout(() => {
+                    document.getElementById('reservation-success').classList.add('hidden');
+                }, 5000);
+            } else {
+                alert('Por favor, preencha todos os campos para fazer sua reserva.');
+            }
+        }
+
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Add some initial delay for hero section
+        setTimeout(() => {
+            document.querySelector('#home .fade-in').classList.add('visible');
+        }, 500);
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9785370e35a1f1a1',t:'MTc1NjczNDM5OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verde Vivo - Juntos pelo futuro do planeta</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .slide-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .slide-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .hero-bg {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.8), rgba(59, 130, 246, 0.6)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%2322c55e;stop-opacity:0.3" /><stop offset="100%" style="stop-color:%233b82f6;stop-opacity:0.3" /></linearGradient></defs><rect width="1200" height="800" fill="url(%23grad1)"/><circle cx="200" cy="150" r="80" fill="%2322c55e" opacity="0.1"/><circle cx="800" cy="300" r="120" fill="%233b82f6" opacity="0.1"/><circle cx="1000" cy="600" r="100" fill="%2322c55e" opacity="0.1"/><path d="M0,400 Q300,300 600,400 T1200,400 L1200,800 L0,800 Z" fill="%2322c55e" opacity="0.2"/></svg>');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .glow-button {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .glow-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+        
+        .glow-button:hover::before {
+            left: 100%;
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #22c55e;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .pulse-green {
+            animation: pulse-green 2s infinite;
+        }
+        
+        @keyframes pulse-green {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(34, 197, 94, 0); }
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-sm z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                        <span class="text-white font-bold text-sm">🌱</span>
+                    </div>
+                    <span class="text-xl font-bold text-green-700">Verde Vivo</span>
+                </div>
+                
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="nav-link text-gray-700 hover:text-green-600">Início</a>
+                    <a href="#mission" class="nav-link text-gray-700 hover:text-green-600">Nossa Missão</a>
+                    <a href="#projects" class="nav-link text-gray-700 hover:text-green-600">Projetos</a>
+                    <a href="#news" class="nav-link text-gray-700 hover:text-green-600">Notícias</a>
+                    <a href="#volunteer" class="nav-link text-gray-700 hover:text-green-600">Seja Voluntário</a>
+                </div>
+                
+                <button class="glow-button bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-full font-medium transition-colors pulse-green">
+                    Doar Agora
+                </button>
+                
+                <!-- Mobile menu button -->
+                <button class="md:hidden p-2" onclick="toggleMobileMenu()">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-t">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="#home" class="block px-3 py-2 text-gray-700">Início</a>
+                <a href="#mission" class="block px-3 py-2 text-gray-700">Nossa Missão</a>
+                <a href="#projects" class="block px-3 py-2 text-gray-700">Projetos</a>
+                <a href="#news" class="block px-3 py-2 text-gray-700">Notícias</a>
+                <a href="#volunteer" class="block px-3 py-2 text-gray-700">Seja Voluntário</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-bg min-h-screen flex items-center justify-center text-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/20"></div>
+        <div class="text-center z-10 px-4 max-w-4xl mx-auto">
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 fade-in floating">
+                Juntos pelo futuro do planeta
+            </h1>
+            <p class="text-xl md:text-2xl mb-8 fade-in opacity-90" style="animation-delay: 0.3s">
+                Preservando a natureza hoje para garantir um amanhã sustentável para todos
+            </p>
+            <div class="space-x-4 fade-in" style="animation-delay: 0.6s">
+                <button class="glow-button bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-full text-lg font-medium transition-all transform hover:scale-105">
+                    Conheça Nossos Projetos
+                </button>
+                <button class="border-2 border-white text-white hover:bg-white hover:text-green-600 px-8 py-4 rounded-full text-lg font-medium transition-all transform hover:scale-105">
+                    Seja Voluntário
+                </button>
+            </div>
+        </div>
+        
+        <!-- Floating elements -->
+        <div class="absolute top-20 left-10 floating" style="animation-delay: 1s">🌿</div>
+        <div class="absolute top-40 right-20 floating" style="animation-delay: 2s">🦋</div>
+        <div class="absolute bottom-40 left-20 floating" style="animation-delay: 1.5s">🌸</div>
+    </section>
+
+    <!-- Mission Section -->
+    <section id="mission" class="py-20 bg-gradient-to-b from-green-50 to-blue-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6 fade-in">Nossa Missão</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto fade-in">
+                    Trabalhamos incansavelmente para proteger e restaurar nosso meio ambiente, 
+                    criando um futuro sustentável através de ações concretas e educação ambiental.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center slide-in-left card-hover bg-white p-8 rounded-2xl shadow-lg">
+                    <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-10 h-10 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Florestas</h3>
+                    <p class="text-gray-600">Protegemos e restauramos ecossistemas florestais, plantando milhares de árvores e combatendo o desmatamento.</p>
+                </div>
+                
+                <div class="text-center fade-in card-hover bg-white p-8 rounded-2xl shadow-lg" style="animation-delay: 0.2s">
+                    <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-10 h-10 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M5 2a1 1 0 011 1v1h1a1 1 0 010 2H6v1a1 1 0 01-2 0V6H3a1 1 0 010-2h1V3a1 1 0 011-1zm0 10a1 1 0 011 1v1h1a1 1 0 110 2H6v1a1 1 0 11-2 0v-1H3a1 1 0 110-2h1v-1a1 1 0 011-1zM12 2a1 1 0 01.967.744L14.146 7.2 17.5 9.134a1 1 0 010 1.732L14.146 12.8l-1.179 4.456a1 1 0 01-1.934 0L9.854 12.8 6.5 10.866a1 1 0 010-1.732L9.854 7.2l1.179-4.456A1 1 0 0112 2z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Oceanos</h3>
+                    <p class="text-gray-600">Limpamos praias e oceanos, removendo plásticos e promovendo a conservação da vida marinha.</p>
+                </div>
+                
+                <div class="text-center slide-in-right card-hover bg-white p-8 rounded-2xl shadow-lg" style="animation-delay: 0.4s">
+                    <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-10 h-10 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Reciclagem</h3>
+                    <p class="text-gray-600">Promovemos a economia circular através de programas de reciclagem e educação sobre consumo consciente.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6 fade-in">Nossos Projetos</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto fade-in">
+                    Conheça as iniciativas que estão transformando comunidades e restaurando o meio ambiente
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="card-hover bg-white rounded-2xl shadow-lg overflow-hidden fade-in">
+                    <div class="h-48 bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center">
+                        <span class="text-6xl">🌳</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Reflorestamento Urbano</h3>
+                        <p class="text-gray-600 mb-4">Plantio de 10.000 árvores nativas em áreas urbanas, melhorando a qualidade do ar e criando corredores ecológicos.</p>
+                        <div class="flex items-center text-green-600 font-medium">
+                            <span>Saiba mais</span>
+                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-hover bg-white rounded-2xl shadow-lg overflow-hidden fade-in" style="animation-delay: 0.2s">
+                    <div class="h-48 bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
+                        <span class="text-6xl">🌊</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Limpeza de Praias</h3>
+                        <p class="text-gray-600 mb-4">Mutirões mensais de limpeza que já removeram mais de 5 toneladas de lixo das praias e oceanos.</p>
+                        <div class="flex items-center text-green-600 font-medium">
+                            <span>Saiba mais</span>
+                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-hover bg-white rounded-2xl shadow-lg overflow-hidden fade-in" style="animation-delay: 0.4s">
+                    <div class="h-48 bg-gradient-to-br from-green-400 to-blue-500 flex items-center justify-center">
+                        <span class="text-6xl">♻️</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Reciclagem Comunitária</h3>
+                        <p class="text-gray-600 mb-4">Programa educativo que ensina famílias a reciclar corretamente, beneficiando mais de 1.000 pessoas.</p>
+                        <div class="flex items-center text-green-600 font-medium">
+                            <span>Saiba mais</span>
+                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Section -->
+    <section id="news" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6 fade-in">Notícias e Blog</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto fade-in">
+                    Fique por dentro das últimas novidades sobre sustentabilidade e nossos impactos positivos
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <article class="card-hover bg-white rounded-2xl shadow-lg overflow-hidden fade-in">
+                    <div class="h-48 bg-gradient-to-br from-green-300 to-green-500 flex items-center justify-center">
+                        <span class="text-6xl">📰</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-sm text-green-600 font-medium mb-2">15 de Dezembro, 2024</div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Como Reduzir o Plástico no Dia a Dia</h3>
+                        <p class="text-gray-600 mb-4">Dicas práticas para diminuir o uso de plástico descartável e contribuir para um planeta mais limpo.</p>
+                        <a href="#" class="text-green-600 font-medium hover:text-green-700">Ler artigo completo →</a>
+                    </div>
+                </article>
+                
+                <article class="card-hover bg-white rounded-2xl shadow-lg overflow-hidden fade-in" style="animation-delay: 0.2s">
+                    <div class="h-48 bg-gradient-to-br from-blue-300 to-blue-500 flex items-center justify-center">
+                        <span class="text-6xl">🌱</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-sm text-green-600 font-medium mb-2">10 de Dezembro, 2024</div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Projeto Reflorestamento Alcança Meta</h3>
+                        <p class="text-gray-600 mb-4">Celebramos o plantio da 10.000ª árvore do nosso projeto de reflorestamento urbano.</p>
+                        <a href="#" class="text-green-600 font-medium hover:text-green-700">Ler artigo completo →</a>
+                    </div>
+                </article>
+                
+                <article class="card-hover bg-white rounded-2xl shadow-lg overflow-hidden fade-in" style="animation-delay: 0.4s">
+                    <div class="h-48 bg-gradient-to-br from-green-400 to-blue-400 flex items-center justify-center">
+                        <span class="text-6xl">🐢</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-sm text-green-600 font-medium mb-2">5 de Dezembro, 2024</div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Proteção da Vida Marinha</h3>
+                        <p class="text-gray-600 mb-4">Conheça as espécies marinhas que estamos ajudando a proteger através dos nossos projetos.</p>
+                        <a href="#" class="text-green-600 font-medium hover:text-green-700">Ler artigo completo →</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Volunteer Section -->
+    <section id="volunteer" class="py-20 bg-gradient-to-br from-green-500 to-blue-600 text-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 fade-in">Seja Voluntário</h2>
+                <p class="text-xl opacity-90 fade-in">
+                    Junte-se a nós e faça a diferença! Sua participação é fundamental para criarmos um futuro mais sustentável.
+                </p>
+            </div>
+            
+            <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 fade-in">
+                <form class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Nome Completo</label>
+                            <input type="text" class="w-full px-4 py-3 rounded-lg bg-white/20 border border-white/30 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50" placeholder="Seu nome completo">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">E-mail</label>
+                            <input type="email" class="w-full px-4 py-3 rounded-lg bg-white/20 border border-white/30 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50" placeholder="seu@email.com">
+                        </div>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Telefone</label>
+                            <input type="tel" class="w-full px-4 py-3 rounded-lg bg-white/20 border border-white/30 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50" placeholder="(11) 99999-9999">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Área de Interesse</label>
+                            <select class="w-full px-4 py-3 rounded-lg bg-white/20 border border-white/30 text-white focus:outline-none focus:ring-2 focus:ring-white/50">
+                                <option value="">Selecione uma área</option>
+                                <option value="reflorestamento">Reflorestamento</option>
+                                <option value="limpeza">Limpeza de Praias</option>
+                                <option value="reciclagem">Reciclagem</option>
+                                <option value="educacao">Educação Ambiental</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Mensagem (Opcional)</label>
+                        <textarea rows="4" class="w-full px-4 py-3 rounded-lg bg-white/20 border border-white/30 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50" placeholder="Conte-nos um pouco sobre sua motivação..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="glow-button w-full bg-white text-green-600 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition-all transform hover:scale-105">
+                        Quero Ser Voluntário! 🌱
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Donation Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="fade-in">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">Faça uma Doação</h2>
+                <p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+                    Sua contribuição nos ajuda a expandir nossos projetos e alcançar mais comunidades. 
+                    Cada doação faz a diferença para o planeta!
+                </p>
+                
+                <div class="grid md:grid-cols-3 gap-6 mb-12">
+                    <div class="card-hover bg-green-50 p-6 rounded-2xl border-2 border-transparent hover:border-green-200">
+                        <div class="text-3xl mb-4">🌱</div>
+                        <div class="text-2xl font-bold text-green-600 mb-2">R$ 25</div>
+                        <p class="text-gray-600">Planta 5 mudas de árvores nativas</p>
+                    </div>
+                    
+                    <div class="card-hover bg-blue-50 p-6 rounded-2xl border-2 border-blue-200 transform scale-105">
+                        <div class="text-3xl mb-4">🌊</div>
+                        <div class="text-2xl font-bold text-blue-600 mb-2">R$ 50</div>
+                        <p class="text-gray-600">Limpa 100m² de praia</p>
+                        <div class="bg-blue-500 text-white text-xs px-2 py-1 rounded-full mt-2 inline-block">Mais Popular</div>
+                    </div>
+                    
+                    <div class="card-hover bg-green-50 p-6 rounded-2xl border-2 border-transparent hover:border-green-200">
+                        <div class="text-3xl mb-4">♻️</div>
+                        <div class="text-2xl font-bold text-green-600 mb-2">R$ 100</div>
+                        <p class="text-gray-600">Educa uma família sobre reciclagem</p>
+                    </div>
+                </div>
+                
+                <button class="glow-button bg-green-500 hover:bg-green-600 text-white px-12 py-4 rounded-full text-xl font-bold transition-all transform hover:scale-105 pulse-green">
+                    Doar Agora 💚
+                </button>
+                
+                <p class="text-sm text-gray-500 mt-4">
+                    * Esta é uma demonstração. Em um site real, este botão levaria a uma plataforma de pagamento segura.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="fade-in">
+                    <div class="flex items-center space-x-2 mb-6">
+                        <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center">
+                            <span class="text-white font-bold">🌱</span>
+                        </div>
+                        <span class="text-2xl font-bold">Verde Vivo</span>
+                    </div>
+                    <p class="text-gray-300 mb-6">
+                        Trabalhando por um futuro sustentável através de ações concretas e educação ambiental.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center hover:bg-green-600 transition-colors">
+                            <span>📘</span>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center hover:bg-green-600 transition-colors">
+                            <span>📷</span>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center hover:bg-green-600 transition-colors">
+                            <span>🐦</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="fade-in" style="animation-delay: 0.2s">
+                    <h3 class="text-lg font-bold mb-6">Links Rápidos</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#mission" class="text-gray-300 hover:text-green-400 transition-colors">Nossa Missão</a></li>
+                        <li><a href="#projects" class="text-gray-300 hover:text-green-400 transition-colors">Projetos</a></li>
+                        <li><a href="#news" class="text-gray-300 hover:text-green-400 transition-colors">Notícias</a></li>
+                        <li><a href="#volunteer" class="text-gray-300 hover:text-green-400 transition-colors">Seja Voluntário</a></li>
+                    </ul>
+                </div>
+                
+                <div class="fade-in" style="animation-delay: 0.4s">
+                    <h3 class="text-lg font-bold mb-6">Projetos</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-300 hover:text-green-400 transition-colors">Reflorestamento</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-green-400 transition-colors">Limpeza de Praias</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-green-400 transition-colors">Reciclagem</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-green-400 transition-colors">Educação Ambiental</a></li>
+                    </ul>
+                </div>
+                
+                <div class="fade-in" style="animation-delay: 0.6s">
+                    <h3 class="text-lg font-bold mb-6">Contato</h3>
+                    <div class="space-y-3 text-gray-300">
+                        <p>📍 Rua das Árvores, 123<br>São Paulo - SP, 01234-567</p>
+                        <p>📞 (11) 3456-7890</p>
+                        <p>✉️ contato@verdevivo.org.br</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-12 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 Verde Vivo. Todos os direitos reservados. Feito com 💚 para o planeta.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animated elements
+        document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Form submission
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const name = this.querySelector('input[type="text"]').value;
+            
+            if (name.trim()) {
+                // Show success message
+                const button = this.querySelector('button[type="submit"]');
+                const originalText = button.innerHTML;
+                button.innerHTML = 'Cadastro Realizado! ✅';
+                button.classList.add('bg-green-600');
+                
+                // Reset form after 3 seconds
+                setTimeout(() => {
+                    this.reset();
+                    button.innerHTML = originalText;
+                    button.classList.remove('bg-green-600');
+                }, 3000);
+            }
+        });
+
+        // Donation button click
+        document.querySelectorAll('button').forEach(button => {
+            if (button.textContent.includes('Doar')) {
+                button.addEventListener('click', function() {
+                    alert('Em um site real, este botão levaria você para uma plataforma de pagamento segura como PagSeguro, PayPal ou Stripe. Obrigado pelo seu interesse em apoiar a Verde Vivo! 💚');
+                });
+            }
+        });
+
+        // Add parallax effect to hero section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('#home');
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+        // Initialize animations on page load
+        window.addEventListener('load', () => {
+            // Trigger initial animations
+            setTimeout(() => {
+                document.querySelectorAll('.fade-in').forEach((el, index) => {
+                    setTimeout(() => {
+                        el.classList.add('visible');
+                    }, index * 100);
+                });
+            }, 500);
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'978c236da1804d53',t:'MTc1NjgwNjk5Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

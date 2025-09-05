@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GlobalLingua - Aprenda Idiomas de Forma Rápida e Prática</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #3B82F6 0%, #1E40AF 100%);
+        }
+        
+        .yellow-gradient {
+            background: linear-gradient(135deg, #FCD34D 0%, #F59E0B 100%);
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s ease;
+        }
+        
+        .slide-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s ease;
+        }
+        
+        .slide-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 3px #999;
+            z-index: 100;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #FCD34D;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/5511999999999" target="_blank" class="whatsapp-float">
+        <span style="margin-top: 16px; display: block;">📱</span>
+    </a>
+
+    <!-- Navigation -->
+    <nav class="gradient-bg text-white py-4 fixed w-full top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <div class="text-2xl font-bold">
+                🌍 GlobalLingua
+            </div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#home" class="nav-link hover:text-yellow-300">Início</a>
+                <a href="#plans" class="nav-link hover:text-yellow-300">Planos</a>
+                <a href="#demo" class="nav-link hover:text-yellow-300">Aulas Demo</a>
+                <a href="#teachers" class="nav-link hover:text-yellow-300">Professores</a>
+                <a href="#faq" class="nav-link hover:text-yellow-300">FAQ</a>
+                <a href="#contact" class="nav-link hover:text-yellow-300">Contato</a>
+            </div>
+            <button class="md:hidden text-white" onclick="toggleMenu()">
+                <span id="menu-icon">☰</span>
+            </button>
+        </div>
+        <div id="mobile-menu" class="md:hidden hidden bg-blue-800 px-4 py-2">
+            <a href="#home" class="block py-2 hover:text-yellow-300">Início</a>
+            <a href="#plans" class="block py-2 hover:text-yellow-300">Planos</a>
+            <a href="#demo" class="block py-2 hover:text-yellow-300">Aulas Demo</a>
+            <a href="#teachers" class="block py-2 hover:text-yellow-300">Professores</a>
+            <a href="#faq" class="block py-2 hover:text-yellow-300">FAQ</a>
+            <a href="#contact" class="block py-2 hover:text-yellow-300">Contato</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="gradient-bg text-white py-32 mt-16">
+        <div class="container mx-auto px-4 text-center">
+            <div class="fade-in">
+                <h1 class="text-5xl md:text-7xl font-bold mb-6 floating">
+                    Aprenda idiomas de forma<br>
+                    <span class="text-yellow-300">rápida e prática</span>
+                </h1>
+                <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
+                    Metodologia inovadora, professores nativos e tecnologia de ponta para acelerar seu aprendizado
+                </p>
+                <div class="space-x-4">
+                    <button class="yellow-gradient text-blue-900 px-8 py-4 rounded-full text-lg font-semibold hover:scale-105 transition-transform pulse-animation">
+                        Começar Agora 🚀
+                    </button>
+                    <button class="border-2 border-white text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-white hover:text-blue-600 transition-all">
+                        Aula Gratuita
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Plans Section -->
+    <section id="plans" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+                    Escolha seu <span class="text-blue-600">Plano Ideal</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    Planos flexíveis para todos os níveis e objetivos
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Básico -->
+                <div class="card-hover bg-white rounded-2xl p-8 shadow-lg border-2 border-gray-100 slide-in-left">
+                    <div class="text-center mb-6">
+                        <div class="text-4xl mb-4">🌱</div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">Básico</h3>
+                        <div class="text-3xl font-bold text-blue-600 mb-4">R$ 89<span class="text-lg text-gray-500">/mês</span></div>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> 2 aulas por semana</li>
+                        <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Material didático digital</li>
+                        <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> App móvel</li>
+                        <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Suporte por chat</li>
+                    </ul>
+                    <button class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+                        Escolher Plano
+                    </button>
+                </div>
+
+                <!-- Intermediário -->
+                <div class="card-hover bg-white rounded-2xl p-8 shadow-xl border-2 border-yellow-400 slide-in-left relative">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 yellow-gradient text-blue-900 px-4 py-2 rounded-full text-sm font-bold">
+                        MAIS POPULAR
+                    </div>
+                    <div class="text-center mb-6">
+                        <div class="text-4xl mb-4">🚀</div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">Intermediário</h3>
+                        <div class="text-3xl font-bold text-blue-600 mb-4">R$ 149<span class="text-lg text-gray-500">/mês</span></div>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> 4 aulas por semana</li>
+                        <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Material premium</li>
+                        <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Conversação em grupo</li>
+                        <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Certificado internacional</li>
+                        <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Suporte prioritário</li>
+                    </ul>
+                    <button class="w-full yellow-gradient text-blue-900 py-3 rounded-lg font-semibold hover:scale-105 transition-transform">
+                        Escolher Plano
+                    </button>
+                </div>
+
+                <!-- Avançado -->
+                <div class="card-hover bg-white rounded-2xl p-8 shadow-lg border-2 border-gray-100 slide-in-right">
+                    <div class="text-center mb-6">
+                        <div class="text-4xl mb-4">👑</div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">Avançado</h3>
+                        <div class="text-3xl font-bold text-blue-600 mb-4">R$ 249<span class="text-lg text-gray-500">/mês</span></div>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Aulas ilimitadas</li>
+                        <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Professor particular</li>
+                        <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Imersão cultural</li>
+                        <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Preparação para exames</li>
+                        <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Suporte 24/7</li>
+                    </ul>
+                    <button class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+                        Escolher Plano
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Classes Section -->
+    <section id="demo" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+                    Nossa <span class="text-blue-600">Metodologia</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    Descubra como tornamos o aprendizado divertido e eficaz
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <div class="card-hover bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-6 fade-in">
+                    <div class="text-4xl mb-4">🎯</div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Aprendizado Personalizado</h3>
+                    <p class="text-gray-600 mb-4">IA adapta o conteúdo ao seu ritmo e estilo de aprendizado</p>
+                    <button class="text-blue-600 font-semibold hover:text-blue-800 transition-colors">
+                        Ver demonstração →
+                    </button>
+                </div>
+                
+                <div class="card-hover bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-2xl p-6 fade-in">
+                    <div class="text-4xl mb-4">🗣️</div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Conversação Real</h3>
+                    <p class="text-gray-600 mb-4">Pratique com nativos em situações do dia a dia</p>
+                    <button class="text-blue-600 font-semibold hover:text-blue-800 transition-colors">
+                        Experimentar agora →
+                    </button>
+                </div>
+                
+                <div class="card-hover bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-6 fade-in">
+                    <div class="text-4xl mb-4">🎮</div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Gamificação</h3>
+                    <p class="text-gray-600 mb-4">Aprenda brincando com desafios e recompensas</p>
+                    <button class="text-blue-600 font-semibold hover:text-blue-800 transition-colors">
+                        Jogar demo →
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Teachers Section -->
+    <section id="teachers" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+                    Nossos <span class="text-blue-600">Professores</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    Professores nativos e certificados de todo o mundo
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+                <div class="card-hover bg-white rounded-2xl p-6 text-center shadow-lg slide-in-left">
+                    <div class="w-24 h-24 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full mx-auto mb-4 flex items-center justify-center text-white text-2xl font-bold">
+                        JS
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">John Smith</h3>
+                    <p class="text-blue-600 font-semibold mb-2">🇺🇸 Inglês Nativo</p>
+                    <p class="text-gray-600 text-sm">10 anos de experiência</p>
+                </div>
+                
+                <div class="card-hover bg-white rounded-2xl p-6 text-center shadow-lg slide-in-left">
+                    <div class="w-24 h-24 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full mx-auto mb-4 flex items-center justify-center text-white text-2xl font-bold">
+                        MG
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">María García</h3>
+                    <p class="text-blue-600 font-semibold mb-2">🇪🇸 Espanhol Nativo</p>
+                    <p class="text-gray-600 text-sm">8 anos de experiência</p>
+                </div>
+                
+                <div class="card-hover bg-white rounded-2xl p-6 text-center shadow-lg slide-in-right">
+                    <div class="w-24 h-24 bg-gradient-to-br from-green-400 to-green-600 rounded-full mx-auto mb-4 flex items-center justify-center text-white text-2xl font-bold">
+                        PD
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Pierre Dubois</h3>
+                    <p class="text-blue-600 font-semibold mb-2">🇫🇷 Francês Nativo</p>
+                    <p class="text-gray-600 text-sm">12 anos de experiência</p>
+                </div>
+                
+                <div class="card-hover bg-white rounded-2xl p-6 text-center shadow-lg slide-in-right">
+                    <div class="w-24 h-24 bg-gradient-to-br from-purple-400 to-purple-600 rounded-full mx-auto mb-4 flex items-center justify-center text-white text-2xl font-bold">
+                        LW
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Li Wei</h3>
+                    <p class="text-blue-600 font-semibold mb-2">🇨🇳 Mandarim Nativo</p>
+                    <p class="text-gray-600 text-sm">6 anos de experiência</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+                    Perguntas <span class="text-blue-600">Frequentes</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    Tire suas dúvidas sobre nossos cursos
+                </p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto space-y-4">
+                <div class="faq-item bg-gray-50 rounded-lg p-6 cursor-pointer hover:bg-gray-100 transition-colors fade-in" onclick="toggleFAQ(this)">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-lg font-semibold text-gray-800">Qual é a metodologia de ensino?</h3>
+                        <span class="faq-icon text-2xl text-blue-600">+</span>
+                    </div>
+                    <div class="faq-answer hidden mt-4 text-gray-600">
+                        Nossa metodologia combina conversação prática, gamificação e IA personalizada para acelerar o aprendizado. Focamos na comunicação real desde o primeiro dia.
+                    </div>
+                </div>
+                
+                <div class="faq-item bg-gray-50 rounded-lg p-6 cursor-pointer hover:bg-gray-100 transition-colors fade-in" onclick="toggleFAQ(this)">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-lg font-semibold text-gray-800">Os certificados são reconhecidos internacionalmente?</h3>
+                        <span class="faq-icon text-2xl text-blue-600">+</span>
+                    </div>
+                    <div class="faq-answer hidden mt-4 text-gray-600">
+                        Sim! Nossos certificados seguem o Quadro Europeu Comum de Referência (CEFR) e são aceitos em universidades e empresas mundialmente.
+                    </div>
+                </div>
+                
+                <div class="faq-item bg-gray-50 rounded-lg p-6 cursor-pointer hover:bg-gray-100 transition-colors fade-in" onclick="toggleFAQ(this)">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-lg font-semibold text-gray-800">Posso cancelar minha assinatura a qualquer momento?</h3>
+                        <span class="faq-icon text-2xl text-blue-600">+</span>
+                    </div>
+                    <div class="faq-answer hidden mt-4 text-gray-600">
+                        Claro! Você pode cancelar sua assinatura a qualquer momento sem taxas adicionais. Seu acesso continua até o final do período pago.
+                    </div>
+                </div>
+                
+                <div class="faq-item bg-gray-50 rounded-lg p-6 cursor-pointer hover:bg-gray-100 transition-colors fade-in" onclick="toggleFAQ(this)">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-lg font-semibold text-gray-800">Quanto tempo leva para ficar fluente?</h3>
+                        <span class="faq-icon text-2xl text-blue-600">+</span>
+                    </div>
+                    <div class="faq-answer hidden mt-4 text-gray-600">
+                        Com dedicação de 1 hora por dia, nossos alunos alcançam conversação fluente em 6-12 meses, dependendo do idioma e nível inicial.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 gradient-bg text-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">
+                    Entre em <span class="text-yellow-300">Contato</span>
+                </h2>
+                <p class="text-xl max-w-2xl mx-auto">
+                    Pronto para começar sua jornada? Fale conosco!
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+                <div class="slide-in-left">
+                    <h3 class="text-2xl font-bold mb-6">Formulário de Contato</h3>
+                    <p class="text-blue-100 mb-4">⚠️ Este é um formulário demonstrativo</p>
+                    <form class="space-y-4">
+                        <div>
+                            <input type="text" placeholder="Seu nome" class="w-full p-4 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-yellow-400">
+                        </div>
+                        <div>
+                            <input type="email" placeholder="Seu email" class="w-full p-4 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-yellow-400">
+                        </div>
+                        <div>
+                            <select class="w-full p-4 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-yellow-400">
+                                <option>Idioma de interesse</option>
+                                <option>Inglês</option>
+                                <option>Espanhol</option>
+                                <option>Francês</option>
+                                <option>Mandarim</option>
+                            </select>
+                        </div>
+                        <div>
+                            <textarea placeholder="Sua mensagem" rows="4" class="w-full p-4 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-yellow-400"></textarea>
+                        </div>
+                        <button type="button" class="yellow-gradient text-blue-900 px-8 py-4 rounded-lg font-semibold hover:scale-105 transition-transform w-full">
+                            Enviar Mensagem
+                        </button>
+                    </form>
+                </div>
+                
+                <div class="slide-in-right">
+                    <h3 class="text-2xl font-bold mb-6">Outras formas de contato</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 yellow-gradient rounded-full flex items-center justify-center text-blue-900 text-xl">
+                                📧
+                            </div>
+                            <div>
+                                <p class="font-semibold">Email</p>
+                                <p class="text-blue-100">contato@globallingua.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 yellow-gradient rounded-full flex items-center justify-center text-blue-900 text-xl">
+                                📱
+                            </div>
+                            <div>
+                                <p class="font-semibold">WhatsApp</p>
+                                <p class="text-blue-100">(11) 99999-9999</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 yellow-gradient rounded-full flex items-center justify-center text-blue-900 text-xl">
+                                📍
+                            </div>
+                            <div>
+                                <p class="font-semibold">Endereço</p>
+                                <p class="text-blue-100">Av. Paulista, 1000 - São Paulo, SP</p>
+                            </div>
+                        </div>
+                        
+                        <div class="pt-6">
+                            <p class="font-semibold mb-4">Horário de Atendimento:</p>
+                            <p class="text-blue-100">Segunda a Sexta: 8h às 20h</p>
+                            <p class="text-blue-100">Sábado: 9h às 17h</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">🌍 GlobalLingua</h3>
+                    <p class="text-gray-400 mb-4">Transformando vidas através do aprendizado de idiomas</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors">f</a>
+                        <a href="#" class="w-10 h-10 bg-blue-400 rounded-full flex items-center justify-center hover:bg-blue-500 transition-colors">t</a>
+                        <a href="#" class="w-10 h-10 bg-pink-600 rounded-full flex items-center justify-center hover:bg-pink-700 transition-colors">i</a>
+                        <a href="#" class="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center hover:bg-red-700 transition-colors">y</a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Cursos</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Inglês</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Espanhol</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Francês</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Mandarim</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Empresa</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Sobre nós</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Metodologia</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Carreiras</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Suporte</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Central de Ajuda</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Política de Privacidade</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Termos de Uso</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Contato</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 GlobalLingua. Todos os direitos reservados.</p>
+                <p class="mt-2">CNPJ: 12.345.678/0001-90 | Av. Paulista, 1000 - São Paulo, SP</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Mobile menu toggle
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                icon.textContent = '✕';
+            } else {
+                menu.classList.add('hidden');
+                icon.textContent = '☰';
+            }
+        }
+
+        // FAQ toggle
+        function toggleFAQ(element) {
+            const answer = element.querySelector('.faq-answer');
+            const icon = element.querySelector('.faq-icon');
+            
+            if (answer.classList.contains('hidden')) {
+                answer.classList.remove('hidden');
+                icon.textContent = '−';
+            } else {
+                answer.classList.add('hidden');
+                icon.textContent = '+';
+            }
+        }
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all elements with animation classes
+        document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Form submission (demo)
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Obrigado pelo seu interesse! Esta é uma demonstração. Em breve entraremos em contato.');
+        });
+
+        // Add click handlers for demo buttons
+        document.querySelectorAll('button').forEach(button => {
+            if (!button.onclick && button.textContent.includes('Escolher Plano')) {
+                button.onclick = () => alert('Redirecionando para o checkout... (Demo)');
+            }
+            if (!button.onclick && button.textContent.includes('Começar Agora')) {
+                button.onclick = () => alert('Iniciando cadastro... (Demo)');
+            }
+            if (!button.onclick && button.textContent.includes('Aula Gratuita')) {
+                button.onclick = () => alert('Agendando aula gratuita... (Demo)');
+            }
+        });
+
+        // Demo buttons for methodology section
+        document.querySelectorAll('button').forEach(button => {
+            if (button.textContent.includes('Ver demonstração')) {
+                button.onclick = () => alert('Abrindo demonstração personalizada... (Demo)');
+            }
+            if (button.textContent.includes('Experimentar agora')) {
+                button.onclick = () => alert('Iniciando sessão de conversação... (Demo)');
+            }
+            if (button.textContent.includes('Jogar demo')) {
+                button.onclick = () => alert('Carregando jogo educativo... (Demo)');
+            }
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'978c1e6413e24d53',t:'MTc1NjgwNjc4OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
