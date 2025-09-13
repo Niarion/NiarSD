@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pacotes de Mentoria Digital</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'rose-soft': '#f8e8f0',
+                        'gold': '#d4af37',
+                        'gold-light': '#f4e8c1'
+                    },
+                    fontFamily: {
+                        'elegant': ['Georgia', 'serif'],
+                        'modern': ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .gradient-bg { background: linear-gradient(135deg, #ffffff 0%, #f8e8f0 100%); }
+        .card-hover { transition: all 0.3s ease; }
+        .card-hover:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        @media (max-width: 768px) {
+            .card-hover:hover { transform: translateY(-4px); }
+        }
+        .gold-gradient { background: linear-gradient(135deg, #d4af37 0%, #f4e8c1 100%); }
+        .pulse-gold { animation: pulse-gold 2s infinite; }
+        @keyframes pulse-gold {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4); }
+            50% { box-shadow: 0 0 0 20px rgba(212, 175, 55, 0); }
+        }
+    </style>
+</head>
+<body class="gradient-bg min-h-screen">
+    <!-- Hero Section -->
+    <section class="py-12 md:py-20 px-4">
+        <div class="max-w-6xl mx-auto text-center">
+            <div class="mb-6 md:mb-8">
+                <svg class="w-12 h-12 md:w-16 md:h-16 mx-auto mb-4 md:mb-6 text-rose-400" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                </svg>
+            </div>
+            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 mb-4 md:mb-6 leading-tight px-2">
+                Escolha seu <span class="text-rose-400">pacote</span> e<br class="hidden sm:block">
+                <span class="gold-gradient bg-clip-text text-transparent">potencialize</span> sua mentoria
+            </h1>
+            <p class="text-lg md:text-xl text-gray-600 mb-8 md:mb-10 max-w-3xl mx-auto leading-relaxed px-4">
+                Pacotes completos para aumentar alcance, engajamento e vendas.<br class="hidden sm:block">
+                Transforme sua presença digital e conquiste mais clientes.
+            </p>
+            <button onclick="scrollToPackages()" class="bg-rose-400 hover:bg-rose-500 text-white px-6 md:px-8 py-3 md:py-4 rounded-full text-base md:text-lg font-semibold transition-all duration-300 pulse-gold">
+                Ver Pacotes ✨
+            </button>
+        </div>
+    </section>
+
+    <!-- Packages Section -->
+    <section id="packages" class="py-12 md:py-20 px-4 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-8 md:mb-16">
+                <h2 class="text-2xl md:text-4xl font-bold text-gray-800 mb-2 md:mb-4">Nossos Pacotes</h2>
+                <p class="text-gray-600 text-base md:text-lg px-4">Escolha o plano ideal para o seu momento de negócio</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
+                <!-- Essencial Package -->
+                <div class="bg-white rounded-2xl md:rounded-3xl p-6 md:p-8 shadow-lg border-2 border-gray-100 card-hover">
+                    <div class="text-center mb-6 md:mb-8">
+                        <div class="w-12 h-12 md:w-16 md:h-16 bg-rose-100 rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4">
+                            <svg class="w-6 h-6 md:w-8 md:h-8 text-rose-400" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl md:text-2xl font-bold text-gray-800 mb-2">Essencial</h3>
+                        <div class="text-3xl md:text-4xl font-bold text-rose-400 mb-1 md:mb-2">R$ 1.000</div>
+                        <div class="text-gray-500 text-sm md:text-base">/mês</div>
+                    </div>
+
+                    <ul class="space-y-3 md:space-y-4 mb-6 md:mb-8">
+                        <li class="flex items-start">
+                            <svg class="w-4 h-4 md:w-5 md:h-5 text-rose-400 mt-1 mr-2 md:mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                            </svg>
+                            <span class="text-gray-700 text-sm md:text-base">Reformulação completa das redes sociais + identidade visual</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-4 h-4 md:w-5 md:h-5 text-rose-400 mt-1 mr-2 md:mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                            </svg>
+                            <span class="text-gray-700 text-sm md:text-base"><strong class="text-rose-500">12 reels/mês</strong> (edição, legenda e capa)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-4 h-4 md:w-5 md:h-5 text-rose-400 mt-1 mr-2 md:mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                            </svg>
+                            <span class="text-gray-700 text-sm md:text-base"><strong class="text-rose-500">4 carrosséis/mês</strong></span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-4 h-4 md:w-5 md:h-5 text-rose-400 mt-1 mr-2 md:mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                            </svg>
+                            <span class="text-gray-700 text-sm md:text-base">Artes de apoio para stories e chamadas</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-4 h-4 md:w-5 md:h-5 text-rose-400 mt-1 mr-2 md:mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                            </svg>
+                            <span class="text-gray-700 text-sm md:text-base">Relatório mensal de crescimento</span>
+                        </li>
+                    </ul>
+
+                    <div class="bg-rose-50 p-4 rounded-xl mb-6">
+                        <div class="text-sm text-rose-600 font-semibold mb-1">💡 Opção de comissão:</div>
+                        <div class="text-rose-700">R$ 400 fixo + <strong>5%</strong> sobre vendas</div>
+                    </div>
+
+                    <button class="w-full bg-rose-400 hover:bg-rose-500 text-white py-3 rounded-xl font-semibold transition-all duration-300">
+                        Escolher Essencial
+                    </button>
+                </div>
+
+                <!-- Profissional Package -->
+                <div class="bg-white rounded-2xl md:rounded-3xl p-6 md:p-8 shadow-xl border-2 border-gold relative card-hover lg:transform lg:scale-105">
+                    <div class="absolute -top-3 md:-top-4 left-1/2 transform -translate-x-1/2">
+                        <div class="bg-gold text-white px-4 md:px-6 py-1 md:py-2 rounded-full text-xs md:text-sm font-semibold">
+                            MAIS POPULAR
+                        </div>
+                    </div>
+                    
+                    <div class="text-center mb-6 md:mb-8 mt-3 md:mt-4">
+                        <div class="w-12 h-12 md:w-16 md:h-16 gold-gradient rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4">
+                            <svg class="w-6 h-6 md:w-8 md:h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl md:text-2xl font-bold text-gray-800 mb-2">Profissional</h3>
+                        <div class="text-3xl md:text-4xl font-bold text-gold mb-1 md:mb-2">R$ 1.800</div>
+                        <div class="text-gray-500 text-sm md:text-base">/mês</div>
+                    </div>
+
+                    <div class="bg-gold-light p-3 rounded-xl mb-4 text-center">
+                        <span class="text-gold font-semibold">Tudo do Essencial +</span>
+                    </div>
+
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-gold mt-1 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                            </svg>
+                            <span class="text-gray-700"><strong class="text-gold">20 reels/mês</strong> (edição + cortes de lives/podcasts + legendas)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-gold mt-1 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                            </svg>
+                            <span class="text-gray-700"><strong class="text-gold">8 carrosséis/mês</strong></span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-gold mt-1 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                            </svg>
+                            <span class="text-gray-700">Estratégia de conteúdo (roteiros + ideias com CTA)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-gold mt-1 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                            </svg>
+                            <span class="text-gray-700">1 landing page otimizada</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-gold mt-1 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                            </svg>
+                            <span class="text-gray-700">Automação de e-mails</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-gold mt-1 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                            </svg>
+                            <span class="text-gray-700">Reunião estratégica mensal - análise de métricas</span>
+                        </li>
+                    </ul>
+
+                    <div class="bg-gold-light p-4 rounded-xl mb-6">
+                        <div class="text-sm text-gold font-semibold mb-1">💡 Opção de comissão:</div>
+                        <div class="text-gray-700">R$ 900 fixo + <strong class="text-gold">10%</strong> sobre vendas</div>
+                    </div>
+
+                    <button class="w-full gold-gradient text-white py-3 rounded-xl font-semibold transition-all duration-300 hover:shadow-lg">
+                        Escolher Profissional
+                    </button>
+                </div>
+
+                <!-- Premium Package -->
+                <div class="bg-gradient-to-br from-gray-900 to-black rounded-2xl md:rounded-3xl p-6 md:p-8 shadow-xl text-white card-hover">
+                    <div class="text-center mb-6 md:mb-8">
+                        <div class="w-12 h-12 md:w-16 md:h-16 bg-gold rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4">
+                            <svg class="w-6 h-6 md:w-8 md:h-8 text-black" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl md:text-2xl font-bold mb-2">Premium</h3>
+                        <div class="text-3xl md:text-4xl font-bold text-gold mb-1 md:mb-2">R$ 4.000</div>
+                        <div class="text-gray-300 text-sm md:text-base">/mês</div>
+                    </div>
+
+                    <div class="bg-gray-800 p-3 rounded-xl mb-4 text-center">
+                        <span class="text-gold font-semibold">Tudo do Profissional +</span>
+                    </div>
+
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-gold mt-1 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                            </svg>
+                            <span class="text-gray-200"><strong class="text-gold">30 reels/mês</strong> (edição + copy + design + capas personalizadas)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-gold mt-1 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                            </svg>
+                            <span class="text-gray-200"><strong class="text-gold">12 carrosséis/mês</strong></span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-gold mt-1 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                            </svg>
+                            <span class="text-gray-200">Criação de produto digital de entrada (mini-curso ou workshop pago)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-gold mt-1 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                            </svg>
+                            <span class="text-gray-200">Gestão de anúncios</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-gold mt-1 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                            </svg>
+                            <span class="text-gray-200">Consultoria quinzenal + relatórios avançados</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-gold mt-1 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                            </svg>
+                            <span class="text-gray-200">Colabs estratégicas</span>
+                        </li>
+                    </ul>
+
+                    <div class="bg-gray-800 p-4 rounded-xl mb-6">
+                        <div class="text-sm text-gold font-semibold mb-1">💡 Opção de comissão:</div>
+                        <div class="text-gray-200">R$ 2.000 fixo + <strong class="text-gold">15%</strong> sobre vendas</div>
+                    </div>
+
+                    <button class="w-full bg-gold hover:bg-yellow-500 text-black py-3 rounded-xl font-semibold transition-all duration-300">
+                        Escolher Premium
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <script>
+        function scrollToPackages() {
+            document.getElementById('packages').scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        // Add WhatsApp contact functionality
+        document.querySelectorAll('button').forEach(button => {
+            if (button.textContent.includes('Escolher')) {
+                button.addEventListener('click', function() {
+                    const packageName = this.textContent.replace('Escolher ', '');
+                    const message = `Oi Biel, eu quero o ${packageName}! 😊`;
+                    const whatsappUrl = `https://wa.me/5511991618831?text=${encodeURIComponent(message)}`;
+                    window.open(whatsappUrl, '_blank');
+                });
+            }
+            
+            if (button.textContent.includes('Ver Pacotes')) {
+                // Keep the scroll functionality for this button
+                // Already handled by scrollToPackages function
+            }
+        });
+
+        // Add entrance animations
+        window.addEventListener('load', function() {
+            const cards = document.querySelectorAll('.card-hover');
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(30px)';
+                    card.style.transition = 'all 0.6s ease';
+                    
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, 100);
+                }, index * 200);
+            });
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97e83c61247e6ea5',t:'MTc1Nzc3MjcwOC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
