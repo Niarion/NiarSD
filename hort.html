@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposta de Divulgação & Parceria - Hortifruti</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 50%, #15803d 100%);
+        }
+        
+        .fruit-pattern {
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(255, 165, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(34, 197, 94, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(255, 193, 7, 0.1) 0%, transparent 50%);
+        }
+        
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .animate-float-delayed {
+            animation: float 6s ease-in-out infinite 2s;
+        }
+        
+        .animate-bounce-slow {
+            animation: bounce-slow 3s ease-in-out infinite;
+        }
+        
+        .animate-pulse-slow {
+            animation: pulse-slow 4s ease-in-out infinite;
+        }
+        
+        .animate-slide-up {
+            animation: slideUp 0.8s ease-out forwards;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .animate-slide-left {
+            animation: slideLeft 0.8s ease-out forwards;
+            opacity: 0;
+            transform: translateX(30px);
+        }
+        
+        .animate-slide-right {
+            animation: slideRight 0.8s ease-out forwards;
+            opacity: 0;
+            transform: translateX(-30px);
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes bounce-slow {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes pulse-slow {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes slideLeft {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes slideRight {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(249, 115, 22, 0.4);
+        }
+        
+        .section-padding {
+            padding: 4rem 1rem;
+        }
+        
+        @media (max-width: 768px) {
+            .section-padding {
+                padding: 2rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header / Capa -->
+    <section class="gradient-bg fruit-pattern min-h-screen flex items-center justify-center relative overflow-hidden">
+        <!-- Elementos decorativos flutuantes -->
+        <div class="absolute top-20 left-10 animate-float">
+            <div class="text-6xl">🍎</div>
+        </div>
+        <div class="absolute top-32 right-16 animate-float-delayed">
+            <div class="text-5xl">🥕</div>
+        </div>
+        <div class="absolute bottom-32 left-20 animate-bounce-slow">
+            <div class="text-4xl">🍊</div>
+        </div>
+        <div class="absolute bottom-20 right-10 animate-pulse-slow">
+            <div class="text-5xl">🥬</div>
+        </div>
+        
+        <div class="container mx-auto px-4 text-center text-white relative z-10">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6 animate-slide-up" style="animation-delay: 0.2s;">
+                Proposta de Divulgação<br>
+                <span class="text-yellow-300">& Parceria</span><br>
+                <span class="text-orange-300">Hortifruti</span>
+            </h1>
+            <p class="text-xl md:text-2xl mb-8 animate-slide-up max-w-3xl mx-auto" style="animation-delay: 0.4s;">
+                Aumente clientes e destaque sua marca<br>
+                <span class="font-semibold text-yellow-200">sem custo financeiro</span>
+            </p>
+            <button onclick="scrollToSection('objetivo')" class="btn-primary text-white px-8 py-4 rounded-full text-lg font-semibold animate-slide-up" style="animation-delay: 0.6s;">
+                Saiba Mais 🚀
+            </button>
+        </div>
+    </section>
+
+    <!-- Seção Objetivo -->
+    <section id="objetivo" class="section-padding bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-green-800 mb-6 animate-slide-up">
+                    🎯 Nosso Objetivo
+                </h2>
+                <div class="max-w-4xl mx-auto">
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <div class="card-hover bg-green-50 p-6 rounded-2xl animate-slide-up" style="animation-delay: 0.2s;">
+                            <div class="text-4xl mb-4">👥</div>
+                            <h3 class="text-xl font-semibold text-green-700 mb-3">Atrair Clientes</h3>
+                            <p class="text-gray-600">Aumentar o fluxo de pessoas no seu estabelecimento</p>
+                        </div>
+                        <div class="card-hover bg-orange-50 p-6 rounded-2xl animate-slide-up" style="animation-delay: 0.4s;">
+                            <div class="text-4xl mb-4">📈</div>
+                            <h3 class="text-xl font-semibold text-orange-700 mb-3">Aumentar Vendas</h3>
+                            <p class="text-gray-600">Impulsionar suas vendas através de divulgação estratégica</p>
+                        </div>
+                        <div class="card-hover bg-yellow-50 p-6 rounded-2xl animate-slide-up" style="animation-delay: 0.6s;">
+                            <div class="text-4xl mb-4">📱</div>
+                            <h3 class="text-xl font-semibold text-yellow-700 mb-3">Presença Digital</h3>
+                            <p class="text-gray-600">Criar presença no Instagram e WhatsApp de forma gratuita</p>
+                        </div>
+                    </div>
+                    <div class="mt-8 p-6 bg-gradient-to-r from-green-100 to-orange-100 rounded-2xl animate-slide-up" style="animation-delay: 0.8s;">
+                        <p class="text-lg text-gray-700">
+                            <span class="font-semibold text-green-700">💡 A proposta:</span> 
+                            Divulgação profissional em troca de divulgação do meu trabalho e algumas frutas :)
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Instagram -->
+    <section class="section-padding bg-gradient-to-br from-purple-50 to-pink-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-purple-800 mb-6 animate-slide-up">
+                    📸 Divulgação no Instagram
+                </h2>
+            </div>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="animate-slide-left">
+                    <div class="space-y-6">
+                        <div class="flex items-center space-x-4 p-4 bg-white rounded-xl shadow-sm card-hover">
+                            <div class="text-2xl">📝</div>
+                            <div>
+                                <h3 class="font-semibold text-gray-800">Posts Semanais</h3>
+                                <p class="text-gray-600">3-4 posts por semana com produtos frescos</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4 p-4 bg-white rounded-xl shadow-sm card-hover">
+                            <div class="text-2xl">📱</div>
+                            <div>
+                                <h3 class="font-semibold text-gray-800">Stories Diários</h3>
+                                <p class="text-gray-600">Conteúdo diário nos stories para engajamento</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4 p-4 bg-white rounded-xl shadow-sm card-hover">
+                            <div class="text-2xl">🎬</div>
+                            <div>
+                                <h3 class="font-semibold text-gray-800">Reels Curtos</h3>
+                                <p class="text-gray-600">Vídeos atrativos mostrando produtos e promoções</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4 p-4 bg-white rounded-xl shadow-sm card-hover">
+                            <div class="text-2xl">🎨</div>
+                            <div>
+                                <h3 class="font-semibold text-gray-800">Identidade Visual</h3>
+                                <p class="text-gray-600">Design padronizado e profissional</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4 p-4 bg-white rounded-xl shadow-sm card-hover">
+                            <div class="text-2xl">📅</div>
+                            <div>
+                                <h3 class="font-semibold text-gray-800">Calendário de Postagens</h3>
+                                <p class="text-gray-600">Planejamento estratégico de conteúdo</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="animate-slide-right text-center">
+                    <div class="relative">
+                        <div class="text-9xl animate-bounce-slow">📱</div>
+                        <div class="absolute -top-4 -right-4 text-4xl animate-pulse-slow">📸</div>
+                        <div class="absolute -bottom-4 -left-4 text-3xl animate-float">❤️</div>
+                    </div>
+                    <p class="text-lg text-purple-700 mt-6 font-medium">
+                        Presença profissional no Instagram<br>
+                        para atrair mais clientes!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção WhatsApp -->
+    <section class="section-padding bg-gradient-to-br from-green-50 to-emerald-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-green-800 mb-6 animate-slide-up">
+                    💬 Grupo de Promoções no WhatsApp
+                </h2>
+            </div>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="animate-slide-left text-center order-2 md:order-1">
+                    <div class="relative">
+                        <div class="text-9xl animate-pulse-slow">💬</div>
+                        <div class="absolute -top-4 -right-4 text-4xl animate-bounce-slow">📢</div>
+                        <div class="absolute -bottom-4 -left-4 text-3xl animate-float-delayed">🛒</div>
+                    </div>
+                    <p class="text-lg text-green-700 mt-6 font-medium">
+                        Comunicação direta<br>
+                        com seus clientes!
+                    </p>
+                </div>
+                <div class="animate-slide-right order-1 md:order-2">
+                    <div class="space-y-6">
+                        <div class="flex items-center space-x-4 p-4 bg-white rounded-xl shadow-sm card-hover">
+                            <div class="text-2xl">🏷️</div>
+                            <div>
+                                <h3 class="font-semibold text-gray-800">Envio de Promoções</h3>
+                                <p class="text-gray-600">Ofertas especiais direto no WhatsApp</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4 p-4 bg-white rounded-xl shadow-sm card-hover">
+                            <div class="text-2xl">🌱</div>
+                            <div>
+                                <h3 class="font-semibold text-gray-800">Produtos da Estação</h3>
+                                <p class="text-gray-600">Divulgação de frutas e verduras sazonais</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4 p-4 bg-white rounded-xl shadow-sm card-hover">
+                            <div class="text-2xl">⚡</div>
+                            <div>
+                                <h3 class="font-semibold text-gray-800">Mensagens Rápidas</h3>
+                                <p class="text-gray-600">Comunicação ágil e eficiente</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4 p-4 bg-white rounded-xl shadow-sm card-hover">
+                            <div class="text-2xl">🤝</div>
+                            <div>
+                                <h3 class="font-semibold text-gray-800">Engajamento</h3>
+                                <p class="text-gray-600">Relacionamento próximo com clientes</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Benefícios -->
+    <section class="section-padding bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-orange-800 mb-6 animate-slide-up">
+                    🌟 Benefícios para o Hortifruti
+                </h2>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="card-hover bg-gradient-to-br from-orange-50 to-red-50 p-6 rounded-2xl animate-slide-up" style="animation-delay: 0.1s;">
+                    <div class="text-4xl mb-4">👁️</div>
+                    <h3 class="text-xl font-semibold text-orange-700 mb-3">Maior Visibilidade</h3>
+                    <p class="text-gray-600">Sua marca será vista por centenas de pessoas nas redes sociais</p>
+                </div>
+                <div class="card-hover bg-gradient-to-br from-green-50 to-emerald-50 p-6 rounded-2xl animate-slide-up" style="animation-delay: 0.2s;">
+                    <div class="text-4xl mb-4">📈</div>
+                    <h3 class="text-xl font-semibold text-green-700 mb-3">Aumento de Clientes</h3>
+                    <p class="text-gray-600">Novos clientes descobrirão seu hortifruti através da divulgação</p>
+                </div>
+                <div class="card-hover bg-gradient-to-br from-purple-50 to-pink-50 p-6 rounded-2xl animate-slide-up" style="animation-delay: 0.3s;">
+                    <div class="text-4xl mb-4">🎨</div>
+                    <h3 class="text-xl font-semibold text-purple-700 mb-3">Divulgação Profissional</h3>
+                    <p class="text-gray-600">Conteúdo de qualidade que valoriza seus produtos</p>
+                </div>
+                <div class="card-hover bg-gradient-to-br from-blue-50 to-cyan-50 p-6 rounded-2xl animate-slide-up" style="animation-delay: 0.4s;">
+                    <div class="text-4xl mb-4">❤️</div>
+                    <h3 class="text-xl font-semibold text-blue-700 mb-3">Fidelização</h3>
+                    <p class="text-gray-600">Clientes mais engajados e fiéis ao seu negócio</p>
+                </div>
+                <div class="card-hover bg-gradient-to-br from-yellow-50 to-orange-50 p-6 rounded-2xl animate-slide-up" style="animation-delay: 0.5s;">
+                    <div class="text-4xl mb-4">⭐</div>
+                    <h3 class="text-xl font-semibold text-yellow-700 mb-3">Diferenciação</h3>
+                    <p class="text-gray-600">Destaque-se da concorrência com presença digital</p>
+                </div>
+                <div class="card-hover bg-gradient-to-br from-indigo-50 to-purple-50 p-6 rounded-2xl animate-slide-up" style="animation-delay: 0.6s;">
+                    <div class="text-4xl mb-4">💰</div>
+                    <h3 class="text-xl font-semibold text-indigo-700 mb-3">Custo Zero</h3>
+                    <p class="text-gray-600">Toda divulgação sem investimento financeiro</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Parceria de Troca -->
+    <section class="section-padding bg-gradient-to-br from-yellow-50 to-orange-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-orange-800 mb-6 animate-slide-up">
+                    🤝 O que cada um ganha
+                </h2>
+            </div>
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="animate-slide-left">
+                    <div class="bg-white p-8 rounded-2xl shadow-lg card-hover">
+                        <div class="text-center mb-6">
+                            <div class="text-5xl mb-4">🏪</div>
+                            <h3 class="text-2xl font-bold text-green-700">O que o Hortifruti ganha</h3>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="flex items-center space-x-3">
+                                <div class="text-xl">📱</div>
+                                <p class="text-gray-700">Presença profissional no Instagram</p>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div class="text-xl">💬</div>
+                                <p class="text-gray-700">Grupo de WhatsApp para promoções</p>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div class="text-xl">📸</div>
+                                <p class="text-gray-700">Fotos profissionais dos produtos</p>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div class="text-xl">📈</div>
+                                <p class="text-gray-700">Aumento de vendas e clientes</p>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div class="text-xl">🎨</div>
+                                <p class="text-gray-700">Identidade visual padronizada</p>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div class="text-xl">💰</div>
+                                <p class="text-gray-700">Tudo sem custo financeiro da minha parte</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="animate-slide-right">
+                    <div class="bg-white p-8 rounded-2xl shadow-lg card-hover">
+                        <div class="text-center mb-6">
+                            <div class="text-5xl mb-4">👨‍💻</div>
+                            <h3 class="text-2xl font-bold text-orange-700">O que eu ganho</h3>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="flex items-center space-x-3">
+                                <div class="text-xl">🥕</div>
+                                <p class="text-gray-700">Divulgação do meu trabalho :)</p>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div class="text-xl">🍎</div>
+                                <p class="text-gray-700">Algumas frutas se não ficar chato</p>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div class="text-xl">🤝</div>
+                                <p class="text-gray-700">Parceria de longo prazo</p>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div class="text-xl">📚</div>
+                                <p class="text-gray-700">Experiência em marketing local</p>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div class="text-xl">🌱</div>
+                                <p class="text-gray-700">Apoio ao comércio local</p>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div class="text-xl">⭐</div>
+                                <p class="text-gray-700">Portfolio de cases de sucesso</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Próximos Passos -->
+    <section class="section-padding bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-green-800 mb-6 animate-slide-up">
+                    🚀 Próximos Passos
+                </h2>
+            </div>
+            <div class="max-w-4xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="card-hover bg-gradient-to-br from-green-50 to-emerald-50 p-6 rounded-2xl animate-slide-up" style="animation-delay: 0.1s;">
+                        <div class="flex items-center space-x-4 mb-4">
+                            <div class="bg-green-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">1</div>
+                            <h3 class="text-xl font-semibold text-green-700">Definir Calendário</h3>
+                        </div>
+                        <p class="text-gray-600">Planejamento das postagens e horários ideais para seu público</p>
+                    </div>
+                    <div class="card-hover bg-gradient-to-br from-orange-50 to-red-50 p-6 rounded-2xl animate-slide-up" style="animation-delay: 0.2s;">
+                        <div class="flex items-center space-x-4 mb-4">
+                            <div class="bg-orange-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">2</div>
+                            <h3 class="text-xl font-semibold text-orange-700">Criar Identidade Visual</h3>
+                        </div>
+                        <p class="text-gray-600">Desenvolvimento de logo, cores e padrão visual para as redes</p>
+                    </div>
+                    <div class="card-hover bg-gradient-to-br from-purple-50 to-pink-50 p-6 rounded-2xl animate-slide-up" style="animation-delay: 0.3s;">
+                        <div class="flex items-center space-x-4 mb-4">
+                            <div class="bg-purple-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">3</div>
+                            <h3 class="text-xl font-semibold text-purple-700">Iniciar Publicações</h3>
+                        </div>
+                        <p class="text-gray-600">Começar com posts, stories e criação do grupo de WhatsApp</p>
+                    </div>
+                    <div class="card-hover bg-gradient-to-br from-blue-50 to-cyan-50 p-6 rounded-2xl animate-slide-up" style="animation-delay: 0.4s;">
+                        <div class="flex items-center space-x-4 mb-4">
+                            <div class="bg-blue-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">4</div>
+                            <h3 class="text-xl font-semibold text-blue-700">Avaliar Resultados</h3>
+                        </div>
+                        <p class="text-gray-600">Acompanhar métricas e ajustar estratégias mensalmente</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Final -->
+    <section class="section-padding gradient-bg fruit-pattern">
+        <div class="container mx-auto px-4 text-center">
+            <div class="max-w-3xl mx-auto text-white">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6 animate-slide-up">
+                    Pronto para começar esta parceria? 🤝
+                </h2>
+                <p class="text-xl mb-8 animate-slide-up" style="animation-delay: 0.2s;">
+                    Vamos transformar seu hortifruti em referência digital na região!
+                </p>
+                <a href="https://wa.me/5511991618831?text=Oie, quero fazer :)" 
+                   target="_blank" 
+                   rel="noopener noreferrer"
+                   class="btn-primary text-white px-12 py-4 rounded-full text-xl font-semibold inline-flex items-center space-x-3 animate-slide-up" 
+                   style="animation-delay: 0.4s;">
+                    <span>Vamos Começar?</span>
+                    <span class="text-2xl">🚀</span>
+                </a>
+                <p class="text-sm mt-4 opacity-90 animate-slide-up" style="animation-delay: 0.6s;">
+                    Clique no botão acima para entrar em contato via WhatsApp
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Função para scroll suave
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        // Animação de entrada dos elementos quando ficam visíveis
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, observerOptions);
+
+        // Observar todos os elementos com animação
+        document.addEventListener('DOMContentLoaded', () => {
+            const animatedElements = document.querySelectorAll('[class*="animate-slide"]');
+            animatedElements.forEach(el => {
+                el.style.animationPlayState = 'paused';
+                observer.observe(el);
+            });
+        });
+
+        // Adicionar efeito de hover nos cards
+        document.querySelectorAll('.card-hover').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-5px)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'981cd420336edd8e',t:'MTc1ODMyNDE4My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
