@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposta de Parceria - Crescimento & Conteúdo Fitness</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #000000 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .gradient-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(220, 38, 38, 0.1), transparent);
+            animation: shimmer 3s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+        
+        .red-gradient {
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .red-gradient::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .red-gradient:hover::before {
+            left: 100%;
+        }
+        
+        .hero-bg {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8));
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(220, 38, 38, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(220, 38, 38, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(220, 38, 38, 0.1) 0%, transparent 50%);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(1deg); }
+        }
+        
+        .floating-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        .particle {
+            position: absolute;
+            background: #dc2626;
+            border-radius: 50%;
+            animation: floatUp 8s infinite linear;
+            opacity: 0.6;
+        }
+        
+        @keyframes floatUp {
+            0% {
+                opacity: 0;
+                transform: translateY(100vh) scale(0);
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100px) scale(1);
+            }
+        }
+        
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card-hover::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(220, 38, 38, 0.1), transparent);
+            transition: left 0.6s;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(220, 38, 38, 0.4);
+        }
+        
+        .card-hover:hover::before {
+            left: 100%;
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .slide-in-left {
+            animation: slideInLeft 0.8s ease-out;
+        }
+        
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        .slide-in-right {
+            animation: slideInRight 0.8s ease-out;
+        }
+        
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        .scale-in {
+            animation: scaleIn 0.6s ease-out;
+        }
+        
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        
+        .timeline-line {
+            background: linear-gradient(to bottom, #dc2626, #b91c1c);
+            position: relative;
+        }
+        
+        .timeline-line::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 0%;
+            background: linear-gradient(to bottom, #ff4444, #dc2626);
+            animation: fillTimeline 2s ease-in-out;
+        }
+        
+        @keyframes fillTimeline {
+            from { height: 0%; }
+            to { height: 100%; }
+        }
+        
+        .pulse-red {
+            animation: pulseRed 2s infinite;
+        }
+        
+        @keyframes pulseRed {
+            0%, 100% { 
+                box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7);
+                transform: scale(1);
+            }
+            50% { 
+                box-shadow: 0 0 0 20px rgba(220, 38, 38, 0);
+                transform: scale(1.05);
+            }
+        }
+        
+        .glow-text {
+            text-shadow: 0 0 20px rgba(220, 38, 38, 0.5);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            from { text-shadow: 0 0 20px rgba(220, 38, 38, 0.5); }
+            to { text-shadow: 0 0 30px rgba(220, 38, 38, 0.8), 0 0 40px rgba(220, 38, 38, 0.3); }
+        }
+        
+        .bounce-in {
+            animation: bounceIn 1s ease-out;
+        }
+        
+        @keyframes bounceIn {
+            0% { opacity: 0; transform: scale(0.3); }
+            50% { opacity: 1; transform: scale(1.05); }
+            70% { transform: scale(0.9); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        
+        .rotate-in {
+            animation: rotateIn 0.8s ease-out;
+        }
+        
+        @keyframes rotateIn {
+            from { opacity: 0; transform: rotate(-180deg) scale(0.5); }
+            to { opacity: 1; transform: rotate(0deg) scale(1); }
+        }
+        
+        .number-counter {
+            animation: countUp 2s ease-out;
+        }
+        
+        @keyframes countUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .floating-icon {
+            animation: floatingIcon 3s ease-in-out infinite;
+        }
+        
+        @keyframes floatingIcon {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(5deg); }
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #dc2626, #ff4444, #dc2626);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 3s ease-in-out infinite;
+        }
+        
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        .stagger-animation {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: staggerFadeIn 0.6s ease-out forwards;
+        }
+        
+        @keyframes staggerFadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .results-card {
+            background: linear-gradient(135deg, rgba(220, 38, 38, 0.1), rgba(0, 0, 0, 0.8));
+            border: 1px solid rgba(220, 38, 38, 0.3);
+            backdrop-filter: blur(10px);
+            transition: all 0.4s ease;
+        }
+        
+        .results-card:hover {
+            background: linear-gradient(135deg, rgba(220, 38, 38, 0.2), rgba(0, 0, 0, 0.9));
+            border-color: rgba(220, 38, 38, 0.6);
+            transform: translateY(-10px) scale(1.02);
+        }
+    </style>
+</head>
+<body class="bg-black text-white">
+    <!-- Header / Capa -->
+    <section class="hero-bg min-h-screen flex items-center justify-center relative overflow-hidden">
+        <!-- Floating Particles -->
+        <div class="floating-particles">
+            <div class="particle" style="left: 10%; width: 4px; height: 4px; animation-delay: 0s;"></div>
+            <div class="particle" style="left: 20%; width: 6px; height: 6px; animation-delay: 1s;"></div>
+            <div class="particle" style="left: 30%; width: 3px; height: 3px; animation-delay: 2s;"></div>
+            <div class="particle" style="left: 40%; width: 5px; height: 5px; animation-delay: 3s;"></div>
+            <div class="particle" style="left: 50%; width: 4px; height: 4px; animation-delay: 4s;"></div>
+            <div class="particle" style="left: 60%; width: 6px; height: 6px; animation-delay: 5s;"></div>
+            <div class="particle" style="left: 70%; width: 3px; height: 3px; animation-delay: 6s;"></div>
+            <div class="particle" style="left: 80%; width: 5px; height: 5px; animation-delay: 7s;"></div>
+            <div class="particle" style="left: 90%; width: 4px; height: 4px; animation-delay: 8s;"></div>
+        </div>
+        
+        <div class="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black opacity-50"></div>
+        <div class="container mx-auto px-6 text-center relative z-10 animate-fade-in">
+            <h1 class="text-5xl md:text-7xl font-black mb-6 leading-tight">
+                Proposta de <span class="gradient-text glow-text">Parceria</span><br>
+                <span class="gradient-text glow-text">Crescimento</span> & Conteúdo Fitness
+            </h1>
+            <p class="text-xl md:text-2xl mb-8 text-gray-300 max-w-4xl mx-auto font-light slide-in-left">
+                Transforme suas páginas em marcas profissionais, cresça rápido e monetize seu conteúdo :)
+            </p>
+            <button onclick="document.getElementById('servicos').scrollIntoView({behavior: 'smooth'})" 
+                    class="red-gradient px-12 py-4 rounded-full text-xl font-bold hover:scale-105 transition-all duration-300 pulse-red bounce-in">
+                Ver Proposta
+            </button>
+        </div>
+        
+        <!-- Athlete SVG -->
+        <div class="absolute right-10 bottom-10 opacity-20 floating-icon">
+            <svg width="200" height="200" viewBox="0 0 200 200" fill="none">
+                <circle cx="100" cy="60" r="25" fill="#dc2626"/>
+                <rect x="85" y="85" width="30" height="60" rx="15" fill="#dc2626"/>
+                <rect x="70" y="100" width="20" height="40" rx="10" fill="#dc2626"/>
+                <rect x="110" y="100" width="20" height="40" rx="10" fill="#dc2626"/>
+                <rect x="90" y="145" width="20" height="40" rx="10" fill="#dc2626"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Seção Serviços -->
+    <section id="servicos" class="py-20 bg-gray-900">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-black text-center mb-16">
+                Meus <span class="text-red-600">Serviços</span>
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Serviço 1 -->
+                <div class="bg-black p-8 rounded-2xl card-hover border border-gray-800 stagger-animation" style="animation-delay: 0.1s;">
+                    <div class="text-red-600 text-4xl mb-4 floating-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Identidade Visual</h3>
+                    <p class="text-gray-400">Templates profissionais e branding completo</p>
+                </div>
+                
+                <!-- Serviço 2 -->
+                <div class="bg-black p-8 rounded-2xl card-hover border border-gray-800 stagger-animation" style="animation-delay: 0.2s;">
+                    <div class="text-red-600 text-4xl mb-4 floating-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Edição de Vídeos</h3>
+                    <p class="text-gray-400">Cortes virais e conteúdo profissional</p>
+                </div>
+                
+                <!-- Serviço 3 -->
+                <div class="bg-black p-8 rounded-2xl card-hover border border-gray-800 stagger-animation" style="animation-delay: 0.3s;">
+                    <div class="text-red-600 text-4xl mb-4 floating-icon">
+                        <i class="fas fa-images"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Posts & Reels</h3>
+                    <p class="text-gray-400">Criação de posts, carrosséis e reels</p>
+                </div>
+                
+                <!-- Serviço 4 -->
+                <div class="bg-black p-8 rounded-2xl card-hover border border-gray-800 stagger-animation" style="animation-delay: 0.4s;">
+                    <div class="text-red-600 text-4xl mb-4 floating-icon">
+                        <i class="fas fa-poll"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Conteúdo Interativo</h3>
+                    <p class="text-gray-400">Enquetes, quizzes e desafios</p>
+                </div>
+                
+                <!-- Serviço 5 -->
+                <div class="bg-black p-8 rounded-2xl card-hover border border-gray-800 stagger-animation" style="animation-delay: 0.5s;">
+                    <div class="text-red-600 text-4xl mb-4 floating-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Estratégia SEO</h3>
+                    <p class="text-gray-400">Crescimento no Instagram, YouTube e TikTok</p>
+                </div>
+                
+                <!-- Serviço 6 -->
+                <div class="bg-black p-8 rounded-2xl card-hover border border-gray-800 stagger-animation" style="animation-delay: 0.6s;">
+                    <div class="text-red-600 text-4xl mb-4 floating-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Automação</h3>
+                    <p class="text-gray-400">Gestão de postagens automatizada</p>
+                </div>
+                
+                <!-- Serviço 7 -->
+                <div class="bg-black p-8 rounded-2xl card-hover border border-gray-800 stagger-animation" style="animation-delay: 0.7s;">
+                    <div class="text-red-600 text-4xl mb-4 floating-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Produtos Digitais</h3>
+                    <p class="text-gray-400">Criação de infoprodutos e media kit</p>
+                </div>
+                
+                <!-- Serviço 8 -->
+                <div class="bg-black p-8 rounded-2xl card-hover border border-gray-800 stagger-animation" style="animation-delay: 0.8s;">
+                    <div class="text-red-600 text-4xl mb-4 floating-icon">
+                        <i class="fas fa-analytics"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Relatórios</h3>
+                    <p class="text-gray-400">Performance e insights detalhados</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Plano de Ação -->
+    <section class="py-20 gradient-bg">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-black text-center mb-16">
+                Plano de <span class="text-red-600">Ação</span>
+            </h2>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="relative">
+                    <!-- Timeline Line -->
+                    <div class="absolute left-8 top-0 bottom-0 w-1 timeline-line"></div>
+                    
+                    <!-- Step 1 -->
+                    <div class="relative flex items-center mb-12">
+                        <div class="bg-red-600 w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold mr-8 z-10">1</div>
+                        <div class="bg-gray-900 p-6 rounded-xl flex-1 border border-gray-800">
+                            <h3 class="text-2xl font-bold mb-2">Diagnóstico e Planejamento</h3>
+                            <p class="text-gray-400">Análise completa do perfil atual e definição de estratégias</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 2 -->
+                    <div class="relative flex items-center mb-12">
+                        <div class="bg-red-600 w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold mr-8 z-10">2</div>
+                        <div class="bg-gray-900 p-6 rounded-xl flex-1 border border-gray-800">
+                            <h3 class="text-2xl font-bold mb-2">Produção de Conteúdo</h3>
+                            <p class="text-gray-400">Criação de identidade visual e calendário editorial</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 3 -->
+                    <div class="relative flex items-center mb-12">
+                        <div class="bg-red-600 w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold mr-8 z-10">3</div>
+                        <div class="bg-gray-900 p-6 rounded-xl flex-1 border border-gray-800">
+                            <h3 class="text-2xl font-bold mb-2">Crescimento e Engajamento</h3>
+                            <p class="text-gray-400">Implementação de estratégias para aumentar alcance</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 4 -->
+                    <div class="relative flex items-center mb-12">
+                        <div class="bg-red-600 w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold mr-8 z-10">4</div>
+                        <div class="bg-gray-900 p-6 rounded-xl flex-1 border border-gray-800">
+                            <h3 class="text-2xl font-bold mb-2">Monetização e Expansão</h3>
+                            <p class="text-gray-400">Desenvolvimento de produtos digitais e parcerias</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 5 -->
+                    <div class="relative flex items-center">
+                        <div class="bg-red-600 w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold mr-8 z-10">5</div>
+                        <div class="bg-gray-900 p-6 rounded-xl flex-1 border border-gray-800">
+                            <h3 class="text-2xl font-bold mb-2">Gestão e Automação</h3>
+                            <p class="text-gray-400">Otimização de processos e relatórios de performance</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<!--
+    <!-- Seção Pacotes --
+    <section class="py-20 bg-gray-900">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-black text-center mb-16">
+                Meus <span class="text-red-600">Pacotes</span>
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Pacote Inicial --
+                <div class="bg-black p-8 rounded-2xl border border-gray-800 card-hover">
+                    <div class="text-center mb-6">
+                        <h3 class="text-2xl font-bold mb-2">Inicial</h3>
+                        <div class="text-4xl font-black text-red-600 mb-4">R$ 997</div>
+                        <p class="text-gray-400">Perfeito para começar</p>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center"><i class="fas fa-check text-red-600 mr-3"></i>Identidade visual completa</li>
+                        <li class="flex items-center"><i class="fas fa-check text-red-600 mr-3"></i>Templates profissionais</li>
+                        <li class="flex items-center"><i class="fas fa-check text-red-600 mr-3"></i>10 posts por mês</li>
+                        <li class="flex items-center"><i class="fas fa-check text-red-600 mr-3"></i>Suporte básico</li>
+                    </ul>
+                    <button class="w-full bg-gray-800 hover:bg-red-600 py-3 rounded-lg font-bold transition-colors">
+                        Escolher Plano
+                    </button>
+                </div>
+                
+                <!-- Pacote Intermediário --
+                <div class="bg-black p-8 rounded-2xl border-2 border-red-600 card-hover relative">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-red-600 px-4 py-1 rounded-full text-sm font-bold">
+                        POPULAR
+                    </div>
+                    <div class="text-center mb-6">
+                        <h3 class="text-2xl font-bold mb-2">Intermediário</h3>
+                        <div class="text-4xl font-black text-red-600 mb-4">R$ 1.997</div>
+                        <p class="text-gray-400">Crescimento acelerado</p>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center"><i class="fas fa-check text-red-600 mr-3"></i>Tudo do plano Inicial</li>
+                        <li class="flex items-center"><i class="fas fa-check text-red-600 mr-3"></i>Estratégias de crescimento</li>
+                        <li class="flex items-center"><i class="fas fa-check text-red-600 mr-3"></i>20 posts + 10 stories</li>
+                        <li class="flex items-center"><i class="fas fa-check text-red-600 mr-3"></i>Edição de vídeos</li>
+                        <li class="flex items-center"><i class="fas fa-check text-red-600 mr-3"></i>Automação básica</li>
+                    </ul>
+                    <button class="w-full red-gradient py-3 rounded-lg font-bold hover:scale-105 transition-transform">
+                        Escolher Plano
+                    </button>
+                </div>
+                
+                <!-- Pacote Premium --
+                <div class="bg-black p-8 rounded-2xl border border-gray-800 card-hover">
+                    <div class="text-center mb-6">
+                        <h3 class="text-2xl font-bold mb-2">Premium</h3>
+                        <div class="text-4xl font-black text-red-600 mb-4">R$ 3.997</div>
+                        <p class="text-gray-400">Solução completa</p>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center"><i class="fas fa-check text-red-600 mr-3"></i>Tudo dos planos anteriores</li>
+                        <li class="flex items-center"><i class="fas fa-check text-red-600 mr-3"></i>Conteúdo ilimitado</li>
+                        <li class="flex items-center"><i class="fas fa-check text-red-600 mr-3"></i>Consultoria mensal</li>
+                        <li class="flex items-center"><i class="fas fa-check text-red-600 mr-3"></i>Produtos digitais</li>
+                        <li class="flex items-center"><i class="fas fa-check text-red-600 mr-3"></i>Relatórios detalhados</li>
+                    </ul>
+                    <button class="w-full bg-gray-800 hover:bg-red-600 py-3 rounded-lg font-bold transition-colors">
+                        Escolher Plano
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+-->
+    <!-- Seção Resultados Esperados -->
+    <section class="py-20 bg-black">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-black text-center mb-16">
+                Resultados <span class="gradient-text">Esperados</span>
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto mb-16">
+                <!-- Resultado 1 -->
+                <div class="results-card p-8 rounded-2xl text-center">
+                    <div class="text-6xl font-black gradient-text mb-4 number-counter">300%</div>
+                    <h3 class="text-xl font-bold mb-3">Aumento no Engajamento</h3>
+                    <p class="text-gray-400">Mais curtidas, comentários e compartilhamentos em suas postagens</p>
+                </div>
+                
+                <!-- Resultado 2 -->
+                <div class="results-card p-8 rounded-2xl text-center">
+                    <div class="text-6xl font-black gradient-text mb-4 number-counter">10,000</div>
+                    <h3 class="text-xl font-bold mb-3">Novos Seguidores</h3>
+                    <p class="text-gray-400">Crescimento orgânico e qualificado em 90 dias</p>
+                </div>
+                
+                <!-- Resultado 3 -->
+                <div class="results-card p-8 rounded-2xl text-center">
+                    <div class="text-6xl font-black gradient-text mb-4 number-counter">3X</div>
+                    <h3 class="text-xl font-bold mb-3">Mais Alcance</h3>
+                    <p class="text-gray-400">Suas postagens chegando a muito mais pessoas</p>
+                </div>
+                
+                <!-- Resultado 4 -->
+                <div class="results-card p-8 rounded-2xl text-center">
+                    <div class="text-6xl font-black gradient-text mb-4 number-counter">R$ 5K</div>
+                    <h3 class="text-xl font-bold mb-3">Receita Mensal</h3>
+                    <p class="text-gray-400">Potencial de monetização com produtos digitais</p>
+                </div>
+                
+                <!-- Resultado 5 -->
+                <div class="results-card p-8 rounded-2xl text-center">
+                    <div class="text-6xl font-black gradient-text mb-4 number-counter">80%</div>
+                    <h3 class="text-xl font-bold mb-3">Economia de Tempo</h3>
+                    <p class="text-gray-400">Menos tempo criando conteúdo, mais tempo focando em outros assuntos</p>
+                </div>
+                
+                <!-- Resultado 6 -->
+                <div class="results-card p-8 rounded-2xl text-center">
+                    <div class="text-6xl font-black gradient-text mb-4 number-counter">100%</div>
+                    <h3 class="text-xl font-bold mb-3">Profissionalização</h3>
+                    <p class="text-gray-400">Visual consistente e marca reconhecida no mercado</p>
+                </div>
+            </div>
+            
+            <!-- Timeline de Resultados -->
+            <div class="max-w-4xl mx-auto">
+                <h3 class="text-3xl font-bold text-center mb-12">Timeline de <span class="text-red-600">Resultados</span></h3>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                    <div class="text-center">
+                        <div class="bg-red-600 w-16 h-16 rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4 bounce-in">
+                            30d
+                        </div>
+                        <h4 class="font-bold mb-2">Primeiros 30 Dias</h4>
+                        <p class="text-gray-400 text-sm">Identidade visual implementada e primeiros conteúdos no ar</p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="bg-red-600 w-16 h-16 rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4 bounce-in" style="animation-delay: 0.2s;">
+                            60d
+                        </div>
+                        <h4 class="font-bold mb-2">60 Dias</h4>
+                        <p class="text-gray-400 text-sm">Crescimento acelerado e engajamento consistente</p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="bg-red-600 w-16 h-16 rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4 bounce-in" style="animation-delay: 0.4s;">
+                            90d
+                        </div>
+                        <h4 class="font-bold mb-2">90 Dias</h4>
+                        <p class="text-gray-400 text-sm">Marca estabelecida e primeiras monetizações</p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="bg-red-600 w-16 h-16 rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4 bounce-in" style="animation-delay: 0.6s;">
+                            120d
+                        </div>
+                        <h4 class="font-bold mb-2">120+ Dias</h4>
+                        <p class="text-gray-400 text-sm">Autoridade no nicho e receita recorrente</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Benefícios -->
+    <section class="py-20 gradient-bg">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-black text-center mb-16">
+                Seus <span class="text-red-600">Benefícios</span>
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <div class="flex items-start space-x-4">
+                    <div class="text-red-600 text-3xl mt-2">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-2">Mais Alcance e Engajamento</h3>
+                        <p class="text-gray-400">Estratégias comprovadas para aumentar sua audiência</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-start space-x-4">
+                    <div class="text-red-600 text-3xl mt-2">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-2">Conteúdo Profissional</h3>
+                        <p class="text-gray-400">Padronização e qualidade em todas as postagens</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-start space-x-4">
+                    <div class="text-red-600 text-3xl mt-2">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-2">Crescimento Multiplataforma</h3>
+                        <p class="text-gray-400">Presença forte no Instagram, TikTok e YouTube</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-start space-x-4">
+                    <div class="text-red-600 text-3xl mt-2">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-2">Estratégia de Monetização</h3>
+                        <p class="text-gray-400">Plano claro para gerar receita com seu conteúdo</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-start space-x-4">
+                    <div class="text-red-600 text-3xl mt-2">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-2">Diferenciação no Mercado</h3>
+                        <p class="text-gray-400">Destaque-se da concorrência no cenário fitness</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-start space-x-4">
+                    <div class="text-red-600 text-3xl mt-2">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-2">Economia de Tempo</h3>
+                        <p class="text-gray-400">Foque no que faz melhor enquanto cuido do resto</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Próximos Passos -->
+    <section class="py-20 bg-gray-900">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-black text-center mb-16">
+                Próximos <span class="text-red-600">Passos</span>
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+                <div class="text-center">
+                    <div class="bg-red-600 w-20 h-20 rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+                        1
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Definir Identidade</h3>
+                    <p class="text-gray-400">Criamos sua marca visual única e impactante</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="bg-red-600 w-20 h-20 rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+                        2
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Calendário Editorial</h3>
+                    <p class="text-gray-400">Planejamos todo o conteúdo estrategicamente</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="bg-red-600 w-20 h-20 rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+                        3
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Produção Intensiva</h3>
+                    <p class="text-gray-400">Iniciamos a criação de conteúdo profissional</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="bg-red-600 w-20 h-20 rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+                        4
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Crescer & Monetizar</h3>
+                    <p class="text-gray-400">Escalamos seu alcance e geramos receita</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Final -->
+    <section class="py-20 gradient-bg">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-4xl md:text-6xl font-black mb-8">
+                Pronto para <span class="text-red-600">Escalar</span><br>
+                suas Páginas?
+            </h2>
+            <p class="text-xl md:text-2xl mb-12 text-gray-300 max-w-3xl mx-auto">
+                Não perca mais tempo com estratégias que não funcionam. Vamos transformar seu perfil em uma máquina de crescimento e monetização.
+            </p>
+            
+            <div class="flex flex-col md:flex-row gap-6 justify-center items-center">
+                <a href="https://wa.me/5511991618831?text=passa o pix vou te mandar R$100000" 
+                   target="_blank" rel="noopener noreferrer"
+                   class="red-gradient px-12 py-4 rounded-full text-xl font-bold hover:scale-105 transition-all duration-300 pulse-red">
+                    <i class="fab fa-whatsapp mr-3"></i>Vamos Começar
+                </a>
+               
+            </div>
+            
+            <!-- Social Proof 
+            <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
+                <div class="text-center scale-in" style="animation-delay: 0.1s;">
+                    <div class="text-3xl font-black gradient-text number-counter">500+</div>
+                    <div class="text-gray-400">Clientes Atendidos</div>
+                </div>
+                <div class="text-center scale-in" style="animation-delay: 0.2s;">
+                    <div class="text-3xl font-black gradient-text number-counter">2M+</div>
+                    <div class="text-gray-400">Seguidores Gerados</div>
+                </div>
+                <div class="text-center scale-in" style="animation-delay: 0.3s;">
+                    <div class="text-3xl font-black gradient-text number-counter">95%</div>
+                    <div class="text-gray-400">Taxa de Sucesso</div>
+                </div>
+                <div class="text-center scale-in" style="animation-delay: 0.4s;">
+                    <div class="text-3xl font-black gradient-text number-counter">24h</div>
+                    <div class="text-gray-400">Suporte Ativo</div>
+                </div>
+            </div>
+        </div>
+    </section>
+-->
+    <!-- Footer -->
+    <footer class="bg-black py-8 border-t border-gray-800">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-gray-400">PROPOSTA MUITO LOKA DO BIEL :D</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Advanced scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    
+                    // Trigger stagger animations for cards
+                    const staggerElements = entry.target.querySelectorAll('.stagger-animation');
+                    staggerElements.forEach((el, index) => {
+                        setTimeout(() => {
+                            el.style.animationPlayState = 'running';
+                        }, index * 100);
+                    });
+                    
+                    // Animate numbers
+                    const numberCounters = entry.target.querySelectorAll('.number-counter');
+                    numberCounters.forEach(counter => {
+                        animateNumber(counter);
+                    });
+                }
+            });
+        }, observerOptions);
+
+        // Number animation function
+        function animateNumber(element) {
+            const text = element.textContent;
+            const hasPercent = text.includes('%');
+            const hasPlus = text.includes('+');
+            const hasX = text.includes('X');
+            const hasR$ = text.includes('R$');
+            const hasd = text.includes('d');
+            const hash = text.includes('h');
+            
+            let finalNumber;
+            if (hasR$) {
+                finalNumber = parseInt(text.replace(/[R$\s]/g, ''));
+            } else if (hasPercent || hasPlus || hasX || hasd || hash) {
+                finalNumber = parseInt(text.replace(/[%+Xdh\s]/g, ''));
+            } else {
+                finalNumber = parseInt(text.replace(/[^\d]/g, ''));
+            }
+            
+            if (isNaN(finalNumber)) return;
+            
+            let currentNumber = 0;
+            const increment = finalNumber / 50;
+            const timer = setInterval(() => {
+                currentNumber += increment;
+                if (currentNumber >= finalNumber) {
+                    currentNumber = finalNumber;
+                    clearInterval(timer);
+                }
+                
+                let displayText = Math.floor(currentNumber).toString();
+                if (hasR$) displayText = 'R$ ' + displayText + 'K';
+                else if (hasPercent) displayText += '%';
+                else if (hasPlus) displayText += '+';
+                else if (hasX) displayText += 'X';
+                else if (hasd) displayText += 'd';
+                else if (hash) displayText += 'h';
+                
+                element.textContent = displayText;
+            }, 50);
+        }
+
+        // Observe all sections for animations
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'all 0.8s ease-in-out';
+            observer.observe(section);
+        });
+
+        // Hero section is always visible
+        document.querySelector('section').style.opacity = '1';
+        document.querySelector('section').style.transform = 'translateY(0)';
+
+        // Pause stagger animations initially
+        document.querySelectorAll('.stagger-animation').forEach(el => {
+            el.style.animationPlayState = 'paused';
+        });
+
+        // Parallax effect for hero background
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const heroSection = document.querySelector('.hero-bg');
+            if (heroSection) {
+                heroSection.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+        // Add hover effects to cards
+        document.querySelectorAll('.card-hover').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-15px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Floating particles animation
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.width = (Math.random() * 4 + 2) + 'px';
+            particle.style.height = particle.style.width;
+            particle.style.animationDuration = (Math.random() * 3 + 5) + 's';
+            particle.style.animationDelay = Math.random() * 2 + 's';
+            
+            const container = document.querySelector('.floating-particles');
+            if (container) {
+                container.appendChild(particle);
+                
+                setTimeout(() => {
+                    particle.remove();
+                }, 8000);
+            }
+        }
+
+        // Create particles periodically
+        setInterval(createParticle, 1000);
+
+        // Add loading animation
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '1';
+            document.body.style.transform = 'translateY(0)';
+        });
+
+        // Initial setup
+        document.body.style.opacity = '0';
+        document.body.style.transform = 'translateY(20px)';
+        document.body.style.transition = 'all 0.8s ease-in-out';
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9845a31a45abdd8f',t:'MTc1ODc1MjA5MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
