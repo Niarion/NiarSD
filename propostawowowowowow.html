@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💰 Proposta Comercial – Valores Individuais</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            box-sizing: border-box;
+        }
+        
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #000000 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .gradient-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(34, 197, 94, 0.1), transparent);
+            animation: shimmer 3s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+        
+        .green-gradient {
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .green-gradient::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .green-gradient:hover::before {
+            left: 100%;
+        }
+        
+        .hero-bg {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8));
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(34, 197, 94, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(34, 197, 94, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(34, 197, 94, 0.1) 0%, transparent 50%);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(1deg); }
+        }
+        
+        .floating-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        .particle {
+            position: absolute;
+            background: #22c55e;
+            border-radius: 50%;
+            animation: floatUp 8s infinite linear;
+            opacity: 0.6;
+        }
+        
+        @keyframes floatUp {
+            0% {
+                opacity: 0;
+                transform: translateY(100vh) scale(0);
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100px) scale(1);
+            }
+        }
+        
+        .price-card {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(0, 0, 0, 0.8));
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            backdrop-filter: blur(10px);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .price-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(34, 197, 94, 0.1), transparent);
+            transition: left 0.6s;
+        }
+        
+        .price-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(34, 197, 94, 0.4);
+            border-color: rgba(34, 197, 94, 0.6);
+        }
+        
+        .price-card:hover::before {
+            left: 100%;
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .slide-in-left {
+            animation: slideInLeft 0.8s ease-out;
+        }
+        
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        .slide-in-right {
+            animation: slideInRight 0.8s ease-out;
+        }
+        
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        .scale-in {
+            animation: scaleIn 0.6s ease-out;
+        }
+        
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        
+        .pulse-green {
+            animation: pulseGreen 2s infinite;
+        }
+        
+        @keyframes pulseGreen {
+            0%, 100% { 
+                box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+                transform: scale(1);
+            }
+            50% { 
+                box-shadow: 0 0 0 20px rgba(34, 197, 94, 0);
+                transform: scale(1.05);
+            }
+        }
+        
+        .glow-text {
+            text-shadow: 0 0 20px rgba(34, 197, 94, 0.5);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            from { text-shadow: 0 0 20px rgba(34, 197, 94, 0.5); }
+            to { text-shadow: 0 0 30px rgba(34, 197, 94, 0.8), 0 0 40px rgba(34, 197, 94, 0.3); }
+        }
+        
+        .bounce-in {
+            animation: bounceIn 1s ease-out;
+        }
+        
+        @keyframes bounceIn {
+            0% { opacity: 0; transform: scale(0.3); }
+            50% { opacity: 1; transform: scale(1.05); }
+            70% { transform: scale(0.9); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #22c55e, #4ade80, #22c55e);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 3s ease-in-out infinite;
+        }
+        
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        .stagger-animation {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: staggerFadeIn 0.6s ease-out forwards;
+        }
+        
+        @keyframes staggerFadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .strikethrough {
+            position: relative;
+            color: #ef4444;
+            text-decoration: line-through;
+            opacity: 0.7;
+        }
+        
+        .special-price {
+            color: #22c55e;
+            font-weight: 800;
+            text-shadow: 0 0 10px rgba(34, 197, 94, 0.3);
+        }
+        
+        .free-badge {
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .floating-icon {
+            animation: floatingIcon 3s ease-in-out infinite;
+        }
+        
+        @keyframes floatingIcon {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(5deg); }
+        }
+        
+        .money-icon {
+            font-size: 4rem;
+            color: #22c55e;
+            text-shadow: 0 0 20px rgba(34, 197, 94, 0.5);
+        }
+    </style>
+</head>
+<body class="bg-black text-white">
+    <!-- Header / Capa -->
+    <section class="hero-bg min-h-screen flex items-center justify-center relative overflow-hidden">
+        <!-- Floating Particles -->
+        <div class="floating-particles">
+            <div class="particle" style="left: 10%; width: 4px; height: 4px; animation-delay: 0s;"></div>
+            <div class="particle" style="left: 20%; width: 6px; height: 6px; animation-delay: 1s;"></div>
+            <div class="particle" style="left: 30%; width: 3px; height: 3px; animation-delay: 2s;"></div>
+            <div class="particle" style="left: 40%; width: 5px; height: 5px; animation-delay: 3s;"></div>
+            <div class="particle" style="left: 50%; width: 4px; height: 4px; animation-delay: 4s;"></div>
+            <div class="particle" style="left: 60%; width: 6px; height: 6px; animation-delay: 5s;"></div>
+            <div class="particle" style="left: 70%; width: 3px; height: 3px; animation-delay: 6s;"></div>
+            <div class="particle" style="left: 80%; width: 5px; height: 5px; animation-delay: 7s;"></div>
+            <div class="particle" style="left: 90%; width: 4px; height: 4px; animation-delay: 8s;"></div>
+        </div>
+        
+        <div class="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black opacity-50"></div>
+        <div class="container mx-auto px-6 text-center relative z-10 animate-fade-in">
+            <div class="money-icon mb-8 floating-icon">💰</div>
+            <h1 class="text-5xl md:text-7xl font-black mb-6 leading-tight">
+                <span class="gradient-text glow-text">Proposta Comercial</span><br>
+                Valores <span class="gradient-text glow-text">Individuais</span>
+            </h1>
+            <p class="text-xl md:text-2xl mb-8 text-gray-300 max-w-4xl mx-auto font-light slide-in-left">
+                Preços especiais para cada serviço - Invista apenas no que você precisa
+            </p>
+            <button onclick="document.getElementById('precos').scrollIntoView({behavior: 'smooth'})" 
+                    class="green-gradient px-12 py-4 rounded-full text-xl font-bold hover:scale-105 transition-all duration-300 pulse-green bounce-in">
+                Ver Preços
+            </button>
+        </div>
+        
+        <!-- Money SVG -->
+        <div class="absolute right-10 bottom-10 opacity-20 floating-icon">
+            <svg width="200" height="200" viewBox="0 0 200 200" fill="none">
+                <circle cx="100" cy="100" r="80" stroke="#22c55e" stroke-width="4" fill="none"/>
+                <text x="100" y="110" text-anchor="middle" fill="#22c55e" font-size="60" font-weight="bold">$</text>
+                <circle cx="60" cy="60" r="8" fill="#22c55e"/>
+                <circle cx="140" cy="60" r="8" fill="#22c55e"/>
+                <circle cx="60" cy="140" r="8" fill="#22c55e"/>
+                <circle cx="140" cy="140" r="8" fill="#22c55e"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Seção Tabela de Preços -->
+    <section id="precos" class="py-20 bg-gray-900">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-black text-center mb-16">
+                Tabela de <span class="text-green-500">Preços</span>
+            </h2>
+            
+            <div class="max-w-6xl mx-auto space-y-6">
+                <!-- Vídeo curto ou corte de podcast -->
+                <div class="price-card p-8 rounded-2xl stagger-animation" style="animation-delay: 0.1s;">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center">
+                        <div class="flex-1 mb-4 md:mb-0">
+                            <div class="flex items-center mb-2">
+                                <i class="fas fa-video text-green-500 text-2xl mr-4"></i>
+                                <h3 class="text-xl md:text-2xl font-bold">Vídeo curto ou corte de podcast</h3>
+                            </div>
+                            <p class="text-gray-400">Edição profissional, cortes dinâmicos e legendas</p>
+                        </div>
+                        <div class="text-right">
+                            <div class="strikethrough text-lg mb-1">R$ 50,00</div>
+                            <div class="special-price text-3xl font-black">R$ 15,00</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Post estático ou carrossel -->
+                <div class="price-card p-8 rounded-2xl stagger-animation" style="animation-delay: 0.3s;">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center">
+                        <div class="flex-1 mb-4 md:mb-0">
+                            <div class="flex items-center mb-2">
+                                <i class="fas fa-images text-green-500 text-2xl mr-4"></i>
+                                <h3 class="text-xl md:text-2xl font-bold">Post estático ou carrossel</h3>
+                            </div>
+                            <p class="text-gray-400">Arte profissional + copy persuasivo</p>
+                        </div>
+                        <div class="text-right">
+                            <div class="strikethrough text-lg mb-1">R$ 80,00</div>
+                            <div class="special-price text-3xl font-black">R$ 30,00</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Story interativo -->
+                <div class="price-card p-8 rounded-2xl stagger-animation" style="animation-delay: 0.4s;">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center">
+                        <div class="flex-1 mb-4 md:mb-0">
+                            <div class="flex items-center mb-2">
+                                <i class="fas fa-poll text-green-500 text-2xl mr-4"></i>
+                                <h3 class="text-xl md:text-2xl font-bold">Story interativo</h3>
+                            </div>
+                            <p class="text-gray-400">Enquete, quiz, desafio - engajamento garantido</p>
+                        </div>
+                        <div class="text-right">
+                            <div class="strikethrough text-lg mb-1">R$ 45,00</div>
+                            <div class="special-price text-3xl font-black">R$ 20,00</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Identidade visual completa -->
+                <div class="price-card p-8 rounded-2xl stagger-animation" style="animation-delay: 0.5s;">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center">
+                        <div class="flex-1 mb-4 md:mb-0">
+                            <div class="flex items-center mb-2">
+                                <i class="fas fa-palette text-green-500 text-2xl mr-4"></i>
+                                <h3 class="text-xl md:text-2xl font-bold">Repaginação da @_brbodybuilding</h3>
+                            </div>
+                            <p class="text-gray-400">Logo + paleta + tipografia + manual + templates</p>
+                        </div>
+                        <div class="text-right">
+                            <div class="strikethrough text-lg mb-1">R$ 850,00</div>
+                            <div class="special-price text-3xl font-black">R$ 400,00</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Diagnóstico + relatório inicial -->
+                <div class="price-card p-8 rounded-2xl bg-gradient-to-r from-green-900/30 to-black stagger-animation" style="animation-delay: 0.6s;">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center">
+                        <div class="flex-1 mb-4 md:mb-0">
+                            <div class="flex items-center mb-2">
+                                <i class="fas fa-search text-green-500 text-2xl mr-4"></i>
+                                <h3 class="text-xl md:text-2xl font-bold">Diagnóstico + relatório inicial</h3>
+                            </div>
+                            <p class="text-gray-400">Análise completa do seu perfil e estratégias</p>
+                        </div>
+                        <div class="text-right">
+                            <div class="strikethrough text-lg mb-1">R$ 500,00</div>
+                            <div class="free-badge">GRÁTIS</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Consultoria de crescimento -->
+                <div class="price-card p-8 rounded-2xl bg-gradient-to-r from-green-900/30 to-black stagger-animation" style="animation-delay: 0.7s;">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center">
+                        <div class="flex-1 mb-4 md:mb-0">
+                            <div class="flex items-center mb-2">
+                                <i class="fas fa-chart-line text-green-500 text-2xl mr-4"></i>
+                                <h3 class="text-xl md:text-2xl font-bold">Consultoria de crescimento</h3>
+                            </div>
+                            <p class="text-gray-400">Estratégias personalizadas para escalar seu perfil</p>
+                        </div>
+                        <div class="text-right">
+                            <div class="strikethrough text-lg mb-1">R$ 400,00</div>
+                            <div class="free-badge">GRÁTIS</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Planejamento de collabs/parcerias -->
+                <div class="price-card p-8 rounded-2xl bg-gradient-to-r from-green-900/30 to-black stagger-animation" style="animation-delay: 0.8s;">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center">
+                        <div class="flex-1 mb-4 md:mb-0">
+                            <div class="flex items-center mb-2">
+                                <i class="fas fa-handshake text-green-500 text-2xl mr-4"></i>
+                                <h3 class="text-xl md:text-2xl font-bold">Planejamento de collabs/parcerias</h3>
+                            </div>
+                            <p class="text-gray-400">Conexões estratégicas para expandir seu alcance</p>
+                        </div>
+                        <div class="text-right">
+                            <div class="strikethrough text-lg mb-1">R$ 350,00</div>
+                            <div class="free-badge">GRÁTIS</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Criação de funil de conteúdo -->
+                <div class="price-card p-8 rounded-2xl bg-gradient-to-r from-green-900/30 to-black stagger-animation" style="animation-delay: 0.9s;">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center">
+                        <div class="flex-1 mb-4 md:mb-0">
+                            <div class="flex items-center mb-2">
+                                <i class="fas fa-funnel-dollar text-green-500 text-2xl mr-4"></i>
+                                <h3 class="text-xl md:text-2xl font-bold">Criação de funil de conteúdo</h3>
+                            </div>
+                            <p class="text-gray-400">Corte → reel → episódio - estratégia completa</p>
+                        </div>
+                        <div class="text-right">
+                            <div class="strikethrough text-lg mb-1">R$ 400,00</div>
+                            <div class="free-badge">GRÁTIS</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Relatório de desempenho -->
+                <div class="price-card p-8 rounded-2xl stagger-animation" style="animation-delay: 1.0s;">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center">
+                        <div class="flex-1 mb-4 md:mb-0">
+                            <div class="flex items-center mb-2">
+                                <i class="fas fa-analytics text-green-500 text-2xl mr-4"></i>
+                                <h3 class="text-xl md:text-2xl font-bold">Relatório de desempenho (mensal)</h3>
+                            </div>
+                            <p class="text-gray-400">Métricas detalhadas e insights para otimização</p>
+                        </div>
+                        <div class="text-right">
+                            <div class="strikethrough text-lg mb-1">R$ 300,00</div>
+                            <div class="special-price text-3xl font-black">R$ 150,00</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Economia Total -->
+    <section class="py-20 gradient-bg">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-4xl md:text-5xl font-black mb-8">
+                Economia <span class="text-green-500">Total</span>
+            </h2>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-black/50 p-8 rounded-2xl border border-green-500/30 mb-8">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-2xl font-bold mb-4 text-red-400">Preço que eu cobraria normalmente</h3>
+                            <div class="text-4xl font-black strikethrough">R$ 4.365,00</div>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold mb-4 text-green-400">Preço Especial</h3>
+                            <div class="text-4xl font-black special-price">R$ 1.555,00</div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 p-6 bg-green-500/20 rounded-xl border border-green-500/50">
+                        <div class="text-3xl font-black text-green-400 mb-2">
+                            Você economiza R$ 2.810,00!
+                        </div>
+                        <div class="text-xl text-gray-300">
+                            Isso é mais de 64% de desconto!
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scrolling for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Advanced scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    
+                    // Trigger stagger animations for cards
+                    const staggerElements = entry.target.querySelectorAll('.stagger-animation');
+                    staggerElements.forEach((el, index) => {
+                        setTimeout(() => {
+                            el.style.animationPlayState = 'running';
+                        }, index * 100);
+                    });
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections for animations
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'all 0.8s ease-in-out';
+            observer.observe(section);
+        });
+
+        // Hero section is always visible
+        document.querySelector('section').style.opacity = '1';
+        document.querySelector('section').style.transform = 'translateY(0)';
+
+        // Pause stagger animations initially
+        document.querySelectorAll('.stagger-animation').forEach(el => {
+            el.style.animationPlayState = 'paused';
+        });
+
+        // Parallax effect for hero background
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const heroSection = document.querySelector('.hero-bg');
+            if (heroSection) {
+                heroSection.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+        // Add hover effects to price cards
+        document.querySelectorAll('.price-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Floating particles animation
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.width = (Math.random() * 4 + 2) + 'px';
+            particle.style.height = particle.style.width;
+            particle.style.animationDuration = (Math.random() * 3 + 5) + 's';
+            particle.style.animationDelay = Math.random() * 2 + 's';
+            
+            const container = document.querySelector('.floating-particles');
+            if (container) {
+                container.appendChild(particle);
+                
+                setTimeout(() => {
+                    particle.remove();
+                }, 8000);
+            }
+        }
+
+        // Create particles periodically
+        setInterval(createParticle, 1000);
+
+        // Add loading animation
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '1';
+            document.body.style.transform = 'translateY(0)';
+        });
+
+        // Initial setup
+        document.body.style.opacity = '0';
+        document.body.style.transform = 'translateY(20px)';
+        document.body.style.transition = 'all 0.8s ease-in-out';
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'984ad0cf84d18783',t:'MTc1ODgwNjM5Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
