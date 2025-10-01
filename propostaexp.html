@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expturismo - O próximo passo no digital</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            box-sizing: border-box;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(59, 130, 246, 0.6); }
+        }
+        
+        @keyframes slide-in-left {
+            0% { transform: translateX(-100px); opacity: 0; }
+            100% { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes slide-in-right {
+            0% { transform: translateX(100px); opacity: 0; }
+            100% { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes bounce-in {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.05); }
+            70% { transform: scale(0.9); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        @keyframes rotate-360 {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .hero-bg {
+            background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #f5576c, #4facfe, #00f2fe);
+            background-size: 400% 400%;
+            animation: gradient-shift 8s ease infinite;
+        }
+        
+        .floating { animation: float 6s ease-in-out infinite; }
+        .pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
+        .slide-left { animation: slide-in-left 0.8s ease-out; }
+        .slide-right { animation: slide-in-right 0.8s ease-out; }
+        .bounce-in { animation: bounce-in 0.6s ease-out; }
+        .rotate { animation: rotate-360 20s linear infinite; }
+        
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
+        }
+        
+        .neon-text {
+            text-shadow: 0 0 10px rgba(59, 130, 246, 0.5),
+                         0 0 20px rgba(59, 130, 246, 0.5),
+                         0 0 40px rgba(59, 130, 246, 0.5);
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .section-padding {
+            padding: 4rem 0;
+        }
+        
+        @media (min-width: 768px) {
+            .section-padding {
+                padding: 6rem 0;
+            }
+        }
+        
+        .emoji-float {
+            display: inline-block;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .emoji-float:nth-child(2) { animation-delay: -1s; }
+        .emoji-float:nth-child(3) { animation-delay: -2s; }
+        
+        .parallax-bg {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white overflow-x-hidden" style="font-family: 'Poppins', sans-serif;">
+
+    <!-- Hero Section -->
+    <section class="hero-bg min-h-screen flex items-center justify-center text-white relative overflow-hidden">
+        <div class="container mx-auto px-4 md:px-6 text-center relative z-10">
+            <div class="bounce-in">
+                <h1 class="text-4xl md:text-6xl lg:text-8xl font-black mb-6 md:mb-8 leading-tight">
+                    O próximo passo da<br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-pink-300 to-cyan-300">
+                        EXPTURISMO
+                    </span><br>
+                    no digital 🚀
+                </h1>
+            </div>
+            
+            <div class="slide-left">
+                <p class="text-lg md:text-2xl lg:text-3xl mb-8 md:mb-12 font-bold">
+                    📈 Mais Alcance • 💰 Mais Vendas • ⚡ Mais Eficiência
+                </p>
+            </div>
+            
+        </div>
+        
+        <!-- Animated Background Elements -->
+        <div class="absolute inset-0 overflow-hidden pointer-events-none">
+            <div class="absolute top-1/4 left-1/4 w-32 h-32 bg-white bg-opacity-10 rounded-full rotate"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-24 h-24 bg-yellow-300 bg-opacity-20 rounded-full rotate" style="animation-delay: -10s;"></div>
+        </div>
+    </section>
+
+    <!-- Força Atual -->
+    <section class="section-padding bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 relative">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="text-center mb-12 md:mb-20">
+                <h2 class="text-3xl md:text-5xl lg:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-400 mb-4 md:mb-6">
+                    🔥 O que você já faz muito bem
+                </h2>
+                <div class="w-24 md:w-32 h-1 md:h-2 bg-gradient-to-r from-green-400 to-blue-400 mx-auto rounded-full"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+                <div class="glass-effect p-6 md:p-8 rounded-3xl card-hover text-center group">
+                    <div class="text-4xl md:text-6xl mb-4 md:mb-6 group-hover:scale-125 transition-transform duration-300">📱</div>
+                    <h3 class="text-lg md:text-2xl font-black mb-2 md:mb-4 text-pink-300">Instagram Forte</h3>
+                    <p class="text-base md:text-xl font-bold text-green-300">14,4K seguidores</p>
+                    <p class="text-sm md:text-lg">Engajamento crescente ✨</p>
+                </div>
+                
+                <div class="glass-effect p-6 md:p-8 rounded-3xl card-hover text-center group">
+                    <div class="text-4xl md:text-6xl mb-4 md:mb-6 group-hover:scale-125 transition-transform duration-300">🎨</div>
+                    <h3 class="text-lg md:text-2xl font-black mb-2 md:mb-4 text-yellow-300">Conteúdo Criativo</h3>
+                    <p class="text-base md:text-xl font-bold text-green-300">Visual atrativo</p>
+                    <p class="text-sm md:text-lg">Posts bem estruturados 💎</p>
+                </div>
+                
+                <div class="glass-effect p-6 md:p-8 rounded-3xl card-hover text-center group">
+                    <div class="text-4xl md:text-6xl mb-4 md:mb-6 group-hover:scale-125 transition-transform duration-300">💬</div>
+                    <h3 class="text-lg md:text-2xl font-black mb-2 md:mb-4 text-cyan-300">Comunicação Clara</h3>
+                    <p class="text-base md:text-xl font-bold text-green-300">Relacionamento próximo</p>
+                    <p class="text-sm md:text-lg">Clientes satisfeitos ❤️</p>
+                </div>
+                
+                <div class="glass-effect p-6 md:p-8 rounded-3xl card-hover text-center group">
+                    <div class="text-4xl md:text-6xl mb-4 md:mb-6 group-hover:scale-125 transition-transform duration-300">🌟</div>
+                    <h3 class="text-lg md:text-2xl font-black mb-2 md:mb-4 text-orange-300">Alta Demanda</h3>
+                    <p class="text-base md:text-xl font-bold text-green-300">Mercado aquecido</p>
+                    <p class="text-sm md:text-lg">Produto desejado 🏖️</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Oportunidades -->
+    <section class="section-padding bg-gradient-to-br from-red-900 via-pink-900 to-purple-900">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="text-center mb-12 md:mb-20">
+                <h2 class="text-3xl md:text-5xl lg:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-yellow-400 mb-4 md:mb-6">
+                    ⚠️ Onde podemos crescer ainda mais
+                </h2>
+                <p class="text-lg md:text-2xl font-bold text-yellow-300">Oportunidades para escalar 💥</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+                <div class="bg-gradient-to-br from-red-600 to-red-800 p-6 md:p-8 rounded-3xl card-hover text-center border-2 md:border-4 border-red-400">
+                    <div class="text-4xl md:text-6xl mb-4 md:mb-6">🚫</div>
+                    <h3 class="text-lg md:text-2xl font-black mb-2 md:mb-4 text-red-200">Site inexistente</h3>
+                    <p class="text-base md:text-xl font-bold text-yellow-300">Domínio disponível</p>
+                    <p class="text-sm md:text-lg">Oportunidade perdida 😱</p>
+                </div>
+                
+                <div class="bg-gradient-to-br from-orange-600 to-red-700 p-6 md:p-8 rounded-3xl card-hover text-center border-2 md:border-4 border-orange-400">
+                    <div class="text-4xl md:text-6xl mb-4 md:mb-6">💸</div>
+                    <h3 class="text-lg md:text-2xl font-black mb-2 md:mb-4 text-orange-200">Zero tráfego pago</h3>
+                    <p class="text-base md:text-xl font-bold text-yellow-300">Só orgânico</p>
+                    <p class="text-sm md:text-lg">Alcance limitado 📉</p>
+                </div>
+                
+                <div class="bg-gradient-to-br from-yellow-600 to-orange-700 p-6 md:p-8 rounded-3xl card-hover text-center border-2 md:border-4 border-yellow-400">
+                    <div class="text-4xl md:text-6xl mb-4 md:mb-6">🤖</div>
+                    <h3 class="text-lg md:text-2xl font-black mb-2 md:mb-4 text-yellow-200">Atendimento manual</h3>
+                    <p class="text-base md:text-xl font-bold text-yellow-300">WhatsApp 24/7</p>
+                    <p class="text-sm md:text-lg">Sem automação ⏰</p>
+                </div>
+                
+                <div class="bg-gradient-to-br from-purple-600 to-pink-700 p-6 md:p-8 rounded-3xl card-hover text-center border-2 md:border-4 border-purple-400">
+                    <div class="text-4xl md:text-6xl mb-4 md:mb-6">📲</div>
+                    <h3 class="text-lg md:text-2xl font-black mb-2 md:mb-4 text-purple-200">Só Instagram</h3>
+                    <p class="text-base md:text-xl font-bold text-yellow-300">Uma plataforma</p>
+                    <p class="text-sm md:text-lg">Dependência total ⚡</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Soluções -->
+    <section class="section-padding bg-gradient-to-br from-green-900 via-emerald-900 to-teal-900">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="text-center mb-12 md:mb-20">
+                <h2 class="text-3xl md:text-5xl lg:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-cyan-400 mb-4 md:mb-6">
+                    💡 O que podemos implementar
+                </h2>
+                <p class="text-lg md:text-2xl font-bold text-green-300">Soluções personalizadas 🚀</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-6 md:gap-10">
+                <div class="glass-effect p-6 md:p-10 rounded-3xl card-hover border-2 md:border-4 border-green-400">
+                    <div class="flex flex-col md:flex-row items-center gap-4 md:gap-6 mb-4 md:mb-6">
+                        <div class="text-5xl md:text-7xl">🎯</div>
+                        <div class="text-center md:text-left">
+                            <h3 class="text-xl md:text-3xl font-black text-green-300">Tráfego Pago</h3>
+                            <p class="text-base md:text-xl font-bold text-cyan-300">Anúncios segmentados</p>
+                        </div>
+                    </div>
+                    <p class="text-sm md:text-lg leading-relaxed text-center md:text-left">Anúncios direcionados para destinos estratégicos, alcançando exatamente quem tem interesse em viajar 🏝️✈️</p>
+                </div>
+                
+                <div class="glass-effect p-6 md:p-10 rounded-3xl card-hover border-2 md:border-4 border-blue-400">
+                    <div class="flex flex-col md:flex-row items-center gap-4 md:gap-6 mb-4 md:mb-6">
+                        <div class="text-5xl md:text-7xl">🏆</div>
+                        <div class="text-center md:text-left">
+                            <h3 class="text-xl md:text-3xl font-black text-blue-300">Site Profissional</h3>
+                            <p class="text-base md:text-xl font-bold text-cyan-300">Credibilidade total</p>
+                        </div>
+                    </div>
+                    <p class="text-sm md:text-lg leading-relaxed text-center md:text-left">Credibilidade e centralização de todas as informações em um local próprio e otimizado 💎</p>
+                </div>
+                
+                <div class="glass-effect p-6 md:p-10 rounded-3xl card-hover border-2 md:border-4 border-purple-400">
+                    <div class="flex flex-col md:flex-row items-center gap-4 md:gap-6 mb-4 md:mb-6">
+                        <div class="text-5xl md:text-7xl">⚡</div>
+                        <div class="text-center md:text-left">
+                            <h3 class="text-xl md:text-3xl font-black text-purple-300">Automação WhatsApp</h3>
+                            <p class="text-base md:text-xl font-bold text-cyan-300">Atendimento ágil</p>
+                        </div>
+                    </div>
+                    <p class="text-sm md:text-lg leading-relaxed text-center md:text-left">Agilidade no atendimento com respostas automáticas e qualificação de leads 24/7 🤖💨</p>
+                </div>
+                
+                <div class="glass-effect p-6 md:p-10 rounded-3xl card-hover border-2 md:border-4 border-pink-400">
+                    <div class="flex flex-col md:flex-row items-center gap-4 md:gap-6 mb-4 md:mb-6">
+                        <div class="text-5xl md:text-7xl">🎪</div>
+                        <div class="text-center md:text-left">
+                            <h3 class="text-xl md:text-3xl font-black text-pink-300">Landing Pages</h3>
+                            <p class="text-base md:text-xl font-bold text-cyan-300">Conversão focada</p>
+                        </div>
+                    </div>
+                    <p class="text-sm md:text-lg leading-relaxed text-center md:text-left">Campanhas exclusivas por viagem com foco total na conversão 💳⚡</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expansão -->
+    <section class="section-padding bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="text-center mb-12 md:mb-20">
+                <h2 class="text-3xl md:text-5xl lg:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-cyan-400 mb-4 md:mb-6">
+                    🌍 Muito além do Instagram
+                </h2>
+                <p class="text-lg md:text-2xl font-bold text-pink-300">Expansão de presença digital 🚀</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+                <div class="bg-gradient-to-br from-pink-600 to-purple-700 p-6 md:p-8 rounded-3xl text-white card-hover text-center border-2 md:border-4 border-pink-400">
+                    <div class="text-4xl md:text-6xl mb-4 md:mb-6">🎵</div>
+                    <h3 class="text-lg md:text-2xl font-black mb-2 md:mb-4">TikTok/Reels</h3>
+                    <p class="text-base md:text-lg font-bold">Conteúdo viral 🔥</p>
+                    <p class="text-sm md:text-base">Novos públicos</p>
+                </div>
+                
+                <div class="bg-gradient-to-br from-green-600 to-blue-700 p-6 md:p-8 rounded-3xl text-white card-hover text-center border-2 md:border-4 border-green-400">
+                    <div class="text-4xl md:text-6xl mb-4 md:mb-6">📍</div>
+                    <h3 class="text-lg md:text-2xl font-black mb-2 md:mb-4">Google Meu Negócio</h3>
+                    <p class="text-base md:text-lg font-bold">Buscas locais 🎯</p>
+                    <p class="text-sm md:text-base">Visibilidade local</p>
+                </div>
+                
+                <div class="bg-gradient-to-br from-orange-600 to-red-700 p-6 md:p-8 rounded-3xl text-white card-hover text-center border-2 md:border-4 border-orange-400">
+                    <div class="text-4xl md:text-6xl mb-4 md:mb-6">📝</div>
+                    <h3 class="text-lg md:text-2xl font-black mb-2 md:mb-4">Blog de Viagens</h3>
+                    <p class="text-base md:text-lg font-bold">SEO no Google 📈</p>
+                    <p class="text-sm md:text-base">Conteúdo relevante</p>
+                </div>
+                
+                <div class="bg-gradient-to-br from-purple-600 to-indigo-700 p-6 md:p-8 rounded-3xl text-white card-hover text-center border-2 md:border-4 border-purple-400">
+                    <div class="text-4xl md:text-6xl mb-4 md:mb-6">⭐</div>
+                    <h3 class="text-lg md:text-2xl font-black mb-2 md:mb-4">Depoimentos</h3>
+                    <p class="text-base md:text-lg font-bold">Prova social 💎</p>
+                    <p class="text-sm md:text-base">Confiança máxima</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Estratégias Comerciais -->
+    <section class="section-padding bg-gradient-to-br from-yellow-900 via-orange-900 to-red-900">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="text-center mb-12 md:mb-20">
+                <h2 class="text-3xl md:text-5xl lg:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-red-400 mb-4 md:mb-6">
+                    💰 Novas formas de aumentar vendas
+                </h2>
+                <p class="text-lg md:text-2xl font-bold text-yellow-300">Estratégias comerciais inteligentes 🌧️💵</p>
+            </div>
+            
+            <div class="space-y-6 md:space-y-8">
+                <div class="glass-effect p-6 md:p-10 rounded-3xl card-hover border-2 md:border-4 border-green-400">
+                    <div class="flex flex-col md:flex-row items-center gap-4 md:gap-8">
+                        <div class="text-6xl md:text-8xl">🎁</div>
+                        <div class="text-center md:text-left">
+                            <h3 class="text-xl md:text-3xl font-black mb-2 md:mb-3 text-green-300">Programa de Indicação</h3>
+                            <p class="text-base md:text-xl leading-relaxed">Transforme seus clientes satisfeitos em vendedores, oferecendo benefícios para quem indica novos viajantes 🔥</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="glass-effect p-6 md:p-10 rounded-3xl card-hover border-2 md:border-4 border-purple-400">
+                    <div class="flex flex-col md:flex-row items-center gap-4 md:gap-8">
+                        <div class="text-6xl md:text-8xl">👑</div>
+                        <div class="text-center md:text-left">
+                            <h3 class="text-xl md:text-3xl font-black mb-2 md:mb-3 text-purple-300">Lista VIP de promoções</h3>
+                            <p class="text-base md:text-xl leading-relaxed">Crie exclusividade com uma lista especial que recebe ofertas em primeira mão ✨</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="glass-effect p-6 md:p-10 rounded-3xl card-hover border-2 md:border-4 border-blue-400">
+                    <div class="flex flex-col md:flex-row items-center gap-4 md:gap-8">
+                        <div class="text-6xl md:text-8xl">🏆</div>
+                        <div class="text-center md:text-left">
+                            <h3 class="text-xl md:text-3xl font-black mb-2 md:mb-3 text-blue-300">Clube de viagens exclusivo</h3>
+                            <p class="text-base md:text-xl leading-relaxed">Membros recebem descontos especiais, acesso antecipado e experiências únicas 💎</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="glass-effect p-6 md:p-10 rounded-3xl card-hover border-2 md:border-4 border-orange-400">
+                    <div class="flex flex-col md:flex-row items-center gap-4 md:gap-8">
+                        <div class="text-6xl md:text-8xl">🎯</div>
+                        <div class="text-center md:text-left">
+                            <h3 class="text-xl md:text-3xl font-black mb-2 md:mb-3 text-orange-300">Ofertas sazonais estratégicas</h3>
+                            <p class="text-base md:text-xl leading-relaxed">Campanhas direcionadas para feriados e períodos de férias com alta demanda 🚀</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Final -->
+    <section class="section-padding bg-gradient-to-br from-purple-900 via-pink-900 to-red-900 relative overflow-hidden">
+        <div class="container mx-auto px-4 md:px-6 text-center relative z-10">
+            <div class="bounce-in">
+                <h2 class="text-3xl md:text-5xl lg:text-7xl font-black mb-6 md:mb-8 leading-tight">
+                    A Expturismo já tem uma<br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-pink-300 to-cyan-300">
+                        base incrível 🔥
+                    </span><br>
+                    agora é hora de<br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-green-300 via-blue-300 to-purple-300">
+                        escalar no digital 🚀
+                    </span>
+                </h2>
+            </div>
+            
+            <div class="slide-left">
+                <p class="text-lg md:text-2xl lg:text-3xl mb-12 md:mb-16 font-bold">
+                    🚀 Vamos transformar todo esse potencial em resultados concretos e crescimento sustentável 📈
+                </p>
+            </div>
+            
+            <div class="slide-right">
+                <button onclick="window.open('https://wa.me/5511991618831?text=Olá! Vi a apresentação das soluções digitais e quero fazer', '_blank')" 
+                        class="btn-primary text-white px-12 md:px-20 py-6 md:py-8 rounded-full text-xl md:text-3xl font-black inline-flex items-center gap-4 md:gap-6 pulse-glow mb-8 md:mb-12">
+                    💬 Falar agora no WhatsApp 🚀
+                </button>
+            </div>
+            
+        </div>
+    </section>
+
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'987d93f9b6131b12',t:'MTc1OTMzODY3NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
