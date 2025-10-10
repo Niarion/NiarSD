@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clínica Giuliana - Estética Avançada na Paulista</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            box-sizing: border-box;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(236, 72, 153, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(236, 72, 153, 0.6); }
+        }
+        
+        @keyframes slide-in-left {
+            0% { transform: translateX(-100px); opacity: 0; }
+            100% { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes slide-in-right {
+            0% { transform: translateX(100px); opacity: 0; }
+            100% { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes fade-in-up {
+            0% { transform: translateY(50px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+        
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .hero-bg {
+            background: linear-gradient(-45deg, #fdf2f8, #fce7f3, #fbcfe8, #f9a8d4, #f472b6, #ec4899);
+            background-size: 400% 400%;
+            animation: gradient-shift 12s ease infinite;
+        }
+        
+        .floating { animation: float 6s ease-in-out infinite; }
+        .pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
+        .slide-left { animation: slide-in-left 0.8s ease-out; }
+        .slide-right { animation: slide-in-right 0.8s ease-out; }
+        .fade-up { animation: fade-in-up 0.8s ease-out; }
+        
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #ec4899, #be185d);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(236, 72, 153, 0.4);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, #f3e8ff, #e9d5ff);
+            color: #7c3aed;
+            border: 2px solid #a855f7;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            background: linear-gradient(135deg, #a855f7, #7c3aed);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .section-padding {
+            padding: 4rem 0;
+        }
+        
+        @media (min-width: 768px) {
+            .section-padding {
+                padding: 6rem 0;
+            }
+        }
+        
+        .text-gradient {
+            background: linear-gradient(135deg, #ec4899, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .service-card {
+            background: linear-gradient(135deg, #fdf2f8, #f3e8ff);
+            border: 2px solid #f9a8d4;
+            transition: all 0.3s ease;
+        }
+        
+        .service-card:hover {
+            border-color: #ec4899;
+            box-shadow: 0 10px 30px rgba(236, 72, 153, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 overflow-x-hidden" style="font-family: 'Poppins', sans-serif;">
+
+    <!-- Hero Section -->
+    <section class="hero-bg min-h-screen flex items-center justify-center relative overflow-hidden">
+        <div class="container mx-auto px-4 md:px-6 text-center relative z-10">
+            <div class="fade-up">
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-black mb-6 md:mb-8 leading-tight text-gray-800">
+                    COMO ESCALAR A
+                    <span class="text-gradient">CLÍNICA GIULIANA</span><br>
+                    <span class="text-2xl md:text-4xl lg:text-5xl font-bold">NO DIGITAL</span>
+                </h1>
+            </div>
+            
+            <div class="slide-left">
+                <p class="text-lg md:text-2xl mb-8 md:mb-12 font-semibold text-gray-700">
+                    🚀 Mais Visibilidade • 💰 Mais Agendamentos • 📈 Mais Resultados
+                </p>
+            </div>
+            
+            <div class="slide-right flex flex-col md:flex-row gap-4 md:gap-6 justify-center items-center">
+                <button onclick="window.open('https://wa.me/5511991618831?text=Olá! Vamos fazer :)', '_blank')" 
+                        class="btn-primary text-white px-8 md:px-12 py-4 md:py-5 rounded-full text-lg md:text-xl font-bold inline-flex items-center gap-3 pulse-glow">
+                    💬 VAMOS CONVERSAR!
+                </button>
+                <button onclick="document.getElementById('prioridades').scrollIntoView({behavior: 'smooth'})" 
+                        class="btn-secondary px-8 md:px-12 py-4 md:py-5 rounded-full text-lg md:text-xl font-bold">
+                    🎯 VER ESTRATÉGIAS
+                </button>
+            </div>
+        </div>
+        
+        <!-- Floating Elements -->
+        <div class="absolute inset-0 overflow-hidden pointer-events-none">
+            <div class="absolute top-1/4 left-1/6 w-20 h-20 bg-pink-300 bg-opacity-30 rounded-full floating"></div>
+            <div class="absolute bottom-1/3 right-1/6 w-16 h-16 bg-purple-300 bg-opacity-30 rounded-full floating" style="animation-delay: -2s;"></div>
+            <div class="absolute top-1/2 right-1/4 w-12 h-12 bg-pink-400 bg-opacity-20 rounded-full floating" style="animation-delay: -4s;"></div>
+        </div>
+    </section>
+
+    <!-- Prioridades Imediatas -->
+    <section id="prioridades" class="section-padding bg-white">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="text-center mb-12 md:mb-16">
+                <h2 class="text-3xl md:text-5xl font-black text-gradient mb-4 md:mb-6">
+                    🎯 PRIORIDADES PARA CRESCER AGORA
+                </h2>
+                <p class="text-lg md:text-xl text-gray-700 font-semibold">As 7 ações mais importantes para escalar a Clínica Giuliana</p>
+                <div class="w-24 md:w-32 h-1 bg-gradient-to-r from-pink-500 to-purple-600 mx-auto rounded-full mt-4"></div>
+            </div>
+            
+            <div class="space-y-6 md:space-y-8">
+                <div class="glass-effect p-6 md:p-10 rounded-3xl card-hover border-l-4 border-pink-500">
+                    <div class="flex flex-col md:flex-row items-start gap-4 md:gap-6">
+                        <div class="text-5xl md:text-6xl">📱</div>
+                        <div class="flex-1">
+                            <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                                <h3 class="text-xl md:text-2xl font-black text-gray-800">1. Gestão de Redes Sociais Estratégica</h3>
+                                <span class="text-sm md:text-base font-bold text-pink-600 bg-pink-100 px-3 py-1 rounded-full">CORAÇÃO DO NEGÓCIO</span>
+                            </div>
+                            <p class="text-gray-700 mb-4 leading-relaxed">Posts e reels com foco em estética, transformação e autoridade. Mostrar Giuliana falando diretamente à câmera (humanização).</p>
+                            <div class="bg-green-50 p-4 rounded-xl border-l-4 border-green-500">
+                                <p class="text-green-800 font-semibold">🎯 Resultado: aumento imediato de engajamento, seguidores e agendamentos.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-effect p-6 md:p-10 rounded-3xl card-hover border-l-4 border-purple-500">
+                    <div class="flex flex-col md:flex-row items-start gap-4 md:gap-6">
+                        <div class="text-5xl md:text-6xl">🎯</div>
+                        <div class="flex-1">
+                            <h3 class="text-xl md:text-2xl font-black text-gray-800 mb-4">2. Campanhas de Anúncios Locais (Meta Ads + Google Maps)</h3>
+                            <p class="text-gray-700 mb-4 leading-relaxed">Focar em botox, limpeza de pele e depilação a laser. Direcionar pro WhatsApp com CTA "Agende sua avaliação agora".</p>
+                            <div class="bg-green-50 p-4 rounded-xl border-l-4 border-green-500">
+                                <p class="text-green-800 font-semibold">🎯 Resultado: captação rápida de novos clientes.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-effect p-6 md:p-10 rounded-3xl card-hover border-l-4 border-blue-500">
+                    <div class="flex flex-col md:flex-row items-start gap-4 md:gap-6">
+                        <div class="text-5xl md:text-6xl">✨</div>
+                        <div class="flex-1">
+                            <h3 class="text-xl md:text-2xl font-black text-gray-800 mb-4">3. Otimização do Instagram</h3>
+                            <p class="text-gray-700 mb-4 leading-relaxed">Bio estratégica, destaques organizados e link único pro WhatsApp.</p>
+                            <div class="bg-green-50 p-4 rounded-xl border-l-4 border-green-500">
+                                <p class="text-green-800 font-semibold">🎯 Resultado: mais conversões e profissionalismo.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-effect p-6 md:p-10 rounded-3xl card-hover border-l-4 border-indigo-500">
+                    <div class="flex flex-col md:flex-row items-start gap-4 md:gap-6">
+                        <div class="text-5xl md:text-6xl">💻</div>
+                        <div class="flex-1">
+                            <h3 class="text-xl md:text-2xl font-black text-gray-800 mb-4">4. Criação de Site / Landing Page</h3>
+                            <p class="text-gray-700 mb-4 leading-relaxed">Design leve, com depoimentos, fotos reais e botão pro WhatsApp. SEO local para "clínica de estética na Paulista".</p>
+                            <div class="bg-green-50 p-4 rounded-xl border-l-4 border-green-500">
+                                <p class="text-green-800 font-semibold">🎯 Resultado: presença profissional + mais leads.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-effect p-6 md:p-10 rounded-3xl card-hover border-l-4 border-yellow-500">
+                    <div class="flex flex-col md:flex-row items-start gap-4 md:gap-6">
+                        <div class="text-5xl md:text-6xl">📸</div>
+                        <div class="flex-1">
+                            <h3 class="text-xl md:text-2xl font-black text-gray-800 mb-4">5. Sessão de Fotos e Vídeos Profissionais</h3>
+                            <p class="text-gray-700 mb-4 leading-relaxed">Mostrar Giuliana, equipe e ambiente.</p>
+                            <div class="bg-green-50 p-4 rounded-xl border-l-4 border-green-500">
+                                <p class="text-green-800 font-semibold">🎯 Resultado: aparência premium e confiança instantânea.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-effect p-6 md:p-10 rounded-3xl card-hover border-l-4 border-red-500">
+                    <div class="flex flex-col md:flex-row items-start gap-4 md:gap-6">
+                        <div class="text-5xl md:text-6xl">🎪</div>
+                        <div class="flex-1">
+                            <h3 class="text-xl md:text-2xl font-black text-gray-800 mb-4">6. Campanha de Lançamento / Promoções</h3>
+                            <p class="text-gray-700 mb-4 leading-relaxed">"Semana da Beleza Giuliana", "Day Spa na Paulista", "Antes e Depois da Semana".</p>
+                            <div class="bg-green-50 p-4 rounded-xl border-l-4 border-green-500">
+                                <p class="text-green-800 font-semibold">🎯 Resultado: movimenta o público e gera buzz.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-effect p-6 md:p-10 rounded-3xl card-hover border-l-4 border-green-500">
+                    <div class="flex flex-col md:flex-row items-start gap-4 md:gap-6">
+                        <div class="text-5xl md:text-6xl">🤖</div>
+                        <div class="flex-1">
+                            <h3 class="text-xl md:text-2xl font-black text-gray-800 mb-4">7. Automação de WhatsApp + Atendimento Profissional</h3>
+                            <p class="text-gray-700 mb-4 leading-relaxed">Mensagens automáticas, catálogo e respostas rápidas.</p>
+                            <div class="bg-green-50 p-4 rounded-xl border-l-4 border-green-500">
+                                <p class="text-green-800 font-semibold">🎯 Resultado: mais conversões e zero perda de leads.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- O que podemos fazer além disso -->
+    <section class="section-padding bg-gradient-to-br from-pink-50 to-purple-50">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="text-center mb-12 md:mb-16">
+                <h2 class="text-3xl md:text-5xl font-black text-gradient mb-4 md:mb-6">
+                    🚀 O QUE PODEMOS FAZER ALÉM DISSO
+                </h2>
+                <p class="text-lg md:text-xl text-gray-700 font-semibold">Soluções completas para transformar a Clínica Giuliana</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                <div class="glass-effect p-6 md:p-8 rounded-3xl card-hover">
+                    <div class="text-4xl md:text-5xl mb-4 text-center">🎯</div>
+                    <h3 class="text-xl md:text-2xl font-bold mb-3 text-gray-800 text-center">MARKETING DIGITAL / VENDAS</h3>
+                    <ul class="text-gray-600 space-y-2 text-sm md:text-base">
+                        <li>• Gestão de redes sociais</li>
+                        <li>• Campanhas pagas (Meta/Google)</li>
+                        <li>• Automações de marketing</li>
+                        <li>• Promoções sazonais</li>
+                        <li>• Parcerias locais</li>
+                    </ul>
+                </div>
+                
+                <div class="glass-effect p-6 md:p-8 rounded-3xl card-hover">
+                    <div class="text-4xl md:text-5xl mb-4 text-center">💻</div>
+                    <h3 class="text-xl md:text-2xl font-bold mb-3 text-gray-800 text-center">SITE / PRESENÇA ONLINE</h3>
+                    <ul class="text-gray-600 space-y-2 text-sm md:text-base">
+                        <li>• Site com botão de WhatsApp</li>
+                        <li>• Landing pages por serviço</li>
+                        <li>• Chat de agendamento</li>
+                        <li>• SEO local otimizado</li>
+                        <li>• Blog de dicas de beleza</li>
+                    </ul>
+                </div>
+                
+                <div class="glass-effect p-6 md:p-8 rounded-3xl card-hover">
+                    <div class="text-4xl md:text-5xl mb-4 text-center">📱</div>
+                    <h3 class="text-xl md:text-2xl font-bold mb-3 text-gray-800 text-center">CONTEÚDO E BRANDING</h3>
+                    <ul class="text-gray-600 space-y-2 text-sm md:text-base">
+                        <li>• Identidade visual premium</li>
+                        <li>• Roteiros de reels</li>
+                        <li>• Fotos profissionais</li>
+                        <li>• Slogan marcante</li>
+                        <li>• E-book gratuito</li>
+                        <li>• Newsletter de beleza</li>
+                    </ul>
+                </div>
+                
+                <div class="glass-effect p-6 md:p-8 rounded-3xl card-hover">
+                    <div class="text-4xl md:text-5xl mb-4 text-center">🧠</div>
+                    <h3 class="text-xl md:text-2xl font-bold mb-3 text-gray-800 text-center">ESTRATÉGIA / CONSULTORIA</h3>
+                    <ul class="text-gray-600 space-y-2 text-sm md:text-base">
+                        <li>• Diagnóstico de posicionamento</li>
+                        <li>• Plano de marketing trimestral</li>
+                        <li>• Análise da concorrência</li>
+                        <li>• Estratégia de precificação</li>
+                        <li>• Treinamento da equipe</li>
+                    </ul>
+                </div>
+                
+                <div class="glass-effect p-6 md:p-8 rounded-3xl card-hover">
+                    <div class="text-4xl md:text-5xl mb-4 text-center">🎬</div>
+                    <h3 class="text-xl md:text-2xl font-bold mb-3 text-gray-800 text-center">MULTIMÍDIA / PRODUÇÃO</h3>
+                    <ul class="text-gray-600 space-y-2 text-sm md:text-base">
+                        <li>• Edição de vídeos e reels</li>
+                        <li>• Cortes curtos para stories</li>
+                        <li>• Banners e templates</li>
+                        <li>• Gestão de banco de mídia</li>
+                        <li>• Motion graphics</li>
+                    </ul>
+                </div>
+                
+                <div class="glass-effect p-6 md:p-8 rounded-3xl card-hover">
+                    <div class="text-4xl md:text-5xl mb-4 text-center">💡</div>
+                    <h3 class="text-xl md:text-2xl font-bold mb-3 text-gray-800 text-center">AÇÕES E CAMPANHAS</h3>
+                    <ul class="text-gray-600 space-y-2 text-sm md:text-base">
+                        <li>• "Semana da Beleza na Paulista"</li>
+                        <li>• "Clube da Pele"</li>
+                        <li>• "Cuide-se com a Giuliana"</li>
+                        <li>• Sorteios e promoções</li>
+                        <li>• Eventos presenciais</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Call to Action -->
+    <section class="section-padding bg-gradient-to-br from-pink-500 to-purple-600 text-white">
+        <div class="container mx-auto px-4 md:px-6 text-center">
+            <div class="fade-up">
+                <h2 class="text-3xl md:text-5xl lg:text-6xl font-black mb-6 md:mb-8 leading-tight">
+                    A sua clínica tem um
+                    <span class="text-yellow-300">POTENCIAL INCRÍVEL</span><br>
+                    vamos escalar juntos!
+                </h2>
+            </div>
+            
+            <div class="slide-left">
+                <p class="text-lg md:text-2xl mb-8 md:mb-12 font-semibold">
+                    🚀 Transforme todo esse potencial em resultados concretos e crescimento sustentável
+                </p>
+            </div>
+            
+            <div class="slide-right flex flex-col md:flex-row gap-4 md:gap-6 justify-center items-center">
+                <button onclick="window.open('https://wa.me/551191618831?text=Olá! Adorei Biel, vamos fazer', '_blank')" 
+                        class="bg-white text-pink-600 px-10 md:px-16 py-4 md:py-6 rounded-full text-lg md:text-2xl font-black inline-flex items-center gap-3 md:gap-4 pulse-glow hover:bg-gray-100 transition-all duration-300">
+                    💬 Chama no zap :)
+                </button>
+            </div>
+            
+            <div class="mt-8 md:mt-12">
+                <p class="text-lg md:text-xl font-bold text-yellow-300">💎 Soluções Personalizadas • 📈 Resultados Garantidos • 🚀 Crescimento Sustentável</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8 md:py-12">
+        <div class="container mx-auto px-4 md:px-6 text-center">
+            <h3 class="text-2xl md:text-3xl font-bold mb-4 text-gradient">Soluções Digitais para Clínica Giuliana</h3>
+            <p class="text-gray-400 mb-6">Estratégias personalizadas para escalar seu negócio no digital</p>
+            <div class="flex justify-center gap-6 text-sm text-gray-400">
+                <span>© 2025 Apresentação de Soluções do Biel</span>
+                <span>•</span>
+                <span>Marketing Digital Especializado</span>
+            </div>
+        </div>
+    </footer>
+
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98c7ce5b1434a5c6',t:'MTc2MDExNzAxMS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
