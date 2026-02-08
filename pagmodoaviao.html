@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bolha Igaratá – Hospedagem Exclusiva</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    body {
+      box-sizing: border-box;
+    }
+    
+    .font-display {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+    }
+    
+    .font-body {
+      font-family: 'Outfit', system-ui, sans-serif;
+    }
+    
+    .hero-gradient {
+      background: linear-gradient(180deg, rgba(15, 15, 15, 0.3) 0%, rgba(15, 15, 15, 0.7) 100%);
+    }
+    
+    .gold-gradient {
+      background: linear-gradient(135deg, #c9a961 0%, #dfc07f 50%, #c9a961 100%);
+    }
+    
+    .card-hover {
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+    
+    .card-hover:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+    
+    .image-reveal {
+      animation: imageReveal 1s ease forwards;
+    }
+    
+    @keyframes imageReveal {
+      from {
+        opacity: 0;
+        transform: scale(1.05);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+    
+    .fade-up {
+      animation: fadeUp 0.8s ease forwards;
+    }
+    
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .stagger-1 { animation-delay: 0.1s; }
+    .stagger-2 { animation-delay: 0.2s; }
+    .stagger-3 { animation-delay: 0.3s; }
+    .stagger-4 { animation-delay: 0.4s; }
+    
+    /* Scroll animations */
+    .scroll-fade-in {
+      opacity: 0;
+      animation: fadeInUp 0.8s ease forwards;
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .scroll-scale-in {
+      opacity: 0;
+      animation: scaleIn 0.8s ease forwards;
+    }
+    
+    @keyframes scaleIn {
+      from {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+    
+    .scroll-slide-left {
+      opacity: 0;
+      animation: slideInLeft 0.8s ease forwards;
+    }
+    
+    @keyframes slideInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-60px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    .scroll-slide-right {
+      opacity: 0;
+      animation: slideInRight 0.8s ease forwards;
+    }
+    
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(60px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    /* Floating animation */
+    .float-animation {
+      animation: floating 3s ease-in-out infinite;
+    }
+    
+    @keyframes floating {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-20px);
+      }
+    }
+    
+    /* Hover effects - sem sumir */
+    .pulse-on-hover:hover {
+      box-shadow: 0 0 20px rgba(201, 169, 97, 0.3);
+      transition: box-shadow 0.3s ease;
+    }
+    
+    /* Text reveal animation */
+    .text-reveal {
+      overflow: hidden;
+    }
+    
+    .text-reveal span {
+      display: inline-block;
+      animation: textReveal 0.6s ease forwards;
+    }
+    
+    @keyframes textReveal {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* Button glow effect */
+    .btn-glow {
+      position: relative;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-glow:hover {
+      box-shadow: 0 0 20px rgba(201, 169, 97, 0.5);
+    }
+    
+    /* Smooth line animation */
+    .line-animation {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .line-animation::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: -100%;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #c9a961, transparent);
+      animation: lineSlide 0.8s ease forwards;
+    }
+    
+    @keyframes lineSlide {
+      to {
+        left: 100%;
+      }
+    }
+    
+    /* Gallery grid animation */
+    .gallery-item {
+      animation: galleryFade 0.6s ease backwards;
+    }
+    
+    @keyframes galleryFade {
+      from {
+        opacity: 0;
+        transform: scale(0.98);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+    
+    .gallery-item:nth-child(1) { animation-delay: 0.1s; }
+    .gallery-item:nth-child(2) { animation-delay: 0.2s; }
+    .gallery-item:nth-child(3) { animation-delay: 0.3s; }
+    .gallery-item:nth-child(4) { animation-delay: 0.4s; }
+    .gallery-item:nth-child(5) { animation-delay: 0.5s; }
+    .gallery-item:nth-child(6) { animation-delay: 0.6s; }
+    
+    /* Icon bounce animation */
+    .icon-bounce:hover {
+      animation: iconBounce 0.6s ease;
+    }
+    
+    @keyframes iconBounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-8px);
+      }
+    }
+    
+    /* Smooth transitions for all interactive elements */
+    button, a {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .font-display {
+        letter-spacing: 0.02em;
+      }
+      
+      .hero-gradient {
+        background: linear-gradient(180deg, rgba(15, 15, 15, 0.4) 0%, rgba(15, 15, 15, 0.8) 100%);
+      }
+    }
+    
+    /* Stagger animations for cards */
+    .card-stagger {
+      opacity: 0;
+      animation: cardStagger 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+    
+    @keyframes cardStagger {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .card-stagger:nth-child(1) { animation-delay: 0.05s; }
+    .card-stagger:nth-child(2) { animation-delay: 0.15s; }
+    .card-stagger:nth-child(3) { animation-delay: 0.25s; }
+    .card-stagger:nth-child(4) { animation-delay: 0.35s; }
+    
+    .divider {
+      width: 60px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #c9a961, transparent);
+    }
+    
+    .text-gold {
+      color: #c9a961;
+    }
+    
+    .bg-dark {
+      background-color: #0f0f0f;
+    }
+    
+    .bg-dark-lighter {
+      background-color: #1a1a1a;
+    }
+    
+    .border-gold {
+      border-color: rgba(201, 169, 97, 0.3);
+    }
+    
+    /* Smooth scroll */
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: #0f0f0f;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: #c9a961;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body class="h-full bg-dark text-white font-body overflow-auto">
+  <div class="w-full h-full">
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-gradient-to-b from-black/80 to-transparent">
+      <div class="max-w-7xl mx-auto px-4 md:px-6 py-3 md:py-4 flex justify-between items-center">
+        <div class="font-display text-lg md:text-2xl tracking-wide text-white">
+          <span class="text-gold">Modo</span> Avião
+        </div>
+        <a href="#reservar" class="hidden md:block px-6 py-2 border border-gold text-gold text-xs md:text-sm tracking-widest uppercase hover:bg-gold hover:text-black transition-all duration-300">
+          Reservar
+        </a>
+      </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section class="relative w-full" style="height: 100vh; min-height: 600px;">
+      <!-- Hero Background -->
+      <div class="absolute inset-0 bg-gradient-to-br from-[#2a2520] via-[#1a1815] to-[#0f0f0f]">
+        <!-- Bolha structure glow -->
+        <div class="absolute inset-0" style="background: 
+          radial-gradient(ellipse 70% 60% at 50% 50%, rgba(201, 169, 97, 0.12) 0%, transparent 70%),
+          radial-gradient(ellipse 60% 50% at 50% 40%, rgba(180, 140, 80, 0.08) 0%, transparent 60%);">
+        </div>
+        <!-- Warm ambient light -->
+        <div class="absolute bottom-20 left-1/2 -translate-x-1/2 w-48 md:w-96 h-32 md:h-64 rounded-full bg-gradient-to-t from-amber-900/25 via-amber-800/8 to-transparent blur-3xl"></div>
+      </div>
+      
+      <!-- Hero Overlay Gradient -->
+      <div class="absolute inset-0 hero-gradient"></div>
+      
+      <!-- Hero Content -->
+      <div class="absolute inset-0 flex flex-col items-center justify-center px-4 md:px-6">
+        <div class="max-w-4xl w-full text-center">
+          <p class="text-gold text-xs md:text-sm tracking-[0.3em] uppercase mb-4 fade-up opacity-0 stagger-1">Igaratá – São Paulo</p>
+          <h1 id="hero-headline" class="font-display text-4xl md:text-6xl lg:text-7xl text-white leading-tight mb-6 md:mb-8 fade-up opacity-0 stagger-2">
+            Durma cercado<br>pela natureza
+          </h1>
+          <p id="hero-subheadline" class="font-body text-base md:text-lg lg:text-xl text-gray-300 font-light mb-10 md:mb-12 max-w-2xl mx-auto fade-up opacity-0 stagger-3">
+            Uma experiência única em hospedagem bolha com design exclusivo, privacidade total e conforto absoluto.
+          </p>
+          <a href="#reservar" id="hero-cta" class="btn-primary btn-glow inline-block gold-gradient text-black px-8 md:px-12 py-4 md:py-5 text-xs md:text-sm tracking-widest uppercase font-medium hover:shadow-lg hover:shadow-amber-900/30 transition-all duration-300 fade-up opacity-0 stagger-4">
+            Reservar agora
+          </a>
+        </div>
+      </div>
+      
+      <!-- Scroll indicator -->
+      <div class="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-gold/60 z-10">
+        <span class="text-xs tracking-widest uppercase">Explorar</span>
+        <svg class="w-5 h-5 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+        </svg>
+      </div>
+    </section>
+    
+    <!-- Experience Section -->
+    <section class="py-16 md:py-24 lg:py-32 px-4 md:px-6 bg-dark">
+      <div class="max-w-4xl mx-auto text-center scroll-fade-in">
+        <div class="divider mx-auto mb-6 md:mb-8 line-animation"></div>
+        <h2 id="experience-title" class="font-display text-2xl md:text-4xl lg:text-5xl text-white mb-6 md:mb-8">Uma noite de puro repouso</h2>
+        <p id="experience-text" class="text-gray-400 text-sm md:text-lg lg:text-xl leading-relaxed font-light">
+          Imagine entrar em um espaço onde a arquitetura singular te recebe. A estrutura da bolha, pensada para conforto e serenidade, oferece um isolamento perfeito do mundo exterior. A hidromassagem aquecida convida ao relaxamento enquanto você se conecta com a tranquilidade do local. Ao amanhecer, os primeiros raios de sol e o café servido completam uma experiência que transcende a simples hospedagem. É um refúgio para os sentidos.
+        </p>
+      </div>
+    </section>
+    
+    <!-- Differentials Section -->
+    <section class="py-16 md:py-24 lg:py-32 px-4 md:px-6 bg-dark-lighter">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12 md:mb-16">
+          <p class="text-gold text-xs md:text-sm tracking-[0.3em] uppercase mb-4">Por que escolher</p>
+          <h2 class="font-display text-2xl md:text-4xl lg:text-5xl text-white">Diferenciais exclusivos</h2>
+        </div>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <!-- Diferencial 1 -->
+          <div class="card-stagger card-hover bg-dark p-6 md:p-8 border border-gold/10 group pulse-on-hover">
+            <div class="w-14 md:w-16 h-14 md:h-16 mb-4 md:mb-6 rounded-full bg-gradient-to-br from-amber-900/30 to-transparent flex items-center justify-center group-hover:from-amber-800/40 transition-all duration-300 icon-bounce">
+              <svg class="w-7 md:w-8 h-7 md:h-8 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+              </svg>
+            </div>
+            <h3 class="font-display text-lg md:text-xl text-white mb-3">Arquitetura única</h3>
+            <p class="text-gray-500 text-xs md:text-sm leading-relaxed">Estrutura geodésica exclusiva com design singular, propondo uma experiência de hospedagem completamente diferente do convencional.</p>
+          </div>
+          
+          <!-- Diferencial 2 -->
+          <div class="card-stagger card-hover bg-dark p-6 md:p-8 border border-gold/10 group pulse-on-hover">
+            <div class="w-14 md:w-16 h-14 md:h-16 mb-4 md:mb-6 rounded-full bg-gradient-to-br from-amber-900/30 to-transparent flex items-center justify-center group-hover:from-amber-800/40 transition-all duration-300 icon-bounce">
+              <svg class="w-7 md:w-8 h-7 md:h-8 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"></path>
+              </svg>
+            </div>
+            <h3 class="font-display text-lg md:text-xl text-white mb-3">Hidromassagem privativa</h3>
+            <p class="text-gray-500 text-xs md:text-sm leading-relaxed">Banheira de hidromassagem aquecida exclusiva para momentos de relaxamento profundo e rejuvenescimento a dois.</p>
+          </div>
+          
+          <!-- Diferencial 3 -->
+          <div class="card-stagger card-hover bg-dark p-6 md:p-8 border border-gold/10 group pulse-on-hover">
+            <div class="w-14 md:w-16 h-14 md:h-16 mb-4 md:mb-6 rounded-full bg-gradient-to-br from-amber-900/30 to-transparent flex items-center justify-center group-hover:from-amber-800/40 transition-all duration-300 icon-bounce">
+              <svg class="w-7 md:w-8 h-7 md:h-8 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+              </svg>
+            </div>
+            <h3 class="font-display text-lg md:text-xl text-white mb-3">Privacidade total</h3>
+            <p class="text-gray-500 text-xs md:text-sm leading-relaxed">Localizada em área isolada na serra, oferece completo afastamento e liberdade para viver a experiência sem distrações.</p>
+          </div>
+          
+          <!-- Diferencial 4 -->
+          <div class="card-stagger card-hover bg-dark p-6 md:p-8 border border-gold/10 group pulse-on-hover">
+            <div class="w-14 md:w-16 h-14 md:h-16 mb-4 md:mb-6 rounded-full bg-gradient-to-br from-amber-900/30 to-transparent flex items-center justify-center group-hover:from-amber-800/40 transition-all duration-300 icon-bounce">
+              <svg class="w-7 md:w-8 h-7 md:h-8 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+              </svg>
+            </div>
+            <h3 class="font-display text-lg md:text-xl text-white mb-3">Experiência para casais</h3>
+            <p class="text-gray-500 text-xs md:text-sm leading-relaxed">Ambiente inteiramente pensado para romântica, intimidade e reconexão em um refúgio exclusivo para dois.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Gallery Section -->
+    <section class="py-16 md:py-24 lg:py-32 px-4 md:px-6 bg-dark">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-12 md:mb-16">
+          <p class="text-gold text-xs md:text-sm tracking-[0.3em] uppercase mb-4">Galeria</p>
+          <h2 class="font-display text-2xl md:text-4xl lg:text-5xl text-white">Conheça o espaço</h2>
+        </div>
+        
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 lg:gap-6">
+          <!-- Gallery Item 1 - Large -->
+          <div class="gallery-item col-span-2 row-span-2 relative aspect-square md:aspect-auto cursor-pointer group">
+            <div class="absolute inset-0 bg-gradient-to-br from-[#2a2520] via-[#1f1b18] to-[#151310]">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+              <!-- Interior warm glow -->
+              <div class="absolute inset-0" style="background: radial-gradient(ellipse at 50% 60%, rgba(255, 180, 100, 0.15) 0%, transparent 60%);"></div>
+              <!-- Bed shape suggestion -->
+              <div class="absolute bottom-12 left-1/2 -translate-x-1/2 w-3/4 h-20 bg-gradient-to-t from-white/5 to-transparent rounded-lg"></div>
+            </div>
+            <div class="absolute bottom-0 left-0 right-0 p-4 md:p-6 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <p class="font-display text-base md:text-xl text-white">Interior da bolha</p>
+              <p class="text-gray-400 text-xs md:text-sm">Cama king size com conforto maximizado</p>
+            </div>
+          </div>
+          
+          <!-- Gallery Item 2 -->
+          <div class="gallery-item relative aspect-square cursor-pointer group">
+            <div class="absolute inset-0 bg-gradient-to-br from-[#1a2520] via-[#151f1c] to-[#101510]">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+              <!-- Outdoor nature feel -->
+              <div class="absolute inset-0" style="background: radial-gradient(ellipse at 50% 30%, rgba(100, 150, 100, 0.1) 0%, transparent 50%);"></div>
+            </div>
+            <div class="absolute bottom-0 left-0 right-0 p-3 md:p-4 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <p class="font-display text-sm md:text-lg text-white">Vista externa</p>
+              <p class="text-gray-400 text-xs md:text-sm">Paisagem natural envolvente</p>
+            </div>
+          </div>
+          
+          <!-- Gallery Item 3 -->
+          <div class="gallery-item relative aspect-square cursor-pointer group">
+            <div class="absolute inset-0 bg-gradient-to-br from-[#25201a] via-[#1f1b15] to-[#151210]">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+              <!-- Water/spa suggestion -->
+              <div class="absolute bottom-8 left-1/2 -translate-x-1/2 w-2/3 h-2/3 rounded-full bg-gradient-to-t from-cyan-900/20 to-transparent blur-sm"></div>
+            </div>
+            <div class="absolute bottom-0 left-0 right-0 p-3 md:p-4 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <p class="font-display text-sm md:text-lg text-white">Hidromassagem</p>
+              <p class="text-gray-400 text-xs md:text-sm">Momento de descontração</p>
+            </div>
+          </div>
+          
+          <!-- Gallery Item 4 -->
+          <div class="gallery-item relative aspect-square cursor-pointer group">
+            <div class="absolute inset-0 bg-gradient-to-br from-[#0a0a15] via-[#0f0f1a] to-[#050510]">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+              <!-- Cozy interior -->
+              <div class="absolute inset-0" style="background: radial-gradient(ellipse at 50% 50%, rgba(201, 169, 97, 0.08) 0%, transparent 50%);"></div>
+            </div>
+            <div class="absolute bottom-0 left-0 right-0 p-3 md:p-4 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <p class="font-display text-sm md:text-lg text-white">Ambiente</p>
+              <p class="text-gray-400 text-xs md:text-sm">Design exclusivo da bolha</p>
+            </div>
+          </div>
+          
+          <!-- Gallery Item 5 -->
+          <div class="gallery-item relative aspect-square cursor-pointer group">
+            <div class="absolute inset-0 bg-gradient-to-br from-[#201815] via-[#1a1412] to-[#100c0a]">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+              <!-- Breakfast table suggestion -->
+              <div class="absolute bottom-10 left-1/2 -translate-x-1/2 w-1/2 h-8 bg-gradient-to-t from-amber-900/20 to-transparent rounded"></div>
+            </div>
+            <div class="absolute bottom-0 left-0 right-0 p-3 md:p-4 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <p class="font-display text-sm md:text-lg text-white">Café da manhã</p>
+              <p class="text-gray-400 text-xs md:text-sm">Servido na bolha</p>
+            </div>
+          </div>
+          
+          <!-- Gallery Item 6 -->
+          <div class="gallery-item relative aspect-square cursor-pointer group">
+            <div class="absolute inset-0 bg-gradient-to-br from-[#1a1815] via-[#151310] to-[#0f0d0a]">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+              <!-- Ambient detail -->
+              <div class="absolute inset-0" style="background: radial-gradient(ellipse at 70% 40%, rgba(201, 169, 97, 0.1) 0%, transparent 40%);"></div>
+            </div>
+            <div class="absolute bottom-0 left-0 right-0 p-3 md:p-4 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <p class="font-display text-sm md:text-lg text-white">Detalhes</p>
+              <p class="text-gray-400 text-xs md:text-sm">Sofisticação em cada detalhe</p>
+            </div>
+          </div>
+        </div>
+        
+        <p class="text-center text-gray-500 text-xs md:text-sm mt-6 md:mt-8 italic">* As imagens acima representam o espaço. Fotos reais disponíveis mediante solicitação.</p>
+      </div>
+    </section>
+    
+    <!-- Location Section -->
+    <section class="py-16 md:py-24 lg:py-32 px-4 md:px-6 bg-dark-lighter">
+      <div class="max-w-6xl mx-auto">
+        <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+          <div>
+            <p class="text-gold text-xs md:text-sm tracking-[0.3em] uppercase mb-4">Localização</p>
+            <h2 class="font-display text-2xl md:text-4xl text-white mb-6">Onde estamos</h2>
+            <p id="location-description" class="text-gray-400 text-sm md:text-base leading-relaxed mb-6">
+              Localizada em Igaratá, a apenas 80km de São Paulo, nossa hospedagem oferece um refúgio tranquilo e de fácil acesso. Um lugar completamente isolado do mundo urbano, perfeito para desconectar e renovar as energias.
+            </p>
+            <div class="space-y-3 text-gray-500 text-sm md:text-base">
+              <div class="flex items-center gap-3">
+                <svg class="w-5 h-5 text-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                </svg>
+                <span>Igaratá, São Paulo</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <svg class="w-5 h-5 text-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <span>~1h30 de São Paulo capital</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <svg class="w-5 h-5 text-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path>
+                </svg>
+                <span>Acesso por estrada asfaltada</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Map Placeholder -->
+          <div class="relative aspect-video md:aspect-square bg-dark border border-gold/10 overflow-hidden">
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d58608.08425565!2d-46.16!3d-23.2!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94cdbc5c5c5c5c5c%3A0x0!2sIgarat%C3%A1%2C%20SP!5e0!3m2!1spt-BR!2sbr!4v1700000000000!5m2!1spt-BR!2sbr"
+              class="absolute inset-0 w-full h-full"
+              style="border:0; filter: grayscale(100%) invert(92%) contrast(83%);"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Final CTA Section -->
+    <section id="reservar" class="py-24 md:py-32 px-6 bg-dark relative overflow-hidden">
+      <!-- Background accent -->
+      <div class="absolute inset-0 opacity-30">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-gradient-radial from-amber-900/20 to-transparent blur-3xl"></div>
+      </div>
+      
+      <div class="relative max-w-3xl mx-auto text-center">
+        <div class="divider mx-auto mb-8"></div>
+        <h2 class="font-display text-3xl md:text-5xl text-white mb-6">Reserve sua experiência</h2>
+        <p class="text-gray-400 text-lg mb-10 max-w-xl mx-auto">
+          Garanta uma noite inesquecível. Disponibilidade limitada para preservar a exclusividade da sua estadia.
+        </p>
+        
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <a href="https://wa.me/5511999999999?text=Olá! Gostaria de fazer uma reserva na Modo Avião" target="_blank" rel="noopener noreferrer" id="final-cta" class="btn-primary btn-glow inline-block gold-gradient text-black px-12 py-4 text-sm tracking-widest uppercase font-medium hover:shadow-lg hover:shadow-amber-900/30 transition-all duration-300 w-full sm:w-auto text-center">
+            Reservar pelo WhatsApp
+          </a>
+          <a href="https://wa.me/5511999999999?text=Olá! Gostaria de fazer uma reserva na Modo Avião" target="_blank" rel="noopener noreferrer" class="px-12 py-4 border border-gold text-gold text-sm tracking-widest uppercase hover:bg-gold hover:text-black transition-all duration-300 w-full sm:w-auto text-center btn-glow">
+            Suporte
+          </a>
+        </div>
+        
+        <p class="text-gray-600 text-sm mt-8">Resposta em até 2 horas • Check-in flexível</p>
+      </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="py-12 px-6 bg-dark-lighter border-t border-gold/10">
+      <div class="max-w-6xl mx-auto">
+        <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+          <div class="font-display text-2xl tracking-wide text-white">
+            <span class="text-gold">Modo</span> Avião
+          </div>
+          
+          <div class="flex gap-6">
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-gold transition-colors hover:scale-110 duration-300">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+            </a>
+
+          </div>
+          
+          <p class="text-gray-600 text-sm">© 2026 Modo Avião. Todos os direitos reservados.</p>
+        </div>
+      </div>
+    </footer>
+    
+  </div>
+
+  <script>
+    // Default configuration
+    const defaultConfig = {
+      hero_headline: 'Durma cercado<br>pela natureza',
+      hero_subheadline: 'Uma experiência única em hospedagem bolha com design exclusivo, privacidade total e conforto absoluto.',
+      experience_title: 'Uma noite de puro repouso',
+      experience_text: 'Imagine entrar em um espaço onde a arquitetura singular te recebe. A estrutura da bolha, pensada para conforto e serenidade, oferece um isolamento perfeito do mundo exterior. A hidromassagem aquecida convida ao relaxamento enquanto você se conecta com a tranquilidade do local. Ao amanhecer, os primeiros raios de sol e o café servido completam uma experiência que transcende a simples hospedagem — é um refúgio para os sentidos.',
+      cta_button_text: 'Reservar agora',
+      location_text: 'Localizada em Igaratá, a apenas 80km de São Paulo, nossa hospedagem oferece um refúgio tranquilo e de fácil acesso. Um lugar completamente isolado do mundo urbano, perfeito para desconectar e renovar as energias.',
+      background_color: '#0f0f0f',
+      surface_color: '#1a1a1a',
+      text_color: '#ffffff',
+      accent_color: '#c9a961',
+      secondary_text_color: '#9ca3af'
+    };
+
+    let config = { ...defaultConfig };
+
+    // Update UI based on config
+    async function onConfigChange(updatedConfig) {
+      config = { ...config, ...updatedConfig };
+      
+      // Update text content
+      document.getElementById('hero-headline').innerHTML = config.hero_headline || defaultConfig.hero_headline;
+      document.getElementById('hero-subheadline').textContent = config.hero_subheadline || defaultConfig.hero_subheadline;
+      document.getElementById('experience-title').textContent = config.experience_title || defaultConfig.experience_title;
+      document.getElementById('experience-text').textContent = config.experience_text || defaultConfig.experience_text;
+      document.getElementById('hero-cta').textContent = config.cta_button_text || defaultConfig.cta_button_text;
+      document.getElementById('final-cta').textContent = config.cta_button_text || defaultConfig.cta_button_text;
+      document.getElementById('location-description').textContent = config.location_text || defaultConfig.location_text;
+      
+      // Update colors
+      const bgColor = config.background_color || defaultConfig.background_color;
+      const surfaceColor = config.surface_color || defaultConfig.surface_color;
+      const textColor = config.text_color || defaultConfig.text_color;
+      const accentColor = config.accent_color || defaultConfig.accent_color;
+      const secondaryTextColor = config.secondary_text_color || defaultConfig.secondary_text_color;
+      
+      document.documentElement.style.setProperty('--bg-color', bgColor);
+      document.documentElement.style.setProperty('--surface-color', surfaceColor);
+      document.documentElement.style.setProperty('--text-color', textColor);
+      document.documentElement.style.setProperty('--accent-color', accentColor);
+      
+      // Apply background colors
+      document.body.style.backgroundColor = bgColor;
+      document.querySelectorAll('.bg-dark').forEach(el => el.style.backgroundColor = bgColor);
+      document.querySelectorAll('.bg-dark-lighter').forEach(el => el.style.backgroundColor = surfaceColor);
+      
+      // Apply text colors
+      document.querySelectorAll('.text-white').forEach(el => el.style.color = textColor);
+      document.querySelectorAll('.text-gold').forEach(el => el.style.color = accentColor);
+      document.querySelectorAll('.text-gray-400, .text-gray-500').forEach(el => el.style.color = secondaryTextColor);
+    }
+
+    // Map config to capabilities
+    function mapToCapabilities(config) {
+      return {
+        recolorables: [
+          {
+            get: () => config.background_color || defaultConfig.background_color,
+            set: (value) => {
+              config.background_color = value;
+              if (window.elementSdk) {
+                window.elementSdk.setConfig({ background_color: value });
+              }
+            }
+          },
+          {
+            get: () => config.surface_color || defaultConfig.surface_color,
+            set: (value) => {
+              config.surface_color = value;
+              if (window.elementSdk) {
+                window.elementSdk.setConfig({ surface_color: value });
+              }
+            }
+          },
+          {
+            get: () => config.text_color || defaultConfig.text_color,
+            set: (value) => {
+              config.text_color = value;
+              if (window.elementSdk) {
+                window.elementSdk.setConfig({ text_color: value });
+              }
+            }
+          },
+          {
+            get: () => config.accent_color || defaultConfig.accent_color,
+            set: (value) => {
+              config.accent_color = value;
+              if (window.elementSdk) {
+                window.elementSdk.setConfig({ accent_color: value });
+              }
+            }
+          },
+          {
+            get: () => config.secondary_text_color || defaultConfig.secondary_text_color,
+            set: (value) => {
+              config.secondary_text_color = value;
+              if (window.elementSdk) {
+                window.elementSdk.setConfig({ secondary_text_color: value });
+              }
+            }
+          }
+        ],
+        borderables: [],
+        fontEditable: undefined,
+        fontSizeable: undefined
+      };
+    }
+
+    // Map config to edit panel values
+    function mapToEditPanelValues(config) {
+      return new Map([
+        ['hero_headline', config.hero_headline || defaultConfig.hero_headline],
+        ['hero_subheadline', config.hero_subheadline || defaultConfig.hero_subheadline],
+        ['experience_title', config.experience_title || defaultConfig.experience_title],
+        ['experience_text', config.experience_text || defaultConfig.experience_text],
+        ['cta_button_text', config.cta_button_text || defaultConfig.cta_button_text],
+        ['location_text', config.location_text || defaultConfig.location_text]
+      ]);
+    }
+
+    // Initialize SDK
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities,
+        mapToEditPanelValues
+      });
+    }
+
+    // Smooth scroll for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Intersection Observer for scroll animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+
+    // Observe sections for scroll animations
+    document.querySelectorAll('section').forEach(section => {
+      section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    });
+  </script>
+</body>
+</html>
