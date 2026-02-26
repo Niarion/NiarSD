@@ -1,0 +1,1184 @@
+<!doctype html>
+<html lang="pt-BR" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JR JARED - Serviços de Digitação, Formatação e Revisão</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&amp;family=Open+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+  <style>
+    body {
+      box-sizing: border-box;
+    }
+    
+    :root {
+      --primary-blue: #1a3a5c;
+      --secondary-blue: #2c5282;
+      --accent-orange: #e86c1f;
+      --light-orange: #f5a623;
+      --text-dark: #1a202c;
+    }
+    
+    * {
+      scroll-behavior: smooth;
+    }
+    
+    .font-heading {
+      font-family: 'Montserrat', sans-serif;
+    }
+    
+    .font-body {
+      font-family: 'Open Sans', sans-serif;
+    }
+    
+    .geometric-bg {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .geometric-bg::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 60%;
+      height: 200%;
+      background: linear-gradient(135deg, transparent 50%, rgba(232, 108, 31, 0.1) 50%);
+      transform: rotate(-15deg);
+      pointer-events: none;
+    }
+    
+    @keyframes slideInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes slideInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes slideInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+    
+    @keyframes scaleIn {
+      from {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+    
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+    
+    @keyframes pulse-glow {
+      0%, 100% {
+        box-shadow: 0 0 20px rgba(232, 108, 31, 0.3);
+      }
+      50% {
+        box-shadow: 0 0 40px rgba(232, 108, 31, 0.6);
+      }
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+    
+    @keyframes rotate-slow {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+    
+    @keyframes shimmer {
+      0% {
+        background-position: -1000px 0;
+      }
+      100% {
+        background-position: 1000px 0;
+      }
+    }
+    
+    @keyframes countUp {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+    
+    .animate-slide-down {
+      animation: slideInDown 0.6s ease-out forwards;
+    }
+    
+    .animate-slide-up {
+      animation: slideInUp 0.6s ease-out forwards;
+    }
+    
+    .animate-slide-left {
+      animation: slideInLeft 0.6s ease-out forwards;
+    }
+    
+    .animate-slide-right {
+      animation: slideInRight 0.6s ease-out forwards;
+    }
+    
+    .animate-fade-in {
+      animation: fadeIn 0.8s ease-out forwards;
+    }
+    
+    .animate-scale-in {
+      animation: scaleIn 0.6s ease-out forwards;
+    }
+    
+    .animate-bounce-custom {
+      animation: bounce 2s infinite;
+    }
+    
+    .animate-pulse-glow {
+      animation: pulse-glow 2s infinite;
+    }
+    
+    .animate-float {
+      animation: float 3s ease-in-out infinite;
+    }
+    
+    .animate-rotate-slow {
+      animation: rotate-slow 20s linear infinite;
+    }
+    
+    .triangle-decoration {
+      position: absolute;
+      width: 0;
+      height: 0;
+    }
+    
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent-orange) 0%, var(--light-orange) 100%);
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(232, 108, 31, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+    
+    .btn-primary:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(232, 108, 31, 0.5);
+    }
+    
+    .btn-whatsapp {
+      background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .btn-whatsapp::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+    
+    .btn-whatsapp:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+    
+    .btn-whatsapp:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5);
+    }
+    
+    .service-card {
+      transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+      border-left: 4px solid transparent;
+      opacity: 0;
+      animation: slideInUp 0.6s ease-out forwards;
+    }
+    
+    .service-card:nth-child(1) { animation-delay: 0.1s; }
+    .service-card:nth-child(2) { animation-delay: 0.2s; }
+    .service-card:nth-child(3) { animation-delay: 0.3s; }
+    .service-card:nth-child(4) { animation-delay: 0.4s; }
+    .service-card:nth-child(5) { animation-delay: 0.5s; }
+    .service-card:nth-child(6) { animation-delay: 0.6s; }
+    .service-card:nth-child(7) { animation-delay: 0.1s; }
+    
+    .service-card:hover {
+      transform: translateY(-12px) rotateX(5deg);
+      border-left-color: var(--accent-orange);
+      box-shadow: 0 20px 40px rgba(26, 58, 92, 0.2);
+    }
+    
+    .nav-link {
+      position: relative;
+      transition: color 0.3s ease;
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent-orange);
+      transition: width 0.3s ease;
+    }
+    
+    .nav-link:hover {
+      color: #f5a623;
+    }
+    
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    
+    .stat-card {
+      background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+      opacity: 0;
+      animation: slideInUp 0.6s ease-out forwards;
+    }
+    
+    .stat-card:nth-child(1) { animation-delay: 0.2s; }
+    .stat-card:nth-child(2) { animation-delay: 0.4s; }
+    .stat-card:nth-child(3) { animation-delay: 0.6s; }
+    .stat-card:nth-child(4) { animation-delay: 0.8s; }
+    
+    .stat-card:hover {
+      transform: translateY(-8px) scale(1.05);
+      box-shadow: 0 15px 35px rgba(26, 58, 92, 0.3);
+    }
+    
+    .section-divider {
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent-orange), var(--light-orange));
+      opacity: 0;
+      animation: slideInLeft 0.6s ease-out 0.3s forwards;
+    }
+    
+    .section-title {
+      opacity: 0;
+      animation: slideInUp 0.6s ease-out 0.4s forwards;
+    }
+    
+    .section-subtitle {
+      opacity: 0;
+      animation: slideInUp 0.6s ease-out 0.5s forwards;
+    }
+    
+    .mobile-menu {
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+    }
+    
+    .mobile-menu.active {
+      transform: translateX(0);
+    }
+    
+    .floating-geometric {
+      position: absolute;
+      animation: rotate-slow 30s linear infinite;
+    }
+    
+    .hero-content-left {
+      opacity: 0;
+      animation: slideInLeft 0.8s ease-out forwards;
+    }
+    
+    .hero-content-right {
+      opacity: 0;
+      animation: slideInRight 0.8s ease-out 0.3s forwards;
+    }
+    
+    .hero-badge {
+      opacity: 0;
+      animation: slideInDown 0.6s ease-out 0.2s forwards;
+    }
+    
+    .hero-button-group {
+      opacity: 0;
+      animation: slideInUp 0.6s ease-out 0.6s forwards;
+    }
+    
+    .wave-divider {
+      animation: float 4s ease-in-out infinite;
+    }
+    
+    /* Intersection Observer animations */
+    .reveal {
+      opacity: 0;
+    }
+    
+    .reveal.active {
+      opacity: 1;
+      animation: fadeIn 0.6s ease-out forwards;
+    }
+    
+    .reveal-up.active {
+      animation: slideInUp 0.6s ease-out forwards;
+    }
+    
+    .reveal-left.active {
+      animation: slideInLeft 0.6s ease-out forwards;
+    }
+    
+    .reveal-right.active {
+      animation: slideInRight 0.6s ease-out forwards;
+    }
+
+    .benefit-item {
+      opacity: 0;
+      animation: slideInLeft 0.6s ease-out forwards;
+    }
+
+    .benefit-item:nth-child(1) { animation-delay: 0.1s; }
+    .benefit-item:nth-child(2) { animation-delay: 0.2s; }
+    .benefit-item:nth-child(3) { animation-delay: 0.3s; }
+    .benefit-item:nth-child(4) { animation-delay: 0.4s; }
+
+    .why-choose-item {
+      opacity: 0;
+      animation: slideInUp 0.6s ease-out forwards;
+    }
+
+    .why-choose-item:nth-child(1) { animation-delay: 0.1s; }
+    .why-choose-item:nth-child(2) { animation-delay: 0.2s; }
+    .why-choose-item:nth-child(3) { animation-delay: 0.3s; }
+    .why-choose-item:nth-child(4) { animation-delay: 0.4s; }
+    .why-choose-item:nth-child(5) { animation-delay: 0.5s; }
+
+    .header-logo {
+      opacity: 0;
+      animation: slideInLeft 0.6s ease-out forwards;
+    }
+
+    .header-nav {
+      opacity: 0;
+      animation: slideInDown 0.6s ease-out 0.2s forwards;
+    }
+
+    .contact-info-item {
+      opacity: 0;
+      animation: slideInLeft 0.6s ease-out forwards;
+    }
+
+    .contact-info-item:nth-child(1) { animation-delay: 0.1s; }
+    .contact-info-item:nth-child(2) { animation-delay: 0.2s; }
+    .contact-info-item:nth-child(3) { animation-delay: 0.3s; }
+  </style>
+  <script src="https://cdn.tailwindcss.com/3.4.17" type="text/javascript"></script>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full font-body" style="background-color: #f8fafc; color: #1a202c;">
+  <!-- Header -->
+   <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" style="background-color: #1a3a5c;">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="flex items-center justify-between h-16 md:h-20"><!-- Logo -->
+      <div class="header-logo flex items-center space-x-2">
+       <div class="w-10 h-10 md:w-12 md:h-12 rounded-lg flex items-center justify-center transition-all hover:scale-110" style="background: linear-gradient(135deg, #e86c1f 0%, #f5a623 100%);">
+        <svg class="w-6 h-6 md:w-7 md:h-7 text-white" fill="currentColor" viewbox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z" />
+        </svg>
+       </div>
+       <div><span class="font-heading font-bold text-lg md:text-xl text-white">JR</span> <span class="font-heading font-medium text-lg md:text-xl" style="color: #e86c1f;"> JARED</span>
+       </div>
+      </div><!-- Desktop Navigation -->
+      <nav class="header-nav hidden md:flex items-center space-x-8"><a href="#sobre" class="nav-link text-white hover:text-orange-400 font-medium transition-colors">Sobre Nós</a> <a href="#servicos" class="nav-link text-white hover:text-orange-400 font-medium transition-colors">Serviços</a> <a href="#projetos" class="nav-link text-white hover:text-orange-400 font-medium transition-colors">Projetos</a> <a href="#contato" class="btn-primary px-6 py-2.5 rounded-full text-white font-semibold">Contato</a>
+      </nav><!-- Mobile Menu Button --> <button id="mobile-menu-btn" class="md:hidden text-white p-2 hover:scale-110 transition-transform" aria-label="Menu">
+       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+       </svg></button>
+     </div>
+    </div><!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 w-64 h-full md:hidden" style="background-color: #1a3a5c;">
+     <div class="p-6"><button id="close-menu-btn" class="text-white mb-8 hover:scale-110 transition-transform" aria-label="Fechar menu">
+       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+       </svg></button>
+      <nav class="flex flex-col space-y-6"><a href="#sobre" class="text-white hover:text-orange-400 font-medium text-lg transition-colors mobile-nav-link">Sobre Nós</a> <a href="#servicos" class="text-white hover:text-orange-400 font-medium text-lg transition-colors mobile-nav-link">Serviços</a> <a href="#projetos" class="text-white hover:text-orange-400 font-medium text-lg transition-colors mobile-nav-link">Projetos</a> <a href="#contato" class="btn-primary px-6 py-3 rounded-full text-white font-semibold text-center mobile-nav-link">Contato</a>
+      </nav>
+     </div>
+    </div>
+   </header><!-- Hero Section -->
+   <section class="geometric-bg relative pt-24 md:pt-32 pb-16 md:pb-24" style="background: linear-gradient(135deg, #1a3a5c 0%, #2c5282 100%);"><!-- Floating Geometric Elements -->
+    <div class="absolute top-20 left-10 w-20 h-20 opacity-5 floating-geometric" style="border: 3px solid #e86c1f; transform: rotate(45deg);"></div>
+    <div class="absolute bottom-20 right-20 w-32 h-32 opacity-5 floating-geometric" style="border: 3px solid #f5a623; transform: rotate(15deg);"></div>
+    <div class="absolute top-1/3 left-1/4 opacity-3 floating-geometric">
+     <svg width="80" height="80" viewbox="0 0 100 100"><polygon points="50,0 100,100 0,100" fill="#e86c1f" />
+     </svg>
+    </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+     <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+      <div class="hero-content-left text-center md:text-left">
+       <div class="hero-badge inline-flex items-center px-4 py-2 rounded-full mb-6" style="background: rgba(232, 108, 31, 0.2); border: 1px solid rgba(232, 108, 31, 0.3);"><span class="w-2 h-2 rounded-full mr-2 animate-pulse-glow" style="background-color: #e86c1f;"></span> <span class="text-orange-300 text-sm font-medium">Desde 1996</span>
+       </div>
+       <h1 id="hero-title" class="font-heading font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white leading-tight mb-6">Serviços Profissionais de Digitação, Formatação e Revisão</h1>
+       <p id="hero-subtitle" class="text-lg md:text-xl mb-8 leading-relaxed" style="color: #a0c4e8;">Desde 1996 oferecendo excelência em trabalhos acadêmicos e corporativos. Qualidade, pontualidade e confiança em cada projeto.</p>
+       <div class="hero-button-group flex flex-col sm:flex-row gap-4 justify-center md:justify-start"><a href="#contato" class="btn-primary px-8 py-4 rounded-full text-white font-bold text-lg inline-flex items-center justify-center hover:shadow-2xl">
+         <svg class="w-5 h-5 mr-2" fill="currentColor" viewbox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" /> <path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.75.75 0 00.917.918l4.458-1.495A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.487 0-4.807-.856-6.637-2.291l-.463-.356-2.65.889.889-2.65-.356-.463A9.935 9.935 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z" />
+         </svg> Fale Conosco </a> <a href="#servicos" class="px-8 py-4 rounded-full font-bold text-lg inline-flex items-center justify-center border-2 border-white text-white hover:bg-white hover:text-blue-900 transition-all hover:scale-105"> Nossos Serviços 
+         <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+         </svg></a>
+       </div>
+      </div>
+      <div class="hero-content-right hidden md:flex justify-center">
+       <div class="relative w-full max-w-md"><!-- Carrossel de Imagens -->
+        <div class="relative rounded-2xl shadow-2xl overflow-hidden" style="background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2); height: 400px;">
+         <div id="carousel-container" class="relative w-full h-full"><!-- Slide 1 -->
+          <div class="carousel-slide absolute inset-0 transition-opacity duration-500 opacity-100" style="background: linear-gradient(135deg, #e86c1f 0%, #f5a623 100%);"><img id="carousel-img-1" src="https://via.placeholder.com/400x400/e86c1f/ffffff?text=Imagem+1" alt="Slide 1" class="w-full h-full object-cover" loading="lazy" onerror="console.error('Image failed:', this.src); this.style.background='#e86c1f';">
+          </div><!-- Slide 2 -->
+          <div class="carousel-slide absolute inset-0 transition-opacity duration-500 opacity-0" style="background: linear-gradient(135deg, #1a3a5c 0%, #2c5282 100%);"><img id="carousel-img-2" src="https://via.placeholder.com/400x400/1a3a5c/ffffff?text=Imagem+2" alt="Slide 2" class="w-full h-full object-cover" loading="lazy" onerror="console.error('Image failed:', this.src); this.style.background='#1a3a5c';">
+          </div><!-- Slide 3 -->
+          <div class="carousel-slide absolute inset-0 transition-opacity duration-500 opacity-0" style="background: linear-gradient(135deg, #2c5282 0%, #1a3a5c 100%);"><img id="carousel-img-3" src="https://via.placeholder.com/400x400/2c5282/ffffff?text=Imagem+3" alt="Slide 3" class="w-full h-full object-cover" loading="lazy" onerror="console.error('Image failed:', this.src); this.style.background='#2c5282';">
+          </div><!-- Slide 4 -->
+          <div class="carousel-slide absolute inset-0 transition-opacity duration-500 opacity-0" style="background: linear-gradient(135deg, #f5a623 0%, #e86c1f 100%);"><img id="carousel-img-4" src="https://via.placeholder.com/400x400/f5a623/ffffff?text=Imagem+4" alt="Slide 4" class="w-full h-full object-cover" loading="lazy" onerror="console.error('Image failed:', this.src); this.style.background='#f5a623';">
+          </div><!-- Slide 5 -->
+          <div class="carousel-slide absolute inset-0 transition-opacity duration-500 opacity-0" style="background: linear-gradient(135deg, #e86c1f 0%, #1a3a5c 100%);"><img id="carousel-img-5" src="https://via.placeholder.com/400x400/e86c1f/ffffff?text=Imagem+5" alt="Slide 5" class="w-full h-full object-cover" loading="lazy" onerror="console.error('Image failed:', this.src); this.style.background='#e86c1f';">
+          </div><!-- Controles --> <button id="carousel-prev" class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white w-10 h-10 rounded-full flex items-center justify-center transition-all z-10 hover:scale-110" aria-label="Slide anterior">
+           <svg class="w-5 h-5 text-gray-800" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+           </svg></button> <button id="carousel-next" class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white w-10 h-10 rounded-full flex items-center justify-center transition-all z-10 hover:scale-110" aria-label="Próximo slide">
+           <svg class="w-5 h-5 text-gray-800" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+           </svg></button> <!-- Indicadores -->
+          <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2 z-10"><button class="carousel-indicator w-2 h-2 rounded-full bg-white transition-all" data-index="0" style="width: 24px;"></button> <button class="carousel-indicator w-2 h-2 rounded-full bg-white/50 transition-all" data-index="1"></button> <button class="carousel-indicator w-2 h-2 rounded-full bg-white/50 transition-all" data-index="2"></button> <button class="carousel-indicator w-2 h-2 rounded-full bg-white/50 transition-all" data-index="3"></button> <button class="carousel-indicator w-2 h-2 rounded-full bg-white/50 transition-all" data-index="4"></button>
+          </div>
+         </div>
+        </div><!-- Floating badges -->
+        <div class="absolute -top-4 -right-4 px-4 py-2 rounded-lg shadow-lg animate-bounce-custom" style="background-color: #e86c1f;"><span class="text-white font-bold text-sm">ABNT</span>
+        </div>
+        <div class="absolute -bottom-4 -left-4 px-4 py-2 rounded-lg shadow-lg bg-white animate-bounce-custom" style="animation-delay: 0.2s;"><span class="font-bold text-sm" style="color: #1a3a5c;">Qualidade ✓</span>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Stats Bar -->
+   <section class="py-8 md:py-12 -mt-8 relative z-10">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+      <div class="stat-card rounded-xl p-4 md:p-6 text-center text-white hover:cursor-pointer">
+       <p class="font-heading font-bold text-2xl md:text-3xl">28+</p>
+       <p class="text-blue-200 text-sm">Anos de Mercado</p>
+      </div>
+      <div class="stat-card rounded-xl p-4 md:p-6 text-center text-white hover:cursor-pointer">
+       <p class="font-heading font-bold text-2xl md:text-3xl">5000+</p>
+       <p class="text-blue-200 text-sm">Trabalhos Realizados</p>
+      </div>
+      <div class="stat-card rounded-xl p-4 md:p-6 text-center text-white hover:cursor-pointer">
+       <p class="font-heading font-bold text-2xl md:text-3xl">100%</p>
+       <p class="text-blue-200 text-sm">Satisfação</p>
+      </div>
+      <div class="stat-card rounded-xl p-4 md:p-6 text-center text-white hover:cursor-pointer">
+       <p class="font-heading font-bold text-2xl md:text-3xl">ABNT</p>
+       <p class="text-blue-200 text-sm">Normas Atualizadas</p>
+      </div>
+     </div>
+    </div>
+   </section><!-- Sobre Nós Section -->
+   <section id="sobre" class="py-16 md:py-24 px-6 md:px-12 bg-white">
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+     <div class="reveal reveal-left">
+      <div class="section-divider mb-6"></div>
+      <h2 class="section-title font-heading font-bold text-3xl md:text-4xl mb-6" style="color: #1a3a5c;">Sobre a JR JARED</h2>
+      <p class="text-gray-600 text-lg leading-relaxed mb-6">Há mais de <strong style="color: #e86c1f;">28 anos</strong> no mercado, a JR JARED é referência em serviços de digitação, formatação e revisão de documentos acadêmicos e corporativos.</p>
+      <p class="text-gray-600 text-lg leading-relaxed mb-6">Nossa missão é transformar suas ideias em documentos impecáveis, seguindo rigorosamente as <strong style="color: #1a3a5c;">normas da ABNT</strong> e os mais altos padrões de qualidade.</p>
+      <p class="text-gray-600 text-lg leading-relaxed mb-8">Atendemos alunos, professores, e executivos sempre com <strong style="color: #e86c1f;">pontualidade</strong>, <strong style="color: #e86c1f;">sigilo</strong> e <strong style="color: #e86c1f;">excelência</strong>.</p>
+      <div class="grid grid-cols-2 gap-4">
+       <div class="benefit-item flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 hover:scale-110 transition-transform" style="background-color: rgba(232, 108, 31, 0.1);">
+         <svg class="w-5 h-5" style="color: #e86c1f;" fill="currentColor" viewbox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+         </svg>
+        </div><span class="font-medium text-gray-700">Qualidade Garantida</span>
+       </div>
+       <div class="benefit-item flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 hover:scale-110 transition-transform" style="background-color: rgba(232, 108, 31, 0.1);">
+         <svg class="w-5 h-5" style="color: #e86c1f;" fill="currentColor" viewbox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+         </svg>
+        </div><span class="font-medium text-gray-700">Pontualidade</span>
+       </div>
+       <div class="benefit-item flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 hover:scale-110 transition-transform" style="background-color: rgba(232, 108, 31, 0.1);">
+         <svg class="w-5 h-5" style="color: #e86c1f;" fill="currentColor" viewbox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+         </svg>
+        </div><span class="font-medium text-gray-700">Sigilo Total</span>
+       </div>
+       <div class="benefit-item flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 hover:scale-110 transition-transform" style="background-color: rgba(232, 108, 31, 0.1);">
+         <svg class="w-5 h-5" style="color: #e86c1f;" fill="currentColor" viewbox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+         </svg>
+        </div><span class="font-medium text-gray-700">Normas ABNT</span>
+       </div>
+      </div>
+     </div>
+     <div class="reveal reveal-right relative">
+      <div class="rounded-2xl overflow-hidden shadow-xl" style="background: linear-gradient(135deg, #1a3a5c 0%, #2c5282 100%);">
+       <div class="p-8 md:p-12">
+        <div class="flex items-center space-x-4 mb-8">
+         <div class="w-16 h-16 rounded-full flex items-center justify-center transition-all hover:scale-110 hover:rotate-12" style="background: linear-gradient(135deg, #e86c1f 0%, #f5a623 100%);">
+          <svg class="w-8 h-8 text-white" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+          </svg>
+         </div>
+         <div>
+          <p class="text-white font-heading font-bold text-xl">Compromisso</p>
+          <p class="text-blue-200">com a excelência</p>
+         </div>
+        </div>
+        <blockquote class="text-white text-lg italic mb-6 leading-relaxed">
+         "Nosso objetivo é entregar não apenas um trabalho, mas uma solução completa que supere suas expectativas."
+        </blockquote>
+        <div class="flex items-center space-x-4">
+         <div class="w-12 h-12 rounded-full flex items-center justify-center bg-white text-blue-900 font-bold transition-all hover:scale-110">
+          JR
+         </div>
+         <div>
+          <p class="text-white font-semibold">José Roberto Jared</p>
+          <p class="text-blue-200 text-sm">Fundador</p>
+         </div>
+        </div>
+       </div>
+      </div><!-- Decorative elements -->
+      <div class="absolute -top-4 -right-4 w-24 h-24 opacity-20 animate-rotate-slow" style="border: 3px solid #e86c1f; transform: rotate(45deg);"></div>
+      <div class="absolute -bottom-4 -left-4 w-16 h-16 opacity-20 animate-rotate-slow" style="border: 3px solid #1a3a5c; transform: rotate(15deg); animation-direction: reverse;"></div>
+     </div>
+    </div>
+   </section>
+   <!-- Nossa História Section -->
+   <section class="relative py-16 md:py-24 overflow-hidden"><!-- Background Image Container -->
+    <div class="absolute inset-0 z-0"><img id="historia-bg-image" src="https://via.placeholder.com/1920x500/1a3a5c/ffffff?text=Nossa+História" alt="Nossa História" class="w-full h-full object-cover" loading="lazy" onerror="console.error('Image failed:', this.src); this.style.background='linear-gradient(135deg, #1a3a5c 0%, #2c5282 100%)';"> <!-- Overlay -->
+     <div class="absolute inset-0" style="background: rgba(26, 58, 92, 0.7);"></div>
+    </div><!-- Content -->
+    <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+     <div class="reveal reveal-up">
+      <h2 class="font-heading font-bold text-3xl md:text-4xl text-white mb-6">Conheça Nossa Jornada</h2>
+      <p id="historia-text" class="text-xl text-blue-100 mb-10 max-w-2xl mx-auto leading-relaxed">28 anos de dedicação, qualidade e confiança. Descubra a história de sucesso da JR JARED e como transformamos documentos em obras de arte.</p><a href="jrj2.html" class="btn-primary inline-flex items-center px-10 py-4 rounded-full text-white font-bold text-lg hover:shadow-2xl transition-all hover:scale-105"> Conheça Nossa História 
+       <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+       </svg></a>
+     </div>
+    </div>
+   </section>
+   <!-- Serviços Section -->
+  <section id="servicos" class="py-16 md:py-24" style="background-color: #f8fafc;">
+   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12 md:mb-16">
+     <div class="section-divider mx-auto mb-6"></div>
+     <h2 class="section-title font-heading font-bold text-3xl md:text-4xl mb-4" style="color: #1a3a5c;">Nossos Serviços</h2>
+     <p class="section-subtitle text-gray-600 text-lg max-w-2xl mx-auto">Oferecemos soluções completas para suas necessidades acadêmicas e corporativas</p>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"><!-- Service Card 1 -->
+     <div class="service-card bg-white rounded-xl p-6 shadow-md">
+      <div class="w-14 h-14 rounded-xl flex items-center justify-center mb-4 transition-all hover:scale-110 hover:rotate-12" style="background: linear-gradient(135deg, #e86c1f 0%, #f5a623 100%);">
+       <svg class="w-7 h-7 text-white" fill="currentColor" viewbox="0 0 24 24"><path d="M20 5H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zM4 7h16v10H4V7zm2 2h2v2H6V9zm3 0h2v2H9V9zm3 0h2v2h-2V9zm3 0h2v2h-2V9zM6 12h2v2H6v-2zm3 0h2v2H9v-2zm3 0h2v2h-2v-2zm-3 3h6v2H9v-2z"></path>
+       </svg>
+      </div>
+      <h3 class="font-heading font-bold text-xl mb-2" style="color: #1a3a5c;">Digitação Profissional</h3>
+      <p class="text-gray-600">Digitação rápida e precisa de qualquer tipo de documento com total sigilo. E inserção de dados em plataformas corporativas.</p>
+     </div><!-- Service Card 2 -->
+     <div class="service-card bg-white rounded-xl p-6 shadow-md">
+      <div class="w-14 h-14 rounded-xl flex items-center justify-center mb-4 transition-all hover:scale-110 hover:rotate-12" style="background: linear-gradient(135deg, #e86c1f 0%, #f5a623 100%);">
+       <svg class="w-7 h-7 text-white" fill="currentColor" viewbox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z" />
+       </svg>
+      </div>
+      <h3 class="font-heading font-bold text-xl mb-2" style="color: #1a3a5c;">Formatação Acadêmica</h3>
+      <p class="text-gray-600">Monografias, MBA's, Dissertações e Teses de Mestrado e Doutorado formatados nas normas ABNT atualizadas.</p>
+     </div><!-- Service Card 3 -->
+     <div class="service-card bg-white rounded-xl p-6 shadow-md">
+      <div class="w-14 h-14 rounded-xl flex items-center justify-center mb-4 transition-all hover:scale-110 hover:rotate-12" style="background: linear-gradient(135deg, #e86c1f 0%, #f5a623 100%);">
+       <svg class="w-7 h-7 text-white" fill="currentColor" viewbox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z" />
+       </svg>
+      </div>
+      <h3 class="font-heading font-bold text-xl mb-2" style="color: #1a3a5c;">Revisão Ortográfica</h3>
+      <p class="text-gray-600">Correção minuciosa de erros ortográficos, gramaticais e de concordância.</p>
+     </div><!-- Service Card 4 -->
+     <div class="service-card bg-white rounded-xl p-6 shadow-md">
+      <div class="w-14 h-14 rounded-xl flex items-center justify-center mb-4 transition-all hover:scale-110 hover:rotate-12" style="background: linear-gradient(135deg, #e86c1f 0%, #f5a623 100%);">
+       <svg class="w-7 h-7 text-white" fill="currentColor" viewbox="0 0 24 24"><path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 9H9V9h10v2zm-4 4H9v-2h6v2zm4-8H9V5h10v2z" />
+       </svg>
+      </div>
+      <h3 class="font-heading font-bold text-xl mb-2" style="color: #1a3a5c;">Revisão Bibliográfica</h3>
+      <p class="text-gray-600">Padronização de referências e citações conforme normas ABNT.</p>
+     </div><!-- Service Card 5 -->
+     <div class="service-card bg-white rounded-xl p-6 shadow-md">
+      <div class="w-14 h-14 rounded-xl flex items-center justify-center mb-4 transition-all hover:scale-110 hover:rotate-12" style="background: linear-gradient(135deg, #e86c1f 0%, #f5a623 100%);">
+       <svg class="w-7 h-7 text-white" fill="currentColor" viewbox="0 0 24 24"><path d="M19 8H5c-1.66 0-3 1.34-3 3v6h4v4h12v-4h4v-6c0-1.66-1.34-3-3-3zm-3 11H8v-5h8v5zm3-7c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm-1-9H6v4h12V3z" />
+       </svg>
+      </div>
+      <h3 class="font-heading font-bold text-xl mb-2" style="color: #1a3a5c;">Banner</h3>
+      <p class="text-gray-600">Impressão de alta qualidade em diversos formatos e acabamentos.</p>
+     </div><!-- Service Card 6 -->
+     <div class="service-card bg-white rounded-xl p-6 shadow-md">
+      <div class="w-14 h-14 rounded-xl flex items-center justify-center mb-4 transition-all hover:scale-110 hover:rotate-12" style="background: linear-gradient(135deg, #e86c1f 0%, #f5a623 100%);">
+       <svg class="w-7 h-7 text-white" fill="currentColor" viewbox="0 0 24 24"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z" />
+       </svg>
+      </div>
+      <h3 class="font-heading font-bold text-xl mb-2" style="color: #1a3a5c;">Encadernação</h3>
+      <p class="text-gray-600">Encadernação profissional em espiral, brochura e capa dura.</p>
+     </div><!-- Service Card 7 -->
+     <div class="service-card bg-white rounded-xl p-6 shadow-md">
+      <div class="w-14 h-14 rounded-xl flex items-center justify-center mb-4 transition-all hover:scale-110 hover:rotate-12" style="background: linear-gradient(135deg, #e86c1f 0%, #f5a623 100%);">
+       <svg class="w-7 h-7 text-white" fill="currentColor" viewbox="0 0 24 24"><path d="M21 5c-1.11-.35-2.33-.5-3.5-.5-1.95 0-4.05.4-5.5 1.5-1.45-1.1-3.55-1.5-5.5-1.5S2.45 4.9 1 6v14.65c0 .25.25.5.5.5.1 0 .15-.05.25-.05C3.1 20.45 5.05 20 6.5 20c1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.3 4.75 1.05.1.05.15.05.25.05.25 0 .5-.25.5-.5V6c-.6-.45-1.25-.75-2-1zm0 13.5c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V8c1.35-.85 3.8-1.5 5.5-1.5 1.2 0 2.4.15 3.5.5v11.5z" />
+       </svg>
+      </div>
+      <h3 class="font-heading font-bold text-xl mb-2" style="color: #1a3a5c;">Artigos</h3>
+      <p class="text-gray-600">Auxílio na publicação de artigos.</p>
+     </div>
+     <!-- Service Card 8 -->
+      <div class="service-card bg-white rounded-xl p-6 shadow-md">
+       <div class="w-14 h-14 rounded-xl flex items-center justify-center mb-4 transition-all hover:scale-110 hover:rotate-12" style="background: linear-gradient(135deg, #e86c1f 0%, #f5a623 100%);">
+        <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24">
+  <path d="M3 4C3 3.45 3.45 3 4 3H20C20.55 3 21 3.45 21 4V20C21 20.55 20.55 21 20 21H4C3.45 21 3 20.55 3 20V4ZM3 8H21V6H3V8ZM6 6.5C6.28 6.5 6.5 6.72 6.5 7C6.5 7.28 6.28 7.5 6 7.5C5.72 7.5 5.5 7.28 5.5 7C5.5 6.72 5.72 6.5 6 6.5ZM8 6.5C8.28 6.5 8.5 6.72 8.5 7C8.5 7.28 8.28 7.5 8 7.5C7.72 7.5 7.5 7.28 7.5 7C7.5 6.72 7.72 6.5 8 6.5ZM10 6.5C10.28 6.5 10.5 6.72 10.5 7C10.5 7.28 10.28 7.5 10 7.5C9.72 7.5 9.5 7.28 9.5 7C9.5 6.72 9.72 6.5 10 6.5Z"/>
+</svg>
+       </div>
+       <h3 class="font-heading font-bold text-xl mb-2" style="color: #1a3a5c;">Criação de sites</h3>
+       <p class="text-gray-600">Desenvolvimento de sites modernos e responsivos para empresas e instituições.</p>
+      </div>
+    </div>
+   </div>
+  </section><!-- Projetos Section -->
+  <section id="projetos" class="py-16 md:py-24 bg-white">
+   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+     <div class="order-2 md:order-1 reveal reveal-left">
+      <div class="relative">
+       <div class="grid grid-cols-2 gap-4">
+        <div class="rounded-xl p-6 text-center transition-all hover:scale-105 hover:-translate-y-1" style="background: linear-gradient(135deg, #1a3a5c 0%, #2c5282 100%);">
+         <svg class="w-10 h-10 mx-auto mb-3 text-white animate-bounce-custom" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+         </svg>
+         <p class="text-white font-semibold">Certificado Digital</p>
+        </div>
+        <div class="rounded-xl p-6 text-center transition-all hover:scale-105 hover:-translate-y-1" style="background: linear-gradient(135deg, #e86c1f 0%, #f5a623 100%);">
+         <svg class="w-10 h-10 mx-auto mb-3 text-white animate-bounce-custom" style="animation-delay: 0.1s;" fill="currentColor" viewbox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+         </svg>
+         <p class="text-white font-semibold">Home Office</p>
+        </div>
+        <div class="rounded-xl p-6 text-center transition-all hover:scale-105 hover:-translate-y-1" style="background: linear-gradient(135deg, #e86c1f 0%, #f5a623 100%);">
+         <svg class="w-10 h-10 mx-auto mb-3 text-white animate-bounce-custom" style="animation-delay: 0.2s;" fill="currentColor" viewbox="0 0 24 24"><path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z" />
+         </svg>
+         <p class="text-white font-semibold">Estrutura Fiscal</p>
+        </div>
+        <div class="rounded-xl p-6 text-center transition-all hover:scale-105 hover:-translate-y-1" style="background: linear-gradient(135deg, #1a3a5c 0%, #2c5282 100%);">
+         <svg class="w-10 h-10 mx-auto mb-3 text-white animate-bounce-custom" style="animation-delay: 0.3s;" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
+         </svg>
+         <p class="text-white font-semibold">Site Institucional</p>
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="order-1 md:order-2 reveal reveal-right">
+      <div class="section-divider mb-6"></div>
+      <h2 class="section-title font-heading font-bold text-3xl md:text-4xl mb-6" style="color: #1a3a5c;">Crescimento e Modernização</h2>
+      <p class="section-subtitle text-gray-600 text-lg leading-relaxed mb-6">A JR JARED está em constante evolução para oferecer o melhor atendimento aos nossos clientes.</p>
+      <ul class="space-y-4">
+       <li class="benefit-item flex items-start space-x-3 hover:translate-x-2 transition-transform">
+        <div class="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-1" style="background-color: #e86c1f;">
+         <svg class="w-4 h-4 text-white" fill="currentColor" viewbox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+         </svg>
+        </div><span class="text-gray-700">Atuação acadêmica e corporativa expandida</span></li>
+       <li class="benefit-item flex items-start space-x-3 hover:translate-x-2 transition-transform">
+        <div class="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-1" style="background-color: #e86c1f;">
+         <svg class="w-4 h-4 text-white" fill="currentColor" viewbox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+         </svg>
+        </div><span class="text-gray-700">Projetos em home office com flexibilidade</span></li>
+       <li class="benefit-item flex items-start space-x-3 hover:translate-x-2 transition-transform">
+        <div class="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-1" style="background-color: #e86c1f;">
+         <svg class="w-4 h-4 text-white" fill="currentColor" viewbox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+         </svg>
+        </div><span class="text-gray-700">Estrutura fiscal e contábil regularizada</span></li>
+       <li class="benefit-item flex items-start space-x-3 hover:translate-x-2 transition-transform">
+        <div class="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-1" style="background-color: #e86c1f;">
+         <svg class="w-4 h-4 text-white" fill="currentColor" viewbox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+         </svg>
+        </div><span class="text-gray-700">Certificado Digital para segurança nas transações</span></li>
+       <li class="benefit-item flex items-start space-x-3 hover:translate-x-2 transition-transform">
+        <div class="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-1" style="background-color: #e86c1f;">
+         <svg class="w-4 h-4 text-white" fill="currentColor" viewbox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+         </svg>
+        </div><span class="text-gray-700">Novo site institucional para melhor atendimento</span></li>
+      </ul>
+     </div>
+    </div>
+   </div>
+  </section><!-- CTA Section -->
+  <section class="py-16 md:py-20 relative overflow-hidden" style="background: linear-gradient(135deg, #1a3a5c 0%, #2c5282 100%);">
+   <div class="absolute top-0 right-0 w-64 h-64 opacity-10 floating-geometric">
+    <svg viewbox="0 0 100 100"><polygon points="100,0 100,100 0,100" fill="#e86c1f" />
+    </svg>
+   </div>
+   <div class="absolute bottom-0 left-0 w-48 h-48 opacity-10 floating-geometric" style="animation-direction: reverse;">
+    <svg viewbox="0 0 100 100"><polygon points="0,0 100,0 0,100" fill="#f5a623" />
+    </svg>
+   </div>
+   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 reveal reveal-up">
+    <h2 class="font-heading font-bold text-3xl md:text-4xl text-white mb-6 animate-slide-down">Pronto para Começar seu Projeto?</h2>
+    <p class="text-xl text-blue-200 mb-8 max-w-2xl mx-auto animate-slide-up">Entre em contato agora mesmo e receba um orçamento personalizado para o seu trabalho.</p><a id="cta-whatsapp" href="https://wa.me/5511943049000?text=Olá! Gostaria de solicitar um orçamento." target="_blank" rel="noopener noreferrer" class="btn-whatsapp inline-flex items-center px-10 py-4 rounded-full text-white font-bold text-lg hover:shadow-2xl animate-scale-in">
+     <svg class="w-6 h-6 mr-3" fill="currentColor" viewbox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" /> <path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.75.75 0 00.917.918l4.458-1.495A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.487 0-4.807-.856-6.637-2.291l-.463-.356-2.65.889.889-2.65-.356-.463A9.935 9.935 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z" />
+     </svg> Falar pelo WhatsApp </a>
+   </div>
+  </section><!-- Contato Section -->
+  <section id="contato" class="py-16 md:py-24 bg-white">
+   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12 md:mb-16">
+     <div class="section-divider mx-auto mb-6"></div>
+     <h2 class="section-title font-heading font-bold text-3xl md:text-4xl mb-4" style="color: #1a3a5c;">Entre em Contato</h2>
+     <p class="section-subtitle text-gray-600 text-lg max-w-2xl mx-auto">Estamos prontos para atender você. Fale conosco e tire suas dúvidas.</p>
+    </div>
+    <div class="grid md:grid-cols-2 gap-8 md:gap-12">
+     <div class="reveal reveal-left">
+      <div class="rounded-2xl p-8 md:p-10 shadow-lg" style="background: linear-gradient(135deg, #1a3a5c 0%, #2c5282 100%);">
+       <h3 class="font-heading font-bold text-2xl text-white mb-8">Informações de Contato</h3>
+       <div class="space-y-6">
+        <div class="contact-info-item flex items-center space-x-4 hover:translate-x-2 transition-transform">
+         <div class="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0" style="background: rgba(232, 108, 31, 0.2);">
+          <svg class="w-6 h-6" style="color: #e86c1f;" fill="currentColor" viewbox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+          </svg>
+         </div>
+         <div>
+          <p class="text-blue-200 text-sm">Nome</p>
+          <p class="text-white font-semibold text-lg">José Roberto Jared</p>
+         </div>
+        </div>
+        <div class="contact-info-item flex items-center space-x-4 hover:translate-x-2 transition-transform">
+         <div class="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0" style="background: rgba(232, 108, 31, 0.2);">
+          <svg class="w-6 h-6" style="color: #e86c1f;" fill="currentColor" viewbox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
+          </svg>
+         </div>
+         <div>
+          <p class="text-blue-200 text-sm">WhatsApp / Telefone</p>
+          <p id="contact-phone" class="text-white font-semibold text-lg">(11) 94304-9000</p>
+         </div>
+        </div>
+        <div class="contact-info-item flex items-center space-x-4 hover:translate-x-2 transition-transform">
+         <div class="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0" style="background: rgba(232, 108, 31, 0.2);">
+          <svg class="w-6 h-6" style="color: #e86c1f;" fill="currentColor" viewbox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+          </svg>
+         </div>
+         <div>
+          <p class="text-blue-200 text-sm">E-mail</p>
+          <p id="contact-email" class="text-white font-semibold text-lg">jrcopia@gmail.com</p>
+         </div>
+        </div>
+       </div>
+       <div class="mt-10"><a id="main-whatsapp" href="https://wa.me/5511943049000?text=Olá! Gostaria de solicitar um orçamento." target="_blank" rel="noopener noreferrer" class="btn-whatsapp w-full inline-flex items-center justify-center px-8 py-4 rounded-full text-white font-bold text-lg hover:shadow-2xl">
+         <svg class="w-6 h-6 mr-3" fill="currentColor" viewbox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" /> <path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.75.75 0 00.917.918l4.458-1.495A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.487 0-4.807-.856-6.637-2.291l-.463-.356-2.65.889.889-2.65-.356-.463A9.935 9.935 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z" />
+         </svg> Entrar em Contato </a>
+       </div>
+      </div>
+     </div>
+     <div class="reveal reveal-right">
+      <div class="bg-gray-50 rounded-2xl p-8 md:p-10 h-full">
+       <h3 class="font-heading font-bold text-2xl mb-6" style="color: #1a3a5c;">Por que nos escolher?</h3>
+       <div class="space-y-6">
+        <div class="why-choose-item flex items-start space-x-4 hover:translate-x-2 transition-transform">
+         <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 transition-all hover:scale-110 hover:rotate-12" style="background: linear-gradient(135deg, #e86c1f 0%, #f5a623 100%);">
+          <svg class="w-5 h-5 text-white" fill="currentColor" viewbox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z" />
+          </svg>
+         </div>
+         <div>
+          <h4 class="font-semibold text-gray-800 mb-1">Pontualidade</h4>
+          <p class="text-gray-600">Cumprimos todos os prazos acordados sem exceções.</p>
+         </div>
+        </div>
+        <div class="why-choose-item flex items-start space-x-4 hover:translate-x-2 transition-transform">
+         <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 transition-all hover:scale-110 hover:rotate-12" style="background: linear-gradient(135deg, #e86c1f 0%, #f5a623 100%);">
+          <svg class="w-5 h-5 text-white" fill="currentColor" viewbox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z" />
+          </svg>
+         </div>
+         <div>
+          <h4 class="font-semibold text-gray-800 mb-1">Sigilo Absoluto</h4>
+          <p class="text-gray-600">Seus documentos são tratados com total confidencialidade.</p>
+         </div>
+        </div>
+        <div class="why-choose-item flex items-start space-x-4 hover:translate-x-2 transition-transform">
+         <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 transition-all hover:scale-110 hover:rotate-12" style="background: linear-gradient(135deg, #e86c1f 0%, #f5a623 100%);">
+          <svg class="w-5 h-5 text-white" fill="currentColor" viewbox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z" />
+          </svg>
+         </div>
+         <div>
+          <h4 class="font-semibold text-gray-800 mb-1">Normas ABNT Atualizadas</h4>
+          <p class="text-gray-600">Seguimos rigorosamente as normas técnicas vigentes.</p>
+         </div>
+        </div>
+        <div class="why-choose-item flex items-start space-x-4 hover:translate-x-2 transition-transform">
+         <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 transition-all hover:scale-110 hover:rotate-12" style="background: linear-gradient(135deg, #e86c1f 0%, #f5a623 100%);">
+          <svg class="w-5 h-5 text-white" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+          </svg>
+         </div>
+         <div>
+          <h4 class="font-semibold text-gray-800 mb-1">Qualidade Garantida</h4>
+          <p class="text-gray-600">Revisamos cada detalhe para entregar perfeição.</p>
+         </div>
+        </div>
+        <div class="why-choose-item flex items-start space-x-4 hover:translate-x-2 transition-transform">
+         <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 transition-all hover:scale-110 hover:rotate-12" style="background: linear-gradient(135deg, #e86c1f 0%, #f5a623 100%);">
+          <svg class="w-5 h-5 text-white" fill="currentColor" viewbox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z" />
+          </svg>
+         </div>
+         <div>
+          <h4 class="font-semibold text-gray-800 mb-1">Atendimento Personalizado</h4>
+          <p class="text-gray-600">Cada projeto recebe atenção individual e dedicada.</p>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Footer -->
+  <footer style="background-color: #0f2840;">
+   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="grid md:grid-cols-3 gap-8 items-center">
+     <div class="flex items-center space-x-3">
+      <div class="w-12 h-12 rounded-lg flex items-center justify-center transition-all hover:scale-110 hover:rotate-12" style="background: linear-gradient(135deg, #e86c1f 0%, #f5a623 100%);">
+       <svg class="w-7 h-7 text-white" fill="currentColor" viewbox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z" />
+       </svg>
+      </div>
+      <div><span class="font-heading font-bold text-xl text-white">JR</span> <span class="font-heading font-medium text-xl" style="color: #e86c1f;"> JARED</span>
+      </div>
+     </div>
+     <div class="text-center">
+      <p class="text-blue-200 text-sm md:text-base">Confiabilidade, pontualidade, qualidade e soluções</p>
+     </div>
+     <div class="text-center md:text-right">
+      <p class="text-blue-300 text-sm">© 2026 JR JARED. Todos os direitos reservados.</p>
+     </div>
+    </div>
+   </div>
+  </footer><!-- Floating WhatsApp Button --> <a id="floating-whatsapp" href="https://wa.me/5511943049000?text=Olá! Gostaria de solicitar um orçamento." target="_blank" rel="noopener noreferrer" class="fixed bottom-6 right-6 w-14 h-14 md:w-16 md:h-16 rounded-full shadow-lg flex items-center justify-center z-50 transition-transform hover:scale-110 active:scale-95 animate-bounce-custom" style="background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);" aria-label="Contato via WhatsApp">
+   <svg class="w-7 h-7 md:w-8 md:h-8 text-white" fill="currentColor" viewbox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" /> <path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.75.75 0 00.917.918l4.458-1.495A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.487 0-4.807-.856-6.637-2.291l-.463-.356-2.65.889.889-2.65-.356-.463A9.935 9.935 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z" />
+   </svg></a>
+  <script>
+    const defaultConfig = {
+      whatsapp_number: '(11) 94304-9000',
+      email_address: 'jrcopia@gmail.com',
+      hero_title: 'Serviços Profissionais de Digitação, Formatação e Revisão',
+      hero_subtitle: 'Desde 1996 oferecendo excelência em trabalhos acadêmicos e corporativos. Qualidade, pontualidade e confiança em cada projeto.',
+      background_color: '#f8fafc',
+      primary_color: '#1a3a5c',
+      accent_color: '#e86c1f',
+      text_color: '#1a202c',
+      surface_color: '#ffffff'
+    };
+    
+    let config = { ...defaultConfig };
+    
+    function formatPhoneForWhatsApp(phone) {
+      return phone.replace(/\D/g, '');
+    }
+    
+    function updateWhatsAppLinks() {
+      const phoneNumber = formatPhoneForWhatsApp(config.whatsapp_number || defaultConfig.whatsapp_number);
+      const whatsappUrl = `https://wa.me/55${phoneNumber}?text=Olá! Gostaria de solicitar um orçamento.`;
+      
+      const whatsappLinks = ['cta-whatsapp', 'main-whatsapp', 'floating-whatsapp'];
+      whatsappLinks.forEach(id => {
+        const element = document.getElementById(id);
+        if (element) {
+          element.href = whatsappUrl;
+        }
+      });
+    }
+    
+    async function onConfigChange(newConfig) {
+      const heroTitle = document.getElementById('hero-title');
+      if (heroTitle) {
+        heroTitle.textContent = newConfig.hero_title || defaultConfig.hero_title;
+      }
+      
+      const heroSubtitle = document.getElementById('hero-subtitle');
+      if (heroSubtitle) {
+        heroSubtitle.textContent = newConfig.hero_subtitle || defaultConfig.hero_subtitle;
+      }
+      
+      const contactPhone = document.getElementById('contact-phone');
+      if (contactPhone) {
+        contactPhone.textContent = newConfig.whatsapp_number || defaultConfig.whatsapp_number;
+      }
+      
+      const contactEmail = document.getElementById('contact-email');
+      if (contactEmail) {
+        contactEmail.textContent = newConfig.email_address || defaultConfig.email_address;
+      }
+      
+      updateWhatsAppLinks();
+      
+      const appWrapper = document.getElementById('app-wrapper');
+      if (appWrapper) {
+        appWrapper.style.backgroundColor = newConfig.background_color || defaultConfig.background_color;
+      }
+      
+      document.body.style.color = newConfig.text_color || defaultConfig.text_color;
+    }
+    
+    function mapToCapabilities(config) {
+      return {
+        recolorables: [
+          {
+            get: () => config.background_color || defaultConfig.background_color,
+            set: (value) => {
+              config.background_color = value;
+              if (window.elementSdk) {
+                window.elementSdk.setConfig({ background_color: value });
+              }
+            }
+          },
+          {
+            get: () => config.surface_color || defaultConfig.surface_color,
+            set: (value) => {
+              config.surface_color = value;
+              if (window.elementSdk) {
+                window.elementSdk.setConfig({ surface_color: value });
+              }
+            }
+          },
+          {
+            get: () => config.text_color || defaultConfig.text_color,
+            set: (value) => {
+              config.text_color = value;
+              if (window.elementSdk) {
+                window.elementSdk.setConfig({ text_color: value });
+              }
+            }
+          },
+          {
+            get: () => config.primary_color || defaultConfig.primary_color,
+            set: (value) => {
+              config.primary_color = value;
+              if (window.elementSdk) {
+                window.elementSdk.setConfig({ primary_color: value });
+              }
+            }
+          },
+          {
+            get: () => config.accent_color || defaultConfig.accent_color,
+            set: (value) => {
+              config.accent_color = value;
+              if (window.elementSdk) {
+                window.elementSdk.setConfig({ accent_color: value });
+              }
+            }
+          }
+        ],
+        borderables: [],
+        fontEditable: undefined,
+        fontSizeable: undefined
+      };
+    }
+    
+    function mapToEditPanelValues(config) {
+      return new Map([
+        ['whatsapp_number', config.whatsapp_number || defaultConfig.whatsapp_number],
+        ['email_address', config.email_address || defaultConfig.email_address],
+        ['hero_title', config.hero_title || defaultConfig.hero_title],
+        ['hero_subtitle', config.hero_subtitle || defaultConfig.hero_subtitle]
+      ]);
+    }
+    
+    // Mobile menu functionality
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const closeMenuBtn = document.getElementById('close-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+    
+    if (mobileMenuBtn && mobileMenu) {
+      mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.add('active');
+      });
+    }
+    
+    if (closeMenuBtn && mobileMenu) {
+      closeMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+      });
+    }
+    
+    mobileNavLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        if (mobileMenu) {
+          mobileMenu.classList.remove('active');
+        }
+      });
+    });
+    
+    // Header scroll effect
+    const header = document.getElementById('header');
+    let lastScroll = 0;
+    
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.pageYOffset;
+      
+      if (currentScroll > 100) {
+        header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.15)';
+      } else {
+        header.style.boxShadow = 'none';
+      }
+      
+      lastScroll = currentScroll;
+    });
+    
+    // Intersection Observer for scroll animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px'
+    };
+    
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, observerOptions);
+    
+    document.querySelectorAll('.reveal, .reveal-up, .reveal-left, .reveal-right').forEach(el => {
+      observer.observe(el);
+    });
+    
+    // Initialize SDK
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities,
+        mapToEditPanelValues
+      });
+    }
+    
+    // Carrossel functionality
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.carousel-slide');
+    const indicators = document.querySelectorAll('.carousel-indicator');
+    const totalSlides = slides.length;
+    
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.style.opacity = i === index ? '1' : '0';
+      });
+      
+      indicators.forEach((indicator, i) => {
+        if (i === index) {
+          indicator.style.width = '24px';
+          indicator.style.backgroundColor = 'white';
+        } else {
+          indicator.style.width = '8px';
+          indicator.style.backgroundColor = 'rgba(255, 255, 255, 0.5)';
+        }
+      });
+    }
+    
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % totalSlides;
+      showSlide(currentSlide);
+    }
+    
+    function prevSlide() {
+      currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+      showSlide(currentSlide);
+    }
+    
+    const carouselNext = document.getElementById('carousel-next');
+    const carouselPrev = document.getElementById('carousel-prev');
+    
+    if (carouselNext) {
+      carouselNext.addEventListener('click', nextSlide);
+    }
+    
+    if (carouselPrev) {
+      carouselPrev.addEventListener('click', prevSlide);
+    }
+    
+    indicators.forEach(indicator => {
+      indicator.addEventListener('click', () => {
+        currentSlide = parseInt(indicator.dataset.index);
+        showSlide(currentSlide);
+      });
+    });
+    
+    // Auto-advance carousel every 5 seconds
+    setInterval(nextSlide, 5000);
+    
+    // Initial render
+    onConfigChange(config);
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9d3c0bd501e9e030',t:'MTc3MjA3MzI5Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

@@ -1,0 +1,733 @@
+<!doctype html>
+<html lang="pt-BR" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BL Auto Service &amp; Parts</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&amp;family=Rajdhani:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#DC2626',
+            secondary: '#1A1A1A',
+            metal: '#C0C0C0',
+            graphite: '#0D0D0D',
+            steel: '#2A2A2A'
+          },
+          fontFamily: {
+            orbitron: ['Orbitron', 'sans-serif'],
+            rajdhani: ['Rajdhani', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    html, body { height: 100%; margin: 0; }
+    .gradient-red { background: linear-gradient(135deg, #DC2626 0%, #991B1B 100%); }
+    .text-gradient { background: linear-gradient(90deg, #DC2626, #EF4444, #DC2626); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .metal-shine { background: linear-gradient(135deg, #E8E8E8 0%, #C0C0C0 50%, #A0A0A0 100%); }
+    .card-glow:hover { box-shadow: 0 0 30px rgba(220, 38, 38, 0.3); }
+    .line-accent { position: relative; }
+    .line-accent::after { content: ''; position: absolute; bottom: -8px; left: 0; width: 60px; height: 3px; background: #DC2626; }
+    @keyframes pulse-glow { 0%, 100% { box-shadow: 0 0 20px rgba(220, 38, 38, 0.5); } 50% { box-shadow: 0 0 40px rgba(220, 38, 38, 0.8); } }
+    .pulse-btn { animation: pulse-glow 2s infinite; }
+    @keyframes slide-in { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    .animate-slide { animation: slide-in 0.6s ease-out forwards; }
+    .gear-pattern { background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 15 L32 15 L33 12 L35 12 L35 15 L37 16 L39 14 L41 16 L39 18 L40 20 L43 20 L43 22 L40 23 L40 25 L43 26 L43 28 L40 28 L39 30 L41 32 L39 34 L37 32 L35 33 L35 36 L33 36 L32 33 L30 33 L29 36 L27 36 L27 33 L25 32 L23 34 L21 32 L23 30 L22 28 L19 28 L19 26 L22 25 L22 23 L19 22 L19 20 L22 20 L23 18 L21 16 L23 14 L25 16 L27 15 L27 12 L29 12 L30 15 Z M30 22 A5 5 0 1 0 30 32 A5 5 0 1 0 30 22' fill='%23DC262615'/%3E%3C/svg%3E"); }
+    .scroll-smooth { scroll-behavior: smooth; }
+  </style>
+  <style>body { box-sizing: border-box; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full bg-graphite text-white font-rajdhani overflow-x-hidden">
+  <div id="app-container" class="w-full h-full overflow-auto scroll-smooth">
+   <!-- Fixed WhatsApp Button --> <a id="whatsapp-fixed" href="https://wa.me/5511981483993" target="_blank" rel="noopener noreferrer" class="fixed bottom-6 right-6 z-50 gradient-red p-4 rounded-full pulse-btn transition-transform hover:scale-110 shadow-2xl">
+    <svg class="w-8 h-8 text-white" fill="currentColor" viewbox="0 0 24 24">
+     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+    </svg></a> <!-- Navigation -->
+   <nav class="fixed top-0 left-0 right-0 z-40 bg-graphite/95 backdrop-blur-md border-b border-steel">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="flex items-center justify-between h-16">
+      <div class="flex items-center gap-3">
+       <div class="w-10 h-10 gradient-red rounded-lg flex items-center justify-center">
+        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+       </div><span class="font-orbitron font-bold text-xl tracking-wider">BL AUTO</span>
+      </div>
+      <div class="hidden md:flex items-center gap-8 text-sm font-medium tracking-wide">
+       <a href="#sobre" class="text-metal hover:text-primary transition-colors">SOBRE</a> <a href="#servicos" class="text-metal hover:text-primary transition-colors">SERVIÇOS</a> <a href="#diferenciais" class="text-metal hover:text-primary transition-colors">DIFERENCIAIS</a> <a href="#depoimentos" class="text-metal hover:text-primary transition-colors">DEPOIMENTOS</a> <a href="#contato" class="text-metal hover:text-primary transition-colors">CONTATO</a>
+      </div><a id="nav-whatsapp" href="https://wa.me/5511981483993" target="_blank" rel="noopener noreferrer" class="gradient-red px-5 py-2 rounded-md font-semibold text-sm tracking-wide hover:opacity-90 transition-opacity"> ORÇAMENTO </a>
+     </div>
+    </div>
+   </nav><!-- Hero Section -->
+   <section class="relative min-h-screen flex items-center justify-center gear-pattern pt-16">
+    <div class="absolute inset-0 bg-gradient-to-b from-graphite via-graphite/95 to-secondary"></div>
+    <div class="absolute top-0 left-0 w-full h-full overflow-hidden">
+     <div class="absolute top-20 left-10 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
+     <div class="absolute bottom-20 right-10 w-80 h-80 bg-primary/10 rounded-full blur-3xl"></div>
+    </div>
+    <div class="relative z-10 text-center px-4 max-w-5xl mx-auto animate-slide">
+     <!-- Logo -->
+     <div class="mb-8">
+      <div class="inline-flex items-center justify-center w-32 h-32 rounded-2xl bg-gradient-to-br from-steel to-graphite border-2 border-primary/30 shadow-2xl mb-6">
+       <div class="text-center">
+        <svg class="w-16 h-16 text-primary mx-auto" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+       </div>
+      </div>
+      <h2 class="font-orbitron text-3xl md:text-4xl font-black tracking-[0.2em] text-white">BL <span class="text-primary">AUTO</span></h2>
+      <p class="font-rajdhani text-metal text-lg tracking-[0.3em] mt-1">SERVICE &amp; PARTS</p>
+     </div><!-- Main Title -->
+     <h1 id="hero-title" class="font-orbitron text-4xl md:text-6xl lg:text-7xl font-black leading-tight mb-6"><span class="text-white">MECÂNICA COMPLETA</span><br><span class="text-gradient">COM DIAGNÓSTICO ESPECIALIZADO</span></h1><!-- Subtitle -->
+     <p id="hero-subtitle" class="text-xl md:text-2xl text-metal font-light tracking-wide max-w-3xl mx-auto mb-10">Motor • Câmbio Automático e Manual • Suspensão • Elétrica Automotiva • Venda de Peças</p><!-- CTA Button --> <a id="hero-whatsapp" href="https://wa.me/5511981483993" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 gradient-red px-10 py-5 rounded-lg font-orbitron font-bold text-lg tracking-wider hover:scale-105 transition-transform pulse-btn">
+      <svg class="w-7 h-7" fill="currentColor" viewbox="0 0 24 24">
+       <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+      </svg> AGENDAR PELO WHATSAPP </a> <!-- Trust Badges -->
+     <div class="flex flex-wrap justify-center gap-8 mt-16">
+      <div class="flex items-center gap-2 text-metal">
+       <svg class="w-5 h-5 text-primary" fill="currentColor" viewbox="0 0 20 20">
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+       </svg><span class="text-sm tracking-wide">+35 ANOS DE EXPERIÊNCIA</span>
+      </div>
+      <div class="flex items-center gap-2 text-metal">
+       <svg class="w-5 h-5 text-primary" fill="currentColor" viewbox="0 0 20 20">
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+       </svg><span class="text-sm tracking-wide">GARANTIA NOS SERVIÇOS</span>
+      </div>
+      <div class="flex items-center gap-2 text-metal">
+       <svg class="w-5 h-5 text-primary" fill="currentColor" viewbox="0 0 20 20">
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+       </svg><span class="text-sm tracking-wide">ESPECIALISTAS EM DIVERSAS ÁREAS</span>
+      </div>
+     </div>
+    </div><!-- Scroll Indicator -->
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+     <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+     </svg>
+    </div>
+   </section><!-- About Section -->
+   <section id="sobre" class="py-24 bg-secondary relative">
+    <div class="absolute top-0 left-0 w-full h-1 gradient-red"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="grid lg:grid-cols-2 gap-16 items-center">
+      <div>
+       <span class="text-primary font-orbitron text-sm tracking-[0.3em] font-semibold">SOBRE NÓS</span>
+       <h2 class="font-orbitron text-4xl md:text-5xl font-black mt-4 mb-8 line-accent">EXCELÊNCIA EM<br><span class="text-primary">MECÂNICA AUTOMOTIVA</span></h2>
+       <p id="about-text" class="text-metal text-lg leading-relaxed mb-8">A BL Auto Service &amp; Parts é referência em mecânica completa, com mais de 35 anos de experiência no mercado automotivo. Nossa equipe oferece diagnósticos precisos e soluções definitivas para todos os tipos de problemas mecânicos.</p>
+       <div class="grid sm:grid-cols-2 gap-6">
+        <div class="bg-graphite p-6 rounded-xl border border-steel hover:border-primary/50 transition-colors">
+         <div class="w-12 h-12 gradient-red rounded-lg flex items-center justify-center mb-4">
+          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+          </svg>
+         </div>
+         <h3 class="font-orbitron font-bold text-lg mb-2">Experiência Técnica</h3>
+         <p class="text-metal text-sm">Profissionais certificados com vasta experiência em todas as marcas</p>
+        </div>
+        <div class="bg-graphite p-6 rounded-xl border border-steel hover:border-primary/50 transition-colors">
+         <div class="w-12 h-12 gradient-red rounded-lg flex items-center justify-center mb-4">
+          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+          </svg>
+         </div>
+         <h3 class="font-orbitron font-bold text-lg mb-2">Diversas Áreas</h3>
+         <p class="text-metal text-sm">Atendimento especializado em todas as áreas da mecânica automotiva</p>
+        </div>
+        <div class="bg-graphite p-6 rounded-xl border border-steel hover:border-primary/50 transition-colors">
+         <div class="w-12 h-12 gradient-red rounded-lg flex items-center justify-center mb-4">
+          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+          </svg>
+         </div>
+         <h3 class="font-orbitron font-bold text-lg mb-2">Transparência Total</h3>
+         <p class="text-metal text-sm">Diagnóstico detalhado com fotos e vídeos do problema</p>
+        </div>
+        <div class="bg-graphite p-6 rounded-xl border border-steel hover:border-primary/50 transition-colors">
+         <div class="w-12 h-12 gradient-red rounded-lg flex items-center justify-center mb-4">
+          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+         </div>
+         <h3 class="font-orbitron font-bold text-lg mb-2">Garantia Real</h3>
+         <p class="text-metal text-sm">Todos os serviços com garantia documentada</p>
+        </div>
+       </div>
+      </div>
+      <div class="relative">
+       <div class="aspect-square bg-gradient-to-br from-steel to-graphite rounded-2xl border border-steel overflow-hidden">
+        <div class="absolute inset-0 flex items-center justify-center">
+         <div class="text-center p-8">
+          <div class="w-32 h-32 mx-auto mb-6 rounded-full bg-graphite border-4 border-primary flex items-center justify-center">
+           <svg class="w-16 h-16 text-primary" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+           </svg>
+          </div>
+          <h3 class="font-orbitron text-2xl font-bold mb-2">DIAGNÓSTICO</h3>
+          <p class="text-primary font-orbitron text-lg">PRECISO</p>
+          <p class="text-metal mt-4 text-sm">Scanner profissional para identificação exata de problemas</p>
+         </div>
+        </div>
+        <div class="absolute -bottom-4 -right-4 w-32 h-32 bg-primary/20 rounded-full blur-2xl"></div>
+        <div class="absolute -top-4 -left-4 w-24 h-24 bg-primary/10 rounded-full blur-xl"></div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Services Section -->
+   <section id="servicos" class="py-24 bg-graphite gear-pattern relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="text-center mb-16">
+      <span class="text-primary font-orbitron text-sm tracking-[0.3em] font-semibold">NOSSOS SERVIÇOS</span>
+      <h2 class="font-orbitron text-4xl md:text-5xl font-black mt-4">SOLUÇÕES <span class="text-primary">COMPLETAS</span></h2>
+      <div class="w-24 h-1 gradient-red mx-auto mt-6"></div>
+     </div>
+     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Motor -->
+      <div class="bg-secondary p-8 rounded-2xl border-2 border-primary card-glow transition-all duration-300 hover:border-primary/50 group">
+       <div class="w-16 h-16 gradient-red rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+        </svg>
+       </div>
+       <h3 class="font-orbitron text-2xl font-bold mb-4">MOTOR</h3>
+       <p class="text-metal leading-relaxed mb-4">Retífica completa, troca de correias, junta de cabeçote, sistema de arrefecimento, bomba d'água, radiador e toda manutenção preventiva e corretiva.</p>
+       <ul class="text-sm text-metal space-y-2">
+        <li class="flex items-center gap-2">
+         <svg class="w-4 h-4 text-primary flex-shrink-0" fill="currentColor" viewbox="0 0 20 20">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+         </svg> Retífica e recondicionamento</li>
+        <li class="flex items-center gap-2">
+         <svg class="w-4 h-4 text-primary flex-shrink-0" fill="currentColor" viewbox="0 0 20 20">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+         </svg> Troca de correias e tensores</li>
+        <li class="flex items-center gap-2">
+         <svg class="w-4 h-4 text-primary flex-shrink-0" fill="currentColor" viewbox="0 0 20 20">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+         </svg> Sistema de arrefecimento</li>
+       </ul>
+      </div><!-- Câmbio -->
+      <div class="bg-secondary p-8 rounded-2xl border border-steel card-glow transition-all duration-300 group relative overflow-hidden">
+       <div class="w-16 h-16 gradient-red rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+       </div>
+       <h3 class="font-orbitron text-2xl font-bold mb-4">CÂMBIO AUTOMÁTICO E MANUAL</h3>
+       <p class="text-metal leading-relaxed mb-4">Especialistas em diagnóstico, manutenção e reparo de transmissões automáticas e manuais. Troca de óleo ATF, revisão completa de componentes internos e conversor de torque.</p>
+       <ul class="text-sm text-metal space-y-2">
+        <li class="flex items-center gap-2">
+         <svg class="w-4 h-4 text-primary flex-shrink-0" fill="currentColor" viewbox="0 0 20 20">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+         </svg> Revisão de câmbio automático</li>
+        <li class="flex items-center gap-2">
+         <svg class="w-4 h-4 text-primary flex-shrink-0" fill="currentColor" viewbox="0 0 20 20">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+         </svg> Troca de óleo ATF</li>
+        <li class="flex items-center gap-2">
+         <svg class="w-4 h-4 text-primary flex-shrink-0" fill="currentColor" viewbox="0 0 20 20">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+         </svg> Conversor de torque</li>
+       </ul>
+      </div><!-- Suspensão -->
+      <div class="bg-secondary p-8 rounded-2xl border border-steel card-glow transition-all duration-300 hover:border-primary/50 group">
+       <div class="w-16 h-16 gradient-red rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+        </svg>
+       </div>
+       <h3 class="font-orbitron text-2xl font-bold mb-4">SUSPENSÃO E DIREÇÃO</h3>
+       <p class="text-metal leading-relaxed mb-4">Amortecedores, molas, buchas, terminais, pivôs, caixa de direção, alinhamento e balanceamento computadorizado para máximo conforto e segurança.</p>
+       <ul class="text-sm text-metal space-y-2">
+        <li class="flex items-center gap-2">
+         <svg class="w-4 h-4 text-primary flex-shrink-0" fill="currentColor" viewbox="0 0 20 20">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+         </svg> Amortecedores e molas</li>
+        <li class="flex items-center gap-2">
+         <svg class="w-4 h-4 text-primary flex-shrink-0" fill="currentColor" viewbox="0 0 20 20">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+         </svg> Alinhamento computadorizado</li>
+        <li class="flex items-center gap-2">
+         <svg class="w-4 h-4 text-primary flex-shrink-0" fill="currentColor" viewbox="0 0 20 20">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+         </svg> Caixa de direção</li>
+       </ul>
+      </div><!-- Elétrica -->
+      <div class="bg-secondary p-8 rounded-2xl border border-steel card-glow transition-all duration-300 hover:border-primary/50 group">
+       <div class="w-16 h-16 gradient-red rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+        </svg>
+       </div>
+       <h3 class="font-orbitron text-2xl font-bold mb-4">ELÉTRICA AUTOMOTIVA</h3>
+       <p class="text-metal leading-relaxed mb-4">Diagnóstico eletrônico completo, injeção eletrônica, alternador, motor de partida, vidros elétricos, central multimídia e toda parte elétrica do veículo.</p>
+       <ul class="text-sm text-metal space-y-2">
+        <li class="flex items-center gap-2">
+         <svg class="w-4 h-4 text-primary flex-shrink-0" fill="currentColor" viewbox="0 0 20 20">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+         </svg> Injeção eletrônica</li>
+        <li class="flex items-center gap-2">
+         <svg class="w-4 h-4 text-primary flex-shrink-0" fill="currentColor" viewbox="0 0 20 20">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+         </svg> Scanner profissional</li>
+        <li class="flex items-center gap-2">
+         <svg class="w-4 h-4 text-primary flex-shrink-0" fill="currentColor" viewbox="0 0 20 20">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+         </svg> Alternador e partida</li>
+       </ul>
+      </div><!-- Auto Peças -->
+      <div class="bg-secondary p-8 rounded-2xl border border-steel card-glow transition-all duration-300 hover:border-primary/50 group lg:col-span-2">
+       <div class="flex flex-col md:flex-row md:items-start gap-6">
+        <div class="w-16 h-16 gradient-red rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+         <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+         </svg>
+        </div>
+        <div class="flex-1">
+         <h3 class="font-orbitron text-2xl font-bold mb-4">VENDA DE AUTO PEÇAS</h3>
+         <p class="text-metal leading-relaxed mb-4">Comercializamos peças originais e de qualidade equivalente para todas as marcas e modelos. Filtros, correias, pastilhas de freio, discos, óleos, fluidos e muito mais. Trabalhamos apenas com fornecedores homologados para garantir a procedência e qualidade de cada componente.</p>
+         <div class="grid sm:grid-cols-3 gap-4">
+          <div class="flex items-center gap-2 text-sm text-metal">
+           <svg class="w-4 h-4 text-primary flex-shrink-0" fill="currentColor" viewbox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+           </svg> Peças originais
+          </div>
+          <div class="flex items-center gap-2 text-sm text-metal">
+           <svg class="w-4 h-4 text-primary flex-shrink-0" fill="currentColor" viewbox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+           </svg> Todas as marcas
+          </div>
+          <div class="flex items-center gap-2 text-sm text-metal">
+           <svg class="w-4 h-4 text-primary flex-shrink-0" fill="currentColor" viewbox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+           </svg> Garantia de fábrica
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Differentials Section -->
+   <section id="diferenciais" class="py-24 bg-secondary relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+     <div class="text-center mb-16">
+      <span class="text-primary font-orbitron text-sm tracking-[0.3em] font-semibold">POR QUE NOS ESCOLHER</span>
+      <h2 class="font-orbitron text-4xl md:text-5xl font-black mt-4">NOSSOS <span class="text-primary">DIFERENCIAIS</span></h2>
+      <div class="w-24 h-1 gradient-red mx-auto mt-6"></div>
+     </div>
+     <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
+      <div class="text-center p-6 bg-graphite rounded-2xl border border-steel hover:border-primary transition-colors group">
+       <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-secondary border-2 border-primary flex items-center justify-center group-hover:scale-110 transition-transform">
+        <svg class="w-10 h-10 text-primary" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+        </svg>
+       </div>
+       <h3 class="font-orbitron font-bold text-lg mb-2">Diagnóstico Preciso</h3>
+       <p class="text-metal text-sm">Scanner de última geração para identificação exata</p>
+      </div>
+      <div class="text-center p-6 bg-graphite rounded-2xl border border-steel hover:border-primary transition-colors group">
+       <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-secondary border-2 border-primary flex items-center justify-center group-hover:scale-110 transition-transform">
+        <svg class="w-10 h-10 text-primary" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+       </div>
+       <h3 class="font-orbitron font-bold text-lg mb-2">Equipamentos Modernos</h3>
+       <p class="text-metal text-sm">Ferramentas especializadas e atualizadas</p>
+      </div>
+      <div class="text-center p-6 bg-graphite rounded-2xl border border-steel hover:border-primary transition-colors group">
+       <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-secondary border-2 border-primary flex items-center justify-center group-hover:scale-110 transition-transform">
+        <svg class="w-10 h-10 text-primary" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+        </svg>
+       </div>
+       <h3 class="font-orbitron font-bold text-lg mb-2">Orçamento Transparente</h3>
+       <p class="text-metal text-sm">Sem surpresas, tudo detalhado e documentado</p>
+      </div>
+      <div class="text-center p-6 bg-graphite rounded-2xl border border-steel hover:border-primary transition-colors group">
+       <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-secondary border-2 border-primary flex items-center justify-center group-hover:scale-110 transition-transform">
+        <svg class="w-10 h-10 text-primary" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+        </svg>
+       </div>
+       <h3 class="font-orbitron font-bold text-lg mb-2">Peças de Qualidade</h3>
+       <p class="text-metal text-sm">Apenas componentes originais ou equivalentes</p>
+      </div>
+      <div class="text-center p-6 bg-graphite rounded-2xl border border-steel hover:border-primary transition-colors group">
+       <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-secondary border-2 border-primary flex items-center justify-center group-hover:scale-110 transition-transform">
+        <svg class="w-10 h-10 text-primary" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+        </svg>
+       </div>
+       <h3 class="font-orbitron font-bold text-lg mb-2">Atendimento Especializado</h3>
+       <p class="text-metal text-sm">Equipe técnica pronta para atender</p>
+      </div>
+     </div>
+    </div>
+   </section><!-- Testimonials Section -->
+   <section id="depoimentos" class="py-24 bg-graphite relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="text-center mb-16">
+      <span class="text-primary font-orbitron text-sm tracking-[0.3em] font-semibold">DEPOIMENTOS</span>
+      <h2 class="font-orbitron text-4xl md:text-5xl font-black mt-4">O QUE NOSSOS <span class="text-primary">CLIENTES DIZEM</span></h2>
+      <div class="w-24 h-1 gradient-red mx-auto mt-6"></div>
+     </div>
+     <div class="grid md:grid-cols-3 gap-8">
+      <div class="bg-secondary p-8 rounded-2xl border border-steel relative">
+       <div class="absolute -top-4 left-8 text-6xl text-primary/30 font-serif">
+        "
+       </div>
+       <div class="flex items-center gap-1 mb-4">
+        <svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewbox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+        </svg>
+        <svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewbox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+        </svg>
+        <svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewbox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+        </svg>
+        <svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewbox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+        </svg>
+        <svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewbox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+        </svg>
+       </div>
+       <p class="text-metal leading-relaxed mb-6">"Levei meu carro com problema no câmbio automático e ficaram dias em outras oficinas sem resolver. Na BL descobriram o problema em menos de 1 hora. Serviço impecável!"</p>
+       <div class="flex items-center gap-3">
+        <div class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center">
+         <span class="font-orbitron font-bold text-primary">RS</span>
+        </div>
+        <div>
+         <p class="font-semibold">Roberto Silva</p>
+         <p class="text-sm text-metal">Honda Civic 2019</p>
+        </div>
+       </div>
+      </div>
+      <div class="bg-secondary p-8 rounded-2xl border border-steel relative">
+       <div class="absolute -top-4 left-8 text-6xl text-primary/30 font-serif">
+        "
+       </div>
+       <div class="flex items-center gap-1 mb-4">
+        <svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewbox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+        </svg>
+        <svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewbox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+        </svg>
+        <svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewbox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+        </svg>
+        <svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewbox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+        </svg>
+        <svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewbox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+        </svg>
+       </div>
+       <p class="text-metal leading-relaxed mb-6">"Transparência total! Me enviaram fotos e vídeos de tudo que precisava ser trocado. Preço justo e serviço com garantia. Virei cliente fiel!"</p>
+       <div class="flex items-center gap-3">
+        <div class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center">
+         <span class="font-orbitron font-bold text-primary">MC</span>
+        </div>
+        <div>
+         <p class="font-semibold">Mariana Costa</p>
+         <p class="text-sm text-metal">Toyota Corolla 2021</p>
+        </div>
+       </div>
+      </div>
+      <div class="bg-secondary p-8 rounded-2xl border border-steel relative">
+       <div class="absolute -top-4 left-8 text-6xl text-primary/30 font-serif">
+        "
+       </div>
+       <div class="flex items-center gap-1 mb-4">
+        <svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewbox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+        </svg>
+        <svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewbox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+        </svg>
+        <svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewbox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+        </svg>
+        <svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewbox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+        </svg>
+        <svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewbox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+        </svg>
+       </div>
+       <p class="text-metal leading-relaxed mb-6">"Profissionalismo de outro nível. Fizeram a revisão completa do meu carro, explicaram tudo com detalhes e o preço foi exatamente o combinado. Super recomendo!"</p>
+       <div class="flex items-center gap-3">
+        <div class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center">
+         <span class="font-orbitron font-bold text-primary">FA</span>
+        </div>
+        <div>
+         <p class="font-semibold">Felipe Andrade</p>
+         <p class="text-sm text-metal">Volkswagen Golf 2020</p>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Gallery Section -->
+   <section class="py-24 bg-secondary">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="text-center mb-16">
+      <span class="text-primary font-orbitron text-sm tracking-[0.3em] font-semibold">NOSSA ESTRUTURA</span>
+      <h2 class="font-orbitron text-4xl md:text-5xl font-black mt-4">GALERIA <span class="text-primary">DE FOTOS</span></h2>
+      <div class="w-24 h-1 gradient-red mx-auto mt-6"></div>
+     </div>
+     <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+      <div class="aspect-video bg-graphite rounded-xl border border-steel overflow-hidden flex items-center justify-center group hover:border-primary/50 transition-colors">
+       <div class="text-center p-4">
+        <svg class="w-12 h-12 text-primary mx-auto mb-2 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+        </svg>
+        <p class="text-metal text-sm">Área de Recepção</p>
+       </div>
+      </div>
+      <div class="aspect-video bg-graphite rounded-xl border border-steel overflow-hidden flex items-center justify-center group hover:border-primary/50 transition-colors">
+       <div class="text-center p-4">
+        <svg class="w-12 h-12 text-primary mx-auto mb-2 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+        <p class="text-metal text-sm">Área de Serviços</p>
+       </div>
+      </div>
+      <div class="aspect-video bg-graphite rounded-xl border border-steel overflow-hidden flex items-center justify-center group hover:border-primary/50 transition-colors">
+       <div class="text-center p-4">
+        <svg class="w-12 h-12 text-primary mx-auto mb-2 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+        </svg>
+        <p class="text-metal text-sm">Diagnóstico Computadorizado</p>
+       </div>
+      </div>
+      <div class="aspect-video bg-graphite rounded-xl border border-steel overflow-hidden flex items-center justify-center group hover:border-primary/50 transition-colors">
+       <div class="text-center p-4">
+        <svg class="w-12 h-12 text-primary mx-auto mb-2 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+        </svg>
+        <p class="text-metal text-sm">Estoque de Peças</p>
+       </div>
+      </div>
+      <div class="aspect-video bg-graphite rounded-xl border border-steel overflow-hidden flex items-center justify-center group hover:border-primary/50 transition-colors">
+       <div class="text-center p-4">
+        <svg class="w-12 h-12 text-primary mx-auto mb-2 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z" />
+        </svg>
+        <p class="text-metal text-sm">Equipamentos Especializados</p>
+       </div>
+      </div>
+      <div class="aspect-video bg-graphite rounded-xl border border-steel overflow-hidden flex items-center justify-center group hover:border-primary/50 transition-colors">
+       <div class="text-center p-4">
+        <svg class="w-12 h-12 text-primary mx-auto mb-2 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+        </svg>
+        <p class="text-metal text-sm">Equipe Técnica</p>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Contact Section -->
+   <section id="contato" class="py-24 bg-graphite relative">
+    <div class="absolute top-0 left-0 w-full h-1 gradient-red"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="text-center mb-16">
+      <span class="text-primary font-orbitron text-sm tracking-[0.3em] font-semibold">CONTATO</span>
+      <h2 class="font-orbitron text-4xl md:text-5xl font-black mt-4">ENTRE EM <span class="text-primary">CONTATO</span></h2>
+      <div class="w-24 h-1 gradient-red mx-auto mt-6"></div>
+     </div>
+     <div class="grid lg:grid-cols-2 gap-12">
+      <div>
+       <div class="bg-secondary p-8 rounded-2xl border border-steel mb-8">
+        <h3 class="font-orbitron text-2xl font-bold mb-6">INFORMAÇÕES</h3>
+        <div class="space-y-6">
+         <div class="flex items-start gap-4">
+          <div class="w-12 h-12 gradient-red rounded-lg flex items-center justify-center flex-shrink-0">
+           <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+           </svg>
+          </div>
+          <div>
+           <h4 class="font-semibold mb-1">Endereço</h4>
+           <p id="address" class="text-metal">Rua das Oficinas, 1234 - Centro<br>
+             São Paulo - SP, 01234-567</p>
+          </div>
+         </div>
+         <div class="flex items-start gap-4">
+          <div class="w-12 h-12 gradient-red rounded-lg flex items-center justify-center flex-shrink-0">
+           <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+           </svg>
+          </div>
+          <div>
+           <h4 class="font-semibold mb-1">Horário de Funcionamento</h4>
+           <p id="hours" class="text-metal">Segunda a Sexta: 9h às 15h<br>
+             </p>
+          </div>
+         </div>
+         <div class="flex items-start gap-4">
+          <div class="w-12 h-12 gradient-red rounded-lg flex items-center justify-center flex-shrink-0">
+           <svg class="w-6 h-6 text-white" fill="currentColor" viewbox="0 0 24 24">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+           </svg>
+          </div>
+          <div>
+           <h4 class="font-semibold mb-1">WhatsApp</h4>
+           <p class="text-metal">(11) 98148-3993</p>
+          </div>
+         </div>
+        </div>
+       </div><a id="contact-whatsapp" href="https://wa.me/5511981483993" target="_blank" rel="noopener noreferrer" class="w-full flex items-center justify-center gap-3 gradient-red py-5 rounded-xl font-orbitron font-bold text-lg tracking-wider hover:opacity-90 transition-opacity">
+        <svg class="w-7 h-7" fill="currentColor" viewbox="0 0 24 24">
+         <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+        </svg> SOLICITAR ORÇAMENTO </a>
+      </div>
+      <div class="bg-secondary rounded-2xl border border-steel overflow-hidden h-96 lg:h-auto">
+       <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.1975882614147!2d-46.65429902374775!3d-23.561684478797584!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59c8da0aa315%3A0xd59f9431f2c9776a!2sAv.%20Paulista%2C%20S%C3%A3o%20Paulo%20-%20SP!5e0!3m2!1spt-BR!2sbr!4v1703097600000!5m2!1spt-BR!2sbr" width="100%" height="100%" style="border:0; min-height: 400px;" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Localização BL Auto Service"> </iframe>
+      </div>
+     </div>
+    </div>
+   </section><!-- Footer -->
+   <footer class="bg-secondary py-12 border-t border-steel">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-3">
+       <div class="w-10 h-10 gradient-red rounded-lg flex items-center justify-center">
+        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+       </div>
+       <div>
+        <span class="font-orbitron font-bold text-lg">BL AUTO</span> <span class="text-metal text-sm ml-2">SERVICE &amp; PARTS</span>
+       </div>
+      </div>
+      <p class="text-metal text-sm text-center">© 2026 BL Auto Service &amp; Parts. Todos os direitos reservados.</p>
+      <div class="flex items-center gap-4">
+       <a href="#" class="w-10 h-10 bg-graphite rounded-full flex items-center justify-center hover:bg-primary transition-colors">
+        <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+        </svg></a> <a href="#" class="w-10 h-10 bg-graphite rounded-full flex items-center justify-center hover:bg-primary transition-colors">
+        <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+        </svg></a>
+      </div>
+     </div>
+    </div>
+   </footer>
+  </div>
+  <script>
+    const defaultConfig = {
+      hero_title: 'MECÂNICA COMPLETA COM DIAGNÓSTICO ESPECIALIZADO',
+      hero_subtitle: 'Motor • Câmbio Automático e Manual • Suspensão • Elétrica Automotiva • Venda de Peças',
+      whatsapp_number: '5511981483993',
+      about_text: 'A BL Auto Service & Parts é referência em mecânica completa, com mais de 15 anos de experiência no mercado automotivo. Nossa equipe de especialistas oferece diagnósticos precisos e soluções definitivas para todos os tipos de problemas mecânicos, com destaque especial para câmbio automático — uma área que exige conhecimento técnico avançado e equipamentos especializados.',
+      address: 'Rua das Oficinas, 1234 - Centro\nSão Paulo - SP, 01234-567',
+      hours: 'Segunda a Sexta: 8h às 18h\nSábado: 8h às 13h',
+      background_color: '#0D0D0D',
+      surface_color: '#1A1A1A',
+      text_color: '#C0C0C0',
+      primary_action_color: '#DC2626',
+      secondary_action_color: '#2A2A2A'
+    };
+
+    function updateWhatsAppLinks(number) {
+      const links = ['whatsapp-fixed', 'nav-whatsapp', 'hero-whatsapp', 'contact-whatsapp'];
+      links.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.href = `https://wa.me/${number}`;
+      });
+    }
+
+    async function onConfigChange(config) {
+      // Update hero title
+      const heroTitle = document.getElementById('hero-title');
+      if (heroTitle) {
+        const title = config.hero_title || defaultConfig.hero_title;
+        const parts = title.split(' ');
+        const midPoint = Math.ceil(parts.length / 2);
+        heroTitle.innerHTML = `<span class="text-white">${parts.slice(0, midPoint).join(' ')}</span><br><span class="text-gradient">${parts.slice(midPoint).join(' ')}</span>`;
+      }
+
+      // Update hero subtitle
+      const heroSubtitle = document.getElementById('hero-subtitle');
+      if (heroSubtitle) heroSubtitle.textContent = config.hero_subtitle || defaultConfig.hero_subtitle;
+
+      // Update about text
+      const aboutText = document.getElementById('about-text');
+      if (aboutText) aboutText.textContent = config.about_text || defaultConfig.about_text;
+
+      // Update address
+      const address = document.getElementById('address');
+      if (address) address.innerHTML = (config.address || defaultConfig.address).replace(/\n/g, '<br>');
+
+      // Update hours
+      const hours = document.getElementById('hours');
+      if (hours) hours.innerHTML = (config.hours || defaultConfig.hours).replace(/\n/g, '<br>');
+
+      // Update WhatsApp links
+      updateWhatsAppLinks(config.whatsapp_number || defaultConfig.whatsapp_number);
+
+      // Apply colors
+      document.body.style.backgroundColor = config.background_color || defaultConfig.background_color;
+    }
+
+    function mapToCapabilities(config) {
+      return {
+        recolorables: [
+          {
+            get: () => config.background_color || defaultConfig.background_color,
+            set: (value) => { config.background_color = value; window.elementSdk.setConfig({ background_color: value }); }
+          },
+          {
+            get: () => config.surface_color || defaultConfig.surface_color,
+            set: (value) => { config.surface_color = value; window.elementSdk.setConfig({ surface_color: value }); }
+          },
+          {
+            get: () => config.text_color || defaultConfig.text_color,
+            set: (value) => { config.text_color = value; window.elementSdk.setConfig({ text_color: value }); }
+          },
+          {
+            get: () => config.primary_action_color || defaultConfig.primary_action_color,
+            set: (value) => { config.primary_action_color = value; window.elementSdk.setConfig({ primary_action_color: value }); }
+          },
+          {
+            get: () => config.secondary_action_color || defaultConfig.secondary_action_color,
+            set: (value) => { config.secondary_action_color = value; window.elementSdk.setConfig({ secondary_action_color: value }); }
+          }
+        ],
+        borderables: [],
+        fontEditable: undefined,
+        fontSizeable: undefined
+      };
+    }
+
+    function mapToEditPanelValues(config) {
+      return new Map([
+        ['hero_title', config.hero_title || defaultConfig.hero_title],
+        ['hero_subtitle', config.hero_subtitle || defaultConfig.hero_subtitle],
+        ['whatsapp_number', config.whatsapp_number || defaultConfig.whatsapp_number],
+        ['about_text', config.about_text || defaultConfig.about_text],
+        ['address', config.address || defaultConfig.address],
+        ['hours', config.hours || defaultConfig.hours]
+      ]);
+    }
+
+    // Initialize SDK
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities,
+        mapToEditPanelValues
+      });
+    }
+
+    // Smooth scroll for navigation
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9d3c82cc908828b1',t:'MTc3MjA3ODE2OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
