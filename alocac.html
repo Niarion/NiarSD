@@ -1,0 +1,690 @@
+<!doctype html>
+<html lang="pt-BR" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Alô Caçambas - Locação de caçambas para obras, reformas e descarte de entulho. Entrega rápida, preço justo e atendimento imediato via WhatsApp.">
+  <meta name="keywords" content="locação de caçambas, aluguel de caçamba, caçamba para entulho, caçamba para obra, descarte de entulho">
+  <title>Alô Caçambas – Locações de Caçambas | Entrega Rápida</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'construction-yellow': '#FFC107',
+            'construction-yellow-dark': '#E5AC00',
+            'dark-gray': '#1a1a1a',
+            'medium-gray': '#2d2d2d',
+            'whatsapp': '#25D366',
+            'whatsapp-dark': '#1DA851'
+          },
+          fontFamily: {
+            'display': ['Bebas Neue', 'sans-serif'],
+            'body': ['Inter', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    html { height: 100%; }
+    body { height: 100%; margin: 0; }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes pulse-whatsapp {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    .animate-fade-in-up {
+      animation: fadeInUp 0.8s ease-out forwards;
+      opacity: 0;
+    }
+    
+    .animate-delay-100 { animation-delay: 0.1s; }
+    .animate-delay-200 { animation-delay: 0.2s; }
+    .animate-delay-300 { animation-delay: 0.3s; }
+    .animate-delay-400 { animation-delay: 0.4s; }
+    .animate-delay-500 { animation-delay: 0.5s; }
+    
+    .whatsapp-float {
+      animation: pulse-whatsapp 2s ease-in-out infinite;
+    }
+    
+    .float-animation {
+      animation: float 3s ease-in-out infinite;
+    }
+    
+    .hero-gradient {
+      background: linear-gradient(135deg, rgba(26,26,26,0.95) 0%, rgba(26,26,26,0.85) 50%, rgba(255,193,7,0.2) 100%);
+    }
+    
+    .card-hover {
+      transition: all 0.3s ease;
+    }
+    
+    .card-hover:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    }
+    
+    .step-line::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 100%;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, #FFC107, transparent);
+    }
+    
+    @media (max-width: 768px) {
+      .step-line::after {
+        display: none;
+      }
+    }
+    
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s ease;
+    }
+    
+    .scroll-reveal.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+  <style>body { box-sizing: border-box; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full font-body bg-white text-dark-gray overflow-x-hidden">
+  <div id="app-wrapper" class="w-full h-full overflow-auto"><!-- Header -->
+   <header class="fixed top-0 left-0 right-0 z-50 bg-dark-gray/95 backdrop-blur-md border-b border-construction-yellow/20">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+     <div class="flex items-center gap-3">
+      <div class="w-12 h-12 bg-construction-yellow rounded-lg flex items-center justify-center">
+       <svg class="w-8 h-8 text-dark-gray" fill="currentColor" viewbox="0 0 24 24"><path d="M20 8h-3V6c0-1.1-.9-2-2-2H9c-1.1 0-2 .9-2 2v2H4c-1.1 0-2 .9-2 2v10h20V10c0-1.1-.9-2-2-2zM9 6h6v2H9V6zm11 12H4v-6h16v6z" />
+       </svg>
+      </div>
+      <div>
+       <h1 class="font-display text-2xl text-white tracking-wide">ALÔ CAÇAMBAS</h1>
+       <p class="text-xs text-gray-400 -mt-1">Locações de Caçambas</p>
+      </div>
+     </div>
+     <nav class="hidden md:flex items-center gap-6"><a href="#sobre" class="text-gray-300 hover:text-construction-yellow transition-colors text-sm font-medium">Sobre</a> <a href="#servicos" class="text-gray-300 hover:text-construction-yellow transition-colors text-sm font-medium">Serviços</a> <a href="#como-funciona" class="text-gray-300 hover:text-construction-yellow transition-colors text-sm font-medium">Como Funciona</a> <a href="#contato" class="text-gray-300 hover:text-construction-yellow transition-colors text-sm font-medium">Contato</a>
+     </nav><a href="https://wa.me/5511999999999" target="_blank" rel="noopener noreferrer" class="bg-whatsapp hover:bg-whatsapp-dark text-white px-4 py-2 rounded-lg font-semibold text-sm flex items-center gap-2 transition-all">
+      <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24">
+       <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+      </svg><span class="hidden sm:inline">WhatsApp</span> </a>
+    </div>
+   </header><!-- Hero Section -->
+   <section class="relative min-h-screen flex items-center justify-center pt-20 hero-gradient"><!-- Background Pattern -->
+    <div class="absolute inset-0 opacity-10">
+     <svg class="w-full h-full" viewbox="0 0 100 100" preserveaspectratio="none"><defs>
+       <pattern id="grid" width="10" height="10" patternunits="userSpaceOnUse">
+        <path d="M 10 0 L 0 0 0 10" fill="none" stroke="#FFC107" stroke-width="0.5" />
+       </pattern>
+      </defs> <rect width="100%" height="100%" fill="url(#grid)" />
+     </svg>
+    </div><!-- Construction Elements -->
+    <div class="absolute top-32 right-10 w-20 h-20 border-4 border-construction-yellow/30 rotate-45 float-animation"></div>
+    <div class="absolute bottom-32 left-10 w-16 h-16 bg-construction-yellow/20 rotate-12 float-animation" style="animation-delay: 1s;"></div>
+    <div class="relative z-10 max-w-6xl mx-auto px-4 py-20 text-center">
+     <div class="animate-fade-in-up"><span class="inline-block bg-construction-yellow/20 text-construction-yellow px-4 py-2 rounded-full text-sm font-semibold mb-6 border border-construction-yellow/30"> 🏗️ Especialistas em Locação de Caçambas </span>
+     </div>
+     <h2 id="hero-title" class="font-display text-5xl md:text-7xl lg:text-8xl text-white leading-tight mb-6 animate-fade-in-up animate-delay-100">LOCAÇÃO DE CAÇAMBAS<br><span class="text-construction-yellow">COM AGILIDADE E CONFIANÇA</span></h2>
+     <p id="hero-subtitle" class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-10 animate-fade-in-up animate-delay-200">Atendimento rápido, entrega no mesmo dia e suporte imediato via WhatsApp.</p><!-- Trust Badges -->
+     <div class="flex flex-wrap justify-center gap-4 mb-10 animate-fade-in-up animate-delay-300">
+      <div class="flex items-center gap-2 bg-white/10 backdrop-blur px-4 py-2 rounded-full">
+       <svg class="w-5 h-5 text-construction-yellow" fill="currentColor" viewbox="0 0 20 20">
+        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+       </svg><span class="text-white text-sm font-medium">Entrega Rápida</span>
+      </div>
+      <div class="flex items-center gap-2 bg-white/10 backdrop-blur px-4 py-2 rounded-full">
+       <svg class="w-5 h-5 text-construction-yellow" fill="currentColor" viewbox="0 0 20 20">
+        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+       </svg><span class="text-white text-sm font-medium">Preço Justo</span>
+      </div>
+      <div class="flex items-center gap-2 bg-white/10 backdrop-blur px-4 py-2 rounded-full">
+       <svg class="w-5 h-5 text-construction-yellow" fill="currentColor" viewbox="0 0 20 20">
+        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+       </svg><span class="text-white text-sm font-medium">Atendimento Imediato</span>
+      </div>
+     </div><!-- CTA Buttons -->
+     <div class="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up animate-delay-400"><a href="https://wa.me/5511999999999?text=Olá! Gostaria de solicitar um orçamento para locação de caçamba." target="_blank" rel="noopener noreferrer" class="group bg-whatsapp hover:bg-whatsapp-dark text-white px-8 py-4 rounded-xl font-bold text-lg flex items-center justify-center gap-3 transition-all shadow-lg shadow-whatsapp/30 hover:shadow-whatsapp/50 hover:scale-105">
+       <svg class="w-6 h-6" fill="currentColor" viewbox="0 0 24 24">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+       </svg> Solicitar Orçamento no WhatsApp 
+       <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+       </svg></a> <a href="tel:+5511999999999" class="bg-white/10 hover:bg-white/20 text-white px-8 py-4 rounded-xl font-bold text-lg flex items-center justify-center gap-3 transition-all border border-white/20 hover:border-white/40">
+       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+       </svg> Ligar Agora </a>
+     </div><!-- Scroll Indicator -->
+     <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
+      <svg class="w-6 h-6 text-construction-yellow" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+      </svg>
+     </div>
+    </div>
+   </section><!-- About Section -->
+   <section id="sobre" class="py-20 bg-gray-50">
+    <div class="max-w-6xl mx-auto px-4">
+     <div class="grid md:grid-cols-2 gap-12 items-center">
+      <div class="scroll-reveal"><span class="text-construction-yellow font-semibold text-sm uppercase tracking-wider">Sobre Nós</span>
+       <h3 id="about-title" class="font-display text-4xl md:text-5xl text-dark-gray mt-2 mb-6">QUEM SOMOS</h3>
+       <p id="about-text" class="text-gray-600 text-lg leading-relaxed mb-8">Empresa especializada em locação de caçambas para obras, reformas e descarte de entulho. Trabalhamos com agilidade, pontualidade e compromisso com nossos clientes. Nossa missão é facilitar o descarte responsável de resíduos da construção civil.</p><!-- Mission, Vision, Values -->
+       <div class="grid grid-cols-3 gap-4">
+        <div class="text-center p-4 bg-white rounded-xl shadow-sm">
+         <div class="w-12 h-12 bg-construction-yellow/20 rounded-full flex items-center justify-center mx-auto mb-3">
+          <svg class="w-6 h-6 text-construction-yellow" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+         </div>
+         <h4 class="font-bold text-dark-gray text-sm">Missão</h4>
+         <p class="text-xs text-gray-500 mt-1">Agilidade e qualidade</p>
+        </div>
+        <div class="text-center p-4 bg-white rounded-xl shadow-sm">
+         <div class="w-12 h-12 bg-construction-yellow/20 rounded-full flex items-center justify-center mx-auto mb-3">
+          <svg class="w-6 h-6 text-construction-yellow" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+          </svg>
+         </div>
+         <h4 class="font-bold text-dark-gray text-sm">Visão</h4>
+         <p class="text-xs text-gray-500 mt-1">Referência no setor</p>
+        </div>
+        <div class="text-center p-4 bg-white rounded-xl shadow-sm">
+         <div class="w-12 h-12 bg-construction-yellow/20 rounded-full flex items-center justify-center mx-auto mb-3">
+          <svg class="w-6 h-6 text-construction-yellow" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+          </svg>
+         </div>
+         <h4 class="font-bold text-dark-gray text-sm">Valores</h4>
+         <p class="text-xs text-gray-500 mt-1">Ética e compromisso</p>
+        </div>
+       </div>
+      </div>
+      <div class="scroll-reveal">
+       <div class="relative">
+        <div class="bg-construction-yellow rounded-2xl p-8 relative z-10">
+         <svg class="w-full h-64" viewbox="0 0 200 150" fill="none"><!-- Truck Body --> <rect x="20" y="60" width="120" height="50" rx="5" fill="#1a1a1a" /> <!-- Truck Cab --> <rect x="140" y="70" width="40" height="40" rx="5" fill="#1a1a1a" /> <!-- Window --> <rect x="148" y="78" width="24" height="16" rx="2" fill="#4a5568" /> <!-- Wheels --> <circle cx="55" cy="115" r="15" fill="#2d2d2d" /> <circle cx="55" cy="115" r="8" fill="#4a5568" /> <circle cx="105" cy="115" r="15" fill="#2d2d2d" /> <circle cx="105" cy="115" r="8" fill="#4a5568" /> <circle cx="160" cy="115" r="15" fill="#2d2d2d" /> <circle cx="160" cy="115" r="8" fill="#4a5568" /> <!-- Caçamba --> <path d="M25 55 L35 25 L125 25 L135 55 Z" fill="#FFC107" stroke="#E5AC00" stroke-width="2" /> <rect x="35" y="25" width="90" height="30" fill="#FFD54F" /> <!-- Text on Caçamba --> <text x="80" y="45" font-family="Arial" font-size="8" fill="#1a1a1a" text-anchor="middle" font-weight="bold">
+           ALÔ CAÇAMBAS
+          </text>
+         </svg>
+        </div>
+        <div class="absolute -bottom-4 -right-4 w-full h-full bg-dark-gray/10 rounded-2xl -z-10"></div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Services Section -->
+   <section id="servicos" class="py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-4">
+     <div class="text-center mb-16 scroll-reveal"><span class="text-construction-yellow font-semibold text-sm uppercase tracking-wider">O Que Fazemos</span>
+      <h3 class="font-display text-4xl md:text-5xl text-dark-gray mt-2">NOSSOS SERVIÇOS</h3>
+     </div>
+     <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6"><!-- Service Card 1 -->
+      <div class="scroll-reveal card-hover bg-white rounded-2xl p-6 border border-gray-100 shadow-lg">
+       <div class="w-14 h-14 bg-construction-yellow rounded-xl flex items-center justify-center mb-4">
+        <svg class="w-7 h-7 text-dark-gray" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+        </svg>
+       </div>
+       <h4 class="font-bold text-dark-gray text-lg mb-2">Caçambas para Construção</h4>
+       <p class="text-gray-500 text-sm mb-4">Ideal para obras de grande porte com alto volume de entulho.</p><a href="https://wa.me/5511999999999?text=Olá! Gostaria de solicitar uma caçamba para construção." target="_blank" rel="noopener noreferrer" class="text-construction-yellow font-semibold text-sm flex items-center gap-2 hover:gap-3 transition-all"> Solicitar 
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg></a>
+      </div><!-- Service Card 2 -->
+      <div class="scroll-reveal card-hover bg-white rounded-2xl p-6 border border-gray-100 shadow-lg" style="animation-delay: 0.1s;">
+       <div class="w-14 h-14 bg-construction-yellow rounded-xl flex items-center justify-center mb-4">
+        <svg class="w-7 h-7 text-dark-gray" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+        </svg>
+       </div>
+       <h4 class="font-bold text-dark-gray text-lg mb-2">Reforma Residencial</h4>
+       <p class="text-gray-500 text-sm mb-4">Perfeita para reformas em casas e apartamentos.</p><a href="https://wa.me/5511999999999?text=Olá! Gostaria de solicitar uma caçamba para reforma residencial." target="_blank" rel="noopener noreferrer" class="text-construction-yellow font-semibold text-sm flex items-center gap-2 hover:gap-3 transition-all"> Solicitar 
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg></a>
+      </div><!-- Service Card 3 -->
+      <div class="scroll-reveal card-hover bg-white rounded-2xl p-6 border border-gray-100 shadow-lg" style="animation-delay: 0.2s;">
+       <div class="w-14 h-14 bg-construction-yellow rounded-xl flex items-center justify-center mb-4">
+        <svg class="w-7 h-7 text-dark-gray" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+        </svg>
+       </div>
+       <h4 class="font-bold text-dark-gray text-lg mb-2">Descarte de Entulho</h4>
+       <p class="text-gray-500 text-sm mb-4">Descarte correto e responsável de resíduos.</p><a href="https://wa.me/5511999999999?text=Olá! Gostaria de solicitar uma caçamba para descarte de entulho." target="_blank" rel="noopener noreferrer" class="text-construction-yellow font-semibold text-sm flex items-center gap-2 hover:gap-3 transition-all"> Solicitar 
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg></a>
+      </div><!-- Service Card 4 -->
+      <div class="scroll-reveal card-hover bg-white rounded-2xl p-6 border border-gray-100 shadow-lg" style="animation-delay: 0.3s;">
+       <div class="w-14 h-14 bg-construction-yellow rounded-xl flex items-center justify-center mb-4">
+        <svg class="w-7 h-7 text-dark-gray" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+        </svg>
+       </div>
+       <h4 class="font-bold text-dark-gray text-lg mb-2">Empresas e Condomínios</h4>
+       <p class="text-gray-500 text-sm mb-4">Atendimento especial para grandes demandas.</p><a href="https://wa.me/5511999999999?text=Olá! Gostaria de solicitar caçambas para minha empresa/condomínio." target="_blank" rel="noopener noreferrer" class="text-construction-yellow font-semibold text-sm flex items-center gap-2 hover:gap-3 transition-all"> Solicitar 
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg></a>
+      </div>
+     </div>
+    </div>
+   </section><!-- How It Works Section -->
+   <section id="como-funciona" class="py-20 bg-gray-50">
+    <div class="max-w-6xl mx-auto px-4">
+     <div class="text-center mb-16 scroll-reveal"><span class="text-construction-yellow font-semibold text-sm uppercase tracking-wider">Simples e Rápido</span>
+      <h3 class="font-display text-4xl md:text-5xl text-dark-gray mt-2">COMO FUNCIONA</h3>
+     </div>
+     <div class="grid md:grid-cols-4 gap-8"><!-- Step 1 -->
+      <div class="scroll-reveal text-center relative">
+       <div class="relative step-line">
+        <div class="w-20 h-20 bg-construction-yellow rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg"><span class="font-display text-4xl text-dark-gray">1</span>
+        </div>
+       </div>
+       <div class="w-16 h-16 bg-white rounded-xl shadow-md flex items-center justify-center mx-auto mb-4 -mt-2">
+        <svg class="w-8 h-8 text-construction-yellow" fill="currentColor" viewbox="0 0 24 24">
+         <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+        </svg>
+       </div>
+       <h4 class="font-bold text-dark-gray text-lg mb-2">Solicite pelo WhatsApp</h4>
+       <p class="text-gray-500 text-sm">Entre em contato e informe sua necessidade</p>
+      </div><!-- Step 2 -->
+      <div class="scroll-reveal text-center relative" style="animation-delay: 0.1s;">
+       <div class="relative step-line">
+        <div class="w-20 h-20 bg-construction-yellow rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg"><span class="font-display text-4xl text-dark-gray">2</span>
+        </div>
+       </div>
+       <div class="w-16 h-16 bg-white rounded-xl shadow-md flex items-center justify-center mx-auto mb-4 -mt-2">
+        <svg class="w-8 h-8 text-construction-yellow" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+        </svg>
+       </div>
+       <h4 class="font-bold text-dark-gray text-lg mb-2">Agendamos a Entrega</h4>
+       <p class="text-gray-500 text-sm">Definimos o melhor dia e horário para você</p>
+      </div><!-- Step 3 -->
+      <div class="scroll-reveal text-center relative" style="animation-delay: 0.2s;">
+       <div class="relative step-line">
+        <div class="w-20 h-20 bg-construction-yellow rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg"><span class="font-display text-4xl text-dark-gray">3</span>
+        </div>
+       </div>
+       <div class="w-16 h-16 bg-white rounded-xl shadow-md flex items-center justify-center mx-auto mb-4 -mt-2">
+        <svg class="w-8 h-8 text-construction-yellow" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+       </div>
+       <h4 class="font-bold text-dark-gray text-lg mb-2">Entregamos no Local</h4>
+       <p class="text-gray-500 text-sm">Levamos a caçamba até o seu endereço</p>
+      </div><!-- Step 4 -->
+      <div class="scroll-reveal text-center" style="animation-delay: 0.3s;">
+       <div class="w-20 h-20 bg-construction-yellow rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg"><span class="font-display text-4xl text-dark-gray">4</span>
+       </div>
+       <div class="w-16 h-16 bg-white rounded-xl shadow-md flex items-center justify-center mx-auto mb-4 -mt-2">
+        <svg class="w-8 h-8 text-construction-yellow" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+        </svg>
+       </div>
+       <h4 class="font-bold text-dark-gray text-lg mb-2">Retiramos no Prazo</h4>
+       <p class="text-gray-500 text-sm">Buscamos a caçamba conforme combinado</p>
+      </div>
+     </div>
+    </div>
+   </section><!-- Differentials Section -->
+   <section class="py-20 bg-dark-gray">
+    <div class="max-w-6xl mx-auto px-4">
+     <div class="grid md:grid-cols-2 gap-12 items-center">
+      <div class="scroll-reveal"><span class="text-construction-yellow font-semibold text-sm uppercase tracking-wider">Por Que Nos Escolher</span>
+       <h3 class="font-display text-4xl md:text-5xl text-white mt-2 mb-8">NOSSOS DIFERENCIAIS</h3>
+       <div class="space-y-4">
+        <div class="flex items-center gap-4 bg-white/5 p-4 rounded-xl">
+         <div class="w-10 h-10 bg-construction-yellow rounded-lg flex items-center justify-center flex-shrink-0">
+          <svg class="w-5 h-5 text-dark-gray" fill="currentColor" viewbox="0 0 20 20">
+           <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+          </svg>
+         </div><span class="text-white font-medium">Atendimento rápido e personalizado</span>
+        </div>
+        <div class="flex items-center gap-4 bg-white/5 p-4 rounded-xl">
+         <div class="w-10 h-10 bg-construction-yellow rounded-lg flex items-center justify-center flex-shrink-0">
+          <svg class="w-5 h-5 text-dark-gray" fill="currentColor" viewbox="0 0 20 20">
+           <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+          </svg>
+         </div><span class="text-white font-medium">Entrega no mesmo dia</span>
+        </div>
+        <div class="flex items-center gap-4 bg-white/5 p-4 rounded-xl">
+         <div class="w-10 h-10 bg-construction-yellow rounded-lg flex items-center justify-center flex-shrink-0">
+          <svg class="w-5 h-5 text-dark-gray" fill="currentColor" viewbox="0 0 20 20">
+           <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+          </svg>
+         </div><span class="text-white font-medium">Preços competitivos e justos</span>
+        </div>
+        <div class="flex items-center gap-4 bg-white/5 p-4 rounded-xl">
+         <div class="w-10 h-10 bg-construction-yellow rounded-lg flex items-center justify-center flex-shrink-0">
+          <svg class="w-5 h-5 text-dark-gray" fill="currentColor" viewbox="0 0 20 20">
+           <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+          </svg>
+         </div><span class="text-white font-medium">Empresa regularizada e licenciada</span>
+        </div>
+        <div class="flex items-center gap-4 bg-white/5 p-4 rounded-xl">
+         <div class="w-10 h-10 bg-construction-yellow rounded-lg flex items-center justify-center flex-shrink-0">
+          <svg class="w-5 h-5 text-dark-gray" fill="currentColor" viewbox="0 0 20 20">
+           <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+          </svg>
+         </div><span class="text-white font-medium">Pontualidade garantida</span>
+        </div>
+       </div>
+      </div>
+      <div class="scroll-reveal">
+       <div class="bg-construction-yellow rounded-2xl p-8 text-center">
+        <div class="text-6xl mb-4">
+         🏆
+        </div>
+        <h4 class="font-display text-3xl text-dark-gray mb-2">+500</h4>
+        <p class="text-dark-gray/70 font-medium">Clientes Satisfeitos</p>
+        <div class="flex justify-center gap-1 mt-4"><span class="text-2xl">⭐</span> <span class="text-2xl">⭐</span> <span class="text-2xl">⭐</span> <span class="text-2xl">⭐</span> <span class="text-2xl">⭐</span>
+        </div>
+        <p class="text-dark-gray/60 text-sm mt-2">Avaliação 5 estrelas</p>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Testimonials Section -->
+   <section class="py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-4">
+     <div class="text-center mb-16 scroll-reveal"><span class="text-construction-yellow font-semibold text-sm uppercase tracking-wider">Depoimentos</span>
+      <h3 class="font-display text-4xl md:text-5xl text-dark-gray mt-2">O QUE DIZEM NOSSOS CLIENTES</h3>
+     </div>
+     <div class="grid md:grid-cols-3 gap-6"><!-- Testimonial 1 -->
+      <div class="scroll-reveal bg-gray-50 rounded-2xl p-6 border border-gray-100">
+       <div class="flex gap-1 mb-4"><span class="text-construction-yellow text-xl">⭐</span> <span class="text-construction-yellow text-xl">⭐</span> <span class="text-construction-yellow text-xl">⭐</span> <span class="text-construction-yellow text-xl">⭐</span> <span class="text-construction-yellow text-xl">⭐</span>
+       </div>
+       <p class="text-gray-600 mb-4">"Entrega super rápida e atendimento excelente! Precisei da caçamba com urgência e eles entregaram no mesmo dia. Recomendo muito!"</p>
+       <div class="flex items-center gap-3">
+        <div class="w-12 h-12 bg-construction-yellow rounded-full flex items-center justify-center"><span class="font-bold text-dark-gray">MR</span>
+        </div>
+        <div>
+         <p class="font-bold text-dark-gray">Marcos Ribeiro</p>
+         <p class="text-gray-500 text-sm">Construtor</p>
+        </div>
+       </div>
+      </div><!-- Testimonial 2 -->
+      <div class="scroll-reveal bg-gray-50 rounded-2xl p-6 border border-gray-100" style="animation-delay: 0.1s;">
+       <div class="flex gap-1 mb-4"><span class="text-construction-yellow text-xl">⭐</span> <span class="text-construction-yellow text-xl">⭐</span> <span class="text-construction-yellow text-xl">⭐</span> <span class="text-construction-yellow text-xl">⭐</span> <span class="text-construction-yellow text-xl">⭐</span>
+       </div>
+       <p class="text-gray-600 mb-4">"Empresa confiável e pontual. Já aluguei várias vezes e nunca tive problemas. Preço justo e atendimento pelo WhatsApp muito prático!"</p>
+       <div class="flex items-center gap-3">
+        <div class="w-12 h-12 bg-construction-yellow rounded-full flex items-center justify-center"><span class="font-bold text-dark-gray">AS</span>
+        </div>
+        <div>
+         <p class="font-bold text-dark-gray">Ana Silva</p>
+         <p class="text-gray-500 text-sm">Arquiteta</p>
+        </div>
+       </div>
+      </div><!-- Testimonial 3 -->
+      <div class="scroll-reveal bg-gray-50 rounded-2xl p-6 border border-gray-100" style="animation-delay: 0.2s;">
+       <div class="flex gap-1 mb-4"><span class="text-construction-yellow text-xl">⭐</span> <span class="text-construction-yellow text-xl">⭐</span> <span class="text-construction-yellow text-xl">⭐</span> <span class="text-construction-yellow text-xl">⭐</span> <span class="text-construction-yellow text-xl">⭐</span>
+       </div>
+       <p class="text-gray-600 mb-4">"Usei para a reforma do meu apartamento. O processo foi muito fácil e o preço foi melhor que a concorrência. Super indico!"</p>
+       <div class="flex items-center gap-3">
+        <div class="w-12 h-12 bg-construction-yellow rounded-full flex items-center justify-center"><span class="font-bold text-dark-gray">CF</span>
+        </div>
+        <div>
+         <p class="font-bold text-dark-gray">Carlos Ferreira</p>
+         <p class="text-gray-500 text-sm">Cliente Particular</p>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Final CTA Section -->
+   <section class="py-20 bg-construction-yellow">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+     <div class="scroll-reveal">
+      <h3 id="cta-title" class="font-display text-4xl md:text-6xl text-dark-gray mb-6">PRECISA DE CAÇAMBA HOJE?</h3>
+      <p class="text-dark-gray/70 text-xl mb-10">Fale conosco agora mesmo e receba um orçamento em minutos!</p><a href="https://wa.me/5511999999999?text=Olá! Preciso de uma caçamba com urgência!" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 bg-whatsapp hover:bg-whatsapp-dark text-white px-10 py-5 rounded-2xl font-bold text-xl transition-all shadow-xl hover:shadow-2xl hover:scale-105">
+       <svg class="w-8 h-8" fill="currentColor" viewbox="0 0 24 24">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+       </svg> Falar no WhatsApp Agora </a>
+     </div>
+    </div>
+   </section><!-- Footer -->
+   <footer id="contato" class="bg-dark-gray pt-16 pb-8">
+    <div class="max-w-6xl mx-auto px-4">
+     <div class="grid md:grid-cols-4 gap-8 mb-12"><!-- Company Info -->
+      <div class="md:col-span-2">
+       <div class="flex items-center gap-3 mb-4">
+        <div class="w-12 h-12 bg-construction-yellow rounded-lg flex items-center justify-center">
+         <svg class="w-8 h-8 text-dark-gray" fill="currentColor" viewbox="0 0 24 24"><path d="M20 8h-3V6c0-1.1-.9-2-2-2H9c-1.1 0-2 .9-2 2v2H4c-1.1 0-2 .9-2 2v10h20V10c0-1.1-.9-2-2-2zM9 6h6v2H9V6zm11 12H4v-6h16v6z" />
+         </svg>
+        </div>
+        <div>
+         <h4 class="font-display text-2xl text-white">ALÔ CAÇAMBAS</h4>
+         <p class="text-xs text-gray-400">Locações de Caçambas</p>
+        </div>
+       </div>
+       <p class="text-gray-400 mb-6">Empresa especializada em locação de caçambas para obras, reformas e descarte de entulho. Atendimento rápido e preços justos.</p>
+       <div class="flex gap-4"><a href="#" class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-construction-yellow hover:text-dark-gray text-white transition-all">
+         <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24">
+          <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+         </svg></a> <a href="#" class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-construction-yellow hover:text-dark-gray text-white transition-all">
+         <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24">
+          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+         </svg></a>
+       </div>
+      </div><!-- Quick Links -->
+      <div>
+       <h4 class="font-bold text-white mb-4">Links Rápidos</h4>
+       <ul class="space-y-2">
+        <li><a href="#sobre" class="text-gray-400 hover:text-construction-yellow transition-colors">Sobre Nós</a></li>
+        <li><a href="#servicos" class="text-gray-400 hover:text-construction-yellow transition-colors">Serviços</a></li>
+        <li><a href="#como-funciona" class="text-gray-400 hover:text-construction-yellow transition-colors">Como Funciona</a></li>
+        <li><a href="#" class="text-gray-400 hover:text-construction-yellow transition-colors">Política de Privacidade</a></li>
+       </ul>
+      </div><!-- Contact Info -->
+      <div>
+       <h4 class="font-bold text-white mb-4">Contato</h4>
+       <ul class="space-y-3">
+        <li class="flex items-center gap-3">
+         <svg class="w-5 h-5 text-construction-yellow" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+         </svg><span id="phone-display" class="text-gray-400">(11) 99999-9999</span></li>
+        <li class="flex items-center gap-3">
+         <svg class="w-5 h-5 text-construction-yellow" fill="currentColor" viewbox="0 0 24 24">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+         </svg><span class="text-gray-400">WhatsApp</span></li>
+        <li class="flex items-center gap-3">
+         <svg class="w-5 h-5 text-construction-yellow" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+         </svg><span id="email-display" class="text-gray-400">contato@alocacambas.com.br</span></li>
+        <li class="flex items-start gap-3">
+         <svg class="w-5 h-5 text-construction-yellow mt-0.5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+         </svg><span class="text-gray-400">São Paulo - SP<br>
+          Atendemos toda a região</span></li>
+       </ul>
+      </div>
+     </div>
+     <div class="border-t border-gray-800 pt-8">
+      <p class="text-center text-gray-500 text-sm">© 2024 Alô Caçambas - Locações de Caçambas. Todos os direitos reservados.</p>
+     </div>
+    </div>
+   </footer><!-- Floating WhatsApp Button --> <a href="https://wa.me/5511999999999?text=Olá! Gostaria de solicitar um orçamento." target="_blank" rel="noopener noreferrer" class="fixed bottom-6 right-6 z-50 bg-whatsapp hover:bg-whatsapp-dark w-16 h-16 rounded-full flex items-center justify-center shadow-lg shadow-whatsapp/30 whatsapp-float transition-colors">
+    <svg class="w-8 h-8 text-white" fill="currentColor" viewbox="0 0 24 24">
+     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+    </svg></a>
+  </div>
+  <script>
+    // Default configuration
+    const defaultConfig = {
+      hero_title: 'LOCAÇÃO DE CAÇAMBAS COM AGILIDADE E CONFIANÇA',
+      hero_subtitle: 'Atendimento rápido, entrega no mesmo dia e suporte imediato via WhatsApp.',
+      about_title: 'QUEM SOMOS',
+      about_text: 'Empresa especializada em locação de caçambas para obras, reformas e descarte de entulho. Trabalhamos com agilidade, pontualidade e compromisso com nossos clientes. Nossa missão é facilitar o descarte responsável de resíduos da construção civil.',
+      cta_title: 'PRECISA DE CAÇAMBA HOJE?',
+      phone_number: '(11) 99999-9999',
+      email_address: 'contato@alocacambas.com.br',
+      primary_color: '#FFC107',
+      secondary_color: '#1a1a1a',
+      text_color: '#ffffff',
+      accent_color: '#25D366',
+      surface_color: '#f9fafb',
+      font_family: 'Inter',
+      font_size: 16
+    };
+
+    // Scroll reveal animation
+    function initScrollReveal() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.scroll-reveal').forEach(el => {
+        observer.observe(el);
+      });
+    }
+
+    // Smooth scroll for navigation
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // Initialize scroll reveal
+    initScrollReveal();
+
+    // Element SDK initialization
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange: async (config) => {
+          // Update hero section
+          const heroTitle = document.getElementById('hero-title');
+          if (heroTitle) {
+            const titleText = config.hero_title || defaultConfig.hero_title;
+            const parts = titleText.split(' ');
+            const midpoint = Math.ceil(parts.length / 2);
+            heroTitle.innerHTML = `${parts.slice(0, midpoint).join(' ')}<br><span class="text-construction-yellow">${parts.slice(midpoint).join(' ')}</span>`;
+          }
+
+          const heroSubtitle = document.getElementById('hero-subtitle');
+          if (heroSubtitle) {
+            heroSubtitle.textContent = config.hero_subtitle || defaultConfig.hero_subtitle;
+          }
+
+          // Update about section
+          const aboutTitle = document.getElementById('about-title');
+          if (aboutTitle) {
+            aboutTitle.textContent = config.about_title || defaultConfig.about_title;
+          }
+
+          const aboutText = document.getElementById('about-text');
+          if (aboutText) {
+            aboutText.textContent = config.about_text || defaultConfig.about_text;
+          }
+
+          // Update CTA section
+          const ctaTitle = document.getElementById('cta-title');
+          if (ctaTitle) {
+            ctaTitle.textContent = config.cta_title || defaultConfig.cta_title;
+          }
+
+          // Update contact info
+          const phoneDisplay = document.getElementById('phone-display');
+          if (phoneDisplay) {
+            phoneDisplay.textContent = config.phone_number || defaultConfig.phone_number;
+          }
+
+          const emailDisplay = document.getElementById('email-display');
+          if (emailDisplay) {
+            emailDisplay.textContent = config.email_address || defaultConfig.email_address;
+          }
+
+          // Apply font family
+          const fontFamily = config.font_family || defaultConfig.font_family;
+          document.body.style.fontFamily = `${fontFamily}, Inter, sans-serif`;
+
+          // Apply font size scaling
+          const fontSize = config.font_size || defaultConfig.font_size;
+          document.documentElement.style.fontSize = `${fontSize}px`;
+        },
+        mapToCapabilities: (config) => ({
+          recolorables: [
+            {
+              get: () => config.primary_color || defaultConfig.primary_color,
+              set: (value) => { config.primary_color = value; window.elementSdk.setConfig({ primary_color: value }); }
+            },
+            {
+              get: () => config.secondary_color || defaultConfig.secondary_color,
+              set: (value) => { config.secondary_color = value; window.elementSdk.setConfig({ secondary_color: value }); }
+            },
+            {
+              get: () => config.text_color || defaultConfig.text_color,
+              set: (value) => { config.text_color = value; window.elementSdk.setConfig({ text_color: value }); }
+            },
+            {
+              get: () => config.accent_color || defaultConfig.accent_color,
+              set: (value) => { config.accent_color = value; window.elementSdk.setConfig({ accent_color: value }); }
+            },
+            {
+              get: () => config.surface_color || defaultConfig.surface_color,
+              set: (value) => { config.surface_color = value; window.elementSdk.setConfig({ surface_color: value }); }
+            }
+          ],
+          borderables: [],
+          fontEditable: {
+            get: () => config.font_family || defaultConfig.font_family,
+            set: (value) => { config.font_family = value; window.elementSdk.setConfig({ font_family: value }); }
+          },
+          fontSizeable: {
+            get: () => config.font_size || defaultConfig.font_size,
+            set: (value) => { config.font_size = value; window.elementSdk.setConfig({ font_size: value }); }
+          }
+        }),
+        mapToEditPanelValues: (config) => new Map([
+          ['hero_title', config.hero_title || defaultConfig.hero_title],
+          ['hero_subtitle', config.hero_subtitle || defaultConfig.hero_subtitle],
+          ['about_title', config.about_title || defaultConfig.about_title],
+          ['about_text', config.about_text || defaultConfig.about_text],
+          ['cta_title', config.cta_title || defaultConfig.cta_title],
+          ['phone_number', config.phone_number || defaultConfig.phone_number],
+          ['email_address', config.email_address || defaultConfig.email_address]
+        ])
+      });
+    }
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9d6c0dcc449d031d',t:'MTc3MjU3NjY5My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
