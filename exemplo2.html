@@ -1,0 +1,674 @@
+<!doctype html>
+<html lang="pt-BR" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resort Premium — Oportunidade Exclusiva</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['"Bebas Neue"', 'sans-serif'],
+            body: ['"DM Sans"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    html, body { height: 100%; margin: 0; }
+    * { box-sizing: border-box; }
+
+    .hero-bg {
+      background: linear-gradient(135deg, #000 0%, #1a1a1a 40%, #0d0d0d 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -30%;
+      width: 80%;
+      height: 200%;
+      background: radial-gradient(ellipse, rgba(255,255,255,0.03) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+    }
+
+    .cta-btn {
+      background: #fff;
+      color: #000;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-btn::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.2));
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(255,255,255,0.2);
+    }
+    .cta-btn:hover::after { opacity: 1; }
+
+    .cta-btn-dark {
+      background: #000;
+      color: #fff;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .cta-btn-dark:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+      background: #111;
+    }
+
+    .whatsapp-btn {
+      background: #25D366;
+      color: #fff;
+      font-weight: 700;
+      transition: all 0.3s;
+    }
+    .whatsapp-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(37,211,102,0.35);
+      background: #20bd5a;
+    }
+
+    .step-card {
+      background: #fafafa;
+      border: 1px solid #e5e5e5;
+      transition: all 0.4s;
+    }
+    .step-card:hover {
+      border-color: #000;
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+    }
+
+    .benefit-item {
+      border-left: 3px solid #000;
+      transition: all 0.3s;
+    }
+    .benefit-item:hover {
+      background: #f5f5f5;
+      padding-left: 1.75rem;
+    }
+
+    .floating-whatsapp {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 999;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: #25D366;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+      cursor: pointer;
+      transition: all 0.3s;
+      animation: pulse-green 2s infinite;
+    }
+    .floating-whatsapp:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 30px rgba(37,211,102,0.5);
+    }
+    @keyframes pulse-green {
+      0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.4); }
+      50% { box-shadow: 0 4px 30px rgba(37,211,102,0.6); }
+    }
+
+    .stat-number {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3.5rem;
+      line-height: 1;
+    }
+
+    .form-input {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: #fff;
+      transition: all 0.3s;
+    }
+    .form-input:focus {
+      outline: none;
+      border-color: #fff;
+      background: rgba(255,255,255,0.12);
+    }
+    .form-input::placeholder { color: rgba(255,255,255,0.4); }
+
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #ddd, transparent);
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    .animate-on-scroll.visible {
+      animation: fadeUp 0.7s ease forwards;
+    }
+
+    .scarcity-bar {
+      background: #e5e5e5;
+      height: 8px;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .scarcity-fill {
+      height: 100%;
+      background: #000;
+      border-radius: 999px;
+      transition: width 1.5s ease;
+    }
+
+    .toast-success {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%) translateY(-100px);
+      background: #000;
+      color: #fff;
+      padding: 16px 32px;
+      border-radius: 8px;
+      z-index: 1000;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      white-space: nowrap;
+    }
+    .toast-success.show {
+      transform: translateX(-50%) translateY(0);
+    }
+  </style>
+  <style>body { box-sizing: border-box; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full">
+  <div id="app-wrapper" class="w-full h-full overflow-auto font-body" style="background:#fff; color:#111;"><!-- Toast -->
+   <div id="toast" class="toast-success">
+    ✓ Cadastro enviado com sucesso!
+   </div><!-- Floating WhatsApp --> <a href="https://wa.me/5511999999999?text=Olá! Quero saber mais sobre o resort." target="_blank" rel="noopener noreferrer" class="floating-whatsapp" aria-label="WhatsApp">
+    <svg width="28" height="28" viewbox="0 0 24 24" fill="white">
+     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+    </svg></a> <!-- ===== HERO SECTION ===== -->
+   <header class="hero-bg w-full">
+    <div class="max-w-6xl mx-auto px-5 py-12 md:py-20">
+     <div class="flex flex-col lg:flex-row items-center gap-10 lg:gap-16"><!-- Left: Copy -->
+      <div class="flex-1 text-center lg:text-left">
+       <div class="inline-block mb-4 px-4 py-1.5 border border-white/20 rounded-full"><span class="text-white/70 text-xs font-semibold tracking-widest uppercase">Oportunidade Exclusiva 2025</span>
+       </div>
+       <h1 id="el-headline" class="font-display text-white text-5xl sm:text-6xl md:text-7xl leading-none mb-5 tracking-tight">SEU REFÚGIO DE<br>
+        ALTO PADRÃO<br>
+        COMEÇA AQUI</h1>
+       <p id="el-subheadline" class="text-white/60 text-lg md:text-xl max-w-lg mx-auto lg:mx-0 mb-8 leading-relaxed">Unidades limitadas em um dos destinos mais valorizados do Brasil. Invista em qualidade de vida e patrimônio.</p>
+       <div class="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start"><button onclick="scrollToForm()" class="cta-btn px-8 py-4 rounded-lg text-sm uppercase tracking-wider" id="el-cta-hero"> Quero mais informações → </button> <a href="https://wa.me/5511999999999?text=Olá! Quero saber mais sobre o resort." target="_blank" rel="noopener noreferrer" class="whatsapp-btn px-8 py-4 rounded-lg text-sm uppercase tracking-wider text-center flex items-center justify-center gap-2">
+         <svg width="18" height="18" viewbox="0 0 24 24" fill="currentColor">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+         </svg> WhatsApp </a>
+       </div>
+      </div><!-- Right: Form -->
+      <div class="w-full lg:w-[400px] flex-shrink-0">
+       <div class="bg-white/5 backdrop-blur border border-white/10 rounded-2xl p-7">
+        <h3 class="font-display text-white text-2xl mb-1 tracking-tight">GARANTA SUA VAGA</h3>
+        <p class="text-white/50 text-sm mb-5">Preencha e receba informações exclusivas</p>
+        <form id="hero-form" onsubmit="handleFormSubmit(event, 'hero-form')"><input type="text" name="name" placeholder="Seu nome completo" required class="form-input w-full px-4 py-3 rounded-lg mb-3 text-sm font-body" aria-label="Nome completo"> <input type="tel" name="phone" placeholder="WhatsApp (DDD + número)" required class="form-input w-full px-4 py-3 rounded-lg mb-3 text-sm font-body" aria-label="WhatsApp"> <input type="email" name="email" placeholder="Seu melhor e-mail" required class="form-input w-full px-4 py-3 rounded-lg mb-4 text-sm font-body" aria-label="E-mail"> <button type="submit" class="cta-btn w-full py-4 rounded-lg text-sm uppercase tracking-wider font-bold"> Quero mais informações → </button>
+        </form>
+        <p class="text-white/30 text-xs mt-3 text-center">🔒 Seus dados estão protegidos</p>
+       </div>
+      </div>
+     </div>
+    </div>
+   </header><!-- ===== DOR + DESEJO ===== -->
+   <section class="w-full py-16 md:py-24 bg-white">
+    <div class="max-w-4xl mx-auto px-5">
+     <div class="animate-on-scroll text-center mb-12"><span class="text-xs font-semibold tracking-widest uppercase text-neutral-400 mb-3 block">A verdade é que...</span>
+      <h2 class="font-display text-4xl md:text-5xl tracking-tight mb-6">VOCÊ MERECE MAIS DO QUE<br>
+       UMA VIDA NO AUTOMÁTICO</h2>
+     </div>
+     <div class="grid md:grid-cols-2 gap-8 animate-on-scroll"><!-- Dor -->
+      <div class="bg-neutral-50 border border-neutral-200 rounded-xl p-7">
+       <div class="w-10 h-10 rounded-full bg-black flex items-center justify-center mb-4"><i data-lucide="x" style="width:18px;height:18px;color:#fff;"></i>
+       </div>
+       <h3 class="font-bold text-lg mb-3">O que você quer deixar para trás</h3>
+       <ul class="space-y-3 text-neutral-600 text-sm leading-relaxed">
+        <li class="flex items-start gap-2"><span class="mt-0.5 text-neutral-400">—</span> Rotina exaustiva sem tempo para viver</li>
+        <li class="flex items-start gap-2"><span class="mt-0.5 text-neutral-400">—</span> Investimentos que não acompanham a inflação</li>
+        <li class="flex items-start gap-2"><span class="mt-0.5 text-neutral-400">—</span> Férias em lugares lotados e sem exclusividade</li>
+        <li class="flex items-start gap-2"><span class="mt-0.5 text-neutral-400">—</span> Patrimônio parado sem valorização real</li>
+       </ul>
+      </div><!-- Desejo -->
+      <div class="bg-black text-white rounded-xl p-7">
+       <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center mb-4"><i data-lucide="check" style="width:18px;height:18px;color:#000;"></i>
+       </div>
+       <h3 class="font-bold text-lg mb-3">O que o resort oferece</h3>
+       <ul class="space-y-3 text-white/70 text-sm leading-relaxed">
+        <li class="flex items-start gap-2"><span class="mt-0.5 text-white/40">✦</span> Momentos de descanso real com sua família</li>
+        <li class="flex items-start gap-2"><span class="mt-0.5 text-white/40">✦</span> Patrimônio com valorização acima do mercado</li>
+        <li class="flex items-start gap-2"><span class="mt-0.5 text-white/40">✦</span> Experiências exclusivas em ambiente premium</li>
+        <li class="flex items-start gap-2"><span class="mt-0.5 text-white/40">✦</span> Investimento inteligente com rentabilidade</li>
+       </ul>
+      </div>
+     </div>
+    </div>
+   </section>
+   <div class="section-divider w-full"></div><!-- ===== BENEFÍCIOS ===== -->
+   <section class="w-full py-16 md:py-24 bg-white">
+    <div class="max-w-5xl mx-auto px-5">
+     <div class="animate-on-scroll text-center mb-14"><span class="text-xs font-semibold tracking-widest uppercase text-neutral-400 mb-3 block">Diferenciais</span>
+      <h2 id="el-benefits-title" class="font-display text-4xl md:text-5xl tracking-tight">POR QUE ESTE RESORT É DIFERENTE</h2>
+     </div>
+     <div class="grid sm:grid-cols-2 gap-5 animate-on-scroll">
+      <div class="benefit-item pl-5 py-5 pr-5 rounded-r-lg transition-all">
+       <div class="flex items-center gap-3 mb-2"><i data-lucide="gem" style="width:20px;height:20px;"></i>
+        <h3 class="font-bold text-base">Alto Padrão Internacional</h3>
+       </div>
+       <p class="text-neutral-500 text-sm leading-relaxed">Acabamentos premium, arquitetura contemporânea e infraestrutura de resort 5 estrelas.</p>
+      </div>
+      <div class="benefit-item pl-5 py-5 pr-5 rounded-r-lg transition-all">
+       <div class="flex items-center gap-3 mb-2"><i data-lucide="shield" style="width:20px;height:20px;"></i>
+        <h3 class="font-bold text-base">Segurança Total 24h</h3>
+       </div>
+       <p class="text-neutral-500 text-sm leading-relaxed">Monitoramento inteligente, controle de acesso biométrico e equipe dedicada.</p>
+      </div>
+      <div class="benefit-item pl-5 py-5 pr-5 rounded-r-lg transition-all">
+       <div class="flex items-center gap-3 mb-2"><i data-lucide="lock" style="width:20px;height:20px;"></i>
+        <h3 class="font-bold text-base">Exclusividade Absoluta</h3>
+       </div>
+       <p class="text-neutral-500 text-sm leading-relaxed">Número limitado de unidades garante privacidade e experiência personalizada.</p>
+      </div>
+      <div class="benefit-item pl-5 py-5 pr-5 rounded-r-lg transition-all">
+       <div class="flex items-center gap-3 mb-2"><i data-lucide="trending-up" style="width:20px;height:20px;"></i>
+        <h3 class="font-bold text-base">Valorização Garantida</h3>
+       </div>
+       <p class="text-neutral-500 text-sm leading-relaxed">Região em crescimento acelerado com histórico de valorização acima de 18% ao ano.</p>
+      </div>
+     </div>
+     <div class="text-center mt-10 animate-on-scroll"><button onclick="scrollToForm()" class="cta-btn-dark px-10 py-4 rounded-lg text-sm uppercase tracking-wider inline-block"> Quero conhecer o projeto → </button>
+     </div>
+    </div>
+   </section><!-- ===== COMO FUNCIONA ===== -->
+   <section class="w-full py-16 md:py-24" style="background:#f7f7f7;">
+    <div class="max-w-5xl mx-auto px-5">
+     <div class="animate-on-scroll text-center mb-14"><span class="text-xs font-semibold tracking-widest uppercase text-neutral-400 mb-3 block">Simples e direto</span>
+      <h2 class="font-display text-4xl md:text-5xl tracking-tight">COMO FUNCIONA</h2>
+     </div>
+     <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 animate-on-scroll">
+      <div class="step-card rounded-xl p-6 text-center">
+       <div class="font-display text-4xl mb-3 text-neutral-300">
+        01
+       </div>
+       <h3 class="font-bold text-sm mb-2">CADASTRE-SE</h3>
+       <p class="text-neutral-500 text-xs leading-relaxed">Preencha o formulário com seus dados de contato</p>
+      </div>
+      <div class="step-card rounded-xl p-6 text-center">
+       <div class="font-display text-4xl mb-3 text-neutral-300">
+        02
+       </div>
+       <h3 class="font-bold text-sm mb-2">CONTATO</h3>
+       <p class="text-neutral-500 text-xs leading-relaxed">Nossa equipe entra em contato em até 24 horas</p>
+      </div>
+      <div class="step-card rounded-xl p-6 text-center">
+       <div class="font-display text-4xl mb-3 text-neutral-300">
+        03
+       </div>
+       <h3 class="font-bold text-sm mb-2">APRESENTAÇÃO</h3>
+       <p class="text-neutral-500 text-xs leading-relaxed">Conheça o projeto completo de forma personalizada</p>
+      </div>
+      <div class="step-card rounded-xl p-6 text-center">
+       <div class="font-display text-4xl mb-3 text-neutral-300">
+        04
+       </div>
+       <h3 class="font-bold text-sm mb-2">AQUISIÇÃO</h3>
+       <p class="text-neutral-500 text-xs leading-relaxed">Condições facilitadas para garantir sua unidade</p>
+      </div>
+     </div>
+    </div>
+   </section><!-- ===== PROVA + CREDIBILIDADE ===== -->
+   <section class="w-full py-16 md:py-24 bg-black text-white">
+    <div class="max-w-5xl mx-auto px-5">
+     <div class="animate-on-scroll text-center mb-14"><span class="text-xs font-semibold tracking-widest uppercase text-white/40 mb-3 block">Números que falam</span>
+      <h2 class="font-display text-4xl md:text-5xl tracking-tight">CREDIBILIDADE COMPROVADA</h2>
+     </div>
+     <div class="grid grid-cols-2 md:grid-cols-4 gap-6 animate-on-scroll">
+      <div class="text-center">
+       <div class="stat-number" data-target="15">
+        0
+       </div>
+       <div class="text-xs text-white/50 mt-1 uppercase tracking-wider">
+        Anos de mercado
+       </div>
+      </div>
+      <div class="text-center">
+       <div class="stat-number" data-target="2500">
+        0
+       </div>
+       <div class="text-xs text-white/50 mt-1 uppercase tracking-wider">
+        Famílias atendidas
+       </div>
+      </div>
+      <div class="text-center">
+       <div class="stat-number" data-target="98">
+        0
+       </div>
+       <div class="text-xs text-white/50 mt-1 uppercase tracking-wider">
+        % Satisfação
+       </div>
+      </div>
+      <div class="text-center">
+       <div class="stat-number" data-target="18">
+        0
+       </div>
+       <div class="text-xs text-white/50 mt-1 uppercase tracking-wider">
+        % Valorização/ano
+       </div>
+      </div>
+     </div>
+     <div class="section-divider w-full my-12" style="background:linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);"></div>
+     <div class="animate-on-scroll max-w-2xl mx-auto text-center">
+      <p class="text-white/50 text-sm leading-relaxed mb-6">Reconhecido pelas principais certificações do setor imobiliário e hoteleiro. Projeto desenvolvido em parceria com escritórios de arquitetura premiados internacionalmente.</p>
+      <div class="flex items-center justify-center gap-8 text-white/20 text-xs font-semibold tracking-widest uppercase"><span>ISO 9001</span> <span>•</span> <span>GPTW</span> <span>•</span> <span>LEED</span> <span>•</span> <span>ABIH</span>
+      </div>
+     </div>
+    </div>
+   </section><!-- ===== ESCASSEZ ===== -->
+   <section class="w-full py-16 md:py-24 bg-white">
+    <div class="max-w-3xl mx-auto px-5 text-center">
+     <div class="animate-on-scroll">
+      <div class="inline-flex items-center gap-2 bg-red-50 text-red-600 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider mb-6"><span class="w-2 h-2 bg-red-500 rounded-full animate-pulse"></span> Vagas se esgotando
+      </div>
+      <h2 id="el-scarcity-title" class="font-display text-4xl md:text-5xl tracking-tight mb-4">RESTAM POUCAS UNIDADES DISPONÍVEIS</h2>
+      <p id="el-scarcity-text" class="text-neutral-500 text-base max-w-xl mx-auto mb-8">Das 120 unidades do empreendimento, mais de 80% já foram reservadas. Não perca a chance de garantir a sua.</p>
+      <div class="max-w-md mx-auto mb-4">
+       <div class="flex justify-between text-xs font-semibold mb-2"><span class="text-neutral-400">Unidades vendidas</span> <span class="text-black">83%</span>
+       </div>
+       <div class="scarcity-bar">
+        <div class="scarcity-fill" id="scarcity-bar-fill" style="width:0%"></div>
+       </div>
+      </div>
+      <p class="text-xs text-neutral-400 mb-8">Atualizado em tempo real — sujeito a disponibilidade</p><button onclick="scrollToForm()" class="cta-btn-dark px-10 py-4 rounded-lg text-sm uppercase tracking-wider inline-block"> Garantir minha unidade → </button>
+     </div>
+    </div>
+   </section><!-- ===== FORMULÁRIO FINAL ===== -->
+   <section id="form-section" class="w-full py-16 md:py-24 bg-black text-white">
+    <div class="max-w-lg mx-auto px-5">
+     <div class="animate-on-scroll text-center">
+      <h2 class="font-display text-4xl md:text-5xl tracking-tight mb-3">FALE COM UM CONSULTOR</h2>
+      <p class="text-white/50 text-sm mb-8">Preencha abaixo e receba uma apresentação exclusiva do projeto</p>
+      <form id="bottom-form" onsubmit="handleFormSubmit(event, 'bottom-form')" class="space-y-3 text-left">
+       <div><label for="bf-name" class="text-white/40 text-xs uppercase tracking-wider mb-1 block">Nome</label> <input type="text" id="bf-name" name="name" placeholder="Seu nome completo" required class="form-input w-full px-4 py-3.5 rounded-lg text-sm font-body">
+       </div>
+       <div><label for="bf-phone" class="text-white/40 text-xs uppercase tracking-wider mb-1 block">WhatsApp</label> <input type="tel" id="bf-phone" name="phone" placeholder="(00) 00000-0000" required class="form-input w-full px-4 py-3.5 rounded-lg text-sm font-body">
+       </div>
+       <div><label for="bf-email" class="text-white/40 text-xs uppercase tracking-wider mb-1 block">E-mail</label> <input type="email" id="bf-email" name="email" placeholder="seu@email.com" required class="form-input w-full px-4 py-3.5 rounded-lg text-sm font-body">
+       </div><button type="submit" class="cta-btn w-full py-4 rounded-lg text-sm uppercase tracking-wider font-bold mt-2"> Quero mais informações → </button>
+      </form>
+      <p class="text-white/20 text-xs mt-4">🔒 Não enviamos spam. Seus dados são confidenciais.</p>
+      <div class="flex items-center justify-center gap-4 mt-6"><a href="https://wa.me/5511999999999?text=Olá! Quero saber mais sobre o resort." target="_blank" rel="noopener noreferrer" class="whatsapp-btn px-6 py-3 rounded-lg text-xs uppercase tracking-wider inline-flex items-center gap-2">
+        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
+         <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+        </svg> Falar pelo WhatsApp </a>
+      </div>
+     </div>
+    </div>
+   </section><!-- ===== FOOTER ===== -->
+   <footer class="w-full py-8 bg-neutral-950 text-center">
+    <p id="el-footer" class="text-neutral-600 text-xs">© 2025 Resort Premium. Todos os direitos reservados. Imagens meramente ilustrativas.</p>
+   </footer>
+  </div>
+  <script>
+    // === CONFIG & SDK ===
+    const defaultConfig = {
+      headline: 'SEU REFÚGIO DE\nALTO PADRÃO\nCOMEÇA AQUI',
+      subheadline: 'Unidades limitadas em um dos destinos mais valorizados do Brasil. Invista em qualidade de vida e patrimônio.',
+      cta_text: 'Quero mais informações →',
+      benefits_title: 'POR QUE ESTE RESORT É DIFERENTE',
+      scarcity_title: 'RESTAM POUCAS UNIDADES DISPONÍVEIS',
+      scarcity_text: 'Das 120 unidades do empreendimento, mais de 80% já foram reservadas. Não perca a chance de garantir a sua.',
+      footer_text: '© 2025 Resort Premium. Todos os direitos reservados. Imagens meramente ilustrativas.',
+      background_color: '#000000',
+      surface_color: '#ffffff',
+      text_color: '#111111',
+      primary_action_color: '#ffffff',
+      secondary_action_color: '#25D366',
+      font_family: 'DM Sans',
+      font_size: 16
+    };
+
+    function applyConfig(config) {
+      const c = Object.assign({}, defaultConfig, config);
+
+      // Text content
+      const headline = document.getElementById('el-headline');
+      if (headline) headline.innerHTML = (c.headline || defaultConfig.headline).replace(/\n/g, '<br>');
+
+      const sub = document.getElementById('el-subheadline');
+      if (sub) sub.textContent = c.subheadline || defaultConfig.subheadline;
+
+      // CTA buttons text
+      const ctaText = c.cta_text || defaultConfig.cta_text;
+      const heroCtaBtn = document.getElementById('el-cta-hero');
+      if (heroCtaBtn) heroCtaBtn.textContent = ctaText;
+      // Update form submit buttons too
+      document.querySelectorAll('form button[type="submit"]').forEach(btn => {
+        btn.textContent = ctaText;
+      });
+
+      const benTitle = document.getElementById('el-benefits-title');
+      if (benTitle) benTitle.textContent = c.benefits_title || defaultConfig.benefits_title;
+
+      const scTitle = document.getElementById('el-scarcity-title');
+      if (scTitle) scTitle.textContent = c.scarcity_title || defaultConfig.scarcity_title;
+
+      const scText = document.getElementById('el-scarcity-text');
+      if (scText) scText.textContent = c.scarcity_text || defaultConfig.scarcity_text;
+
+      const footer = document.getElementById('el-footer');
+      if (footer) footer.textContent = c.footer_text || defaultConfig.footer_text;
+
+      // Colors
+      const bg = c.background_color || defaultConfig.background_color;
+      const surface = c.surface_color || defaultConfig.surface_color;
+      const text = c.text_color || defaultConfig.text_color;
+      const primary = c.primary_action_color || defaultConfig.primary_action_color;
+      const secondary = c.secondary_action_color || defaultConfig.secondary_action_color;
+
+      document.querySelectorAll('.hero-bg').forEach(el => el.style.background = `linear-gradient(135deg, ${bg} 0%, ${lightenColor(bg, 10)} 40%, ${bg} 100%)`);
+      document.querySelectorAll('.cta-btn').forEach(el => {
+        el.style.background = primary;
+        el.style.color = getContrastColor(primary);
+      });
+      document.querySelectorAll('.cta-btn-dark').forEach(el => {
+        el.style.background = bg;
+        el.style.color = getContrastColor(bg);
+      });
+      document.querySelectorAll('.whatsapp-btn').forEach(el => {
+        el.style.background = secondary;
+        el.style.color = getContrastColor(secondary);
+      });
+      document.querySelector('.floating-whatsapp').style.background = secondary;
+
+      // Font
+      const font = c.font_family || defaultConfig.font_family;
+      const baseSize = c.font_size || defaultConfig.font_size;
+      document.body.style.fontFamily = `${font}, 'DM Sans', sans-serif`;
+
+      document.querySelectorAll('p, li, span, label').forEach(el => {
+        if (!el.classList.contains('stat-number') && !el.classList.contains('font-display')) {
+          el.style.fontFamily = `${font}, 'DM Sans', sans-serif`;
+        }
+      });
+    }
+
+    function lightenColor(hex, percent) {
+      const num = parseInt(hex.replace('#', ''), 16);
+      const amt = Math.round(2.55 * percent);
+      const R = Math.min(255, (num >> 16) + amt);
+      const G = Math.min(255, ((num >> 8) & 0x00FF) + amt);
+      const B = Math.min(255, (num & 0x0000FF) + amt);
+      return `#${(1 << 24 | R << 16 | G << 8 | B).toString(16).slice(1)}`;
+    }
+
+    function getContrastColor(hex) {
+      const r = parseInt(hex.slice(1, 3), 16);
+      const g = parseInt(hex.slice(3, 5), 16);
+      const b = parseInt(hex.slice(5, 7), 16);
+      return (r * 299 + g * 587 + b * 114) / 1000 >= 128 ? '#000000' : '#ffffff';
+    }
+
+    // Init Element SDK
+    window.elementSdk.init({
+      defaultConfig,
+      onConfigChange: async (config) => applyConfig(config),
+      mapToCapabilities: (config) => ({
+        recolorables: [
+          { get: () => config.background_color || defaultConfig.background_color, set: (v) => { config.background_color = v; window.elementSdk.setConfig({ background_color: v }); } },
+          { get: () => config.surface_color || defaultConfig.surface_color, set: (v) => { config.surface_color = v; window.elementSdk.setConfig({ surface_color: v }); } },
+          { get: () => config.text_color || defaultConfig.text_color, set: (v) => { config.text_color = v; window.elementSdk.setConfig({ text_color: v }); } },
+          { get: () => config.primary_action_color || defaultConfig.primary_action_color, set: (v) => { config.primary_action_color = v; window.elementSdk.setConfig({ primary_action_color: v }); } },
+          { get: () => config.secondary_action_color || defaultConfig.secondary_action_color, set: (v) => { config.secondary_action_color = v; window.elementSdk.setConfig({ secondary_action_color: v }); } },
+        ],
+        borderables: [],
+        fontEditable: {
+          get: () => config.font_family || defaultConfig.font_family,
+          set: (v) => { config.font_family = v; window.elementSdk.setConfig({ font_family: v }); }
+        },
+        fontSizeable: {
+          get: () => config.font_size || defaultConfig.font_size,
+          set: (v) => { config.font_size = v; window.elementSdk.setConfig({ font_size: v }); }
+        }
+      }),
+      mapToEditPanelValues: (config) => new Map([
+        ['headline', config.headline || defaultConfig.headline],
+        ['subheadline', config.subheadline || defaultConfig.subheadline],
+        ['cta_text', config.cta_text || defaultConfig.cta_text],
+        ['benefits_title', config.benefits_title || defaultConfig.benefits_title],
+        ['scarcity_title', config.scarcity_title || defaultConfig.scarcity_title],
+        ['scarcity_text', config.scarcity_text || defaultConfig.scarcity_text],
+        ['footer_text', config.footer_text || defaultConfig.footer_text],
+      ])
+    });
+
+    // === FORM HANDLING ===
+    function handleFormSubmit(e, formId) {
+      e.preventDefault();
+      const form = document.getElementById(formId);
+      const btn = form.querySelector('button[type="submit"]');
+      const origText = btn.textContent;
+      btn.textContent = 'Enviando...';
+      btn.disabled = true;
+
+      setTimeout(() => {
+        btn.textContent = '✓ Enviado!';
+        form.reset();
+        showToast();
+        setTimeout(() => {
+          btn.textContent = origText;
+          btn.disabled = false;
+        }, 2000);
+      }, 1000);
+    }
+
+    function showToast() {
+      const toast = document.getElementById('toast');
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 3000);
+    }
+
+    function scrollToForm() {
+      document.getElementById('form-section').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // === SCROLL ANIMATIONS ===
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    // === COUNTER ANIMATION ===
+    function animateCounters() {
+      document.querySelectorAll('.stat-number').forEach(el => {
+        const target = parseInt(el.dataset.target);
+        const duration = 2000;
+        const step = target / (duration / 16);
+        let current = 0;
+        const timer = setInterval(() => {
+          current += step;
+          if (current >= target) {
+            current = target;
+            clearInterval(timer);
+          }
+          el.textContent = Math.floor(current).toLocaleString('pt-BR');
+          if (target === 98 || target === 18) {
+            el.textContent = Math.floor(current) + '%';
+          } else if (target === 15) {
+            el.textContent = Math.floor(current) + '+';
+          } else {
+            el.textContent = Math.floor(current).toLocaleString('pt-BR') + '+';
+          }
+        }, 16);
+      });
+    }
+
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateCounters();
+          counterObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    // === INIT ===
+    document.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+
+      document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+
+      const statsSection = document.querySelector('.stat-number');
+      if (statsSection) counterObserver.observe(statsSection.closest('section'));
+
+      // Animate scarcity bar
+      setTimeout(() => {
+        const fill = document.getElementById('scarcity-bar-fill');
+        if (fill) fill.style.width = '83%';
+      }, 500);
+    });
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9de0399781d60315',t:'MTc3Mzc5NDgzNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

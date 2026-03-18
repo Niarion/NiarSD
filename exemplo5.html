@@ -1,0 +1,730 @@
+<!doctype html>
+<html lang="pt-BR" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maison Austral</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&amp;family=Darker+Grotesque:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-bg: #0a0a0a;
+      --color-surface: #161616;
+      --color-text: #e8e4df;
+      --color-accent: #c9a96e;
+      --color-subtle: #6b6560;
+    }
+    html { height: 100%; }
+    body {
+      height: 100%;
+      margin: 0;
+      font-family: 'Darker Grotesque', sans-serif;
+      background: var(--color-bg);
+      color: var(--color-text);
+      overflow-x: hidden;
+    }
+    .font-serif-hero { font-family: 'Cormorant Garamond', serif; }
+    .font-sans-modern { font-family: 'Darker Grotesque', sans-serif; }
+
+    /* Reveal animations */
+    .reveal {
+      opacity: 0;
+      transform: translateY(60px);
+      transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-80px);
+      transition: opacity 1.4s cubic-bezier(0.16, 1, 0.3, 1), transform 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal-left.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(80px);
+      transition: opacity 1.4s cubic-bezier(0.16, 1, 0.3, 1), transform 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal-right.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .reveal-scale {
+      opacity: 0;
+      transform: scale(0.9);
+      transition: opacity 1.6s cubic-bezier(0.16, 1, 0.3, 1), transform 1.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal-scale.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* Stagger delays */
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.25s; }
+    .delay-3 { transition-delay: 0.4s; }
+    .delay-4 { transition-delay: 0.55s; }
+    .delay-5 { transition-delay: 0.7s; }
+
+    /* Hero cinematic overlay */
+    .hero-gradient {
+      background: linear-gradient(180deg, rgba(10,10,10,0.3) 0%, rgba(10,10,10,0.1) 40%, rgba(10,10,10,0.7) 80%, rgba(10,10,10,1) 100%);
+    }
+
+    /* Gold line */
+    .gold-line {
+      width: 60px;
+      height: 1px;
+      background: var(--color-accent);
+    }
+    .gold-line-v {
+      width: 1px;
+      height: 60px;
+      background: var(--color-accent);
+    }
+
+    /* Editorial text styling */
+    .editorial-dropcap::first-letter {
+      font-family: 'Cormorant Garamond', serif;
+      float: left;
+      font-size: 4.5em;
+      line-height: 0.8;
+      padding-right: 12px;
+      margin-top: 6px;
+      color: var(--color-accent);
+      font-weight: 300;
+    }
+
+    /* Gallery image placeholders with gradients */
+    .img-placeholder-1 {
+      background: linear-gradient(135deg, #1a1a1a 0%, #2a2520 40%, #1a1612 70%, #0d0d0d 100%);
+    }
+    .img-placeholder-2 {
+      background: linear-gradient(220deg, #0d0d0d 0%, #1a1a1a 30%, #1e1915 60%, #2a2218 100%);
+    }
+    .img-placeholder-3 {
+      background: linear-gradient(160deg, #151515 0%, #1a1816 40%, #201c17 70%, #0f0e0d 100%);
+    }
+    .img-placeholder-4 {
+      background: linear-gradient(190deg, #1e1e1e 0%, #181614 50%, #252015 100%);
+    }
+    .img-placeholder-5 {
+      background: linear-gradient(145deg, #0d0b09 0%, #1a1714 40%, #231f1a 70%, #121110 100%);
+    }
+    .img-placeholder-6 {
+      background: linear-gradient(200deg, #141414 0%, #1c1916 50%, #0e0d0c 100%);
+    }
+
+    /* Smooth scroll */
+    html { scroll-behavior: smooth; }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--color-bg); }
+    ::-webkit-scrollbar-thumb { background: var(--color-subtle); border-radius: 2px; }
+
+    /* Nav blur */
+    .nav-blur {
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+
+    /* Parallax shimmer on hover */
+    .shimmer-hover {
+      position: relative;
+      overflow: hidden;
+    }
+    .shimmer-hover::after {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%; width: 50%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(201,169,110,0.06), transparent);
+      transition: left 0.8s ease;
+    }
+    .shimmer-hover:hover::after {
+      left: 150%;
+    }
+
+    /* Floating label */
+    .vertical-text {
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      letter-spacing: 0.3em;
+    }
+
+    /* Cinematic bars */
+    .cinema-bar {
+      height: 40px;
+      background: var(--color-bg);
+    }
+
+    /* Button hover */
+    .btn-luxury {
+      position: relative;
+      overflow: hidden;
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .btn-luxury::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 0; height: 100%;
+      background: var(--color-accent);
+      transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 0;
+    }
+    .btn-luxury:hover::before { width: 100%; }
+    .btn-luxury:hover { color: var(--color-bg); }
+    .btn-luxury span { position: relative; z-index: 1; }
+
+    /* Pulse dot */
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.5); }
+    }
+    .pulse-dot { animation: pulse-dot 3s ease-in-out infinite; }
+
+    /* Main wrapper */
+    .main-wrapper {
+      width: 100%;
+      height: 100%;
+      overflow-y: auto;
+      overflow-x: hidden;
+      background: var(--color-bg);
+    }
+
+    /* Experience card */
+    .exp-card {
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .exp-card:hover {
+      transform: translateY(-8px);
+    }
+
+    /* Grain texture overlay */
+    .grain-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    }
+  </style>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            luxbg: '#0a0a0a',
+            luxsurface: '#161616',
+            luxtext: '#e8e4df',
+            luxaccent: '#c9a96e',
+            luxsubtle: '#6b6560',
+          }
+        }
+      }
+    }
+  </script>
+  <style>body { box-sizing: border-box; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full"><!-- Film grain overlay -->
+  <div class="grain-overlay"></div>
+  <div class="main-wrapper" id="mainWrapper"><!-- Navigation -->
+   <nav id="mainNav" class="fixed top-0 left-0 w-full z-50 transition-all duration-700" style="background: transparent;">
+    <div class="flex items-center justify-between px-6 md:px-12 py-5">
+     <div class="flex items-center gap-3">
+      <div class="w-2 h-2 rounded-full bg-luxaccent pulse-dot"></div><span class="font-serif-hero text-lg md:text-xl tracking-widest uppercase" style="color: var(--color-text);" id="navBrand">Maison Austral</span>
+     </div>
+     <div class="hidden md:flex items-center gap-10"><a href="#narrative" class="font-sans-modern text-sm tracking-widest uppercase opacity-60 hover:opacity-100 transition-opacity duration-500" style="color: var(--color-text);">Narrativa</a> <a href="#gallery" class="font-sans-modern text-sm tracking-widest uppercase opacity-60 hover:opacity-100 transition-opacity duration-500" style="color: var(--color-text);">Galeria</a> <a href="#experience" class="font-sans-modern text-sm tracking-widest uppercase opacity-60 hover:opacity-100 transition-opacity duration-500" style="color: var(--color-text);">Experiências</a> <a href="#exclusivity" class="font-sans-modern text-sm tracking-widest uppercase opacity-60 hover:opacity-100 transition-opacity duration-500" style="color: var(--color-text);">Exclusividade</a>
+     </div><button id="menuToggle" class="md:hidden" aria-label="Menu"> <i data-lucide="menu" style="color: var(--color-text); width: 24px; height: 24px;"></i> </button>
+    </div>
+   </nav><!-- Mobile Menu -->
+   <div id="mobileMenu" class="fixed inset-0 z-[60] flex items-center justify-center transition-all duration-700" style="background: var(--color-bg); opacity: 0; pointer-events: none;"><button id="menuClose" class="absolute top-6 right-6" aria-label="Fechar menu"> <i data-lucide="x" style="color: var(--color-text); width: 28px; height: 28px;"></i> </button>
+    <div class="flex flex-col items-center gap-8"><a href="#narrative" class="mobile-nav-link font-serif-hero text-3xl tracking-wider opacity-60 hover:opacity-100 transition-opacity" style="color: var(--color-text);">Narrativa</a> <a href="#gallery" class="mobile-nav-link font-serif-hero text-3xl tracking-wider opacity-60 hover:opacity-100 transition-opacity" style="color: var(--color-text);">Galeria</a> <a href="#experience" class="mobile-nav-link font-serif-hero text-3xl tracking-wider opacity-60 hover:opacity-100 transition-opacity" style="color: var(--color-text);">Experiências</a> <a href="#exclusivity" class="mobile-nav-link font-serif-hero text-3xl tracking-wider opacity-60 hover:opacity-100 transition-opacity" style="color: var(--color-text);">Exclusividade</a>
+     <div class="gold-line mt-4"></div><a href="#cta" class="mobile-nav-link font-sans-modern text-sm tracking-widest uppercase mt-2" style="color: var(--color-accent);">Solicitar Acesso</a>
+    </div>
+   </div><!-- ═══════════════════════════════════════════ --> <!-- HERO SECTION --> <!-- ═══════════════════════════════════════════ -->
+   <section id="hero" class="relative w-full" style="height: 100%;"><!-- Cinematic background -->
+    <div class="absolute inset-0 img-placeholder-1"><!-- Dramatic light rays -->
+     <div class="absolute inset-0" style="background: radial-gradient(ellipse 60% 80% at 30% 40%, rgba(201,169,110,0.08) 0%, transparent 60%);"></div>
+     <div class="absolute inset-0" style="background: radial-gradient(ellipse 40% 60% at 70% 30%, rgba(255,255,255,0.03) 0%, transparent 50%);"></div>
+    </div>
+    <div class="hero-gradient absolute inset-0"></div><!-- Side label -->
+    <div class="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 hidden md:block">
+     <p class="vertical-text font-sans-modern text-xs tracking-widest uppercase" style="color: var(--color-subtle);">Resort &amp; Residências Privadas</p>
+    </div><!-- Hero content -->
+    <div class="relative h-full flex flex-col justify-end pb-16 md:pb-24 px-6 md:px-20 lg:px-32">
+     <div class="max-w-4xl">
+      <div class="gold-line mb-8 reveal delay-1"></div>
+      <h1 id="heroHeadline" class="font-serif-hero text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-light leading-[0.95] tracking-tight mb-6 reveal delay-2" style="color: var(--color-text);">Onde o silêncio<br>
+       encontra o mar</h1>
+      <p id="heroSubheadline" class="font-sans-modern text-base md:text-lg font-light tracking-wider max-w-lg mb-10 reveal delay-3" style="color: var(--color-subtle);">Um refúgio além do tempo — onde cada instante é composto com a precisão de uma obra-prima</p><a href="#narrative" class="inline-flex items-center gap-3 group reveal delay-4"> <span class="font-sans-modern text-sm tracking-widest uppercase" style="color: var(--color-accent);">Descobrir</span> <i data-lucide="arrow-down" style="color: var(--color-accent); width: 16px; height: 16px;" class="group-hover:translate-y-1 transition-transform duration-500"></i> </a>
+     </div><!-- Scroll indicator -->
+     <div class="absolute bottom-8 right-8 md:right-16 flex flex-col items-center gap-2 reveal delay-5">
+      <div class="w-px h-12" style="background: linear-gradient(to bottom, transparent, var(--color-accent));"></div><span class="font-sans-modern text-[10px] tracking-widest uppercase" style="color: var(--color-subtle);">Scroll</span>
+     </div>
+    </div>
+   </section><!-- Cinema bar transition -->
+   <div class="cinema-bar"></div><!-- ═══════════════════════════════════════════ --> <!-- NARRATIVE / STORYTELLING --> <!-- ═══════════════════════════════════════════ -->
+   <section id="narrative" class="relative w-full py-20 md:py-32 px-6 md:px-16 lg:px-24" style="background: var(--color-bg);"><!-- Decorative number -->
+    <div class="absolute top-12 right-8 md:right-16"><span class="font-serif-hero text-[120px] md:text-[200px] font-light leading-none" style="color: rgba(201,169,110,0.04);">01</span>
+    </div>
+    <div class="max-w-6xl mx-auto">
+     <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8 items-start"><!-- Left column: Editorial text -->
+      <div class="md:col-span-7 md:pr-12">
+       <p class="font-sans-modern text-xs tracking-[0.4em] uppercase mb-6 reveal" style="color: var(--color-accent);">A Narrativa</p>
+       <h2 id="narrativeTitle" class="font-serif-hero text-3xl md:text-5xl lg:text-6xl font-light leading-tight mb-10 reveal delay-1" style="color: var(--color-text);">A arte de existir<br>
+        sem pressa</h2>
+       <div class="gold-line mb-10 reveal delay-2"></div>
+       <div id="narrativeBody" class="space-y-6 reveal delay-3">
+        <p class="font-sans-modern text-base md:text-lg font-light leading-relaxed editorial-dropcap" style="color: var(--color-subtle);">Há lugares que não se visitam — se habitam. Maison Austral nasceu da convicção de que o verdadeiro luxo é o privilégio de existir em harmonia com o extraordinário. Cada amanhecer aqui é uma composição de luz e silêncio que nenhum artifício poderia reproduzir.</p>
+        <p class="font-sans-modern text-base md:text-lg font-light leading-relaxed" style="color: var(--color-subtle);">Aqui, a arquitetura conversa com a paisagem. Os materiais nobres — pedra, madeira, vidro — são dispostos como palavras em um poema: com intenção, ritmo e espaço para o que não precisa ser dito. Cada detalhe foi pensado não para impressionar, mas para emocionar.</p>
+        <p class="font-sans-modern text-base md:text-lg font-light leading-relaxed" style="color: var(--color-subtle);">Este não é um destino. É uma declaração sobre como a vida deveria ser vivida — com lentidão deliberada, beleza intencional e a liberdade rara de simplesmente ser.</p>
+       </div>
+      </div><!-- Right column: Artistic image stack -->
+      <div class="md:col-span-5 relative mt-8 md:mt-16">
+       <div class="relative">
+        <div class="img-placeholder-2 w-full aspect-[3/4] reveal-right delay-2 shimmer-hover" style="border: 1px solid rgba(201,169,110,0.1);"></div>
+        <div class="absolute -bottom-8 -left-8 md:-left-12 w-2/3 aspect-square img-placeholder-3 reveal-right delay-4 shimmer-hover" style="border: 1px solid rgba(201,169,110,0.1);"></div><!-- Floating caption -->
+        <div class="absolute -bottom-4 right-4 reveal delay-5">
+         <p class="font-serif-hero text-sm italic" style="color: var(--color-accent);">Lat. 27°S — silêncio absoluto</p>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- ═══════════════════════════════════════════ --> <!-- ARTISTIC GALLERY --> <!-- ═══════════════════════════════════════════ -->
+   <section id="gallery" class="relative w-full py-20 md:py-32" style="background: var(--color-surface);"><!-- Section label -->
+    <div class="px-6 md:px-16 lg:px-24 mb-16">
+     <div class="flex items-center gap-6 reveal">
+      <div class="gold-line"></div>
+      <p class="font-sans-modern text-xs tracking-[0.4em] uppercase" style="color: var(--color-accent);">Galeria</p>
+     </div>
+     <h2 class="font-serif-hero text-3xl md:text-5xl font-light mt-6 reveal delay-1" style="color: var(--color-text);">Fragmentos de um sonho</h2>
+    </div><!-- Creative grid -->
+    <div class="px-4 md:px-12">
+     <div class="grid grid-cols-12 gap-3 md:gap-4"><!-- Large cinematic panel -->
+      <div class="col-span-12 md:col-span-8 aspect-[16/9] img-placeholder-1 reveal-scale shimmer-hover relative overflow-hidden" style="border: 1px solid rgba(201,169,110,0.08);">
+       <div class="absolute bottom-4 left-4 md:bottom-6 md:left-6">
+        <p class="font-sans-modern text-[10px] tracking-[0.3em] uppercase" style="color: var(--color-subtle);">Vista Principal</p>
+       </div>
+       <div class="absolute top-4 right-4 md:top-6 md:right-6">
+        <div class="w-8 h-8 rounded-full flex items-center justify-center" style="border: 1px solid var(--color-accent);"><i data-lucide="maximize-2" style="color: var(--color-accent); width: 12px; height: 12px;"></i>
+        </div>
+       </div>
+      </div><!-- Tall portrait -->
+      <div class="col-span-6 md:col-span-4 md:row-span-2 img-placeholder-4 reveal-scale delay-2 shimmer-hover relative" style="aspect-ratio: 3/5; border: 1px solid rgba(201,169,110,0.08);">
+       <div class="absolute bottom-4 left-4">
+        <p class="font-sans-modern text-[10px] tracking-[0.3em] uppercase" style="color: var(--color-subtle);">Amanhecer</p>
+       </div>
+      </div><!-- Square -->
+      <div class="col-span-6 md:col-span-4 aspect-square img-placeholder-5 reveal-scale delay-3 shimmer-hover relative" style="border: 1px solid rgba(201,169,110,0.08);">
+       <div class="absolute bottom-4 left-4">
+        <p class="font-sans-modern text-[10px] tracking-[0.3em] uppercase" style="color: var(--color-subtle);">Interior</p>
+       </div>
+      </div><!-- Wide landscape -->
+      <div class="col-span-12 md:col-span-4 aspect-[2/1] img-placeholder-6 reveal-scale delay-4 shimmer-hover relative" style="border: 1px solid rgba(201,169,110,0.08);">
+       <div class="absolute bottom-4 left-4">
+        <p class="font-sans-modern text-[10px] tracking-[0.3em] uppercase" style="color: var(--color-subtle);">Natureza</p>
+       </div>
+      </div>
+     </div>
+    </div><!-- Gallery counter -->
+    <div class="px-6 md:px-16 lg:px-24 mt-12 flex items-center justify-between reveal delay-5">
+     <p class="font-serif-hero text-sm italic" style="color: var(--color-subtle);">Seleção editorial — Temporada 2025</p>
+     <p class="font-sans-modern text-xs tracking-widest" style="color: var(--color-subtle);">01 / 06</p>
+    </div>
+   </section><!-- ═══════════════════════════════════════════ --> <!-- EXPERIENCE / SENSORIAL --> <!-- ═══════════════════════════════════════════ -->
+   <section id="experience" class="relative w-full py-20 md:py-32 px-6 md:px-16 lg:px-24" style="background: var(--color-bg);"><!-- Decorative number -->
+    <div class="absolute top-12 left-8 md:left-16"><span class="font-serif-hero text-[120px] md:text-[200px] font-light leading-none" style="color: rgba(201,169,110,0.04);">03</span>
+    </div>
+    <div class="max-w-6xl mx-auto">
+     <div class="flex items-center gap-6 mb-6 reveal">
+      <div class="gold-line"></div>
+      <p class="font-sans-modern text-xs tracking-[0.4em] uppercase" style="color: var(--color-accent);">Experiências</p>
+     </div>
+     <h2 id="experienceTitle" class="font-serif-hero text-3xl md:text-5xl lg:text-6xl font-light mb-16 md:mb-24 reveal delay-1" style="color: var(--color-text);">Sensações que permanecem</h2><!-- Experience cards -->
+     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8"><!-- Card 1 -->
+      <div class="exp-card reveal delay-2">
+       <div class="img-placeholder-2 w-full aspect-[4/5] mb-6 shimmer-hover" style="border: 1px solid rgba(201,169,110,0.08);"></div>
+       <div class="gold-line-v mx-auto mb-4" style="height: 30px;"></div>
+       <h3 class="font-serif-hero text-2xl md:text-3xl font-light text-center mb-3" style="color: var(--color-text);">Arquitetura</h3>
+       <p class="font-sans-modern text-sm font-light text-center leading-relaxed" style="color: var(--color-subtle);">Linhas que conversam com o horizonte. Espaços projetados para enquadrar a natureza como arte.</p>
+      </div><!-- Card 2 -->
+      <div class="exp-card reveal delay-3 md:mt-12">
+       <div class="img-placeholder-5 w-full aspect-[4/5] mb-6 shimmer-hover" style="border: 1px solid rgba(201,169,110,0.08);"></div>
+       <div class="gold-line-v mx-auto mb-4" style="height: 30px;"></div>
+       <h3 class="font-serif-hero text-2xl md:text-3xl font-light text-center mb-3" style="color: var(--color-text);">Natureza</h3>
+       <p class="font-sans-modern text-sm font-light text-center leading-relaxed" style="color: var(--color-subtle);">Mata atlântica intocada, praias privativas e um ecossistema preservado com reverência.</p>
+      </div><!-- Card 3 -->
+      <div class="exp-card reveal delay-4">
+       <div class="img-placeholder-3 w-full aspect-[4/5] mb-6 shimmer-hover" style="border: 1px solid rgba(201,169,110,0.08);"></div>
+       <div class="gold-line-v mx-auto mb-4" style="height: 30px;"></div>
+       <h3 class="font-serif-hero text-2xl md:text-3xl font-light text-center mb-3" style="color: var(--color-text);">Momentos</h3>
+       <p class="font-sans-modern text-sm font-light text-center leading-relaxed" style="color: var(--color-subtle);">Jantares sob as estrelas, banhos ao amanhecer, silêncios compartilhados que dizem tudo.</p>
+      </div>
+     </div>
+    </div>
+   </section><!-- Divider -->
+   <div class="w-full flex justify-center py-12" style="background: var(--color-bg);">
+    <div class="flex items-center gap-6">
+     <div class="gold-line"></div>
+     <div class="w-2 h-2 rounded-full" style="background: var(--color-accent);"></div>
+     <div class="gold-line"></div>
+    </div>
+   </div><!-- ═══════════════════════════════════════════ --> <!-- EXCLUSIVITY --> <!-- ═══════════════════════════════════════════ -->
+   <section id="exclusivity" class="relative w-full py-20 md:py-32 px-6 md:px-16 lg:px-24" style="background: var(--color-bg);">
+    <div class="max-w-5xl mx-auto">
+     <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center"><!-- Image -->
+      <div class="md:col-span-5 order-2 md:order-1">
+       <div class="relative">
+        <div class="img-placeholder-4 w-full aspect-[3/4] reveal-left shimmer-hover" style="border: 1px solid rgba(201,169,110,0.08);"></div>
+        <div class="absolute -top-3 -right-3 md:-top-4 md:-right-4 w-12 h-12 md:w-16 md:h-16 flex items-center justify-center" style="background: var(--color-accent);"><span class="font-serif-hero text-lg md:text-xl font-light" style="color: var(--color-bg);">MA</span>
+        </div>
+       </div>
+      </div><!-- Text -->
+      <div class="md:col-span-7 md:pl-8 order-1 md:order-2">
+       <p class="font-sans-modern text-xs tracking-[0.4em] uppercase mb-6 reveal" style="color: var(--color-accent);">Exclusividade</p>
+       <h2 id="exclusivityTitle" class="font-serif-hero text-3xl md:text-5xl lg:text-6xl font-light leading-tight mb-8 reveal delay-1" style="color: var(--color-text);">Para quem entende<br>
+        que menos é raro</h2>
+       <div class="gold-line mb-8 reveal delay-2"></div>
+       <p class="font-sans-modern text-base md:text-lg font-light leading-relaxed mb-6 reveal delay-3" style="color: var(--color-subtle);">Maison Austral não está aberto ao público. É um universo reservado a um círculo restrito de indivíduos que compartilham uma mesma compreensão: a de que o verdadeiro privilégio não se compra — se reconhece.</p>
+       <p class="font-sans-modern text-base md:text-lg font-light leading-relaxed mb-8 reveal delay-4" style="color: var(--color-subtle);">Com apenas 24 residências privativas dispostas em 200 hectares de costa preservada, cada proprietário torna-se guardião de um patrimônio natural e estético inigualável.</p><!-- Stats -->
+       <div class="grid grid-cols-3 gap-6 reveal delay-5">
+        <div>
+         <p class="font-serif-hero text-3xl md:text-4xl font-light" style="color: var(--color-accent);">24</p>
+         <p class="font-sans-modern text-xs tracking-wider uppercase mt-1" style="color: var(--color-subtle);">Residências</p>
+        </div>
+        <div>
+         <p class="font-serif-hero text-3xl md:text-4xl font-light" style="color: var(--color-accent);">200</p>
+         <p class="font-sans-modern text-xs tracking-wider uppercase mt-1" style="color: var(--color-subtle);">Hectares</p>
+        </div>
+        <div>
+         <p class="font-serif-hero text-3xl md:text-4xl font-light" style="color: var(--color-accent);">∞</p>
+         <p class="font-sans-modern text-xs tracking-wider uppercase mt-1" style="color: var(--color-subtle);">Silêncio</p>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- ═══════════════════════════════════════════ --> <!-- ACQUISITION / ASSOCIATION --> <!-- ═══════════════════════════════════════════ -->
+   <section class="relative w-full py-20 md:py-24 px-6 md:px-16 lg:px-24" style="background: var(--color-surface);">
+    <div class="max-w-4xl mx-auto text-center">
+     <p class="font-sans-modern text-xs tracking-[0.4em] uppercase mb-6 reveal" style="color: var(--color-accent);">Associação</p>
+     <h2 class="font-serif-hero text-2xl md:text-4xl font-light leading-snug mb-8 reveal delay-1" style="color: var(--color-text);">Tornar-se parte de Maison Austral é um processo discreto, pessoal e por convite.</h2>
+     <div class="gold-line mx-auto mb-8 reveal delay-2"></div>
+     <p class="font-sans-modern text-sm md:text-base font-light leading-relaxed max-w-2xl mx-auto mb-6 reveal delay-3" style="color: var(--color-subtle);">Não há formulários públicos, filas de espera ou catálogos. Cada apresentação é conduzida de forma individual, respeitando o tempo e a intenção de quem nos procura. Se este espaço ressoa com seus valores, estamos prontos para uma conversa.</p><!-- Process steps -->
+     <div class="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12 mt-12 reveal delay-4">
+      <div class="flex items-center gap-3">
+       <div class="w-8 h-8 rounded-full flex items-center justify-center" style="border: 1px solid var(--color-accent);"><span class="font-serif-hero text-sm" style="color: var(--color-accent);">1</span>
+       </div><span class="font-sans-modern text-sm" style="color: var(--color-subtle);">Contato inicial</span>
+      </div>
+      <div class="hidden md:block gold-line" style="width: 40px;"></div>
+      <div class="flex items-center gap-3">
+       <div class="w-8 h-8 rounded-full flex items-center justify-center" style="border: 1px solid var(--color-accent);"><span class="font-serif-hero text-sm" style="color: var(--color-accent);">2</span>
+       </div><span class="font-sans-modern text-sm" style="color: var(--color-subtle);">Apresentação privada</span>
+      </div>
+      <div class="hidden md:block gold-line" style="width: 40px;"></div>
+      <div class="flex items-center gap-3">
+       <div class="w-8 h-8 rounded-full flex items-center justify-center" style="border: 1px solid var(--color-accent);"><span class="font-serif-hero text-sm" style="color: var(--color-accent);">3</span>
+       </div><span class="font-sans-modern text-sm" style="color: var(--color-subtle);">Boas-vindas</span>
+      </div>
+     </div>
+    </div>
+   </section><!-- ═══════════════════════════════════════════ --> <!-- FINAL CTA --> <!-- ═══════════════════════════════════════════ -->
+   <section id="cta" class="relative w-full py-24 md:py-40 px-6 md:px-16 lg:px-24" style="background: var(--color-bg);"><!-- Background atmosphere -->
+    <div class="absolute inset-0" style="background: radial-gradient(ellipse 50% 60% at 50% 50%, rgba(201,169,110,0.04) 0%, transparent 70%);"></div>
+    <div class="relative max-w-3xl mx-auto text-center">
+     <div class="gold-line mx-auto mb-10 reveal"></div>
+     <h2 class="font-serif-hero text-3xl md:text-5xl lg:text-6xl font-light leading-tight mb-6 reveal delay-1" style="color: var(--color-text);">Alguns lugares existem<br>
+      apenas para quem sabe procurar</h2>
+     <p class="font-sans-modern text-sm md:text-base font-light mb-12 reveal delay-2" style="color: var(--color-subtle);">Se estas palavras encontraram você, talvez seja o momento.</p>
+     <div class="flex flex-col sm:flex-row items-center justify-center gap-4 reveal delay-3"><button id="ctaBtn1" class="btn-luxury px-8 py-4 tracking-widest text-xs uppercase font-sans-modern" style="border: 1px solid var(--color-accent); color: var(--color-accent); background: transparent;"> <span id="ctaText">Solicitar Acesso Privado</span> </button> <button class="btn-luxury px-8 py-4 tracking-widest text-xs uppercase font-sans-modern" style="border: 1px solid rgba(107,101,96,0.3); color: var(--color-subtle); background: transparent;"> <span>Agendar Apresentação</span> </button>
+     </div><!-- Trust marks -->
+     <div class="flex items-center justify-center gap-8 mt-16 reveal delay-4">
+      <div class="flex items-center gap-2"><i data-lucide="shield" style="color: var(--color-subtle); width: 14px; height: 14px;"></i> <span class="font-sans-modern text-[10px] tracking-wider uppercase" style="color: var(--color-subtle);">Privacidade absoluta</span>
+      </div>
+      <div class="flex items-center gap-2"><i data-lucide="lock" style="color: var(--color-subtle); width: 14px; height: 14px;"></i> <span class="font-sans-modern text-[10px] tracking-wider uppercase" style="color: var(--color-subtle);">Acesso por convite</span>
+      </div>
+     </div>
+    </div>
+   </section><!-- ═══════════════════════════════════════════ --> <!-- FOOTER --> <!-- ═══════════════════════════════════════════ -->
+   <footer class="w-full py-12 md:py-16 px-6 md:px-16 lg:px-24" style="background: var(--color-surface); border-top: 1px solid rgba(201,169,110,0.08);">
+    <div class="max-w-6xl mx-auto">
+     <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-8"><!-- Brand -->
+      <div>
+       <div class="flex items-center gap-3 mb-3">
+        <div class="w-2 h-2 rounded-full" style="background: var(--color-accent);"></div><span class="font-serif-hero text-lg tracking-widest uppercase" style="color: var(--color-text);">Maison Austral</span>
+       </div>
+       <p class="font-sans-modern text-xs" style="color: var(--color-subtle);">Resort &amp; Residências Privadas</p>
+      </div><!-- Contact -->
+      <div class="flex flex-col md:flex-row items-start md:items-center gap-6 md:gap-12">
+       <div>
+        <p class="font-sans-modern text-[10px] tracking-widest uppercase mb-1" style="color: var(--color-accent);">Contato</p>
+        <p class="font-sans-modern text-sm" style="color: var(--color-subtle);">privado@maisonaustral.com</p>
+       </div>
+       <div>
+        <p class="font-sans-modern text-[10px] tracking-widest uppercase mb-1" style="color: var(--color-accent);">Localização</p>
+        <p class="font-sans-modern text-sm" style="color: var(--color-subtle);">Costa sul do Brasil</p>
+       </div>
+      </div>
+     </div><!-- Bottom -->
+     <div class="flex flex-col md:flex-row items-center justify-between mt-12 pt-6" style="border-top: 1px solid rgba(107,101,96,0.15);">
+      <p class="font-sans-modern text-[10px] tracking-wider" style="color: rgba(107,101,96,0.5);">© 2025 Maison Austral. Todos os direitos reservados.</p>
+      <div class="flex items-center gap-6 mt-4 md:mt-0"><a href="#" class="font-sans-modern text-[10px] tracking-wider hover:opacity-100 transition-opacity" style="color: rgba(107,101,96,0.5);">Privacidade</a> <a href="#" class="font-sans-modern text-[10px] tracking-wider hover:opacity-100 transition-opacity" style="color: rgba(107,101,96,0.5);">Termos</a>
+      </div>
+     </div>
+    </div>
+   </footer>
+  </div>
+  <script>
+    // ============================
+    // DEFAULT CONFIG
+    // ============================
+    const defaultConfig = {
+      // Colors (5 max, ordered by visual prominence)
+      background_color: '#0a0a0a',
+      surface_color: '#161616',
+      text_color: '#e8e4df',
+      accent_color: '#c9a96e',
+      subtle_color: '#6b6560',
+      // Font
+      font_family: 'Cormorant Garamond',
+      font_size: 16,
+      // Edit panel text
+      hero_headline: 'Onde o silêncio\nencontra o mar',
+      hero_subheadline: 'Um refúgio além do tempo — onde cada instante é composto com a precisão de uma obra-prima',
+      narrative_title: 'A arte de existir\nsem pressa',
+      narrative_body: 'Há lugares que não se visitam — se habitam. Maison Austral nasceu da convicção de que o verdadeiro luxo é o privilégio de existir em harmonia com o extraordinário.',
+      experience_title: 'Sensações que permanecem',
+      exclusivity_title: 'Para quem entende\nque menos é raro',
+      cta_text: 'Solicitar Acesso Privado',
+    };
+
+    // ============================
+    // ELEMENT SDK INIT
+    // ============================
+    function applyConfig(config) {
+      const bg = config.background_color || defaultConfig.background_color;
+      const surface = config.surface_color || defaultConfig.surface_color;
+      const text = config.text_color || defaultConfig.text_color;
+      const accent = config.accent_color || defaultConfig.accent_color;
+      const subtle = config.subtle_color || defaultConfig.subtle_color;
+      const fontFamily = config.font_family || defaultConfig.font_family;
+      const baseSize = config.font_size || defaultConfig.font_size;
+
+      // CSS variables
+      document.documentElement.style.setProperty('--color-bg', bg);
+      document.documentElement.style.setProperty('--color-surface', surface);
+      document.documentElement.style.setProperty('--color-text', text);
+      document.documentElement.style.setProperty('--color-accent', accent);
+      document.documentElement.style.setProperty('--color-subtle', subtle);
+
+      // Body
+      document.body.style.background = bg;
+      document.body.style.color = text;
+      document.querySelector('.main-wrapper').style.background = bg;
+
+      // Sections backgrounds
+      document.querySelectorAll('[style*="background: var(--color-bg)"]').forEach(el => {
+        el.style.background = bg;
+      });
+      document.querySelectorAll('[style*="background: var(--color-surface)"]').forEach(el => {
+        el.style.background = surface;
+      });
+
+      // Cinema bars
+      document.querySelectorAll('.cinema-bar').forEach(el => el.style.background = bg);
+
+      // Font
+      const serifStack = `${fontFamily}, 'Cormorant Garamond', Georgia, serif`;
+      document.querySelectorAll('.font-serif-hero').forEach(el => {
+        el.style.fontFamily = serifStack;
+      });
+
+      // Font sizing
+      const heroEl = document.getElementById('heroHeadline');
+      if (heroEl) heroEl.style.fontSize = '';
+      document.querySelectorAll('.font-sans-modern').forEach(el => {
+        // Keep relative sizing, just update base
+      });
+
+      // Text content
+      const hl = config.hero_headline || defaultConfig.hero_headline;
+      if (heroEl) heroEl.innerHTML = hl.replace(/\n/g, '<br>');
+
+      const subEl = document.getElementById('heroSubheadline');
+      if (subEl) subEl.textContent = config.hero_subheadline || defaultConfig.hero_subheadline;
+
+      const ntEl = document.getElementById('narrativeTitle');
+      if (ntEl) ntEl.innerHTML = (config.narrative_title || defaultConfig.narrative_title).replace(/\n/g, '<br>');
+
+      const etEl = document.getElementById('experienceTitle');
+      if (etEl) etEl.textContent = config.experience_title || defaultConfig.experience_title;
+
+      const exTitleEl = document.getElementById('exclusivityTitle');
+      if (exTitleEl) exTitleEl.innerHTML = (config.exclusivity_title || defaultConfig.exclusivity_title).replace(/\n/g, '<br>');
+
+      const ctaTextEl = document.getElementById('ctaText');
+      if (ctaTextEl) ctaTextEl.textContent = config.cta_text || defaultConfig.cta_text;
+
+      // Update nav, links colors dynamically
+      document.querySelectorAll('[style*="color: var(--color-text)"]').forEach(el => el.style.color = text);
+      document.querySelectorAll('[style*="color: var(--color-accent)"]').forEach(el => el.style.color = accent);
+      document.querySelectorAll('[style*="color: var(--color-subtle)"]').forEach(el => el.style.color = subtle);
+      document.querySelectorAll('[style*="color: var(--color-bg)"]').forEach(el => el.style.color = bg);
+
+      // Gold lines
+      document.querySelectorAll('.gold-line, .gold-line-v').forEach(el => el.style.background = accent);
+      // Pulse dot
+      document.querySelectorAll('.pulse-dot').forEach(el => el.style.background = accent);
+      // Borders with accent
+      document.querySelectorAll('[style*="border: 1px solid var(--color-accent)"]').forEach(el => {
+        el.style.borderColor = accent;
+      });
+
+      // Accent square
+      document.querySelectorAll('[style*="background: var(--color-accent)"]').forEach(el => el.style.background = accent);
+
+      // Footer border
+      const footer = document.querySelector('footer');
+      if (footer) {
+        footer.style.background = surface;
+        footer.style.borderTopColor = `${accent}14`;
+      }
+    }
+
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange: async (config) => {
+          applyConfig(config);
+        },
+        mapToCapabilities: (config) => ({
+          recolorables: [
+            {
+              get: () => config.background_color || defaultConfig.background_color,
+              set: (v) => { config.background_color = v; window.elementSdk.setConfig({ background_color: v }); }
+            },
+            {
+              get: () => config.surface_color || defaultConfig.surface_color,
+              set: (v) => { config.surface_color = v; window.elementSdk.setConfig({ surface_color: v }); }
+            },
+            {
+              get: () => config.text_color || defaultConfig.text_color,
+              set: (v) => { config.text_color = v; window.elementSdk.setConfig({ text_color: v }); }
+            },
+            {
+              get: () => config.accent_color || defaultConfig.accent_color,
+              set: (v) => { config.accent_color = v; window.elementSdk.setConfig({ accent_color: v }); }
+            },
+            {
+              get: () => config.subtle_color || defaultConfig.subtle_color,
+              set: (v) => { config.subtle_color = v; window.elementSdk.setConfig({ subtle_color: v }); }
+            }
+          ],
+          borderables: [],
+          fontEditable: {
+            get: () => config.font_family || defaultConfig.font_family,
+            set: (v) => { config.font_family = v; window.elementSdk.setConfig({ font_family: v }); }
+          },
+          fontSizeable: {
+            get: () => config.font_size || defaultConfig.font_size,
+            set: (v) => { config.font_size = v; window.elementSdk.setConfig({ font_size: v }); }
+          }
+        }),
+        mapToEditPanelValues: (config) => new Map([
+          ['hero_headline', config.hero_headline || defaultConfig.hero_headline],
+          ['hero_subheadline', config.hero_subheadline || defaultConfig.hero_subheadline],
+          ['narrative_title', config.narrative_title || defaultConfig.narrative_title],
+          ['narrative_body', config.narrative_body || defaultConfig.narrative_body],
+          ['experience_title', config.experience_title || defaultConfig.experience_title],
+          ['exclusivity_title', config.exclusivity_title || defaultConfig.exclusivity_title],
+          ['cta_text', config.cta_text || defaultConfig.cta_text],
+        ])
+      });
+    }
+
+    // ============================
+    // SCROLL REVEAL
+    // ============================
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale').forEach(el => {
+      revealObserver.observe(el);
+    });
+
+    // ============================
+    // NAV SCROLL EFFECT
+    // ============================
+    const mainWrapper = document.getElementById('mainWrapper');
+    const mainNav = document.getElementById('mainNav');
+    let lastScroll = 0;
+
+    mainWrapper.addEventListener('scroll', () => {
+      const scrollTop = mainWrapper.scrollTop;
+      if (scrollTop > 100) {
+        mainNav.classList.add('nav-blur');
+        mainNav.style.background = 'rgba(10,10,10,0.85)';
+      } else {
+        mainNav.classList.remove('nav-blur');
+        mainNav.style.background = 'transparent';
+      }
+      lastScroll = scrollTop;
+    });
+
+    // ============================
+    // MOBILE MENU
+    // ============================
+    const menuToggle = document.getElementById('menuToggle');
+    const menuClose = document.getElementById('menuClose');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    menuToggle.addEventListener('click', () => {
+      mobileMenu.style.opacity = '1';
+      mobileMenu.style.pointerEvents = 'auto';
+    });
+
+    menuClose.addEventListener('click', () => {
+      mobileMenu.style.opacity = '0';
+      mobileMenu.style.pointerEvents = 'none';
+    });
+
+    document.querySelectorAll('.mobile-nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.style.opacity = '0';
+        mobileMenu.style.pointerEvents = 'none';
+      });
+    });
+
+    // ============================
+    // CTA BUTTON INTERACTION
+    // ============================
+    document.getElementById('ctaBtn1').addEventListener('click', () => {
+      const btn = document.getElementById('ctaBtn1');
+      btn.innerHTML = '<span>Obrigado — Entraremos em contato</span>';
+      btn.style.borderColor = 'var(--color-accent)';
+      btn.style.pointerEvents = 'none';
+      btn.style.opacity = '0.7';
+    });
+
+    // Init Lucide icons
+    lucide.createIcons();
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9de5c75fc7fdd28b',t:'MTc3Mzg1MzA3MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

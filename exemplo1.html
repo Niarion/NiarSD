@@ -1,0 +1,708 @@
+<!doctype html>
+<html lang="pt-BR" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maravilla Resort &amp; Residences</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&amp;family=Outfit:wght@200;300;400;500;600&amp;display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            gold: '#C9A96E',
+            goldLight: '#D4BC8B',
+            dark: '#0A0A0A',
+            darkSurface: '#141414',
+            cream: '#F5F0EB'
+          },
+          fontFamily: {
+            serif: ['Cormorant Garamond', 'Georgia', 'serif'],
+            sans: ['Outfit', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    html { height: 100%; }
+    body { height: 100%; margin: 0; }
+
+    .app-root {
+      height: 100%;
+      overflow-y: auto;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    /* Animated gradient border */
+    .gold-line {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #C9A96E, transparent);
+    }
+
+    /* Parallax-like hero overlay */
+    .hero-overlay {
+      background: linear-gradient(
+        180deg,
+        rgba(10,10,10,0.4) 0%,
+        rgba(10,10,10,0.6) 40%,
+        rgba(10,10,10,0.85) 100%
+      );
+    }
+
+    /* Scroll reveal animations */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.15s; }
+    .reveal-delay-2 { transition-delay: 0.3s; }
+    .reveal-delay-3 { transition-delay: 0.45s; }
+    .reveal-delay-4 { transition-delay: 0.6s; }
+
+    /* Hero text entrance */
+    @keyframes heroFadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .hero-animate {
+      animation: heroFadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      opacity: 0;
+    }
+    .hero-animate-delay-1 { animation-delay: 0.3s; }
+    .hero-animate-delay-2 { animation-delay: 0.6s; }
+    .hero-animate-delay-3 { animation-delay: 0.9s; }
+
+    /* Gold shimmer on hover */
+    .btn-gold {
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-gold::after {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+      transition: left 0.5s;
+    }
+    .btn-gold:hover::after {
+      left: 100%;
+    }
+
+    /* Subtle pattern for sections */
+    .pattern-bg {
+      background-image: radial-gradient(circle at 1px 1px, rgba(201,169,110,0.03) 1px, transparent 0);
+      background-size: 40px 40px;
+    }
+
+    /* Counter animation */
+    .counter-line {
+      width: 0;
+      transition: width 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .counter-line.expanded {
+      width: 100%;
+    }
+
+    /* Form focus styles */
+    .form-input:focus {
+      outline: none;
+      border-color: #C9A96E;
+      box-shadow: 0 0 0 1px #C9A96E;
+    }
+
+    /* Image placeholder gradients */
+    .img-placeholder-1 {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    }
+    .img-placeholder-2 {
+      background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
+    }
+    .img-placeholder-3 {
+      background: linear-gradient(135deg, #0d1b2a 0%, #1b2838 50%, #2a3f54 100%);
+    }
+
+    /* Smooth scrollbar */
+    .app-root::-webkit-scrollbar { width: 6px; }
+    .app-root::-webkit-scrollbar-track { background: #0A0A0A; }
+    .app-root::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+    .app-root::-webkit-scrollbar-thumb:hover { background: #C9A96E; }
+
+    /* Nav blur */
+    .nav-blur {
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+
+    /* Benefit card hover */
+    .benefit-card {
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s;
+    }
+    .benefit-card:hover {
+      transform: translateY(-4px);
+      border-color: #C9A96E;
+    }
+
+    /* Modal */
+    .modal-backdrop {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    .modal-backdrop.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .modal-content {
+      transform: translateY(20px) scale(0.97);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .modal-backdrop.active .modal-content {
+      transform: translateY(0) scale(1);
+    }
+
+    /* Toast */
+    .toast {
+      transform: translateY(20px);
+      opacity: 0;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  </style>
+  <style>body { box-sizing: border-box; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full bg-dark text-white font-sans">
+  <div class="app-root w-full" id="appRoot"><!-- Navigation -->
+   <nav id="mainNav" class="fixed top-0 left-0 w-full z-50 transition-all duration-500">
+    <div class="max-w-7xl mx-auto px-6 md:px-10 py-5 flex items-center justify-between">
+     <div class="flex items-center gap-2">
+      <div class="w-8 h-8 border border-gold rounded-full flex items-center justify-center">
+       <div class="w-3 h-3 bg-gold rounded-full"></div>
+      </div><span class="font-serif text-xl md:text-2xl font-medium tracking-wider text-white" id="navLogo">MARAVILLA</span>
+     </div>
+     <div class="hidden md:flex items-center gap-8 text-sm tracking-widest uppercase text-white/70"><a href="#sobre" class="hover:text-gold transition-colors duration-300">Sobre</a> <a href="#beneficios" class="hover:text-gold transition-colors duration-300">Benefícios</a> <a href="#unidades" class="hover:text-gold transition-colors duration-300">Unidades</a> <a href="#contato" class="hover:text-gold transition-colors duration-300 border border-gold/50 px-5 py-2 hover:bg-gold hover:text-dark">Contato</a>
+     </div><button id="mobileMenuBtn" class="md:hidden text-white" aria-label="Menu"> <i data-lucide="menu" class="w-6 h-6"></i> </button>
+    </div>
+   </nav><!-- Mobile Menu -->
+   <div id="mobileMenu" class="fixed inset-0 z-[60] bg-dark/98 flex flex-col items-center justify-center gap-8 opacity-0 pointer-events-none transition-opacity duration-300"><button id="mobileMenuClose" class="absolute top-6 right-6 text-white" aria-label="Fechar menu"> <i data-lucide="x" class="w-7 h-7"></i> </button> <a href="#sobre" class="mobile-link font-serif text-3xl text-white/80 hover:text-gold transition-colors">Sobre</a> <a href="#beneficios" class="mobile-link font-serif text-3xl text-white/80 hover:text-gold transition-colors">Benefícios</a> <a href="#unidades" class="mobile-link font-serif text-3xl text-white/80 hover:text-gold transition-colors">Unidades</a> <a href="#contato" class="mobile-link font-serif text-3xl text-gold transition-colors">Contato</a>
+   </div><!-- HERO SECTION -->
+   <header class="relative w-full" style="height: 100%; min-height: 600px;"><!-- Background layers -->
+    <div class="absolute inset-0 img-placeholder-1"><!-- Animated abstract shapes for visual interest -->
+     <svg class="absolute inset-0 w-full h-full opacity-10" viewbox="0 0 1440 900" preserveaspectratio="none"><defs>
+       <lineargradient id="heroGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style="stop-color:#C9A96E;stop-opacity:0.3" />
+        <stop offset="100%" style="stop-color:#C9A96E;stop-opacity:0" />
+       </lineargradient>
+      </defs> <circle cx="200" cy="300" r="400" fill="url(#heroGrad)" opacity="0.4" /> <circle cx="1200" cy="600" r="300" fill="url(#heroGrad)" opacity="0.3" />
+     </svg>
+    </div>
+    <div class="hero-overlay absolute inset-0"></div>
+    <div class="relative z-10 flex flex-col items-center justify-center h-full px-6 text-center">
+     <div class="hero-animate hero-animate-delay-1 mb-4"><span class="inline-block text-gold text-xs md:text-sm tracking-[0.4em] uppercase font-sans font-light border border-gold/30 px-5 py-2">Resort &amp; Residences</span>
+     </div>
+     <h1 id="heroHeadline" class="hero-animate hero-animate-delay-2 font-serif text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-light leading-[1.1] max-w-5xl mb-6">Onde a <em class="italic text-gold">exclusividade</em><br>
+      encontra o paraíso</h1>
+     <p id="heroSubheadline" class="hero-animate hero-animate-delay-2 font-sans text-white/60 text-base md:text-lg font-light max-w-xl mb-10 leading-relaxed">Um refúgio privado para os que valorizam o extraordinário. Viva o privilégio de pertencer a um seleto grupo.</p>
+     <div class="hero-animate hero-animate-delay-3 flex flex-col sm:flex-row gap-4"><button id="heroCta" onclick="openModal()" class="btn-gold bg-gold text-dark px-10 py-4 text-sm tracking-widest uppercase font-medium hover:bg-goldLight transition-colors duration-300"> Quero Fazer Parte </button> <a href="#sobre" class="border border-white/20 px-10 py-4 text-sm tracking-widest uppercase font-light text-white/80 hover:border-gold hover:text-gold transition-all duration-300 text-center"> Descobrir Mais </a>
+     </div><!-- Scroll indicator -->
+     <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 hero-animate hero-animate-delay-3"><span class="text-white/30 text-xs tracking-widest uppercase">Scroll</span>
+      <div class="w-px h-10 bg-gradient-to-b from-gold/60 to-transparent"></div>
+     </div>
+    </div>
+   </header><!-- GOLD DIVIDER -->
+   <div class="gold-line"></div><!-- ABOUT SECTION -->
+   <section id="sobre" class="w-full py-24 md:py-36 px-6 md:px-10 pattern-bg">
+    <div class="max-w-6xl mx-auto">
+     <div class="grid md:grid-cols-2 gap-12 md:gap-20 items-center">
+      <div><span class="reveal text-gold text-xs tracking-[0.4em] uppercase font-sans block mb-5">O Resort</span>
+       <h2 id="aboutTitle" class="reveal reveal-delay-1 font-serif text-3xl md:text-5xl lg:text-6xl font-light leading-[1.15] mb-8">Uma experiência que<br>
+        transcende o <em class="italic text-gold">comum</em></h2>
+       <p id="aboutText" class="reveal reveal-delay-2 text-white/50 text-base md:text-lg leading-relaxed font-light mb-8">Projetado para proporcionar momentos inesquecíveis, o Maravilla é mais do que um resort — é um estilo de vida. Cada detalhe foi cuidadosamente pensado para oferecer conforto absoluto em meio à natureza exuberante, com infraestrutura de classe mundial e serviços personalizados.</p>
+       <div class="reveal reveal-delay-3 flex gap-12">
+        <div><span class="font-serif text-4xl md:text-5xl text-gold font-light">47</span>
+         <p class="text-white/40 text-xs tracking-widest uppercase mt-1">Hectares</p>
+        </div>
+        <div><span class="font-serif text-4xl md:text-5xl text-gold font-light">5★</span>
+         <p class="text-white/40 text-xs tracking-widest uppercase mt-1">Classificação</p>
+        </div>
+        <div><span class="font-serif text-4xl md:text-5xl text-gold font-light">360°</span>
+         <p class="text-white/40 text-xs tracking-widest uppercase mt-1">Vista</p>
+        </div>
+       </div>
+      </div>
+      <div class="reveal reveal-delay-2 relative">
+       <div class="aspect-[4/5] img-placeholder-3 rounded-sm overflow-hidden relative"><!-- Decorative architecture SVG -->
+        <svg class="absolute inset-0 w-full h-full opacity-20" viewbox="0 0 400 500"><rect x="50" y="80" width="300" height="200" rx="4" fill="none" stroke="#C9A96E" stroke-width="0.5" /> <rect x="80" y="120" width="100" height="140" rx="2" fill="none" stroke="#C9A96E" stroke-width="0.3" /> <rect x="220" y="120" width="100" height="140" rx="2" fill="none" stroke="#C9A96E" stroke-width="0.3" /> <line x1="50" y1="300" x2="350" y2="300" stroke="#C9A96E" stroke-width="0.3" /> <circle cx="200" cy="400" r="40" fill="none" stroke="#C9A96E" stroke-width="0.5" /> <circle cx="200" cy="400" r="20" fill="#C9A96E" opacity="0.1" />
+        </svg>
+        <div class="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-dark to-transparent"></div>
+       </div><!-- Floating accent -->
+       <div class="absolute -bottom-6 -left-6 w-32 h-32 border border-gold/20"></div>
+      </div>
+     </div>
+    </div>
+   </section>
+   <div class="gold-line"></div><!-- BENEFITS SECTION -->
+   <section id="beneficios" class="w-full py-24 md:py-36 px-6 md:px-10 bg-darkSurface">
+    <div class="max-w-6xl mx-auto">
+     <div class="text-center mb-20"><span class="reveal text-gold text-xs tracking-[0.4em] uppercase font-sans block mb-5">Benefícios</span>
+      <h2 class="reveal reveal-delay-1 font-serif text-3xl md:text-5xl lg:text-6xl font-light">Privilégios de ser <em class="italic text-gold">Maravilla</em></h2>
+     </div>
+     <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6"><!-- Benefit 1 -->
+      <div class="reveal benefit-card border border-white/5 p-8 md:p-10 group">
+       <div class="w-12 h-12 border border-gold/30 rounded-full flex items-center justify-center mb-6 group-hover:bg-gold/10 transition-colors duration-300"><i data-lucide="gem" class="w-5 h-5 text-gold"></i>
+       </div>
+       <h3 class="font-serif text-xl md:text-2xl font-light mb-3">Exclusividade</h3>
+       <p class="text-white/40 text-sm leading-relaxed font-light">Número limitado de associados garante privacidade e atendimento impecável em cada momento.</p>
+      </div><!-- Benefit 2 -->
+      <div class="reveal reveal-delay-1 benefit-card border border-white/5 p-8 md:p-10 group">
+       <div class="w-12 h-12 border border-gold/30 rounded-full flex items-center justify-center mb-6 group-hover:bg-gold/10 transition-colors duration-300"><i data-lucide="crown" class="w-5 h-5 text-gold"></i>
+       </div>
+       <h3 class="font-serif text-xl md:text-2xl font-light mb-3">Alto Padrão</h3>
+       <p class="text-white/40 text-sm leading-relaxed font-light">Arquitetura premiada, acabamentos nobres e infraestrutura que redefine o conceito de luxo.</p>
+      </div><!-- Benefit 3 -->
+      <div class="reveal reveal-delay-2 benefit-card border border-white/5 p-8 md:p-10 group">
+       <div class="w-12 h-12 border border-gold/30 rounded-full flex items-center justify-center mb-6 group-hover:bg-gold/10 transition-colors duration-300"><i data-lucide="trees" class="w-5 h-5 text-gold"></i>
+       </div>
+       <h3 class="font-serif text-xl md:text-2xl font-light mb-3">Natureza</h3>
+       <p class="text-white/40 text-sm leading-relaxed font-light">Imerso em paisagem preservada, com trilhas, lagos e jardins projetados em harmonia com o entorno.</p>
+      </div><!-- Benefit 4 -->
+      <div class="reveal reveal-delay-3 benefit-card border border-white/5 p-8 md:p-10 group">
+       <div class="w-12 h-12 border border-gold/30 rounded-full flex items-center justify-center mb-6 group-hover:bg-gold/10 transition-colors duration-300"><i data-lucide="trending-up" class="w-5 h-5 text-gold"></i>
+       </div>
+       <h3 class="font-serif text-xl md:text-2xl font-light mb-3">Investimento</h3>
+       <p class="text-white/40 text-sm leading-relaxed font-light">Valorização consistente e retorno garantido. Um patrimônio que se valoriza a cada temporada.</p>
+      </div>
+     </div>
+    </div>
+   </section>
+   <div class="gold-line"></div><!-- UNITS / ASSOCIATION SECTION -->
+   <section id="unidades" class="w-full py-24 md:py-36 px-6 md:px-10 pattern-bg">
+    <div class="max-w-6xl mx-auto">
+     <div class="grid md:grid-cols-2 gap-12 md:gap-20 items-center">
+      <div class="reveal order-2 md:order-1 relative">
+       <div class="aspect-[3/4] img-placeholder-2 rounded-sm overflow-hidden relative"><!-- Decorative interior SVG -->
+        <svg class="absolute inset-0 w-full h-full opacity-15" viewbox="0 0 300 400"><rect x="40" y="60" width="220" height="130" rx="3" fill="none" stroke="#C9A96E" stroke-width="0.5" /> <line x1="40" y1="200" x2="260" y2="200" stroke="#C9A96E" stroke-width="0.3" /> <rect x="60" y="220" width="80" height="60" rx="2" fill="#C9A96E" opacity="0.05" stroke="#C9A96E" stroke-width="0.3" /> <rect x="160" y="220" width="80" height="60" rx="2" fill="#C9A96E" opacity="0.05" stroke="#C9A96E" stroke-width="0.3" /> <circle cx="150" cy="340" r="30" fill="none" stroke="#C9A96E" stroke-width="0.5" />
+        </svg>
+        <div class="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-dark to-transparent"></div>
+       </div>
+       <div class="absolute -top-6 -right-6 w-24 h-24 border border-gold/20"></div>
+      </div>
+      <div class="order-1 md:order-2"><span class="reveal text-gold text-xs tracking-[0.4em] uppercase font-sans block mb-5">Associação</span>
+       <h2 id="unitsTitle" class="reveal reveal-delay-1 font-serif text-3xl md:text-5xl lg:text-6xl font-light leading-[1.15] mb-8">Vagas <em class="italic text-gold">limitadas</em><br>
+        para seletos</h2>
+       <p class="reveal reveal-delay-2 text-white/50 text-base md:text-lg leading-relaxed font-light mb-8">O modelo de associação Maravilla foi desenhado para garantir exclusividade real. Com um número restrito de membros, cada associado desfruta de acesso irrestrito a toda infraestrutura, sem lotação, sem filas, sem pressa.</p>
+       <div class="reveal reveal-delay-3 space-y-6 mb-10">
+        <div class="flex items-start gap-4">
+         <div class="w-8 h-8 border border-gold/40 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"><i data-lucide="check" class="w-4 h-4 text-gold"></i>
+         </div>
+         <div>
+          <p class="text-white/80 font-light">Acesso ilimitado a todas as áreas e comodidades</p>
+         </div>
+        </div>
+        <div class="flex items-start gap-4">
+         <div class="w-8 h-8 border border-gold/40 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"><i data-lucide="check" class="w-4 h-4 text-gold"></i>
+         </div>
+         <div>
+          <p class="text-white/80 font-light">Concierge pessoal e serviços sob medida</p>
+         </div>
+        </div>
+        <div class="flex items-start gap-4">
+         <div class="w-8 h-8 border border-gold/40 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"><i data-lucide="check" class="w-4 h-4 text-gold"></i>
+         </div>
+         <div>
+          <p class="text-white/80 font-light">Valorização patrimonial e programa de intercâmbio</p>
+         </div>
+        </div>
+       </div><!-- Scarcity indicator -->
+       <div class="reveal reveal-delay-4 bg-white/3 border border-white/5 p-6">
+        <div class="flex items-center justify-between mb-3"><span class="text-white/60 text-xs tracking-widest uppercase">Disponibilidade</span> <span class="text-gold text-sm font-medium">12 de 80 unidades</span>
+        </div>
+        <div class="w-full h-1 bg-white/5 rounded-full overflow-hidden">
+         <div class="counter-line h-full bg-gradient-to-r from-gold to-goldLight rounded-full" id="availBar"></div>
+        </div>
+        <p class="text-white/30 text-xs mt-3 font-light">Apenas 15% das unidades ainda disponíveis</p>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section>
+   <div class="gold-line"></div><!-- AUTHORITY / CREDIBILITY SECTION -->
+   <section class="w-full py-24 md:py-36 px-6 md:px-10 bg-darkSurface">
+    <div class="max-w-5xl mx-auto text-center"><span class="reveal text-gold text-xs tracking-[0.4em] uppercase font-sans block mb-5">Credibilidade</span>
+     <h2 class="reveal reveal-delay-1 font-serif text-3xl md:text-5xl lg:text-6xl font-light mb-12">Construído sobre <em class="italic text-gold">confiança</em></h2>
+     <div class="grid sm:grid-cols-3 gap-8 mb-16">
+      <div class="reveal">
+       <div class="w-16 h-16 border border-gold/20 rounded-full flex items-center justify-center mx-auto mb-5"><i data-lucide="award" class="w-7 h-7 text-gold"></i>
+       </div>
+       <h3 class="font-serif text-lg mb-2">25+ Anos</h3>
+       <p class="text-white/40 text-sm font-light">de experiência no mercado de alto padrão e hotelaria de luxo</p>
+      </div>
+      <div class="reveal reveal-delay-1">
+       <div class="w-16 h-16 border border-gold/20 rounded-full flex items-center justify-center mx-auto mb-5"><i data-lucide="shield-check" class="w-7 h-7 text-gold"></i>
+       </div>
+       <h3 class="font-serif text-lg mb-2">Transparência</h3>
+       <p class="text-white/40 text-sm font-light">Total, com contratos claros e acompanhamento jurídico dedicado</p>
+      </div>
+      <div class="reveal reveal-delay-2">
+       <div class="w-16 h-16 border border-gold/20 rounded-full flex items-center justify-center mx-auto mb-5"><i data-lucide="building-2" class="w-7 h-7 text-gold"></i>
+       </div>
+       <h3 class="font-serif text-lg mb-2">Solidez</h3>
+       <p class="text-white/40 text-sm font-light">Grupo com mais de R$ 2 bilhões em empreendimentos entregues</p>
+      </div>
+     </div>
+     <div class="reveal reveal-delay-2 max-w-3xl mx-auto">
+      <blockquote class="font-serif text-xl md:text-2xl italic text-white/60 font-light leading-relaxed">
+       "Nosso compromisso é entregar não apenas um espaço, mas um legado. Cada detalhe do Maravilla reflete décadas de expertise e uma paixão genuína por criar experiências extraordinárias."
+      </blockquote>
+      <div class="mt-6 flex items-center justify-center gap-4">
+       <div class="w-12 h-12 bg-gold/10 border border-gold/30 rounded-full flex items-center justify-center"><span class="font-serif text-gold text-lg">R</span>
+       </div>
+       <div class="text-left">
+        <p class="text-white/80 text-sm">Ricardo Mendonça</p>
+        <p class="text-white/30 text-xs">CEO — Grupo Maravilla</p>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section>
+   <div class="gold-line"></div><!-- FINAL CTA SECTION -->
+   <section id="contato" class="w-full py-24 md:py-36 px-6 md:px-10 relative overflow-hidden"><!-- Background decoration -->
+    <div class="absolute inset-0 opacity-5">
+     <svg class="w-full h-full" viewbox="0 0 1440 600" preserveaspectratio="none"><circle cx="720" cy="300" r="500" fill="none" stroke="#C9A96E" stroke-width="0.5" /> <circle cx="720" cy="300" r="400" fill="none" stroke="#C9A96E" stroke-width="0.3" /> <circle cx="720" cy="300" r="300" fill="none" stroke="#C9A96E" stroke-width="0.3" />
+     </svg>
+    </div>
+    <div class="max-w-3xl mx-auto text-center relative z-10"><span class="reveal text-gold text-xs tracking-[0.4em] uppercase font-sans block mb-5">Próximo Passo</span>
+     <h2 id="finalCtaTitle" class="reveal reveal-delay-1 font-serif text-3xl md:text-5xl lg:text-6xl font-light mb-6">Sua jornada de <em class="italic text-gold">exclusividade</em><br>
+      começa aqui</h2>
+     <p class="reveal reveal-delay-2 text-white/50 text-base md:text-lg font-light mb-12 max-w-xl mx-auto leading-relaxed">Converse com um de nossos consultores especializados e descubra como fazer parte deste seleto grupo de associados.</p>
+     <div class="reveal reveal-delay-3 flex flex-col sm:flex-row gap-4 justify-center"><button id="finalCtaBtn" onclick="openModal()" class="btn-gold bg-gold text-dark px-12 py-5 text-sm tracking-widest uppercase font-medium hover:bg-goldLight transition-colors duration-300"> Agendar Conversa </button> <a href="https://wa.me/5511999999999" target="_blank" rel="noopener noreferrer" class="border border-gold/50 px-12 py-5 text-sm tracking-widest uppercase font-light text-gold hover:bg-gold hover:text-dark transition-all duration-300 flex items-center justify-center gap-3"> <i data-lucide="message-circle" class="w-4 h-4"></i> WhatsApp </a>
+     </div>
+    </div>
+   </section><!-- FOOTER -->
+   <footer class="w-full border-t border-white/5 py-12 px-6 md:px-10">
+    <div class="max-w-6xl mx-auto">
+     <div class="grid md:grid-cols-3 gap-10 items-center">
+      <div>
+       <div class="flex items-center gap-2 mb-3">
+        <div class="w-6 h-6 border border-gold/50 rounded-full flex items-center justify-center">
+         <div class="w-2 h-2 bg-gold rounded-full"></div>
+        </div><span class="font-serif text-lg tracking-wider">MARAVILLA</span>
+       </div>
+       <p class="text-white/30 text-xs font-light">Resort &amp; Residences</p>
+      </div>
+      <div class="text-center">
+       <p class="text-white/30 text-xs font-light leading-relaxed">Rodovia das Palmeiras, Km 47<br>
+         São Paulo — SP, Brasil<br><span class="text-gold/60">contato@maravilla.com.br</span></p>
+      </div>
+      <div class="md:text-right">
+       <div class="flex md:justify-end gap-4 mb-3"><a href="#" class="w-9 h-9 border border-white/10 rounded-full flex items-center justify-center hover:border-gold hover:text-gold transition-colors duration-300" aria-label="Instagram"> <i data-lucide="instagram" class="w-4 h-4"></i> </a> <a href="#" class="w-9 h-9 border border-white/10 rounded-full flex items-center justify-center hover:border-gold hover:text-gold transition-colors duration-300" aria-label="LinkedIn"> <i data-lucide="linkedin" class="w-4 h-4"></i> </a> <a href="#" class="w-9 h-9 border border-white/10 rounded-full flex items-center justify-center hover:border-gold hover:text-gold transition-colors duration-300" aria-label="YouTube"> <i data-lucide="youtube" class="w-4 h-4"></i> </a>
+       </div>
+       <p class="text-white/20 text-xs font-light">© 2025 Maravilla. Todos os direitos reservados.</p>
+      </div>
+     </div>
+    </div>
+   </footer><!-- LEAD MODAL -->
+   <div id="leadModal" class="modal-backdrop fixed inset-0 z-[70] bg-dark/90 flex items-center justify-center p-6">
+    <div class="modal-content bg-darkSurface border border-white/5 w-full max-w-md p-8 md:p-10 relative"><button onclick="closeModal()" class="absolute top-4 right-4 text-white/40 hover:text-white transition-colors" aria-label="Fechar"> <i data-lucide="x" class="w-5 h-5"></i> </button>
+     <div class="text-center mb-8">
+      <div class="w-12 h-12 border border-gold/30 rounded-full flex items-center justify-center mx-auto mb-4"><i data-lucide="sparkles" class="w-5 h-5 text-gold"></i>
+      </div>
+      <h3 class="font-serif text-2xl md:text-3xl font-light">Solicitar <em class="italic text-gold">Informações</em></h3>
+      <p class="text-white/40 text-sm font-light mt-2">Preencha abaixo e nossa equipe entrará em contato.</p>
+     </div>
+     <form id="leadForm" class="space-y-4">
+      <div><label for="leadName" class="block text-white/50 text-xs tracking-widest uppercase mb-2">Nome completo</label> <input type="text" id="leadName" required class="form-input w-full bg-white/3 border border-white/10 px-4 py-3 text-white text-sm font-light placeholder-white/20" placeholder="Seu nome">
+      </div>
+      <div><label for="leadEmail" class="block text-white/50 text-xs tracking-widest uppercase mb-2">E-mail</label> <input type="email" id="leadEmail" required class="form-input w-full bg-white/3 border border-white/10 px-4 py-3 text-white text-sm font-light placeholder-white/20" placeholder="seu@email.com">
+      </div>
+      <div><label for="leadPhone" class="block text-white/50 text-xs tracking-widest uppercase mb-2">Telefone</label> <input type="tel" id="leadPhone" required class="form-input w-full bg-white/3 border border-white/10 px-4 py-3 text-white text-sm font-light placeholder-white/20" placeholder="(11) 99999-9999">
+      </div>
+      <div><label for="leadInterest" class="block text-white/50 text-xs tracking-widest uppercase mb-2">Interesse</label> <select id="leadInterest" class="form-input w-full bg-white/3 border border-white/10 px-4 py-3 text-white text-sm font-light appearance-none"> <option value="associacao" class="bg-darkSurface">Associação</option> <option value="visita" class="bg-darkSurface">Agendar visita</option> <option value="investimento" class="bg-darkSurface">Investimento</option> <option value="informacoes" class="bg-darkSurface">Informações gerais</option> </select>
+      </div><button type="submit" id="formSubmitBtn" class="btn-gold w-full bg-gold text-dark py-4 text-sm tracking-widest uppercase font-medium hover:bg-goldLight transition-colors duration-300 mt-2"> Enviar Solicitação </button>
+     </form>
+    </div>
+   </div><!-- TOAST -->
+   <div id="toast" class="toast fixed bottom-6 right-6 z-[80] bg-gold text-dark px-6 py-4 flex items-center gap-3 shadow-2xl max-w-sm"><i data-lucide="check-circle" class="w-5 h-5 flex-shrink-0"></i> <span class="text-sm font-medium" id="toastMsg">Solicitação enviada com sucesso!</span>
+   </div>
+  </div>
+  <script>
+    // === CONFIG & SDK ===
+    const defaultConfig = {
+      background_color: '#0A0A0A',
+      surface_color: '#141414',
+      text_color: '#FFFFFF',
+      primary_action_color: '#C9A96E',
+      secondary_action_color: '#D4BC8B',
+      font_family: 'Cormorant Garamond',
+      font_size: 16,
+      hero_headline: 'Onde a exclusividade encontra o paraíso',
+      hero_subheadline: 'Um refúgio privado para os que valorizam o extraordinário. Viva o privilégio de pertencer a um seleto grupo.',
+      hero_cta: 'Quero Fazer Parte',
+      about_title: 'Uma experiência que transcende o comum',
+      about_text: 'Projetado para proporcionar momentos inesquecíveis, o Maravilla é mais do que um resort — é um estilo de vida. Cada detalhe foi cuidadosamente pensado para oferecer conforto absoluto em meio à natureza exuberante, com infraestrutura de classe mundial e serviços personalizados.',
+      units_title: 'Vagas limitadas para seletos',
+      final_cta_title: 'Sua jornada de exclusividade começa aqui',
+      final_cta_button: 'Agendar Conversa'
+    };
+
+    function applyConfig(config) {
+      const bg = config.background_color || defaultConfig.background_color;
+      const surface = config.surface_color || defaultConfig.surface_color;
+      const text = config.text_color || defaultConfig.text_color;
+      const primary = config.primary_action_color || defaultConfig.primary_action_color;
+      const secondary = config.secondary_action_color || defaultConfig.secondary_action_color;
+      const fontFamily = config.font_family || defaultConfig.font_family;
+      const fontSize = config.font_size || defaultConfig.font_size;
+
+      // Colors
+      document.body.style.backgroundColor = bg;
+      document.body.style.color = text;
+
+      const root = document.getElementById('appRoot');
+      if (root) root.style.backgroundColor = bg;
+
+      // Gold elements
+      document.querySelectorAll('.text-gold').forEach(el => el.style.color = primary);
+      document.querySelectorAll('.border-gold, .border-gold\\/30, .border-gold\\/40, .border-gold\\/50, .border-gold\\/20').forEach(el => {
+        el.style.borderColor = primary + '60';
+      });
+      document.querySelectorAll('.bg-gold').forEach(el => {
+        el.style.backgroundColor = primary;
+      });
+      document.querySelectorAll('.hover\\:bg-gold').forEach(el => {
+        el.dataset.hoverBg = primary;
+      });
+
+      // Surface backgrounds
+      document.querySelectorAll('.bg-darkSurface').forEach(el => {
+        el.style.backgroundColor = surface;
+      });
+
+      // Gold line dividers
+      document.querySelectorAll('.gold-line').forEach(el => {
+        el.style.background = `linear-gradient(90deg, transparent, ${primary}, transparent)`;
+      });
+
+      // Font
+      const serifStack = `${fontFamily}, Georgia, serif`;
+      document.querySelectorAll('.font-serif').forEach(el => {
+        el.style.fontFamily = serifStack;
+      });
+
+      // Font size scaling
+      const base = fontSize;
+      document.querySelectorAll('h1').forEach(el => el.style.fontSize = '');
+      document.querySelectorAll('p, span, a, label, option').forEach(el => {
+        // Only scale body text, leave structural elements alone
+      });
+
+      // Text content
+      const heroH = document.getElementById('heroHeadline');
+      if (heroH) {
+        const hl = config.hero_headline || defaultConfig.hero_headline;
+        heroH.innerHTML = formatItalicGold(hl);
+      }
+
+      const heroS = document.getElementById('heroSubheadline');
+      if (heroS) heroS.textContent = config.hero_subheadline || defaultConfig.hero_subheadline;
+
+      const heroCta = document.getElementById('heroCta');
+      if (heroCta) heroCta.textContent = config.hero_cta || defaultConfig.hero_cta;
+
+      const aboutT = document.getElementById('aboutTitle');
+      if (aboutT) {
+        const at = config.about_title || defaultConfig.about_title;
+        aboutT.innerHTML = formatItalicGold(at);
+      }
+
+      const aboutTxt = document.getElementById('aboutText');
+      if (aboutTxt) aboutTxt.textContent = config.about_text || defaultConfig.about_text;
+
+      const unitsT = document.getElementById('unitsTitle');
+      if (unitsT) {
+        const ut = config.units_title || defaultConfig.units_title;
+        unitsT.innerHTML = formatItalicGold(ut);
+      }
+
+      const finalT = document.getElementById('finalCtaTitle');
+      if (finalT) {
+        const ft = config.final_cta_title || defaultConfig.final_cta_title;
+        finalT.innerHTML = formatItalicGold(ft);
+      }
+
+      const finalBtn = document.getElementById('finalCtaBtn');
+      if (finalBtn) finalBtn.textContent = config.final_cta_button || defaultConfig.final_cta_button;
+    }
+
+    function formatItalicGold(text) {
+      // Simple: wrap text between * * in italic gold
+      return text.replace(/\*(.*?)\*/g, '<em class="italic text-gold">$1</em>');
+    }
+
+    function makeCapabilities(config) {
+      return {
+        recolorables: [
+          { get: () => config.background_color || defaultConfig.background_color, set: (v) => { config.background_color = v; window.elementSdk.setConfig({ background_color: v }); } },
+          { get: () => config.surface_color || defaultConfig.surface_color, set: (v) => { config.surface_color = v; window.elementSdk.setConfig({ surface_color: v }); } },
+          { get: () => config.text_color || defaultConfig.text_color, set: (v) => { config.text_color = v; window.elementSdk.setConfig({ text_color: v }); } },
+          { get: () => config.primary_action_color || defaultConfig.primary_action_color, set: (v) => { config.primary_action_color = v; window.elementSdk.setConfig({ primary_action_color: v }); } },
+          { get: () => config.secondary_action_color || defaultConfig.secondary_action_color, set: (v) => { config.secondary_action_color = v; window.elementSdk.setConfig({ secondary_action_color: v }); } }
+        ],
+        borderables: [],
+        fontEditable: {
+          get: () => config.font_family || defaultConfig.font_family,
+          set: (v) => { config.font_family = v; window.elementSdk.setConfig({ font_family: v }); }
+        },
+        fontSizeable: {
+          get: () => config.font_size || defaultConfig.font_size,
+          set: (v) => { config.font_size = v; window.elementSdk.setConfig({ font_size: v }); }
+        }
+      };
+    }
+
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig: { ...defaultConfig },
+        onConfigChange: async (config) => {
+          applyConfig(config);
+        },
+        mapToCapabilities: (config) => makeCapabilities(config),
+        mapToEditPanelValues: (config) => new Map([
+          ['hero_headline', config.hero_headline || defaultConfig.hero_headline],
+          ['hero_subheadline', config.hero_subheadline || defaultConfig.hero_subheadline],
+          ['hero_cta', config.hero_cta || defaultConfig.hero_cta],
+          ['about_title', config.about_title || defaultConfig.about_title],
+          ['about_text', config.about_text || defaultConfig.about_text],
+          ['units_title', config.units_title || defaultConfig.units_title],
+          ['final_cta_title', config.final_cta_title || defaultConfig.final_cta_title],
+          ['final_cta_button', config.final_cta_button || defaultConfig.final_cta_button]
+        ])
+      });
+    }
+
+    // === SCROLL ANIMATIONS ===
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // === NAV SCROLL EFFECT ===
+    const appRoot = document.getElementById('appRoot');
+    const mainNav = document.getElementById('mainNav');
+    appRoot.addEventListener('scroll', () => {
+      if (appRoot.scrollTop > 80) {
+        mainNav.classList.add('nav-blur', 'bg-dark/80');
+        mainNav.style.borderBottom = '1px solid rgba(255,255,255,0.03)';
+      } else {
+        mainNav.classList.remove('nav-blur', 'bg-dark/80');
+        mainNav.style.borderBottom = 'none';
+      }
+    });
+
+    // === AVAILABILITY BAR ANIMATION ===
+    const barObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            document.getElementById('availBar').style.width = '85%';
+          }, 600);
+        }
+      });
+    }, { threshold: 0.5 });
+    const availBar = document.getElementById('availBar');
+    if (availBar) barObserver.observe(availBar.parentElement);
+
+    // === MOBILE MENU ===
+    const mobileMenu = document.getElementById('mobileMenu');
+    document.getElementById('mobileMenuBtn').addEventListener('click', () => {
+      mobileMenu.classList.remove('opacity-0', 'pointer-events-none');
+      mobileMenu.classList.add('opacity-100');
+    });
+    document.getElementById('mobileMenuClose').addEventListener('click', () => {
+      mobileMenu.classList.add('opacity-0', 'pointer-events-none');
+      mobileMenu.classList.remove('opacity-100');
+    });
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('opacity-0', 'pointer-events-none');
+        mobileMenu.classList.remove('opacity-100');
+      });
+    });
+
+    // === SMOOTH SCROLL ===
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // === MODAL ===
+    function openModal() {
+      document.getElementById('leadModal').classList.add('active');
+    }
+    function closeModal() {
+      document.getElementById('leadModal').classList.remove('active');
+    }
+    document.getElementById('leadModal').addEventListener('click', (e) => {
+      if (e.target === document.getElementById('leadModal')) closeModal();
+    });
+
+    // === FORM SUBMISSION ===
+    document.getElementById('leadForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const btn = document.getElementById('formSubmitBtn');
+      btn.textContent = 'Enviando...';
+      btn.disabled = true;
+      btn.style.opacity = '0.7';
+
+      setTimeout(() => {
+        btn.textContent = 'Enviado ✓';
+        btn.style.opacity = '1';
+        showToast('Solicitação enviada com sucesso! Entraremos em contato em breve.');
+
+        setTimeout(() => {
+          closeModal();
+          document.getElementById('leadForm').reset();
+          btn.textContent = 'Enviar Solicitação';
+          btn.disabled = false;
+        }, 2000);
+      }, 1500);
+    });
+
+    // === TOAST ===
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toastMsg').textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 4000);
+    }
+
+    // === INIT ICONS ===
+    lucide.createIcons();
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9de025b05467480d',t:'MTc3Mzc5NDAyMC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

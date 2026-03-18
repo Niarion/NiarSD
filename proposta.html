@@ -1,0 +1,687 @@
+<!doctype html>
+<html lang="pt-BR" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Niar Soluções Digitais — Proposta Comercial</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&amp;family=Outfit:wght@200;300;400;500;600&amp;display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            gold: '#C6A962',
+            goldLight: '#D4BF8A',
+            goldDark: '#A88B3D',
+            dark: '#0A0A0A',
+            darkSurface: '#141414',
+            darkCard: '#1A1A1A',
+          },
+          fontFamily: {
+            serif: ['Cormorant Garamond', 'Georgia', 'serif'],
+            sans: ['Outfit', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    html { height: 100%; }
+    body { height: 100%; margin: 0; }
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .gold-line {
+      background: linear-gradient(90deg, transparent, #C6A962, transparent);
+      height: 1px;
+    }
+
+    .gold-line-left {
+      background: linear-gradient(90deg, #C6A962, transparent);
+      height: 1px;
+    }
+
+    .hero-gradient {
+      background: radial-gradient(ellipse at 50% 0%, rgba(198,169,98,0.06) 0%, transparent 60%),
+                  radial-gradient(ellipse at 80% 100%, rgba(198,169,98,0.03) 0%, transparent 50%),
+                  #0A0A0A;
+    }
+
+    .card-hover {
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease;
+    }
+    .card-hover:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 60px rgba(198,169,98,0.08);
+    }
+
+    .subtle-border {
+      border: 1px solid rgba(198,169,98,0.15);
+    }
+
+    .gold-glow {
+      box-shadow: 0 0 40px rgba(198,169,98,0.1);
+    }
+
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+    .shimmer-text {
+      background: linear-gradient(90deg, #C6A962 0%, #E8D5A3 25%, #C6A962 50%, #A88B3D 75%, #C6A962 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer 6s linear infinite;
+    }
+
+    .service-icon {
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(198,169,98,0.3);
+      border-radius: 12px;
+      color: #C6A962;
+      flex-shrink: 0;
+    }
+
+    .price-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 16px;
+      border: 1px solid rgba(198,169,98,0.25);
+      border-radius: 100px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.5px;
+      color: #C6A962;
+      background: rgba(198,169,98,0.04);
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 40px;
+      background: linear-gradient(135deg, #C6A962, #A88B3D);
+      color: #0A0A0A;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 500;
+      font-size: 15px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      text-decoration: none;
+    }
+    .cta-btn:hover {
+      box-shadow: 0 8px 40px rgba(198,169,98,0.3);
+      transform: translateY(-2px);
+    }
+
+    .section-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 72px;
+      font-weight: 300;
+      color: rgba(198,169,98,0.08);
+      line-height: 1;
+      position: absolute;
+      top: -10px;
+      left: -5px;
+    }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #0A0A0A; }
+    ::-webkit-scrollbar-thumb { background: rgba(198,169,98,0.3); border-radius: 3px; }
+
+    .diamond-separator {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+    .diamond-separator::before,
+    .diamond-separator::after {
+      content: '';
+      width: 60px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(198,169,98,0.3));
+    }
+    .diamond-separator::after {
+      background: linear-gradient(90deg, rgba(198,169,98,0.3), transparent);
+    }
+    .diamond {
+      width: 6px;
+      height: 6px;
+      background: #C6A962;
+      transform: rotate(45deg);
+      flex-shrink: 0;
+    }
+  </style>
+  <style>body { box-sizing: border-box; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full w-full bg-dark text-white overflow-auto">
+  <div id="app-wrapper" class="w-full">
+   <!-- Hero Section -->
+   <section class="hero-gradient relative w-full" style="min-height: 100%;">
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+     <div style="position:absolute;top:15%;right:10%;width:300px;height:300px;border:1px solid rgba(198,169,98,0.04);border-radius:50%;"></div>
+     <div style="position:absolute;bottom:20%;left:8%;width:200px;height:200px;border:1px solid rgba(198,169,98,0.03);border-radius:50%;"></div>
+    </div>
+    <div class="relative z-10 flex flex-col items-center justify-center px-6 py-20" style="min-height:100%;">
+     <div class="fade-up text-center max-w-3xl mx-auto" style="animation-delay:0.1s;">
+      <div class="mb-8">
+       <p id="company-top" class="font-sans text-xs tracking-[6px] uppercase text-gold/60 mb-2">Niar Soluções Digitais</p>
+       <div class="diamond-separator mb-8">
+        <div class="diamond"></div>
+       </div>
+      </div>
+      <h1 id="hero-headline" class="font-serif text-4xl md:text-5xl lg:text-6xl font-light leading-tight mb-8 tracking-wide">Soluções Digitais para Posicionamento e Captação de <span class="shimmer-text font-medium italic">Alto Padrão</span></h1>
+      <p id="hero-subheadline" class="font-sans text-base md:text-lg font-light text-white/50 leading-relaxed max-w-xl mx-auto mb-12">Estrutura completa para atrair, converter e posicionar seu resort de forma estratégica</p>
+      <div class="gold-line w-16 mx-auto"></div>
+     </div>
+     <div class="absolute bottom-8 left-1/2 -translate-x-1/2 fade-up" style="animation-delay:0.8s;">
+      <div class="flex flex-col items-center gap-2 text-gold/30">
+       <span class="font-sans text-[10px] tracking-[4px] uppercase">Explore</span> <i data-lucide="chevron-down" style="width:16px;height:16px;"></i>
+      </div>
+     </div>
+    </div>
+   </section><!-- Introduction -->
+   <section class="w-full py-24 md:py-32 px-6">
+    <div class="max-w-2xl mx-auto text-center fade-up">
+     <div class="diamond-separator mb-10">
+      <div class="diamond"></div>
+     </div>
+     <p class="font-serif text-xl md:text-2xl font-light leading-relaxed text-white/70 italic">Esta proposta foi desenvolvida sob medida para estruturar a presença digital do seu resort — com foco em <span class="text-gold">captação de associados</span> e <span class="text-gold">aquisição de unidades</span>, com posicionamento de alto padrão.</p>
+     <div class="diamond-separator mt-10">
+      <div class="diamond"></div>
+     </div>
+    </div>
+   </section><!-- Services -->
+   <section class="w-full px-6 pb-24 md:pb-32">
+    <div class="max-w-5xl mx-auto">
+     <!-- Service 1: Site & Presença Digital -->
+     <div class="fade-up mb-16 md:mb-20">
+      <div class="subtle-border card-hover bg-darkCard/50 rounded-2xl p-8 md:p-12 relative overflow-hidden">
+       <div class="section-number">
+        01
+       </div>
+       <div class="relative z-10">
+        <div class="flex items-start gap-5 mb-8">
+         <div class="service-icon">
+          <i data-lucide="globe" style="width:22px;height:22px;"></i>
+         </div>
+         <div>
+          <p class="font-sans text-[10px] tracking-[4px] uppercase text-gold/50 mb-2">Serviço</p>
+          <h2 class="font-serif text-2xl md:text-3xl font-light tracking-wide">Site &amp; Presença Digital</h2>
+         </div>
+        </div>
+        <div class="grid md:grid-cols-2 gap-x-12 gap-y-4 mb-8 pl-0 md:pl-[68px]">
+         <div class="flex items-start gap-3">
+          <i data-lucide="check" class="text-gold/60 mt-1 flex-shrink-0" style="width:14px;height:14px;"></i> <span class="font-sans text-sm text-white/60 font-light">Landing page premium — design + estrutura estratégica</span>
+         </div>
+         <div class="flex items-start gap-3">
+          <i data-lucide="check" class="text-gold/60 mt-1 flex-shrink-0" style="width:14px;height:14px;"></i> <span class="font-sans text-sm text-white/60 font-light">Copywriting focado em conversão</span>
+         </div>
+         <div class="flex items-start gap-3">
+          <i data-lucide="check" class="text-gold/60 mt-1 flex-shrink-0" style="width:14px;height:14px;"></i> <span class="font-sans text-sm text-white/60 font-light">Responsivo — mobile otimizado</span>
+         </div>
+         <div class="flex items-start gap-3">
+          <i data-lucide="check" class="text-gold/60 mt-1 flex-shrink-0" style="width:14px;height:14px;"></i> <span class="font-sans text-sm text-white/60 font-light">Integração com WhatsApp</span>
+         </div>
+         <div class="flex items-start gap-3">
+          <i data-lucide="check" class="text-gold/60 mt-1 flex-shrink-0" style="width:14px;height:14px;"></i> <span class="font-sans text-sm text-white/60 font-light">Formulário de captação de leads</span>
+         </div>
+         <div class="flex items-start gap-3">
+          <i data-lucide="check" class="text-gold/60 mt-1 flex-shrink-0" style="width:14px;height:14px;"></i> <span class="font-sans text-sm text-white/60 font-light">SEO Avançado — estrutura + indexação</span>
+         </div>
+         <div class="flex items-start gap-3">
+          <i data-lucide="check" class="text-gold/60 mt-1 flex-shrink-0" style="width:14px;height:14px;"></i> <span class="font-sans text-sm text-white/60 font-light">Otimização de performance</span>
+         </div>
+         <div class="flex items-start gap-3">
+          <i data-lucide="check" class="text-gold/60 mt-1 flex-shrink-0" style="width:14px;height:14px;"></i> <span class="font-sans text-sm text-white/60 font-light">Hospedagem e publicação</span>
+         </div>
+        </div>
+        <div class="pl-0 md:pl-[68px] flex flex-col gap-3">
+         <div class="flex flex-col gap-2">
+          <div class="flex items-center gap-3"><span class="font-sans text-[10px] tracking-[2px] uppercase text-white/40">Implementação</span> <span class="font-sans text-sm font-medium text-gold">R$600</span>
+          </div>
+          <div class="flex items-center gap-3"><span class="font-sans text-[10px] tracking-[2px] uppercase text-white/40">Mensalidade</span> <span class="font-sans text-sm font-medium text-gold">R$100</span>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div><!-- Service 2: Tráfego & Conversão -->
+     <div class="fade-up mb-16 md:mb-20">
+      <div class="subtle-border card-hover bg-darkCard/50 rounded-2xl p-8 md:p-12 relative overflow-hidden">
+       <div class="section-number">
+        02
+       </div>
+       <div class="relative z-10">
+        <div class="flex items-start gap-5 mb-8">
+         <div class="service-icon">
+          <i data-lucide="target" style="width:22px;height:22px;"></i>
+         </div>
+         <div>
+          <p class="font-sans text-[10px] tracking-[4px] uppercase text-gold/50 mb-2">Serviço</p>
+          <h2 class="font-serif text-2xl md:text-3xl font-light tracking-wide">Tráfego &amp; Conversão</h2>
+         </div>
+        </div>
+        <div class="grid md:grid-cols-2 gap-x-12 gap-y-4 mb-8 pl-0 md:pl-[68px]">
+         <div class="flex items-start gap-3">
+          <i data-lucide="check" class="text-gold/60 mt-1 flex-shrink-0" style="width:14px;height:14px;"></i> <span class="font-sans text-sm text-white/60 font-light">Instalação do Pixel — Meta Ads</span>
+         </div>
+         <div class="flex items-start gap-3">
+          <i data-lucide="check" class="text-gold/60 mt-1 flex-shrink-0" style="width:14px;height:14px;"></i> <span class="font-sans text-sm text-white/60 font-light">Integração com Google Ads</span>
+         </div>
+         <div class="flex items-start gap-3">
+          <i data-lucide="check" class="text-gold/60 mt-1 flex-shrink-0" style="width:14px;height:14px;"></i> <span class="font-sans text-sm text-white/60 font-light">Configuração de eventos — leads e interações</span>
+         </div>
+         <div class="flex items-start gap-3">
+          <i data-lucide="check" class="text-gold/60 mt-1 flex-shrink-0" style="width:14px;height:14px;"></i> <span class="font-sans text-sm text-white/60 font-light">Preparação do site para campanhas</span>
+         </div>
+         <div class="flex items-start gap-3">
+          <i data-lucide="check" class="text-gold/60 mt-1 flex-shrink-0" style="width:14px;height:14px;"></i> <span class="font-sans text-sm text-white/60 font-light">Estrutura pensada para anúncios</span>
+         </div>
+        </div>
+        <div class="pl-0 md:pl-[68px] flex flex-col gap-3">
+         <div class="flex flex-col gap-2">
+          <div class="flex items-center gap-3"><span class="font-sans text-[10px] tracking-[2px] uppercase text-white/40">Implementação</span> <span class="font-sans text-sm font-medium text-gold">R$300</span>
+          </div>
+          <div class="flex items-center gap-3"><span class="font-sans text-[10px] tracking-[2px] uppercase text-white/40">Mensalidade</span> <span class="font-sans text-sm font-medium text-gold">R$100</span>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div><!-- Service 3: Posicionamento Digital -->
+     <div class="fade-up mb-16 md:mb-20">
+      <div class="subtle-border card-hover bg-darkCard/50 rounded-2xl p-8 md:p-12 relative overflow-hidden">
+       <div class="section-number">
+        03
+       </div>
+       <div class="relative z-10">
+        <div class="flex items-start gap-5 mb-8">
+         <div class="service-icon">
+          <i data-lucide="map-pin" style="width:22px;height:22px;"></i>
+         </div>
+         <div>
+          <p class="font-sans text-[10px] tracking-[4px] uppercase text-gold/50 mb-2">Serviço</p>
+          <h2 class="font-serif text-2xl md:text-3xl font-light tracking-wide">Posicionamento Digital</h2>
+         </div>
+        </div>
+        <div class="grid md:grid-cols-2 gap-x-12 gap-y-4 mb-8 pl-0 md:pl-[68px]">
+         <div class="flex items-start gap-3">
+          <i data-lucide="check" class="text-gold/60 mt-1 flex-shrink-0" style="width:14px;height:14px;"></i> <span class="font-sans text-sm text-white/60 font-light">Criação/otimização do Google Meu Negócio</span>
+         </div>
+         <div class="flex items-start gap-3">
+          <i data-lucide="check" class="text-gold/60 mt-1 flex-shrink-0" style="width:14px;height:14px;"></i> <span class="font-sans text-sm text-white/60 font-light">Estruturação de redes sociais</span>
+         </div>
+         <div class="flex items-start gap-3">
+          <i data-lucide="check" class="text-gold/60 mt-1 flex-shrink-0" style="width:14px;height:14px;"></i> <span class="font-sans text-sm text-white/60 font-light">Bio estratégica</span>
+         </div>
+         <div class="flex items-start gap-3">
+          <i data-lucide="check" class="text-gold/60 mt-1 flex-shrink-0" style="width:14px;height:14px;"></i> <span class="font-sans text-sm text-white/60 font-light">Padronização de presença digital</span>
+         </div>
+        </div>
+        <div class="pl-0 md:pl-[68px] flex flex-col gap-3">
+         <div class="flex flex-col gap-2">
+          <div class="flex items-center gap-3"><span class="font-sans text-[10px] tracking-[2px] uppercase text-white/40">Implementação</span> <span class="font-sans text-sm font-medium text-gold">R$400</span>
+          </div>
+          <div class="flex items-center gap-3"><span class="font-sans text-[10px] tracking-[2px] uppercase text-white/40">Mensalidade</span> <span class="font-sans text-sm font-medium text-gold">R$150</span>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div><!-- Service 4: Branding & Identidade -->
+     <div class="fade-up mb-16 md:mb-20">
+      <div class="subtle-border card-hover bg-darkCard/50 rounded-2xl p-8 md:p-12 relative overflow-hidden">
+       <div class="section-number">
+        04
+       </div>
+       <div class="relative z-10">
+        <div class="flex items-start gap-5 mb-8">
+         <div class="service-icon">
+          <i data-lucide="palette" style="width:22px;height:22px;"></i>
+         </div>
+         <div>
+          <p class="font-sans text-[10px] tracking-[4px] uppercase text-gold/50 mb-2">Serviço</p>
+          <h2 class="font-serif text-2xl md:text-3xl font-light tracking-wide">Branding &amp; Identidade</h2>
+         </div>
+        </div>
+        <div class="grid md:grid-cols-2 gap-x-12 gap-y-4 mb-8 pl-0 md:pl-[68px]">
+         <div class="flex items-start gap-3">
+          <i data-lucide="check" class="text-gold/60 mt-1 flex-shrink-0" style="width:14px;height:14px;"></i> <span class="font-sans text-sm text-white/60 font-light">Criação de logo</span>
+         </div>
+         <div class="flex items-start gap-3">
+          <i data-lucide="check" class="text-gold/60 mt-1 flex-shrink-0" style="width:14px;height:14px;"></i> <span class="font-sans text-sm text-white/60 font-light">Paleta de cores</span>
+         </div>
+         <div class="flex items-start gap-3">
+          <i data-lucide="check" class="text-gold/60 mt-1 flex-shrink-0" style="width:14px;height:14px;"></i> <span class="font-sans text-sm text-white/60 font-light">Tipografia</span>
+         </div>
+         <div class="flex items-start gap-3">
+          <i data-lucide="check" class="text-gold/60 mt-1 flex-shrink-0" style="width:14px;height:14px;"></i> <span class="font-sans text-sm text-white/60 font-light">Direção visual</span>
+         </div>
+         <div class="flex items-start gap-3">
+          <i data-lucide="check" class="text-gold/60 mt-1 flex-shrink-0" style="width:14px;height:14px;"></i> <span class="font-sans text-sm text-white/60 font-light">Templates para redes sociais</span>
+         </div>
+        </div>
+        <div class="pl-0 md:pl-[68px] flex flex-col gap-3">
+         <div class="flex flex-col gap-2">
+          <div class="flex items-center gap-3"><span class="font-sans text-[10px] tracking-[2px] uppercase text-white/40">Implementação</span> <span class="font-sans text-sm font-medium text-gold">R$500</span>
+          </div>
+          <div class="flex items-center gap-3"><span class="font-sans text-[10px] tracking-[2px] uppercase text-white/40">Mensalidade</span> <span class="font-sans text-sm font-medium text-gold">—</span>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div><!-- Service 5: Estratégia & Direção -->
+     <div class="fade-up mb-16 md:mb-20">
+      <div class="subtle-border card-hover bg-darkCard/50 rounded-2xl p-8 md:p-12 relative overflow-hidden">
+       <div class="section-number">
+        05
+       </div>
+       <div class="relative z-10">
+        <div class="flex items-start gap-5 mb-8">
+         <div class="service-icon">
+          <i data-lucide="compass" style="width:22px;height:22px;"></i>
+         </div>
+         <div>
+          <p class="font-sans text-[10px] tracking-[4px] uppercase text-gold/50 mb-2">Serviço</p>
+          <h2 class="font-serif text-2xl md:text-3xl font-light tracking-wide">Estratégia &amp; Direção</h2>
+         </div>
+        </div>
+        <div class="grid md:grid-cols-2 gap-x-12 gap-y-4 mb-8 pl-0 md:pl-[68px]">
+         <div class="flex items-start gap-3">
+          <i data-lucide="check" class="text-gold/60 mt-1 flex-shrink-0" style="width:14px;height:14px;"></i> <span class="font-sans text-sm text-white/60 font-light">Definição de posicionamento</span>
+         </div>
+         <div class="flex items-start gap-3">
+          <i data-lucide="check" class="text-gold/60 mt-1 flex-shrink-0" style="width:14px;height:14px;"></i> <span class="font-sans text-sm text-white/60 font-light">Estrutura de comunicação</span>
+         </div>
+         <div class="flex items-start gap-3">
+          <i data-lucide="check" class="text-gold/60 mt-1 flex-shrink-0" style="width:14px;height:14px;"></i> <span class="font-sans text-sm text-white/60 font-light">Estratégia de captação de leads</span>
+         </div>
+         <div class="flex items-start gap-3">
+          <i data-lucide="check" class="text-gold/60 mt-1 flex-shrink-0" style="width:14px;height:14px;"></i> <span class="font-sans text-sm text-white/60 font-light">Direcionamento geral do projeto</span>
+         </div>
+        </div>
+        <div class="pl-0 md:pl-[68px] flex flex-col gap-3">
+         <div class="flex flex-col gap-2">
+          <div class="flex items-center gap-3"><span class="font-sans text-[10px] tracking-[2px] uppercase text-white/40">Implementação</span> <span class="font-sans text-sm font-medium text-gold">—</span>
+          </div>
+          <div class="flex items-center gap-3"><span class="font-sans text-[10px] tracking-[2px] uppercase text-white/40">Mensalidade</span> <span class="font-sans text-sm font-medium text-gold">R$250</span>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Discount Section -->
+   <section class="w-full py-24 md:py-32 px-6 relative">
+    <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(ellipse at 50% 50%, rgba(198,169,98,0.05) 0%, transparent 70%);"></div>
+    <div class="max-w-3xl mx-auto relative z-10">
+     <div class="fade-up">
+      <div class="diamond-separator mb-12">
+       <div class="diamond"></div>
+      </div>
+      <div class="text-center mb-16">
+       <h2 id="discount-title" class="font-serif text-3xl md:text-4xl font-light tracking-wide mb-6">Descontos Progressivos</h2>
+       <p id="discount-desc" class="font-sans text-base text-white/50 font-light leading-relaxed">A cada serviço contratado, você recebe <span class="text-gold font-medium">5% de desconto</span> na próxima contratação. Quanto mais você investe em sua estratégia digital, maior a economia.</p>
+      </div>
+      <div class="grid md:grid-cols-5 gap-4">
+       <div class="subtle-border bg-darkCard/50 rounded-xl p-6 text-center">
+        <div class="font-serif text-3xl font-light text-gold mb-2">
+         1º
+        </div>
+        <p class="font-sans text-[10px] tracking-[2px] uppercase text-white/40 mb-3">Serviço</p>
+        <p class="font-sans text-xs text-white/60">Preço <br>
+         Original</p>
+       </div>
+       <div class="flex items-center justify-center"><i data-lucide="arrow-right" class="text-gold/30" style="width:20px;height:20px;"></i>
+       </div>
+       <div class="subtle-border bg-darkCard/50 rounded-xl p-6 text-center border-gold/30">
+        <div class="font-serif text-3xl font-light text-gold mb-2">
+         2º
+        </div>
+        <p class="font-sans text-[10px] tracking-[2px] uppercase text-white/40 mb-3">Serviço</p>
+        <p class="font-sans text-xs text-gold font-medium">-5%</p>
+       </div>
+       <div class="flex items-center justify-center"><i data-lucide="arrow-right" class="text-gold/30" style="width:20px;height:20px;"></i>
+       </div>
+       <div class="subtle-border bg-darkCard/50 rounded-xl p-6 text-center border-gold/30">
+        <div class="font-serif text-3xl font-light text-gold mb-2">
+         3º+
+        </div>
+        <p class="font-sans text-[10px] tracking-[2px] uppercase text-white/40 mb-3">Serviço</p>
+        <p class="font-sans text-xs text-gold font-medium">-10%</p>
+       </div>
+      </div>
+      <div class="mt-12 text-center">
+       <p class="font-sans text-sm text-white/40 font-light">Exemplo: ao contratar o primeiro serviço, você terá 5% off no segundo, e 10% off no terceiro em diante.</p>
+      </div>
+     </div>
+    </div>
+   </section><!-- CTA Section -->
+   <section class="w-full py-24 md:py-32 px-6 relative">
+    <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(ellipse at 50% 50%, rgba(198,169,98,0.04) 0%, transparent 70%);"></div>
+    <div class="max-w-2xl mx-auto text-center relative z-10 fade-up">
+     <div class="diamond-separator mb-10">
+      <div class="diamond"></div>
+     </div>
+     <h2 id="cta-heading" class="font-serif text-3xl md:text-4xl font-light tracking-wide mb-6 leading-tight">Vamos estruturar um projeto <span class="italic text-gold">sob medida</span> para seu resort</h2>
+     <p class="font-sans text-sm text-white/40 font-light mb-12 max-w-md mx-auto leading-relaxed">Entre em contato para alinharmos os detalhes e construirmos juntos a presença digital que seu negócio merece.</p><a id="cta-button" href="https://api.whatsapp.com/send?phone=5511911482902" target="_blank" rel="noopener noreferrer" class="cta-btn rounded-lg"> <i data-lucide="message-circle" style="width:18px;height:18px;"></i> <span id="cta-button-text">Solicitar Alinhamento</span> </a>
+    </div>
+   </section><!-- Footer -->
+   <footer class="w-full py-12 px-6 border-t border-white/5">
+    <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+     <div class="text-center md:text-left">
+      <p id="footer-company" class="font-sans text-sm font-medium text-white/70 tracking-wide">Niar Soluções Digitais</p>
+      <p id="footer-contact" class="font-sans text-xs text-white/30 mt-1">contato@niar.com.br</p>
+     </div>
+     <div class="flex items-center gap-2">
+      <div class="w-1 h-1 rounded-full bg-gold/40"></div>
+      <p class="font-sans text-[10px] tracking-[3px] uppercase text-white/20">Proposta Comercial 2026</p>
+      <div class="w-1 h-1 rounded-full bg-gold/40"></div>
+     </div>
+    </div>
+   </footer>
+  </div>
+  <script>
+    // Scroll-triggered fade-in animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, index * 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // Auto-trigger hero fade-ups on load
+    setTimeout(() => {
+      document.querySelectorAll('.hero-gradient .fade-up').forEach((el, i) => {
+        setTimeout(() => el.classList.add('visible'), i * 200 + 300);
+      });
+    }, 100);
+
+    // Initialize Lucide icons
+    lucide.createIcons();
+
+    // Element SDK
+    const defaultConfig = {
+      hero_headline: 'Soluções Digitais para Posicionamento e Captação de Alto Padrão',
+      hero_subheadline: 'Estrutura completa para atrair, converter e posicionar seu resort de forma estratégica',
+      cta_text: 'Vamos estruturar um projeto sob medida para seu resort',
+      cta_button_text: 'Solicitar Alinhamento',
+      company_name: 'Niar Soluções Digitais',
+      contact_info: 'contato@niar.com.br',
+      discount_title: 'Descontos Progressivos',
+      discount_description: 'A cada serviço contratado, você recebe 5% de desconto na próxima contratação. Quanto mais você investe em sua estratégia digital, maior a economia.',
+      background_color: '#0A0A0A',
+      surface_color: '#1A1A1A',
+      text_color: '#FFFFFF',
+      accent_color: '#C6A962',
+      secondary_accent_color: '#A88B3D',
+      font_family: 'Cormorant Garamond',
+      font_size: 16
+    };
+
+    function applyConfig(config) {
+      const c = { ...defaultConfig, ...config };
+
+      // Text content
+      const heroH1 = document.getElementById('hero-headline');
+      if (heroH1) {
+        const words = (c.hero_headline || defaultConfig.hero_headline).split(' ');
+        const lastTwo = words.slice(-2).join(' ');
+        const rest = words.slice(0, -2).join(' ');
+        heroH1.innerHTML = `${rest} <span class="shimmer-text font-medium italic">${lastTwo}</span>`;
+      }
+
+      const heroSub = document.getElementById('hero-subheadline');
+      if (heroSub) heroSub.textContent = c.hero_subheadline || defaultConfig.hero_subheadline;
+
+      const ctaH = document.getElementById('cta-heading');
+      if (ctaH) {
+        const text = c.cta_text || defaultConfig.cta_text;
+        const words = text.split(' ');
+        const lastThree = words.slice(-3).join(' ');
+        const rest = words.slice(0, -3).join(' ');
+        ctaH.innerHTML = `${rest} <span class="italic text-gold">${lastThree}</span>`;
+      }
+
+      const ctaBtn = document.getElementById('cta-button-text');
+      if (ctaBtn) ctaBtn.textContent = c.cta_button_text || defaultConfig.cta_button_text;
+
+      const footerC = document.getElementById('footer-company');
+      if (footerC) footerC.textContent = c.company_name || defaultConfig.company_name;
+
+      const companyTop = document.getElementById('company-top');
+      if (companyTop) companyTop.textContent = c.company_name || defaultConfig.company_name;
+
+      const footerContact = document.getElementById('footer-contact');
+      if (footerContact) footerContact.textContent = c.contact_info || defaultConfig.contact_info;
+
+      const discountTitle = document.getElementById('discount-title');
+      if (discountTitle) discountTitle.textContent = c.discount_title || defaultConfig.discount_title;
+
+      const discountDesc = document.getElementById('discount-desc');
+      if (discountDesc) {
+        const text = c.discount_description || defaultConfig.discount_description;
+        const hasSpan = text.includes('5%');
+        if (hasSpan) {
+          const parts = text.split('5%');
+          discountDesc.innerHTML = `${parts[0]}<span class="text-gold font-medium">5%</span>${parts[1]}`;
+        } else {
+          discountDesc.textContent = text;
+        }
+      }
+
+      // Colors
+      const bg = c.background_color || defaultConfig.background_color;
+      const surface = c.surface_color || defaultConfig.surface_color;
+      const textCol = c.text_color || defaultConfig.text_color;
+      const accent = c.accent_color || defaultConfig.accent_color;
+      const accent2 = c.secondary_accent_color || defaultConfig.secondary_accent_color;
+
+      document.body.style.backgroundColor = bg;
+      document.body.style.color = textCol;
+
+      // Font
+      const fontFamily = c.font_family || defaultConfig.font_family;
+      const baseSize = c.font_size || defaultConfig.font_size;
+
+      document.querySelectorAll('.font-serif, h1, h2').forEach(el => {
+        el.style.fontFamily = `${fontFamily}, Georgia, serif`;
+      });
+
+      if (heroH1) heroH1.style.fontSize = `${baseSize * 2.8}px`;
+      if (heroSub) heroSub.style.fontSize = `${baseSize}px`;
+
+      document.querySelectorAll('.font-sans').forEach(el => {
+        const computedSize = window.getComputedStyle(el).fontSize;
+        // Keep relative scaling
+      });
+    }
+
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange: async (config) => {
+          applyConfig(config);
+        },
+        mapToCapabilities: (config) => ({
+          recolorables: [
+            {
+              get: () => config.background_color || defaultConfig.background_color,
+              set: (v) => { config.background_color = v; window.elementSdk.setConfig({ background_color: v }); }
+            },
+            {
+              get: () => config.surface_color || defaultConfig.surface_color,
+              set: (v) => { config.surface_color = v; window.elementSdk.setConfig({ surface_color: v }); }
+            },
+            {
+              get: () => config.text_color || defaultConfig.text_color,
+              set: (v) => { config.text_color = v; window.elementSdk.setConfig({ text_color: v }); }
+            },
+            {
+              get: () => config.accent_color || defaultConfig.accent_color,
+              set: (v) => { config.accent_color = v; window.elementSdk.setConfig({ accent_color: v }); }
+            },
+            {
+              get: () => config.secondary_accent_color || defaultConfig.secondary_accent_color,
+              set: (v) => { config.secondary_accent_color = v; window.elementSdk.setConfig({ secondary_accent_color: v }); }
+            }
+          ],
+          borderables: [],
+          fontEditable: {
+            get: () => config.font_family || defaultConfig.font_family,
+            set: (v) => { config.font_family = v; window.elementSdk.setConfig({ font_family: v }); }
+          },
+          fontSizeable: {
+            get: () => config.font_size || defaultConfig.font_size,
+            set: (v) => { config.font_size = v; window.elementSdk.setConfig({ font_size: v }); }
+          }
+        }),
+        mapToEditPanelValues: (config) => new Map([
+          ['hero_headline', config.hero_headline || defaultConfig.hero_headline],
+          ['hero_subheadline', config.hero_subheadline || defaultConfig.hero_subheadline],
+          ['cta_text', config.cta_text || defaultConfig.cta_text],
+          ['cta_button_text', config.cta_button_text || defaultConfig.cta_button_text],
+          ['company_name', config.company_name || defaultConfig.company_name],
+          ['contact_info', config.contact_info || defaultConfig.contact_info],
+          ['discount_title', config.discount_title || defaultConfig.discount_title],
+          ['discount_description', config.discount_description || defaultConfig.discount_description]
+        ])
+      });
+    }
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9de5e06410d19a7f',t:'MTc3Mzg1NDA5Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

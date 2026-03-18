@@ -1,0 +1,503 @@
+<!doctype html>
+<html lang="pt-BR" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AURA — Resort</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&amp;family=Outfit:wght@200;300;400;500&amp;display=swap" rel="stylesheet">
+  <style>
+    html { scroll-behavior: smooth; }
+
+    .font-display { font-family: 'Cormorant Garamond', Georgia, serif; }
+    .font-body { font-family: 'Outfit', sans-serif; }
+
+    /* Noise texture overlay */
+    .noise::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+
+    /* Fade in on scroll */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Staggered children */
+    .reveal-child { opacity: 0; transform: translateY(30px); transition: opacity 0.9s ease, transform 0.9s ease; }
+    .reveal-child.visible { opacity: 1; transform: translateY(0); }
+
+    /* Hero parallax text */
+    .hero-text-animate {
+      animation: heroFadeUp 2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      opacity: 0;
+    }
+    @keyframes heroFadeUp {
+      from { opacity: 0; transform: translateY(60px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Subtle line animation */
+    .line-grow { width: 0; transition: width 1.5s cubic-bezier(0.16, 1, 0.3, 1); }
+    .line-grow.visible { width: 60px; }
+
+    /* Hover lift */
+    .hover-lift { transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s ease; }
+    .hover-lift:hover { transform: translateY(-8px); box-shadow: 0 30px 60px rgba(0,0,0,0.08); }
+
+    /* Gradient overlays for visual cards */
+    .card-gradient {
+      background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.7) 100%);
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); border-radius: 2px; }
+
+    /* Smooth button */
+    .btn-luxury {
+      position: relative;
+      overflow: hidden;
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .btn-luxury::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: #fff;
+      transform: translateX(-101%);
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .btn-luxury:hover::before { transform: translateX(0); }
+    .btn-luxury:hover { color: #000; }
+    .btn-luxury span { position: relative; z-index: 1; }
+
+    .btn-luxury-inv {
+      position: relative;
+      overflow: hidden;
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .btn-luxury-inv::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: #000;
+      transform: translateX(-101%);
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .btn-luxury-inv:hover::before { transform: translateX(0); }
+    .btn-luxury-inv:hover { color: #fff; }
+    .btn-luxury-inv span { position: relative; z-index: 1; }
+
+    /* Geometric decorative shapes */
+    .geo-circle {
+      width: 300px; height: 300px;
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: 50%;
+      position: absolute;
+      pointer-events: none;
+    }
+  </style>
+  <style>body { box-sizing: border-box; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full font-body bg-white text-black overflow-auto" style="font-weight: 300;"><!-- Nav -->
+  <nav id="mainNav" class="fixed top-0 left-0 w-full z-50 transition-all duration-700" style="background: transparent;">
+   <div class="max-w-7xl mx-auto px-6 sm:px-10 flex items-center justify-between" style="height: 80px;"><a href="#hero" class="font-display text-xl tracking-widest" style="font-weight: 400; letter-spacing: 0.35em;" id="navLogo">AURA</a>
+    <div class="hidden md:flex items-center gap-10 text-xs tracking-widest uppercase" style="font-weight: 300;"><a href="#about" class="nav-link opacity-60 hover:opacity-100 transition-opacity duration-500">Conceito</a> <a href="#highlights" class="nav-link opacity-60 hover:opacity-100 transition-opacity duration-500">Destaques</a> <a href="#experience" class="nav-link opacity-60 hover:opacity-100 transition-opacity duration-500">Experiência</a> <a href="#contact" class="nav-link opacity-60 hover:opacity-100 transition-opacity duration-500">Contato</a>
+    </div><button id="mobileMenuBtn" class="md:hidden" aria-label="Menu"> <i data-lucide="menu" style="width: 22px; height: 22px;"></i> </button>
+   </div>
+  </nav><!-- Mobile Menu -->
+  <div id="mobileMenu" class="fixed inset-0 z-50 bg-white flex flex-col items-center justify-center gap-8 transition-all duration-700" style="opacity: 0; pointer-events: none; transform: scale(1.05);"><button id="mobileMenuClose" class="absolute top-7 right-6" aria-label="Fechar"> <i data-lucide="x" style="width: 24px; height: 24px;"></i> </button> <a href="#about" class="mobile-nav-link font-display text-3xl tracking-wider opacity-0" style="transition: opacity 0.6s ease 0.1s;">Conceito</a> <a href="#highlights" class="mobile-nav-link font-display text-3xl tracking-wider opacity-0" style="transition: opacity 0.6s ease 0.2s;">Destaques</a> <a href="#experience" class="mobile-nav-link font-display text-3xl tracking-wider opacity-0" style="transition: opacity 0.6s ease 0.3s;">Experiência</a> <a href="#contact" class="mobile-nav-link font-display text-3xl tracking-wider opacity-0" style="transition: opacity 0.6s ease 0.4s;">Contato</a>
+  </div><!-- Hero -->
+  <section id="hero" class="relative w-full overflow-hidden noise" style="height: 100%;"><!-- Abstract gradient background -->
+   <div class="absolute inset-0" style="background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 40%, #0d0d0d 70%, #000 100%);"></div>
+   <div class="absolute inset-0" style="background: radial-gradient(ellipse 80% 60% at 70% 40%, rgba(60,60,60,0.3) 0%, transparent 70%);"></div>
+   <div class="absolute inset-0" style="background: radial-gradient(ellipse 40% 50% at 20% 80%, rgba(40,40,40,0.2) 0%, transparent 60%);"></div><!-- Decorative thin line -->
+   <div class="absolute" style="top: 50%; left: 0; width: 100%; height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);"></div>
+   <div class="relative z-10 h-full flex flex-col items-center justify-center text-white px-6 text-center">
+    <div class="hero-text-animate" style="animation-delay: 0.3s;">
+     <p class="text-xs tracking-widest uppercase opacity-40 mb-6 font-body" style="letter-spacing: 0.4em; font-weight: 300;">Resort &amp; Residências</p>
+    </div>
+    <h1 id="heroTitle" class="font-display hero-text-animate" style="animation-delay: 0.6s; font-size: clamp(2.8rem, 8vw, 7rem); font-weight: 300; line-height: 1.05; letter-spacing: -0.02em;">Silêncio é luxo</h1>
+    <div class="hero-text-animate" style="animation-delay: 0.9s;">
+     <p id="heroSubtitle" class="mt-6 text-sm sm:text-base opacity-40 max-w-md font-body" style="font-weight: 200; line-height: 1.8; letter-spacing: 0.05em;">Um refúgio onde o tempo obedece apenas a você.</p>
+    </div>
+    <div class="hero-text-animate" style="animation-delay: 1.2s;"><a href="#about" id="heroCta" class="btn-luxury inline-block mt-12 border border-white/20 text-white text-xs tracking-widest uppercase px-10 py-4" style="letter-spacing: 0.3em; font-weight: 300;"> <span>Explorar</span> </a>
+    </div><!-- Scroll indicator -->
+    <div class="absolute bottom-10 hero-text-animate" style="animation-delay: 1.8s;">
+     <div class="w-px bg-white/20" style="height: 50px; margin: 0 auto;">
+      <div class="w-px bg-white/60" style="height: 20px; animation: scrollPulse 2s ease-in-out infinite;"></div>
+     </div>
+    </div>
+   </div>
+   <style>
+      @keyframes scrollPulse {
+        0%, 100% { transform: translateY(0); opacity: 0.6; }
+        50% { transform: translateY(30px); opacity: 0; }
+      }
+    </style>
+  </section><!-- About / Apresentação -->
+  <section id="about" class="relative w-full" style="padding: 12% 0;">
+   <div class="geo-circle" style="top: -100px; right: -150px; opacity: 0.5;"></div>
+   <div class="max-w-5xl mx-auto px-6 sm:px-10">
+    <div class="reveal">
+     <div class="flex items-center gap-4 mb-8">
+      <div class="line-grow h-px bg-black/20"></div><span class="text-xs tracking-widest uppercase opacity-40" style="letter-spacing: 0.3em; font-weight: 300;">Conceito</span>
+     </div>
+    </div>
+    <div class="grid md:grid-cols-2 gap-12 md:gap-20 items-start">
+     <div class="reveal" style="transition-delay: 0.1s;">
+      <h2 id="aboutHeading" class="font-display" style="font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 300; line-height: 1.15; letter-spacing: -0.01em;">Além do<br>
+       extraordinário</h2>
+     </div>
+     <div class="reveal" style="transition-delay: 0.25s;">
+      <p id="aboutText" class="text-sm sm:text-base opacity-50 leading-relaxed" style="font-weight: 300; line-height: 2;">Cada detalhe foi pensado para desaparecer. O que resta é apenas a sensação — de espaço, de calma, de pertencer a um lugar que existe fora do comum.</p>
+      <div class="mt-10 flex items-center gap-6">
+       <div class="text-center"><span class="font-display block" style="font-size: 2.2rem; font-weight: 300;">12</span> <span class="text-xs opacity-40 tracking-wider uppercase" style="font-weight: 300;">Suítes</span>
+       </div>
+       <div class="w-px bg-black/10" style="height: 40px;"></div>
+       <div class="text-center"><span class="font-display block" style="font-size: 2.2rem; font-weight: 300;">∞</span> <span class="text-xs opacity-40 tracking-wider uppercase" style="font-weight: 300;">Horizonte</span>
+       </div>
+       <div class="w-px bg-black/10" style="height: 40px;"></div>
+       <div class="text-center"><span class="font-display block" style="font-size: 2.2rem; font-weight: 300;">1</span> <span class="text-xs opacity-40 tracking-wider uppercase" style="font-weight: 300;">Filosofia</span>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Divider -->
+  <div class="w-full flex justify-center">
+   <div class="bg-black/5" style="width: 1px; height: 80px;"></div>
+  </div><!-- Highlights / Destaques -->
+  <section id="highlights" class="relative w-full" style="padding: 8% 0 10%;">
+   <div class="max-w-6xl mx-auto px-6 sm:px-10">
+    <div class="reveal text-center mb-16"><span class="text-xs tracking-widest uppercase opacity-40" style="letter-spacing: 0.3em; font-weight: 300;">Destaques</span>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5"><!-- Card 1 -->
+     <div class="reveal hover-lift relative overflow-hidden group" style="transition-delay: 0.05s; aspect-ratio: 3/4; border-radius: 2px;">
+      <div class="absolute inset-0" style="background: linear-gradient(160deg, #1a1a1a, #2a2a2a 40%, #1f1f1f 70%, #111 100%);"></div>
+      <div class="absolute inset-0" style="background: radial-gradient(circle at 30% 20%, rgba(80,80,80,0.2), transparent 60%);"></div><!-- Abstract architectural lines -->
+      <svg class="absolute inset-0 w-full h-full opacity-10" viewbox="0 0 300 400" fill="none"><line x1="50" y1="0" x2="50" y2="400" stroke="white" stroke-width="0.5" /> <line x1="150" y1="100" x2="150" y2="400" stroke="white" stroke-width="0.5" /> <line x1="0" y1="200" x2="300" y2="200" stroke="white" stroke-width="0.3" /> <rect x="50" y="120" width="100" height="160" stroke="white" stroke-width="0.5" fill="none" />
+      </svg>
+      <div class="card-gradient absolute inset-0"></div>
+      <div class="absolute bottom-0 left-0 p-7 text-white">
+       <h3 class="font-display text-2xl mb-2" style="font-weight: 300;">Arquitetura</h3>
+       <p class="text-xs opacity-50 leading-relaxed" style="font-weight: 200;">Linhas que dialogam com a paisagem.</p>
+      </div>
+     </div><!-- Card 2 -->
+     <div class="reveal hover-lift relative overflow-hidden group" style="transition-delay: 0.15s; aspect-ratio: 3/4; border-radius: 2px;">
+      <div class="absolute inset-0" style="background: linear-gradient(170deg, #f7f6f3, #eae8e3 50%, #ddd9d2 100%);"></div>
+      <div class="absolute inset-0" style="background: radial-gradient(circle at 70% 30%, rgba(255,255,255,0.5), transparent 50%);"></div><!-- Abstract landscape -->
+      <svg class="absolute inset-0 w-full h-full opacity-20" viewbox="0 0 300 400" fill="none"><circle cx="200" cy="100" r="30" stroke="#888" stroke-width="0.5" fill="none" /> <path d="M0 280 Q75 220 150 260 Q225 300 300 250 L300 400 L0 400 Z" fill="rgba(0,0,0,0.04)" /> <path d="M0 300 Q100 260 200 290 Q250 305 300 280 L300 400 L0 400 Z" fill="rgba(0,0,0,0.03)" />
+      </svg>
+      <div class="absolute bottom-0 left-0 p-7">
+       <h3 class="font-display text-2xl mb-2 text-black/80" style="font-weight: 300;">Localização</h3>
+       <p class="text-xs text-black/40 leading-relaxed" style="font-weight: 200;">Onde a terra encontra o silêncio.</p>
+      </div>
+     </div><!-- Card 3 -->
+     <div class="reveal hover-lift relative overflow-hidden group sm:col-span-2 lg:col-span-1" style="transition-delay: 0.25s; aspect-ratio: 3/4; border-radius: 2px;">
+      <div class="absolute inset-0" style="background: linear-gradient(145deg, #0d0d0d, #1a1a1a 30%, #111 60%, #0a0a0a 100%);"></div>
+      <div class="absolute inset-0" style="background: radial-gradient(circle at 50% 50%, rgba(50,50,50,0.3), transparent 60%);"></div><!-- Abstract spa/water ripple -->
+      <svg class="absolute inset-0 w-full h-full opacity-10" viewbox="0 0 300 400" fill="none"><circle cx="150" cy="200" r="40" stroke="white" stroke-width="0.3" fill="none" /> <circle cx="150" cy="200" r="70" stroke="white" stroke-width="0.3" fill="none" /> <circle cx="150" cy="200" r="100" stroke="white" stroke-width="0.2" fill="none" /> <circle cx="150" cy="200" r="130" stroke="white" stroke-width="0.15" fill="none" />
+      </svg>
+      <div class="card-gradient absolute inset-0"></div>
+      <div class="absolute bottom-0 left-0 p-7 text-white">
+       <h3 class="font-display text-2xl mb-2" style="font-weight: 300;">Experiência</h3>
+       <p class="text-xs opacity-50 leading-relaxed" style="font-weight: 200;">Sentir mais. Pensar menos.</p>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Experience / Lifestyle -->
+  <section id="experience" class="relative w-full overflow-hidden noise" style="padding: 10% 0; background: #f8f7f5;">
+   <div class="geo-circle" style="bottom: -100px; left: -100px; border-color: rgba(0,0,0,0.04);"></div>
+   <div class="max-w-6xl mx-auto px-6 sm:px-10">
+    <div class="reveal text-center mb-16 sm:mb-20"><span class="text-xs tracking-widest uppercase opacity-40" style="letter-spacing: 0.3em; font-weight: 300;">Lifestyle</span>
+     <h2 class="font-display mt-6" style="font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 300; line-height: 1.2;">O luxo de não precisar<br>
+      de nada mais</h2>
+    </div>
+    <div class="grid md:grid-cols-4 gap-4 sm:gap-6"><!-- Lifestyle items -->
+     <div class="reveal-child text-center py-10 px-4" style="transition-delay: 0.05s;">
+      <div class="mx-auto mb-6 flex items-center justify-center" style="width: 48px; height: 48px;">
+       <svg viewbox="0 0 48 48" fill="none" class="w-full h-full"><circle cx="24" cy="24" r="22" stroke="black" stroke-width="0.5" fill="none" opacity="0.2" /> <path d="M16 32 Q24 12 32 32" stroke="black" stroke-width="0.8" fill="none" opacity="0.4" />
+       </svg>
+      </div>
+      <h4 class="font-display text-lg mb-2" style="font-weight: 400;">Gastronomia</h4>
+      <p class="text-xs opacity-40 leading-relaxed" style="font-weight: 200;">Do campo à mesa,<br>
+       sem pressa.</p>
+     </div>
+     <div class="reveal-child text-center py-10 px-4" style="transition-delay: 0.15s;">
+      <div class="mx-auto mb-6 flex items-center justify-center" style="width: 48px; height: 48px;">
+       <svg viewbox="0 0 48 48" fill="none" class="w-full h-full"><circle cx="24" cy="24" r="22" stroke="black" stroke-width="0.5" fill="none" opacity="0.2" /> <circle cx="24" cy="24" r="8" stroke="black" stroke-width="0.8" fill="none" opacity="0.4" /> <circle cx="24" cy="24" r="14" stroke="black" stroke-width="0.5" fill="none" opacity="0.2" />
+       </svg>
+      </div>
+      <h4 class="font-display text-lg mb-2" style="font-weight: 400;">Bem-estar</h4>
+      <p class="text-xs opacity-40 leading-relaxed" style="font-weight: 200;">Spa, silêncio<br>
+       e natureza.</p>
+     </div>
+     <div class="reveal-child text-center py-10 px-4" style="transition-delay: 0.25s;">
+      <div class="mx-auto mb-6 flex items-center justify-center" style="width: 48px; height: 48px;">
+       <svg viewbox="0 0 48 48" fill="none" class="w-full h-full"><circle cx="24" cy="24" r="22" stroke="black" stroke-width="0.5" fill="none" opacity="0.2" /> <line x1="12" y1="24" x2="36" y2="24" stroke="black" stroke-width="0.8" opacity="0.4" /> <line x1="24" y1="14" x2="24" y2="34" stroke="black" stroke-width="0.8" opacity="0.4" />
+       </svg>
+      </div>
+      <h4 class="font-display text-lg mb-2" style="font-weight: 400;">Privacidade</h4>
+      <p class="text-xs opacity-40 leading-relaxed" style="font-weight: 200;">Seu espaço.<br>
+       Suas regras.</p>
+     </div>
+     <div class="reveal-child text-center py-10 px-4" style="transition-delay: 0.35s;">
+      <div class="mx-auto mb-6 flex items-center justify-center" style="width: 48px; height: 48px;">
+       <svg viewbox="0 0 48 48" fill="none" class="w-full h-full"><circle cx="24" cy="24" r="22" stroke="black" stroke-width="0.5" fill="none" opacity="0.2" /> <path d="M14 30 L24 16 L34 30" stroke="black" stroke-width="0.8" fill="none" opacity="0.4" />
+       </svg>
+      </div>
+      <h4 class="font-display text-lg mb-2" style="font-weight: 400;">Natureza</h4>
+      <p class="text-xs opacity-40 leading-relaxed" style="font-weight: 200;">Integração<br>
+       absoluta.</p>
+     </div>
+    </div>
+   </div>
+  </section><!-- Membership / Aquisição -->
+  <section class="relative w-full" style="padding: 10% 0;">
+   <div class="max-w-3xl mx-auto px-6 sm:px-10 text-center">
+    <div class="reveal"><span class="text-xs tracking-widest uppercase opacity-40" style="letter-spacing: 0.3em; font-weight: 300;">Associação</span>
+     <h2 class="font-display mt-6 mb-6" style="font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 300; line-height: 1.2;">Um convite, não uma oferta</h2>
+     <p class="text-sm opacity-40 max-w-lg mx-auto leading-relaxed" style="font-weight: 300; line-height: 2;">O acesso ao AURA é por seleção. Preservamos a exclusividade para garantir que cada hóspede viva a experiência em sua plenitude.</p>
+    </div>
+    <div class="reveal mt-12 grid sm:grid-cols-3 gap-6">
+     <div class="py-8 px-4" style="border: 1px solid rgba(0,0,0,0.06); border-radius: 2px;"><span class="font-display block text-2xl mb-1" style="font-weight: 300;">01</span> <span class="text-xs opacity-40 tracking-wider uppercase" style="font-weight: 300;">Solicite</span>
+     </div>
+     <div class="py-8 px-4" style="border: 1px solid rgba(0,0,0,0.06); border-radius: 2px;"><span class="font-display block text-2xl mb-1" style="font-weight: 300;">02</span> <span class="text-xs opacity-40 tracking-wider uppercase" style="font-weight: 300;">Conheça</span>
+     </div>
+     <div class="py-8 px-4" style="border: 1px solid rgba(0,0,0,0.06); border-radius: 2px;"><span class="font-display block text-2xl mb-1" style="font-weight: 300;">03</span> <span class="text-xs opacity-40 tracking-wider uppercase" style="font-weight: 300;">Pertença</span>
+     </div>
+    </div>
+   </div>
+  </section><!-- Final CTA -->
+  <section id="contact" class="relative w-full noise" style="background: #0a0a0a; padding: 12% 0;">
+   <div class="absolute inset-0" style="background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(40,40,40,0.3), transparent);"></div>
+   <div class="relative z-10 max-w-3xl mx-auto px-6 sm:px-10 text-center text-white">
+    <div class="reveal">
+     <h2 id="finalHeading" class="font-display" style="font-size: clamp(2rem, 4.5vw, 3.5rem); font-weight: 300; line-height: 1.15;">Sua próxima experiência<br>
+      começa com uma conversa</h2>
+     <p class="mt-6 text-sm opacity-30 max-w-md mx-auto" style="font-weight: 200; line-height: 1.9;">Estamos à disposição para apresentar o AURA pessoalmente.</p><a href="#contact" id="finalCta" class="btn-luxury inline-block mt-12 border border-white/20 text-white text-xs tracking-widest uppercase px-12 py-4" style="letter-spacing: 0.3em; font-weight: 300;"> <span>Solicitar Acesso</span> </a>
+    </div>
+   </div>
+  </section><!-- Footer -->
+  <footer class="w-full" style="background: #050505; padding: 40px 0;">
+   <div class="max-w-6xl mx-auto px-6 sm:px-10">
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-4"><span class="font-display text-white/40 text-sm tracking-widest" style="letter-spacing: 0.35em;">AURA</span>
+     <div class="flex items-center gap-6"><a href="#" target="_blank" rel="noopener noreferrer" class="text-white/20 hover:text-white/50 transition-colors duration-500"> <i data-lucide="instagram" style="width: 16px; height: 16px;"></i> </a> <a href="#" target="_blank" rel="noopener noreferrer" class="text-white/20 hover:text-white/50 transition-colors duration-500"> <i data-lucide="mail" style="width: 16px; height: 16px;"></i> </a>
+     </div><span class="text-xs text-white/15" style="font-weight: 200;">© 2025 AURA Resort</span>
+    </div>
+   </div>
+  </footer>
+  <script>
+    // Default configuration
+    const defaultConfig = {
+      background_color: '#ffffff',
+      surface_color: '#f8f7f5',
+      text_color: '#000000',
+      primary_action_color: '#0a0a0a',
+      secondary_action_color: '#555555',
+      font_family: 'Cormorant Garamond',
+      font_size: 16,
+      hero_title: 'Silêncio é luxo',
+      hero_subtitle: 'Um refúgio onde o tempo obedece apenas a você.',
+      hero_cta: 'Explorar',
+      about_heading: 'Além do\nextraordinário',
+      about_text: 'Cada detalhe foi pensado para desaparecer. O que resta é apenas a sensação — de espaço, de calma, de pertencer a um lugar que existe fora do comum.',
+      final_heading: 'Sua próxima experiência\ncomeça com uma conversa',
+      final_cta: 'Solicitar Acesso'
+    };
+
+    function applyConfig(config) {
+      const c = { ...defaultConfig, ...config };
+
+      // Colors
+      document.body.style.backgroundColor = c.background_color;
+      const experienceSection = document.getElementById('experience');
+      if (experienceSection) experienceSection.style.backgroundColor = c.surface_color;
+
+      document.body.style.color = c.text_color;
+
+      // Dark sections (hero, final CTA) use primary_action_color
+      const hero = document.getElementById('hero');
+      const contactSection = document.getElementById('contact');
+      if (hero) {
+        hero.style.background = `linear-gradient(135deg, ${c.primary_action_color} 0%, ${lightenColor(c.primary_action_color, 15)} 40%, ${c.primary_action_color} 100%)`;
+      }
+      if (contactSection) {
+        contactSection.style.background = c.primary_action_color;
+      }
+
+      // Font
+      const customFont = c.font_family || defaultConfig.font_family;
+      const baseFontStack = 'Georgia, serif';
+      document.querySelectorAll('.font-display').forEach(el => {
+        el.style.fontFamily = `${customFont}, ${baseFontStack}`;
+      });
+
+      // Font size
+      const base = c.font_size || defaultConfig.font_size;
+      document.querySelectorAll('.font-body, body').forEach(el => {
+        el.style.fontSize = `${base}px`;
+      });
+
+      // Text content
+      const heroTitle = document.getElementById('heroTitle');
+      if (heroTitle) heroTitle.innerHTML = (c.hero_title || defaultConfig.hero_title).replace(/\n/g, '<br>');
+
+      const heroSubtitle = document.getElementById('heroSubtitle');
+      if (heroSubtitle) heroSubtitle.textContent = c.hero_subtitle || defaultConfig.hero_subtitle;
+
+      const heroCta = document.getElementById('heroCta');
+      if (heroCta) heroCta.querySelector('span').textContent = c.hero_cta || defaultConfig.hero_cta;
+
+      const aboutHeading = document.getElementById('aboutHeading');
+      if (aboutHeading) aboutHeading.innerHTML = (c.about_heading || defaultConfig.about_heading).replace(/\n/g, '<br>');
+
+      const aboutText = document.getElementById('aboutText');
+      if (aboutText) aboutText.textContent = c.about_text || defaultConfig.about_text;
+
+      const finalHeading = document.getElementById('finalHeading');
+      if (finalHeading) finalHeading.innerHTML = (c.final_heading || defaultConfig.final_heading).replace(/\n/g, '<br>');
+
+      const finalCta = document.getElementById('finalCta');
+      if (finalCta) finalCta.querySelector('span').textContent = c.final_cta || defaultConfig.final_cta;
+
+      // Nav link colors (secondary action)
+      document.querySelectorAll('.nav-link').forEach(el => {
+        el.style.color = c.text_color;
+      });
+    }
+
+    function lightenColor(hex, percent) {
+      const num = parseInt(hex.replace('#', ''), 16);
+      const r = Math.min(255, (num >> 16) + Math.round(255 * percent / 100));
+      const g = Math.min(255, ((num >> 8) & 0x00FF) + Math.round(255 * percent / 100));
+      const b = Math.min(255, (num & 0x0000FF) + Math.round(255 * percent / 100));
+      return `#${(r << 16 | g << 8 | b).toString(16).padStart(6, '0')}`;
+    }
+
+    // Initialize Element SDK
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange: async (config) => { applyConfig(config); },
+        mapToCapabilities: (config) => ({
+          recolorables: [
+            { get: () => config.background_color || defaultConfig.background_color, set: (v) => { config.background_color = v; window.elementSdk.setConfig({ background_color: v }); } },
+            { get: () => config.surface_color || defaultConfig.surface_color, set: (v) => { config.surface_color = v; window.elementSdk.setConfig({ surface_color: v }); } },
+            { get: () => config.text_color || defaultConfig.text_color, set: (v) => { config.text_color = v; window.elementSdk.setConfig({ text_color: v }); } },
+            { get: () => config.primary_action_color || defaultConfig.primary_action_color, set: (v) => { config.primary_action_color = v; window.elementSdk.setConfig({ primary_action_color: v }); } },
+            { get: () => config.secondary_action_color || defaultConfig.secondary_action_color, set: (v) => { config.secondary_action_color = v; window.elementSdk.setConfig({ secondary_action_color: v }); } }
+          ],
+          borderables: [],
+          fontEditable: {
+            get: () => config.font_family || defaultConfig.font_family,
+            set: (v) => { config.font_family = v; window.elementSdk.setConfig({ font_family: v }); }
+          },
+          fontSizeable: {
+            get: () => config.font_size || defaultConfig.font_size,
+            set: (v) => { config.font_size = v; window.elementSdk.setConfig({ font_size: v }); }
+          }
+        }),
+        mapToEditPanelValues: (config) => new Map([
+          ['hero_title', config.hero_title || defaultConfig.hero_title],
+          ['hero_subtitle', config.hero_subtitle || defaultConfig.hero_subtitle],
+          ['hero_cta', config.hero_cta || defaultConfig.hero_cta],
+          ['about_heading', config.about_heading || defaultConfig.about_heading],
+          ['about_text', config.about_text || defaultConfig.about_text],
+          ['final_heading', config.final_heading || defaultConfig.final_heading],
+          ['final_cta', config.final_cta || defaultConfig.final_cta]
+        ])
+      });
+    }
+
+    // Apply initial config
+    applyConfig(defaultConfig);
+
+    // Scroll reveal animations
+    const observerOptions = { threshold: 0.15, rootMargin: '0px 0px -50px 0px' };
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          // Animate line-grow children
+          entry.target.querySelectorAll('.line-grow').forEach(l => l.classList.add('visible'));
+        }
+      });
+    }, observerOptions);
+    document.querySelectorAll('.reveal, .reveal-child').forEach(el => revealObserver.observe(el));
+
+    // Nav background on scroll
+    const nav = document.getElementById('mainNav');
+    const navLogo = document.getElementById('navLogo');
+    const body = document.querySelector('body');
+
+    function updateNav() {
+      const scrollTop = body.scrollTop || document.documentElement.scrollTop || 0;
+      if (scrollTop > 100) {
+        nav.style.background = 'rgba(255,255,255,0.95)';
+        nav.style.backdropFilter = 'blur(20px)';
+        nav.style.borderBottom = '1px solid rgba(0,0,0,0.05)';
+        navLogo.style.color = '#000';
+        document.querySelectorAll('.nav-link').forEach(l => l.style.color = '#000');
+        document.querySelectorAll('#mainNav i').forEach(i => i.style.color = '#000');
+      } else {
+        nav.style.background = 'transparent';
+        nav.style.backdropFilter = 'none';
+        nav.style.borderBottom = 'none';
+        navLogo.style.color = '#fff';
+        document.querySelectorAll('.nav-link').forEach(l => l.style.color = '#fff');
+        document.querySelectorAll('#mainNav i').forEach(i => i.style.color = '#fff');
+      }
+    }
+
+    // Listen on body since we use overflow-auto on body
+    body.addEventListener('scroll', updateNav);
+    window.addEventListener('scroll', updateNav);
+    updateNav();
+
+    // Mobile menu
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileMenuClose = document.getElementById('mobileMenuClose');
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+    function openMobile() {
+      mobileMenu.style.opacity = '1';
+      mobileMenu.style.pointerEvents = 'auto';
+      mobileMenu.style.transform = 'scale(1)';
+      mobileNavLinks.forEach(l => l.style.opacity = '1');
+    }
+    function closeMobile() {
+      mobileMenu.style.opacity = '0';
+      mobileMenu.style.pointerEvents = 'none';
+      mobileMenu.style.transform = 'scale(1.05)';
+      mobileNavLinks.forEach(l => l.style.opacity = '0');
+    }
+
+    mobileMenuBtn.addEventListener('click', openMobile);
+    mobileMenuClose.addEventListener('click', closeMobile);
+    mobileNavLinks.forEach(l => l.addEventListener('click', closeMobile));
+
+    // Initialize Lucide icons
+    lucide.createIcons();
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9de5c19932d4d28b',t:'MTc3Mzg1MjgzNC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
