@@ -1,0 +1,820 @@
+<!doctype html>
+<html lang="pt-BR" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tattoo até os Ossos — Arte Premium em São Paulo</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&amp;family=DM+Sans:wght@300;400;500&amp;display=swap" rel="stylesheet">
+  <style>
+    html, body { height: 100%; margin: 0; padding: 0; }
+    * { box-sizing: border-box; }
+
+    .metallic-text {
+      background: linear-gradient(135deg, #6b6b6b 0%, #a8a8a8 20%, #ffffff 40%, #d4d4d4 60%, #8a8a8a 80%, #e0e0e0 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .metallic-border {
+      border-image: linear-gradient(135deg, #4a4a4a, #c0c0c0, #ffffff, #a0a0a0, #666666) 1;
+    }
+
+    .metallic-bg {
+      background: linear-gradient(135deg, #3a3a3a 0%, #7a7a7a 25%, #b0b0b0 50%, #d8d8d8 75%, #a0a0a0 100%);
+    }
+
+    .metallic-btn {
+      background: linear-gradient(135deg, #555 0%, #999 30%, #eee 50%, #bbb 70%, #777 100%);
+      color: #000;
+      position: relative;
+      overflow: hidden;
+    }
+    .metallic-btn::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(135deg, transparent 30%, rgba(255,255,255,0.3) 50%, transparent 70%);
+      animation: shimmer 3s ease-in-out infinite;
+    }
+
+    @keyframes shimmer {
+      0% { transform: translateX(-100%) rotate(25deg); }
+      100% { transform: translateX(100%) rotate(25deg); }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes scaleIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    @keyframes slideLeft {
+      from { opacity: 0; transform: translateX(60px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes slideRight {
+      from { opacity: 0; transform: translateX(-60px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes glitch {
+      0%, 100% { transform: translate(0); }
+      20% { transform: translate(-2px, 2px); }
+      40% { transform: translate(2px, -1px); }
+      60% { transform: translate(-1px, -2px); }
+      80% { transform: translate(1px, 1px); }
+    }
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 20px rgba(180,180,180,0.1); }
+      50% { box-shadow: 0 0 40px rgba(200,200,200,0.25); }
+    }
+    @keyframes line-draw {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    @keyframes rotate-slow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .anim-fade-up { animation: fadeUp 0.8s ease-out forwards; opacity: 0; }
+    .anim-fade-in { animation: fadeIn 1s ease forwards; opacity: 0; }
+    .anim-scale-in { animation: scaleIn 0.7s ease-out forwards; opacity: 0; }
+    .anim-slide-left { animation: slideLeft 0.8s ease-out forwards; opacity: 0; }
+    .anim-slide-right { animation: slideRight 0.8s ease-out forwards; opacity: 0; }
+
+    .delay-1 { animation-delay: 0.15s; }
+    .delay-2 { animation-delay: 0.3s; }
+    .delay-3 { animation-delay: 0.45s; }
+    .delay-4 { animation-delay: 0.6s; }
+    .delay-5 { animation-delay: 0.75s; }
+    .delay-6 { animation-delay: 0.9s; }
+    .delay-7 { animation-delay: 1.05s; }
+    .delay-8 { animation-delay: 1.2s; }
+
+    .scroll-hidden { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+    .scroll-visible { opacity: 1; transform: translateY(0); }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .gallery-item .overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    .gallery-item:hover .overlay { opacity: 1; }
+    .gallery-item .gallery-img {
+      transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s ease;
+    }
+    .gallery-item:hover .gallery-img {
+      transform: scale(1.08);
+      filter: brightness(0.7) contrast(1.1);
+    }
+    .gallery-item .overlay-text {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 20px;
+      transform: translateY(20px);
+      transition: transform 0.5s ease, opacity 0.5s ease;
+      opacity: 0;
+    }
+    .gallery-item:hover .overlay-text {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .nav-link {
+      position: relative;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: linear-gradient(90deg, #888, #fff, #888);
+      transition: width 0.4s ease;
+    }
+    .nav-link:hover::after { width: 100%; }
+
+    .artist-card {
+      position: relative;
+      overflow: hidden;
+    }
+    .artist-card .artist-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, #000 0%, rgba(0,0,0,0.6) 40%, transparent 100%);
+    }
+
+    .testimonial-card {
+      background: linear-gradient(135deg, rgba(40,40,40,0.8), rgba(20,20,20,0.9));
+      border: 1px solid rgba(100,100,100,0.3);
+      backdrop-filter: blur(10px);
+    }
+
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #555, #aaa, #555, transparent);
+    }
+
+    .skull-decoration {
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .rotating-ring {
+      animation: rotate-slow 20s linear infinite;
+    }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #000; }
+    ::-webkit-scrollbar-thumb { background: linear-gradient(to bottom, #555, #aaa, #555); border-radius: 3px; }
+
+    .category-btn {
+      transition: all 0.3s ease;
+    }
+    .category-btn.active {
+      background: linear-gradient(135deg, #555 0%, #999 30%, #eee 50%, #bbb 70%, #777 100%);
+      color: #000;
+    }
+
+    .stat-number {
+      background: linear-gradient(135deg, #888 0%, #ccc 30%, #fff 50%, #ddd 70%, #999 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .noise-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    }
+
+    .hero-bg-pattern {
+      background-image:
+        radial-gradient(ellipse at 20% 50%, rgba(60,60,60,0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 20%, rgba(80,80,80,0.1) 0%, transparent 40%),
+        radial-gradient(ellipse at 50% 80%, rgba(50,50,50,0.1) 0%, transparent 50%);
+    }
+
+    .ink-splash {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(60,60,60,0.15), transparent 70%);
+      pointer-events: none;
+    }
+  </style>
+  <style>body { box-sizing: border-box; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full">
+  <div id="app-wrapper" class="w-full h-full overflow-auto bg-black text-white" style="font-family: 'DM Sans', sans-serif;">
+   <div class="noise-overlay"></div><!-- NAVIGATION -->
+   <nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500" style="background: transparent;">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+     <div class="flex items-center gap-3">
+      <div class="w-10 h-10 flex items-center justify-center">
+       <svg viewbox="0 0 40 40" class="w-full h-full"><circle cx="20" cy="20" r="18" fill="none" stroke="url(#metalGrad)" stroke-width="1.5" /> <text x="20" y="26" text-anchor="middle" fill="url(#metalGrad)" font-family="Bebas Neue" font-size="16">
+         T
+        </text> <defs>
+         <lineargradient id="metalGrad" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#666" />
+          <stop offset="30%" stop-color="#aaa" />
+          <stop offset="50%" stop-color="#fff" />
+          <stop offset="70%" stop-color="#bbb" />
+          <stop offset="100%" stop-color="#777" />
+         </lineargradient>
+        </defs>
+       </svg>
+      </div><span class="metallic-text font-bold text-lg tracking-wider" style="font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem;">TATTOO ATÉ OS OSSOS</span>
+     </div>
+     <div class="hidden md:flex items-center gap-8"><a href="#portfolio" class="nav-link text-sm tracking-widest uppercase text-gray-400 hover:text-white transition-colors">Portfólio</a> <a href="#sobre" class="nav-link text-sm tracking-widest uppercase text-gray-400 hover:text-white transition-colors">Sobre</a> <a href="#artistas" class="nav-link text-sm tracking-widest uppercase text-gray-400 hover:text-white transition-colors">Artistas</a> <a href="#contato" class="nav-link text-sm tracking-widest uppercase text-gray-400 hover:text-white transition-colors">Contato</a>
+     </div><button id="mobile-menu-btn" class="md:hidden text-gray-300"> <i data-lucide="menu" style="width:24px;height:24px;"></i> </button>
+    </div><!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-black/95 backdrop-blur-lg border-t border-gray-800">
+     <div class="px-6 py-4 flex flex-col gap-4"><a href="#portfolio" class="text-sm tracking-widest uppercase text-gray-400 hover:text-white transition-colors mobile-nav-link">Portfólio</a> <a href="#sobre" class="text-sm tracking-widest uppercase text-gray-400 hover:text-white transition-colors mobile-nav-link">Sobre</a> <a href="#artistas" class="text-sm tracking-widest uppercase text-gray-400 hover:text-white transition-colors mobile-nav-link">Artistas</a> <a href="#contato" class="text-sm tracking-widest uppercase text-gray-400 hover:text-white transition-colors mobile-nav-link">Contato</a>
+     </div>
+    </div>
+   </nav><!-- HERO SECTION -->
+   <section class="relative w-full" style="min-height: 100%;">
+    <div class="absolute inset-0 hero-bg-pattern"><!-- Ink splashes -->
+     <div class="ink-splash" style="width:400px;height:400px;top:10%;left:-5%;"></div>
+     <div class="ink-splash" style="width:300px;height:300px;bottom:10%;right:-5%;"></div><!-- Geometric art -->
+     <svg class="absolute top-20 right-10 opacity-10 rotating-ring" width="120" height="120" viewbox="0 0 120 120"><circle cx="60" cy="60" r="55" fill="none" stroke="#666" stroke-width="0.5" stroke-dasharray="4,8" /> <circle cx="60" cy="60" r="40" fill="none" stroke="#888" stroke-width="0.3" stroke-dasharray="2,6" />
+     </svg>
+     <svg class="absolute bottom-32 left-10 opacity-10" width="80" height="80" viewbox="0 0 80 80"><polygon points="40,5 75,70 5,70" fill="none" stroke="#777" stroke-width="0.5" />
+     </svg><!-- Tattoo machine SVG art -->
+     <svg class="absolute top-1/3 right-1/4 opacity-5 skull-decoration" width="200" height="200" viewbox="0 0 200 200"><path d="M100 20 C60 20 30 55 30 90 C30 115 50 130 60 140 L60 165 L80 165 L80 155 L90 155 L90 165 L110 165 L110 155 L120 155 L120 165 L140 165 L140 140 C150 130 170 115 170 90 C170 55 140 20 100 20Z" fill="none" stroke="#555" stroke-width="1" /> <circle cx="75" cy="80" r="15" fill="none" stroke="#555" stroke-width="1" /> <circle cx="125" cy="80" r="15" fill="none" stroke="#555" stroke-width="1" /> <path d="M90 110 L100 120 L110 110" fill="none" stroke="#555" stroke-width="1" />
+     </svg>
+    </div>
+    <div class="relative z-10 flex flex-col items-center justify-center text-center px-6" style="min-height: 100%; padding-top: 100px; padding-bottom: 80px;">
+     <div class="mb-6 anim-fade-in">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 border border-gray-700 rounded-full">
+       <div class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div><span class="text-xs tracking-widest uppercase text-gray-400">Estúdio Premium • São Paulo</span>
+      </div>
+     </div>
+     <h1 id="hero-title" class="anim-fade-up delay-2 metallic-text leading-none mb-6" style="font-family: 'Bebas Neue', sans-serif; font-size: clamp(3.5rem, 10vw, 9rem); letter-spacing: 0.02em;">Arte que fica na<br>
+      pele para sempre</h1>
+     <p id="hero-subtitle" class="anim-fade-up delay-3 text-gray-400 max-w-xl mx-auto mb-10" style="font-family: 'Cormorant Garamond', serif; font-size: clamp(1rem, 2.5vw, 1.4rem); font-style: italic;">Mais de 15 anos criando tatuagens exclusivas em São Paulo</p>
+     <div class="flex flex-col sm:flex-row gap-4 anim-fade-up delay-4"><a href="https://wa.me/5511999999999" target="_blank" rel="noopener noreferrer" class="metallic-btn px-8 py-4 font-bold text-sm tracking-widest uppercase flex items-center gap-3 rounded-none" style="font-family: 'DM Sans', sans-serif;"> <i data-lucide="message-circle" style="width:18px;height:18px;"></i> Agendar pelo WhatsApp </a> <a href="#portfolio" class="px-8 py-4 border border-gray-600 text-gray-300 hover:text-white hover:border-gray-400 transition-all text-sm tracking-widest uppercase flex items-center gap-3 rounded-none" style="font-family: 'DM Sans', sans-serif;"> <i data-lucide="eye" style="width:18px;height:18px;"></i> Ver Portfólio </a>
+     </div>
+    </div>
+   </section><!-- STATS BAR -->
+   <div class="w-full border-y border-gray-800 bg-black/50">
+    <div class="max-w-7xl mx-auto px-6 py-8 grid grid-cols-2 md:grid-cols-4 gap-6 text-center scroll-hidden">
+     <div>
+      <div class="stat-number text-4xl font-bold" style="font-family:'Bebas Neue',sans-serif;">
+       15+
+      </div>
+      <div class="text-xs tracking-widest uppercase text-gray-500 mt-1">
+       Anos de Experiência
+      </div>
+     </div>
+     <div>
+      <div class="stat-number text-4xl font-bold" style="font-family:'Bebas Neue',sans-serif;">
+       5.000+
+      </div>
+      <div class="text-xs tracking-widest uppercase text-gray-500 mt-1">
+       Tatuagens Criadas
+      </div>
+     </div>
+     <div>
+      <div class="stat-number text-4xl font-bold" style="font-family:'Bebas Neue',sans-serif;">
+       4.9
+      </div>
+      <div class="text-xs tracking-widest uppercase text-gray-500 mt-1">
+       Avaliação Google
+      </div>
+     </div>
+     <div>
+      <div class="stat-number text-4xl font-bold" style="font-family:'Bebas Neue',sans-serif;">
+       100%
+      </div>
+      <div class="text-xs tracking-widest uppercase text-gray-500 mt-1">
+       Arte Exclusiva
+      </div>
+     </div>
+    </div>
+   </div>
+   <div class="section-divider w-full"></div><!-- PORTFOLIO SECTION -->
+   <section id="portfolio" class="w-full py-20 md:py-28 px-6">
+    <div class="max-w-7xl mx-auto">
+     <div class="text-center mb-16 scroll-hidden"><span class="text-xs tracking-[0.3em] uppercase text-gray-500 block mb-3" style="font-family:'DM Sans',sans-serif;">Galeria</span>
+      <h2 class="metallic-text leading-none mb-4" style="font-family:'Bebas Neue',sans-serif; font-size: clamp(2.5rem, 6vw, 5rem);">Portfólio</h2>
+      <div class="w-16 h-px mx-auto metallic-bg"></div>
+     </div><!-- Category Filter -->
+     <div class="flex justify-center gap-3 mb-12 flex-wrap scroll-hidden"><button class="category-btn active px-6 py-2 text-xs tracking-widest uppercase border border-gray-700 text-gray-300" data-category="all">Todos</button> <button class="category-btn px-6 py-2 text-xs tracking-widest uppercase border border-gray-700 text-gray-300" data-category="realismo">Realismo</button> <button class="category-btn px-6 py-2 text-xs tracking-widest uppercase border border-gray-700 text-gray-300" data-category="blackwork">Blackwork</button> <button class="category-btn px-6 py-2 text-xs tracking-widest uppercase border border-gray-700 text-gray-300" data-category="fineline">Fine Line</button>
+     </div><!-- Gallery Grid - Artistic broken layout -->
+     <div id="gallery-grid" class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 auto-rows-[200px] md:auto-rows-[250px]"><!-- Items populated by JS -->
+     </div>
+    </div>
+   </section>
+   <div class="section-divider w-full"></div><!-- ABOUT SECTION -->
+   <section id="sobre" class="w-full py-20 md:py-28 px-6">
+    <div class="max-w-7xl mx-auto">
+     <div class="grid md:grid-cols-2 gap-12 md:gap-20 items-center">
+      <div class="scroll-hidden"><span class="text-xs tracking-[0.3em] uppercase text-gray-500 block mb-3">Nossa História</span>
+       <h2 class="metallic-text leading-none mb-8" style="font-family:'Bebas Neue',sans-serif; font-size: clamp(2.5rem, 5vw, 4.5rem);">Sobre o<br>
+        Estúdio</h2>
+       <div class="w-16 h-px metallic-bg mb-8"></div>
+       <p id="about-text" class="text-gray-400 leading-relaxed mb-6" style="font-family:'Cormorant Garamond',serif; font-size: 1.15rem;">Nascemos da rua, da arte, da obsessão por criar algo que transcende a pele. O Tattoo até os Ossos não é apenas um estúdio — é um espaço onde cada traço carrega intenção, cada sombra conta uma história, e cada cliente sai com uma obra de arte única que o acompanha para sempre.</p>
+       <p class="text-gray-500 leading-relaxed mb-8" style="font-family:'Cormorant Garamond',serif; font-size: 1.05rem;">Com mais de 15 anos no cenário paulistano, construímos nossa reputação na excelência técnica e na recusa absoluta de fazer tatuagem genérica. Aqui, cada projeto é tratado como arte — do briefing ao último retoque.</p>
+       <div class="flex gap-8">
+        <div>
+         <div class="stat-number text-3xl font-bold" style="font-family:'Bebas Neue',sans-serif;">
+          Vila Prudente
+         </div>
+         <div class="text-xs tracking-widest uppercase text-gray-600">
+          São Paulo, SP
+         </div>
+        </div>
+        <div>
+         <div class="stat-number text-3xl font-bold" style="font-family:'Bebas Neue',sans-serif;">
+          Desde 2009
+         </div>
+         <div class="text-xs tracking-widest uppercase text-gray-600">
+          No cenário
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="scroll-hidden relative"><!-- Studio photo placeholder with artistic SVG -->
+       <div class="relative aspect-[3/4] bg-gradient-to-br from-gray-900 to-black border border-gray-800 overflow-hidden">
+        <svg class="absolute inset-0 w-full h-full opacity-20" viewbox="0 0 400 530"><defs>
+          <lineargradient id="studioGrad" x1="0" y1="0" x2="1" y2="1">
+           <stop offset="0%" stop-color="#444" />
+           <stop offset="50%" stop-color="#999" />
+           <stop offset="100%" stop-color="#555" />
+          </lineargradient>
+         </defs> <!-- Tattoo machine illustration --> <rect x="150" y="80" width="100" height="200" rx="8" fill="none" stroke="url(#studioGrad)" stroke-width="1.5" /> <line x1="200" y1="280" x2="200" y2="380" stroke="url(#studioGrad)" stroke-width="2" /> <circle cx="200" cy="395" r="8" fill="none" stroke="url(#studioGrad)" stroke-width="1.5" /> <line x1="160" y1="120" x2="240" y2="120" stroke="url(#studioGrad)" stroke-width="1" /> <line x1="160" y1="160" x2="240" y2="160" stroke="url(#studioGrad)" stroke-width="1" /> <line x1="160" y1="200" x2="240" y2="200" stroke="url(#studioGrad)" stroke-width="1" /> <!-- Stars --> <circle cx="80" cy="150" r="2" fill="#666" /> <circle cx="320" cy="200" r="2" fill="#666" /> <circle cx="100" cy="350" r="1.5" fill="#555" /> <circle cx="300" cy="100" r="1.5" fill="#555" />
+        </svg>
+        <div class="absolute inset-0 flex items-center justify-center">
+         <div class="text-center">
+          <div class="metallic-text text-6xl mb-4" style="font-family:'Bebas Neue',sans-serif;">
+           T.A.O
+          </div>
+          <div class="text-xs tracking-[0.5em] uppercase text-gray-600">
+           EST. 2009
+          </div>
+         </div>
+        </div><!-- Corner accents -->
+        <div class="absolute top-0 left-0 w-12 h-12 border-t border-l border-gray-600"></div>
+        <div class="absolute bottom-0 right-0 w-12 h-12 border-b border-r border-gray-600"></div>
+       </div><!-- Floating accent -->
+       <div class="absolute -bottom-4 -right-4 w-24 h-24 border border-gray-700 skull-decoration" style="animation-delay: 1s;"></div>
+      </div>
+     </div>
+    </div>
+   </section>
+   <div class="section-divider w-full"></div><!-- ARTISTS SECTION -->
+   <section id="artistas" class="w-full py-20 md:py-28 px-6">
+    <div class="max-w-7xl mx-auto">
+     <div class="text-center mb-16 scroll-hidden"><span class="text-xs tracking-[0.3em] uppercase text-gray-500 block mb-3">Conheça</span>
+      <h2 class="metallic-text leading-none mb-4" style="font-family:'Bebas Neue',sans-serif; font-size: clamp(2.5rem, 6vw, 5rem);">Os Artistas</h2>
+      <div class="w-16 h-px mx-auto metallic-bg"></div>
+     </div>
+     <div class="grid md:grid-cols-2 gap-8 md:gap-12"><!-- Artist 1 - Coringa -->
+      <div class="scroll-hidden">
+       <div class="artist-card aspect-[3/4] relative bg-gradient-to-br from-gray-900 to-black border border-gray-800">
+        <svg class="absolute inset-0 w-full h-full opacity-15" viewbox="0 0 300 400"><defs>
+          <lineargradient id="artistGrad1" x1="0" y1="0" x2="1" y2="1">
+           <stop offset="0%" stop-color="#555" />
+           <stop offset="50%" stop-color="#aaa" />
+           <stop offset="100%" stop-color="#666" />
+          </lineargradient>
+         </defs> <!-- Abstract portrait lines --> <ellipse cx="150" cy="130" rx="60" ry="75" fill="none" stroke="url(#artistGrad1)" stroke-width="1" /> <line x1="120" y1="115" x2="140" y2="115" stroke="url(#artistGrad1)" stroke-width="1.5" /> <line x1="160" y1="115" x2="180" y2="115" stroke="url(#artistGrad1)" stroke-width="1.5" /> <path d="M135 150 Q150 165 165 150" fill="none" stroke="url(#artistGrad1)" stroke-width="1" /> <line x1="150" y1="205" x2="150" y2="300" stroke="url(#artistGrad1)" stroke-width="1" /> <line x1="150" y1="240" x2="100" y2="280" stroke="url(#artistGrad1)" stroke-width="1" /> <line x1="150" y1="240" x2="200" y2="280" stroke="url(#artistGrad1)" stroke-width="1" />
+        </svg>
+        <div class="artist-overlay"></div>
+        <div class="absolute bottom-0 left-0 right-0 p-8">
+         <div class="text-xs tracking-[0.3em] uppercase text-gray-500 mb-2">
+          Artista Principal
+         </div>
+         <h3 class="metallic-text text-4xl mb-3" style="font-family:'Bebas Neue',sans-serif;">Coringa</h3>
+         <div class="w-10 h-px metallic-bg mb-4"></div>
+         <p class="text-gray-400 text-sm leading-relaxed" style="font-family:'Cormorant Garamond',serif; font-size: 1rem;">Mestre em realismo e blackwork. Cada peça é uma declaração. 15 anos transformando visões em arte permanente com precisão cirúrgica e alma de artista.</p>
+         <div class="flex gap-4 mt-4"><span class="text-xs tracking-widest uppercase text-gray-600 border border-gray-700 px-3 py-1">Realismo</span> <span class="text-xs tracking-widest uppercase text-gray-600 border border-gray-700 px-3 py-1">Blackwork</span>
+         </div>
+        </div>
+       </div>
+      </div><!-- Artist 2 - Jennyfer -->
+      <div class="scroll-hidden" style="transition-delay: 0.2s;">
+       <div class="artist-card aspect-[3/4] relative bg-gradient-to-br from-gray-900 to-black border border-gray-800">
+        <svg class="absolute inset-0 w-full h-full opacity-15" viewbox="0 0 300 400"><defs>
+          <lineargradient id="artistGrad2" x1="0" y1="0" x2="1" y2="1">
+           <stop offset="0%" stop-color="#555" />
+           <stop offset="50%" stop-color="#aaa" />
+           <stop offset="100%" stop-color="#666" />
+          </lineargradient>
+         </defs> <!-- Elegant floral lines --> <circle cx="150" cy="150" r="50" fill="none" stroke="url(#artistGrad2)" stroke-width="0.8" /> <path d="M150 100 Q180 130 150 150 Q120 130 150 100" fill="none" stroke="url(#artistGrad2)" stroke-width="0.8" /> <path d="M100 150 Q130 120 150 150 Q130 180 100 150" fill="none" stroke="url(#artistGrad2)" stroke-width="0.8" /> <path d="M150 200 Q120 170 150 150 Q180 170 150 200" fill="none" stroke="url(#artistGrad2)" stroke-width="0.8" /> <path d="M200 150 Q170 180 150 150 Q170 120 200 150" fill="none" stroke="url(#artistGrad2)" stroke-width="0.8" /> <circle cx="150" cy="150" r="8" fill="none" stroke="url(#artistGrad2)" stroke-width="1" />
+        </svg>
+        <div class="artist-overlay"></div>
+        <div class="absolute bottom-0 left-0 right-0 p-8">
+         <div class="text-xs tracking-[0.3em] uppercase text-gray-500 mb-2">
+          Artista
+         </div>
+         <h3 class="metallic-text text-4xl mb-3" style="font-family:'Bebas Neue',sans-serif;">Jennyfer</h3>
+         <div class="w-10 h-px metallic-bg mb-4"></div>
+         <p class="text-gray-400 text-sm leading-relaxed" style="font-family:'Cormorant Garamond',serif; font-size: 1rem;">Especialista em fine line e traços delicados. Jennyfer transforma conceitos sutis em tatuagens elegantes e minimalistas com atenção obsessiva a cada detalhe.</p>
+         <div class="flex gap-4 mt-4"><span class="text-xs tracking-widest uppercase text-gray-600 border border-gray-700 px-3 py-1">Fine Line</span> <span class="text-xs tracking-widest uppercase text-gray-600 border border-gray-700 px-3 py-1">Minimalista</span>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section>
+   <div class="section-divider w-full"></div><!-- TESTIMONIALS -->
+   <section class="w-full py-20 md:py-28 px-6">
+    <div class="max-w-7xl mx-auto">
+     <div class="text-center mb-16 scroll-hidden"><span class="text-xs tracking-[0.3em] uppercase text-gray-500 block mb-3">Depoimentos</span>
+      <h2 class="metallic-text leading-none mb-4" style="font-family:'Bebas Neue',sans-serif; font-size: clamp(2.5rem, 6vw, 5rem);">Prova Social</h2>
+      <div class="w-16 h-px mx-auto metallic-bg mb-6"></div>
+      <div class="flex items-center justify-center gap-2 mb-2">
+       <div class="flex"><i data-lucide="star" style="width:20px;height:20px;color:#c0a000;fill:#c0a000;"></i> <i data-lucide="star" style="width:20px;height:20px;color:#c0a000;fill:#c0a000;"></i> <i data-lucide="star" style="width:20px;height:20px;color:#c0a000;fill:#c0a000;"></i> <i data-lucide="star" style="width:20px;height:20px;color:#c0a000;fill:#c0a000;"></i> <i data-lucide="star" style="width:20px;height:20px;color:#c0a000;fill:#c0a000;"></i>
+       </div><span class="text-gray-400 text-sm ml-2">4.9/5 no Google</span>
+      </div>
+     </div>
+     <div class="grid md:grid-cols-3 gap-6">
+      <div class="testimonial-card p-8 scroll-hidden">
+       <div class="flex mb-4"><i data-lucide="star" style="width:14px;height:14px;color:#c0a000;fill:#c0a000;"></i> <i data-lucide="star" style="width:14px;height:14px;color:#c0a000;fill:#c0a000;"></i> <i data-lucide="star" style="width:14px;height:14px;color:#c0a000;fill:#c0a000;"></i> <i data-lucide="star" style="width:14px;height:14px;color:#c0a000;fill:#c0a000;"></i> <i data-lucide="star" style="width:14px;height:14px;color:#c0a000;fill:#c0a000;"></i>
+       </div>
+       <p class="text-gray-400 mb-6 italic leading-relaxed" style="font-family:'Cormorant Garamond',serif; font-size: 1.05rem;">"O Coringa é simplesmente outro nível. Fiz um realismo no braço inteiro e as pessoas pensam que é foto impressa na pele. Profissionalismo absurdo."</p>
+       <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-full metallic-bg flex items-center justify-center text-black font-bold text-sm">
+         R
+        </div>
+        <div>
+         <div class="text-white text-sm font-medium">
+          Rafael S.
+         </div>
+         <div class="text-gray-600 text-xs">
+          Realismo • Braço Fechado
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="testimonial-card p-8 scroll-hidden" style="transition-delay:0.15s;">
+       <div class="flex mb-4"><i data-lucide="star" style="width:14px;height:14px;color:#c0a000;fill:#c0a000;"></i> <i data-lucide="star" style="width:14px;height:14px;color:#c0a000;fill:#c0a000;"></i> <i data-lucide="star" style="width:14px;height:14px;color:#c0a000;fill:#c0a000;"></i> <i data-lucide="star" style="width:14px;height:14px;color:#c0a000;fill:#c0a000;"></i> <i data-lucide="star" style="width:14px;height:14px;color:#c0a000;fill:#c0a000;"></i>
+       </div>
+       <p class="text-gray-400 mb-6 italic leading-relaxed" style="font-family:'Cormorant Garamond',serif; font-size: 1.05rem;">"A Jennyfer fez um fine line tão delicado e perfeito que eu chorei quando vi pronto. Ela entende exatamente o que você quer, mesmo quando você não sabe explicar."</p>
+       <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-full metallic-bg flex items-center justify-center text-black font-bold text-sm">
+         C
+        </div>
+        <div>
+         <div class="text-white text-sm font-medium">
+          Camila R.
+         </div>
+         <div class="text-gray-600 text-xs">
+          Fine Line • Costela
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="testimonial-card p-8 scroll-hidden" style="transition-delay:0.3s;">
+       <div class="flex mb-4"><i data-lucide="star" style="width:14px;height:14px;color:#c0a000;fill:#c0a000;"></i> <i data-lucide="star" style="width:14px;height:14px;color:#c0a000;fill:#c0a000;"></i> <i data-lucide="star" style="width:14px;height:14px;color:#c0a000;fill:#c0a000;"></i> <i data-lucide="star" style="width:14px;height:14px;color:#c0a000;fill:#c0a000;"></i> <i data-lucide="star" style="width:14px;height:14px;color:#c0a000;fill:#c0a000;"></i>
+       </div>
+       <p class="text-gray-400 mb-6 italic leading-relaxed" style="font-family:'Cormorant Garamond',serif; font-size: 1.05rem;">"Melhor estúdio de SP, sem discussão. Ambiente limpo, artistas talentosos e atendimento nota mil. Já fiz 3 tattoos aqui e volto sempre."</p>
+       <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-full metallic-bg flex items-center justify-center text-black font-bold text-sm">
+         L
+        </div>
+        <div>
+         <div class="text-white text-sm font-medium">
+          Lucas M.
+         </div>
+         <div class="text-gray-600 text-xs">
+          Blackwork • Costas
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section>
+   <div class="section-divider w-full"></div><!-- CTA SECTION -->
+   <section class="w-full py-24 md:py-32 px-6 relative overflow-hidden">
+    <div class="absolute inset-0">
+     <div class="ink-splash" style="width:500px;height:500px;top:-20%;right:-10%;background:radial-gradient(circle, rgba(80,80,80,0.15), transparent 70%);"></div>
+     <div class="ink-splash" style="width:400px;height:400px;bottom:-20%;left:-10%;background:radial-gradient(circle, rgba(60,60,60,0.1), transparent 70%);"></div>
+     <svg class="absolute top-10 left-10 opacity-5 rotating-ring" width="200" height="200" viewbox="0 0 200 200"><circle cx="100" cy="100" r="90" fill="none" stroke="#666" stroke-width="0.5" stroke-dasharray="6,12" />
+     </svg>
+    </div>
+    <div class="max-w-3xl mx-auto text-center relative z-10 scroll-hidden">
+     <h2 id="cta-title" class="metallic-text leading-none mb-6" style="font-family:'Bebas Neue',sans-serif; font-size: clamp(2.5rem, 7vw, 6rem);">Pronto para eternizar<br>
+      sua ideia?</h2>
+     <p class="text-gray-500 mb-10 max-w-lg mx-auto" style="font-family:'Cormorant Garamond',serif; font-size: 1.2rem; font-style: italic;">Cada tatuagem começa com uma conversa. Fale com a gente e transforme sua visão em arte permanente.</p><a href="https://wa.me/5511999999999" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 metallic-btn px-10 py-5 font-bold text-sm tracking-widest uppercase" style="font-family:'DM Sans',sans-serif; animation: pulse-glow 3s ease-in-out infinite;"> <i data-lucide="message-circle" style="width:20px;height:20px;"></i> Falar no WhatsApp agora </a>
+    </div>
+   </section>
+   <div class="section-divider w-full"></div><!-- CONTACT SECTION -->
+   <section id="contato" class="w-full py-20 md:py-28 px-6">
+    <div class="max-w-7xl mx-auto">
+     <div class="text-center mb-16 scroll-hidden"><span class="text-xs tracking-[0.3em] uppercase text-gray-500 block mb-3">Encontre-nos</span>
+      <h2 class="metallic-text leading-none mb-4" style="font-family:'Bebas Neue',sans-serif; font-size: clamp(2.5rem, 6vw, 5rem);">Contato</h2>
+      <div class="w-16 h-px mx-auto metallic-bg"></div>
+     </div>
+     <div class="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+      <div class="text-center scroll-hidden p-8 border border-gray-800 bg-gray-900/30">
+       <div class="w-14 h-14 mx-auto mb-4 flex items-center justify-center border border-gray-700"><i data-lucide="message-circle" style="width:24px;height:24px;color:#aaa;"></i>
+       </div>
+       <h3 class="text-white text-sm tracking-widest uppercase mb-2" style="font-family:'DM Sans',sans-serif;">WhatsApp</h3>
+       <p id="contact-whatsapp" class="text-gray-400" style="font-family:'Cormorant Garamond',serif;">(11) 99999-9999</p>
+      </div>
+      <div class="text-center scroll-hidden p-8 border border-gray-800 bg-gray-900/30" style="transition-delay:0.15s;">
+       <div class="w-14 h-14 mx-auto mb-4 flex items-center justify-center border border-gray-700"><i data-lucide="map-pin" style="width:24px;height:24px;color:#aaa;"></i>
+       </div>
+       <h3 class="text-white text-sm tracking-widest uppercase mb-2" style="font-family:'DM Sans',sans-serif;">Endereço</h3>
+       <p id="contact-address" class="text-gray-400" style="font-family:'Cormorant Garamond',serif;">Vila Prudente, São Paulo - SP</p>
+      </div>
+      <div class="text-center scroll-hidden p-8 border border-gray-800 bg-gray-900/30" style="transition-delay:0.3s;">
+       <div class="w-14 h-14 mx-auto mb-4 flex items-center justify-center border border-gray-700"><i data-lucide="clock" style="width:24px;height:24px;color:#aaa;"></i>
+       </div>
+       <h3 class="text-white text-sm tracking-widest uppercase mb-2" style="font-family:'DM Sans',sans-serif;">Horário</h3>
+       <p class="text-gray-400" style="font-family:'Cormorant Garamond',serif;">Seg - Sáb: 10h às 20h</p>
+      </div>
+     </div>
+    </div>
+   </section><!-- FOOTER -->
+   <footer class="w-full border-t border-gray-800 py-8 px-6">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+     <div class="flex items-center gap-2"><span class="metallic-text text-sm tracking-wider" style="font-family:'Bebas Neue',sans-serif;">TATTOO ATÉ OS OSSOS</span> <span class="text-gray-700 text-xs">© 2026</span>
+     </div>
+     <div class="flex items-center gap-6"><a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-white transition-colors"> <i data-lucide="instagram" style="width:18px;height:18px;"></i> </a> <a href="https://wa.me/5511999999999" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-white transition-colors"> <i data-lucide="message-circle" style="width:18px;height:18px;"></i> </a>
+     </div>
+    </div>
+   </footer>
+  </div>
+  <script>
+    // Gallery data
+    const galleryItems = [
+      { id: 1, category: 'realismo', title: 'Leão Realista', artist: 'Coringa', span: 'md:col-span-2 md:row-span-2', color: '#1a1a2e' },
+      { id: 2, category: 'blackwork', title: 'Mandala Geométrica', artist: 'Coringa', span: '', color: '#0d0d0d' },
+      { id: 3, category: 'fineline', title: 'Rosa Delicada', artist: 'Jennyfer', span: '', color: '#1a1520' },
+      { id: 4, category: 'realismo', title: 'Olho Hiperrealista', artist: 'Coringa', span: 'md:row-span-2', color: '#151520' },
+      { id: 5, category: 'blackwork', title: 'Lobo Tribal', artist: 'Coringa', span: '', color: '#101018' },
+      { id: 6, category: 'fineline', title: 'Borboleta Fine Line', artist: 'Jennyfer', span: 'md:col-span-2', color: '#18151a' },
+      { id: 7, category: 'realismo', title: 'Retrato Realista', artist: 'Coringa', span: '', color: '#121215' },
+      { id: 8, category: 'blackwork', title: 'Pattern Blackwork', artist: 'Coringa', span: '', color: '#0e0e12' },
+    ];
+
+    // SVG patterns for gallery items
+    const gallerySVGs = {
+      1: `<svg viewBox="0 0 400 400" class="w-full h-full"><defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#333"/><stop offset="50%" stop-color="#777"/><stop offset="100%" stop-color="#444"/></linearGradient></defs><ellipse cx="200" cy="160" rx="80" ry="90" fill="none" stroke="url(#g1)" stroke-width="1.5"/><path d="M140 100 Q120 80 140 60" fill="none" stroke="url(#g1)" stroke-width="1.2"/><path d="M260 100 Q280 80 260 60" fill="none" stroke="url(#g1)" stroke-width="1.2"/><circle cx="175" cy="140" r="10" fill="none" stroke="url(#g1)" stroke-width="1.5"/><circle cx="225" cy="140" r="10" fill="none" stroke="url(#g1)" stroke-width="1.5"/><circle cx="175" cy="140" r="4" fill="#555"/><circle cx="225" cy="140" r="4" fill="#555"/><path d="M185 180 Q200 195 215 180" fill="none" stroke="url(#g1)" stroke-width="1.5"/><path d="M150 200 Q200 240 250 200" fill="none" stroke="url(#g1)" stroke-width="1"/><path d="M120 160 Q80 200 120 260 Q160 320 200 300 Q240 320 280 260 Q320 200 280 160" fill="none" stroke="url(#g1)" stroke-width="0.8"/></svg>`,
+      2: `<svg viewBox="0 0 200 200" class="w-full h-full"><defs><linearGradient id="g2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#333"/><stop offset="50%" stop-color="#666"/><stop offset="100%" stop-color="#444"/></linearGradient></defs><circle cx="100" cy="100" r="70" fill="none" stroke="url(#g2)" stroke-width="1"/><circle cx="100" cy="100" r="50" fill="none" stroke="url(#g2)" stroke-width="0.8"/><circle cx="100" cy="100" r="30" fill="none" stroke="url(#g2)" stroke-width="0.6"/><polygon points="100,30 115,80 170,80 125,110 140,160 100,130 60,160 75,110 30,80 85,80" fill="none" stroke="url(#g2)" stroke-width="0.8"/></svg>`,
+      3: `<svg viewBox="0 0 200 200" class="w-full h-full"><defs><linearGradient id="g3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#444"/><stop offset="50%" stop-color="#888"/><stop offset="100%" stop-color="#555"/></linearGradient></defs><path d="M100 60 Q120 80 110 100 Q130 90 130 110 Q140 100 135 120 Q150 115 140 135 Q130 155 110 150 Q100 170 90 150 Q70 155 60 135 Q50 115 65 120 Q60 100 70 110 Q70 90 90 100 Q80 80 100 60Z" fill="none" stroke="url(#g3)" stroke-width="1"/><line x1="100" y1="150" x2="100" y2="190" stroke="url(#g3)" stroke-width="0.8"/><path d="M90 170 Q100 160 110 170" fill="none" stroke="url(#g3)" stroke-width="0.6"/></svg>`,
+      4: `<svg viewBox="0 0 200 400" class="w-full h-full"><defs><linearGradient id="g4" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#333"/><stop offset="50%" stop-color="#777"/><stop offset="100%" stop-color="#444"/></linearGradient></defs><ellipse cx="100" cy="200" rx="60" ry="80" fill="none" stroke="url(#g4)" stroke-width="1.5"/><ellipse cx="100" cy="200" rx="40" ry="55" fill="none" stroke="url(#g4)" stroke-width="1"/><circle cx="100" cy="190" r="20" fill="none" stroke="url(#g4)" stroke-width="1.5"/><circle cx="100" cy="190" r="8" fill="#333"/><path d="M75 230 Q100 260 125 230" fill="none" stroke="url(#g4)" stroke-width="0.8"/></svg>`,
+      5: `<svg viewBox="0 0 200 200" class="w-full h-full"><defs><linearGradient id="g5" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#333"/><stop offset="50%" stop-color="#666"/><stop offset="100%" stop-color="#444"/></linearGradient></defs><path d="M100 40 L70 60 Q50 50 60 80 L40 100 Q50 110 70 100 L80 130 Q70 150 90 140 L100 160 L110 140 Q130 150 120 130 L130 100 Q150 110 160 100 L140 80 Q150 50 130 60 Z" fill="none" stroke="url(#g5)" stroke-width="1"/><circle cx="85" cy="85" r="5" fill="#444"/><circle cx="115" cy="85" r="5" fill="#444"/><path d="M90 105 L100 115 L110 105" fill="none" stroke="url(#g5)" stroke-width="1"/></svg>`,
+      6: `<svg viewBox="0 0 400 200" class="w-full h-full"><defs><linearGradient id="g6" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#444"/><stop offset="50%" stop-color="#888"/><stop offset="100%" stop-color="#555"/></linearGradient></defs><path d="M120 100 Q140 60 160 80 Q170 50 190 80 Q200 60 210 80 Q220 50 240 80 Q260 60 280 100 Q260 140 200 150 Q140 140 120 100Z" fill="none" stroke="url(#g6)" stroke-width="1"/><path d="M160 100 Q180 80 200 100 Q220 80 240 100" fill="none" stroke="url(#g6)" stroke-width="0.6"/><line x1="200" y1="150" x2="200" y2="180" stroke="url(#g6)" stroke-width="0.5"/></svg>`,
+      7: `<svg viewBox="0 0 200 200" class="w-full h-full"><defs><linearGradient id="g7" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#333"/><stop offset="50%" stop-color="#777"/><stop offset="100%" stop-color="#444"/></linearGradient></defs><ellipse cx="100" cy="90" rx="45" ry="55" fill="none" stroke="url(#g7)" stroke-width="1"/><line x1="80" y1="80" x2="90" y2="80" stroke="url(#g7)" stroke-width="1.5"/><line x1="110" y1="80" x2="120" y2="80" stroke="url(#g7)" stroke-width="1.5"/><path d="M90 105 Q100 112 110 105" fill="none" stroke="url(#g7)" stroke-width="0.8"/><line x1="100" y1="145" x2="100" y2="190" stroke="url(#g7)" stroke-width="0.5"/></svg>`,
+      8: `<svg viewBox="0 0 200 200" class="w-full h-full"><defs><linearGradient id="g8" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#333"/><stop offset="50%" stop-color="#666"/><stop offset="100%" stop-color="#444"/></linearGradient></defs><rect x="40" y="40" width="120" height="120" fill="none" stroke="url(#g8)" stroke-width="0.8"/><rect x="55" y="55" width="90" height="90" fill="none" stroke="url(#g8)" stroke-width="0.6" transform="rotate(15 100 100)"/><rect x="70" y="70" width="60" height="60" fill="none" stroke="url(#g8)" stroke-width="0.5" transform="rotate(30 100 100)"/><rect x="85" y="85" width="30" height="30" fill="none" stroke="url(#g8)" stroke-width="0.4" transform="rotate(45 100 100)"/></svg>`
+    };
+
+    let activeCategory = 'all';
+
+    function renderGallery(category) {
+      const grid = document.getElementById('gallery-grid');
+      const filtered = category === 'all' ? galleryItems : galleryItems.filter(i => i.category === category);
+
+      grid.innerHTML = '';
+      filtered.forEach((item, idx) => {
+        const div = document.createElement('div');
+        div.className = `gallery-item ${item.span} scroll-visible`;
+        div.style.transitionDelay = `${idx * 0.1}s`;
+        div.innerHTML = `
+          <div class="gallery-img absolute inset-0 flex items-center justify-center" style="background:${item.color};">
+            <div class="w-3/4 h-3/4 opacity-30">${gallerySVGs[item.id] || ''}</div>
+          </div>
+          <div class="overlay"></div>
+          <div class="overlay-text">
+            <div class="text-xs tracking-widest uppercase text-gray-500 mb-1">${item.category}</div>
+            <div class="text-white font-medium" style="font-family:'Cormorant Garamond',serif; font-size:1.1rem;">${item.title}</div>
+            <div class="text-gray-500 text-xs mt-1">por ${item.artist}</div>
+          </div>
+        `;
+        grid.appendChild(div);
+      });
+    }
+
+    // Category buttons
+    document.querySelectorAll('.category-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeCategory = btn.dataset.category;
+        renderGallery(activeCategory);
+      });
+    });
+
+    // Scroll animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('scroll-visible');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.scroll-hidden').forEach(el => observer.observe(el));
+
+    // Navbar scroll effect
+    const nav = document.getElementById('main-nav');
+    const appWrapper = document.getElementById('app-wrapper');
+    appWrapper.addEventListener('scroll', () => {
+      if (appWrapper.scrollTop > 80) {
+        nav.style.background = 'rgba(0,0,0,0.9)';
+        nav.style.backdropFilter = 'blur(20px)';
+        nav.style.borderBottom = '1px solid rgba(50,50,50,0.5)';
+      } else {
+        nav.style.background = 'transparent';
+        nav.style.backdropFilter = 'none';
+        nav.style.borderBottom = 'none';
+      }
+    });
+
+    // Mobile menu
+    document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.toggle('hidden');
+    });
+    document.querySelectorAll('.mobile-nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        document.getElementById('mobile-menu').classList.add('hidden');
+      });
+    });
+
+    // Init gallery
+    renderGallery('all');
+
+    // Init Lucide
+    lucide.createIcons();
+
+    // === Element SDK ===
+    const defaultConfig = {
+      hero_title: 'Arte que fica na pele para sempre',
+      hero_subtitle: 'Mais de 15 anos criando tatuagens exclusivas em São Paulo',
+      about_text: 'Nascemos da rua, da arte, da obsessão por criar algo que transcende a pele. O Tattoo até os Ossos não é apenas um estúdio — é um espaço onde cada traço carrega intenção, cada sombra conta uma história, e cada cliente sai com uma obra de arte única que o acompanha para sempre.',
+      cta_title: 'Pronto para eternizar sua ideia?',
+      whatsapp_number: '(11) 99999-9999',
+      address: 'Vila Prudente, São Paulo - SP',
+      background_color: '#000000',
+      surface_color: '#1a1a1a',
+      text_color: '#9ca3af',
+      primary_action_color: '#c0c0c0',
+      secondary_action_color: '#555555',
+      font_family: 'Bebas Neue',
+      font_size: 16
+    };
+
+    async function onConfigChange(config) {
+      const c = { ...defaultConfig, ...config };
+
+      // Text updates
+      const heroTitle = document.getElementById('hero-title');
+      if (heroTitle) heroTitle.innerHTML = (c.hero_title || defaultConfig.hero_title).replace(/\n/g, '<br>');
+
+      const heroSub = document.getElementById('hero-subtitle');
+      if (heroSub) heroSub.textContent = c.hero_subtitle || defaultConfig.hero_subtitle;
+
+      const aboutText = document.getElementById('about-text');
+      if (aboutText) aboutText.textContent = c.about_text || defaultConfig.about_text;
+
+      const ctaTitle = document.getElementById('cta-title');
+      if (ctaTitle) ctaTitle.innerHTML = (c.cta_title || defaultConfig.cta_title).replace(/\n/g, '<br>');
+
+      const contactWA = document.getElementById('contact-whatsapp');
+      if (contactWA) contactWA.textContent = c.whatsapp_number || defaultConfig.whatsapp_number;
+
+      const contactAddr = document.getElementById('contact-address');
+      if (contactAddr) contactAddr.textContent = c.address || defaultConfig.address;
+
+      // Colors
+      const bgColor = c.background_color || defaultConfig.background_color;
+      const surfaceColor = c.surface_color || defaultConfig.surface_color;
+      const textColor = c.text_color || defaultConfig.text_color;
+      const primaryAction = c.primary_action_color || defaultConfig.primary_action_color;
+      const secondaryAction = c.secondary_action_color || defaultConfig.secondary_action_color;
+
+      const wrapper = document.getElementById('app-wrapper');
+      if (wrapper) wrapper.style.backgroundColor = bgColor;
+
+      // Surface - testimonial cards, contact boxes
+      document.querySelectorAll('.testimonial-card').forEach(el => {
+        el.style.backgroundColor = surfaceColor;
+        el.style.borderColor = secondaryAction;
+      });
+      document.querySelectorAll('#contato .border-gray-800').forEach(el => {
+        el.style.backgroundColor = surfaceColor;
+        el.style.borderColor = secondaryAction;
+      });
+
+      // Text color
+      document.querySelectorAll('.text-gray-400, .text-gray-500').forEach(el => {
+        el.style.color = textColor;
+      });
+
+      // Section dividers
+      document.querySelectorAll('.section-divider').forEach(el => {
+        el.style.background = `linear-gradient(90deg, transparent, ${secondaryAction}, ${primaryAction}, ${secondaryAction}, transparent)`;
+      });
+
+      // Font
+      const fontFamily = c.font_family || defaultConfig.font_family;
+      const baseFontStack = 'sans-serif';
+      document.querySelectorAll('[style*="font-family:\'Bebas Neue\'"], [style*="font-family: \'Bebas Neue\'"]').forEach(el => {
+        el.style.fontFamily = `${fontFamily}, ${baseFontStack}`;
+      });
+
+      // Font size
+      const baseSize = c.font_size || defaultConfig.font_size;
+      if (heroTitle) heroTitle.style.fontSize = `clamp(${baseSize * 2.2}px, 10vw, ${baseSize * 5.6}px)`;
+      if (heroSub) heroSub.style.fontSize = `${baseSize * 1.1}px`;
+    }
+
+    function mapToCapabilities(config) {
+      const c = { ...defaultConfig, ...config };
+      return {
+        recolorables: [
+          {
+            get: () => c.background_color || defaultConfig.background_color,
+            set: (v) => { c.background_color = v; window.elementSdk.setConfig({ background_color: v }); }
+          },
+          {
+            get: () => c.surface_color || defaultConfig.surface_color,
+            set: (v) => { c.surface_color = v; window.elementSdk.setConfig({ surface_color: v }); }
+          },
+          {
+            get: () => c.text_color || defaultConfig.text_color,
+            set: (v) => { c.text_color = v; window.elementSdk.setConfig({ text_color: v }); }
+          },
+          {
+            get: () => c.primary_action_color || defaultConfig.primary_action_color,
+            set: (v) => { c.primary_action_color = v; window.elementSdk.setConfig({ primary_action_color: v }); }
+          },
+          {
+            get: () => c.secondary_action_color || defaultConfig.secondary_action_color,
+            set: (v) => { c.secondary_action_color = v; window.elementSdk.setConfig({ secondary_action_color: v }); }
+          }
+        ],
+        borderables: [],
+        fontEditable: {
+          get: () => c.font_family || defaultConfig.font_family,
+          set: (v) => { c.font_family = v; window.elementSdk.setConfig({ font_family: v }); }
+        },
+        fontSizeable: {
+          get: () => c.font_size || defaultConfig.font_size,
+          set: (v) => { c.font_size = v; window.elementSdk.setConfig({ font_size: v }); }
+        }
+      };
+    }
+
+    function mapToEditPanelValues(config) {
+      const c = { ...defaultConfig, ...config };
+      return new Map([
+        ['hero_title', c.hero_title || defaultConfig.hero_title],
+        ['hero_subtitle', c.hero_subtitle || defaultConfig.hero_subtitle],
+        ['about_text', c.about_text || defaultConfig.about_text],
+        ['cta_title', c.cta_title || defaultConfig.cta_title],
+        ['whatsapp_number', c.whatsapp_number || defaultConfig.whatsapp_number],
+        ['address', c.address || defaultConfig.address]
+      ]);
+    }
+
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities,
+        mapToEditPanelValues
+      });
+    }
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9de08490a52bd973',t:'MTc3Mzc5NzkwNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
