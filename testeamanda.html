@@ -1,0 +1,795 @@
+<!doctype html>
+<html lang="pt-BR" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Espaço de Massoterapia Terapêutica</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Manrope", sans-serif;
+      background: #f6f0e8;
+      color: #5c5047;
+    }
+
+    .display-font {
+      font-family: "Cormorant Garamond", serif;
+    }
+
+    .soft-glow {
+      box-shadow: 0 18px 60px rgba(138, 116, 84, 0.12);
+    }
+
+    .glass-card {
+      background: rgba(255, 251, 246, 0.75);
+      backdrop-filter: blur(10px);
+    }
+
+    .gold-line {
+      background: linear-gradient(90deg, transparent, #b9975b, transparent);
+    }
+
+    .hero-overlay {
+      background:
+        linear-gradient(90deg, rgba(246, 240, 232, 0.92) 0%, rgba(246, 240, 232, 0.78) 45%, rgba(246, 240, 232, 0.40) 100%);
+    }
+
+    .ambient-bg {
+      background:
+        radial-gradient(circle at top left, rgba(185, 151, 91, 0.14), transparent 28%),
+        radial-gradient(circle at bottom right, rgba(185, 151, 91, 0.10), transparent 24%),
+        linear-gradient(180deg, #f6f0e8 0%, #fbf7f2 46%, #f1e8de 100%);
+    }
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(22px);
+      animation: fadeUp 0.8s ease forwards;
+    }
+
+    .fade-up-delay-1 { animation-delay: 0.1s; }
+    .fade-up-delay-2 { animation-delay: 0.2s; }
+    .fade-up-delay-3 { animation-delay: 0.3s; }
+    .fade-up-delay-4 { animation-delay: 0.4s; }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .service-image::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.00), rgba(0,0,0,0.18));
+      pointer-events: none;
+    }
+
+    .section-anchor {
+      scroll-margin-top: 24px;
+    }
+
+    .float-up {
+      animation: floatUp 3s ease-in-out infinite;
+    }
+
+    @keyframes floatUp {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+    }
+
+    .scale-in {
+      animation: scaleIn 0.6s ease-out forwards;
+    }
+
+    @keyframes scaleIn {
+      from {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .slide-in-left {
+      animation: slideInLeft 0.8s ease-out forwards;
+    }
+
+    @keyframes slideInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .slide-in-right {
+      animation: slideInRight 0.8s ease-out forwards;
+    }
+
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .bounce-in {
+      animation: bounceIn 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+
+    @keyframes bounceIn {
+      0% {
+        opacity: 0;
+        transform: scale(0.3);
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    .pulse-glow {
+      animation: pulseGlow 2s ease-in-out infinite;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% {
+        box-shadow: 0 18px 60px rgba(138, 116, 84, 0.12);
+      }
+      50% {
+        box-shadow: 0 18px 60px rgba(138, 116, 84, 0.22);
+      }
+    }
+
+    .shine {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .shine::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      animation: shine 3s infinite;
+    }
+
+    @keyframes shine {
+      0% { left: -100%; }
+      100% { left: 100%; }
+    }
+
+    .rotate-slow {
+      animation: rotateSlow 20s linear infinite;
+    }
+
+    @keyframes rotateSlow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+  </style>
+  <style>body { box-sizing: border-box; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full">
+  <div id="app" class="ambient-bg h-full w-full overflow-auto">
+   <header class="w-full px-4 sm:px-6 md:px-10 lg:px-14 py-4 sm:py-5">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+     <div>
+      <p id="brandText" class="display-font text-2xl sm:text-3xl tracking-wide">Amanda Matos</p>
+      <p id="brandSubtext" class="text-xs sm:text-sm tracking-[0.25em] uppercase opacity-70">Massoterapia Terapêutica</p>
+     </div><a id="topWhatsappButton" href="https://wa.me/5500000000000?text=Olá!%20Quero%20agendar%20uma%20sessão." target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 rounded-full px-4 sm:px-5 py-2 sm:py-3 text-xs sm:text-sm transition-all duration-300 hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-offset-2 shine"> <i data-lucide="message-circle" class="w-4 h-4"></i> <span class="hidden sm:inline">Agendar</span> </a>
+    </div>
+   </header>
+   <main class="w-full">
+    <section class="section-anchor px-4 sm:px-6 md:px-10 lg:px-14 py-6 sm:py-10 md:py-12">
+     <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-10 lg:gap-14 items-center min-h-screen lg:min-h-auto">
+       <div class="fade-up fade-up-delay-1 flex flex-col justify-center order-2 lg:order-1 py-8 md:py-10">
+        <div class="inline-flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
+         <div class="w-8 sm:w-12 h-px gold-line"></div><span id="heroBadge" class="text-xs sm:text-xs uppercase tracking-[0.3em] sm:tracking-[0.35em] opacity-70">Cuidado, presença e bem-estar</span>
+        </div>
+        <h1 id="heroTitle" class="display-font text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl leading-[1.05] sm:leading-[0.95] mb-4 sm:mb-6 max-w-2xl">Massoterapia terapêutica para aliviar dores e restaurar o equilíbrio do corpo.</h1>
+        <p id="heroSubtitle" class="text-base sm:text-lg md:text-xl lg:text-lg leading-relaxed max-w-xl opacity-85 mb-6 sm:mb-8">Técnicas especializadas para reduzir tensões musculares, melhorar a circulação e proporcionar bem-estar profundo.</p>
+        <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-8 sm:mb-10"><a id="heroButton" href="https://wa.me/5500000000000?text=Olá!%20Quero%20agendar%20uma%20sessão." target="_blank" rel="noopener noreferrer" class="slide-in-left inline-flex items-center justify-center gap-2 sm:gap-3 rounded-full px-6 sm:px-7 py-3 sm:py-4 text-sm sm:text-base font-semibold transition-all duration-300 hover:scale-[1.02] soft-glow focus:outline-none focus:ring-2 focus:ring-offset-2"> <i data-lucide="message-circle" class="w-4 sm:w-5 h-4 sm:h-5"></i> <span id="heroButtonText">Agendar pelo WhatsApp</span> </a> <a href="#servicos" class="slide-in-left inline-flex items-center justify-center gap-2 rounded-full border px-6 sm:px-7 py-3 sm:py-4 text-sm sm:text-base font-medium transition-all duration-300 hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-offset-2" style="animation-delay: 0.1s"> <i data-lucide="arrow-down" class="w-4 h-4"></i> <span class="hidden sm:inline">Conhecer</span> serviços </a>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 max-w-3xl">
+         <div class="glass-card rounded-2xl p-4 sm:p-5 soft-glow scale-in" style="animation-delay: 0.2s">
+          <p class="display-font text-2xl sm:text-3xl">+ cuidado</p>
+          <p class="text-xs sm:text-sm opacity-75 mt-1">Atendimento acolhedor e individualizado</p>
+         </div>
+         <div class="glass-card rounded-2xl p-4 sm:p-5 soft-glow scale-in" style="animation-delay: 0.3s">
+          <p class="display-font text-2xl sm:text-3xl">+ alívio</p>
+          <p class="text-xs sm:text-sm opacity-75 mt-1">Foco em tensões, dores e recuperação</p>
+         </div>
+         <div class="glass-card rounded-2xl p-4 sm:p-5 soft-glow scale-in" style="animation-delay: 0.4s">
+          <p class="display-font text-2xl sm:text-3xl">+ equilíbrio</p>
+          <p class="text-xs sm:text-sm opacity-75 mt-1">Corpo, mente e energia em harmonia</p>
+         </div>
+        </div>
+       </div>
+       <div class="fade-up fade-up-delay-2 relative order-1 lg:order-2 h-80 sm:h-96 md:h-[500px] lg:h-[550px] rounded-2xl sm:rounded-[2rem] overflow-hidden soft-glow pulse-glow"><img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&amp;fit=crop&amp;w=1200&amp;q=80" alt="Massoterapia sendo realizada em um ambiente relaxante" loading="lazy" onerror="this.style.display='none'; document.getElementById('heroFallback').style.display='flex'; this.alt='Imagem indisponível';" class="absolute inset-0 w-full h-full object-cover">
+        <div id="heroFallback" class="absolute inset-0 hidden items-center justify-center bg-[linear-gradient(135deg,#e9dece,#f8f3ec)]">
+         <div class="text-center p-6 sm:p-8">
+          <div class="mx-auto w-16 sm:w-20 h-16 sm:h-20 rounded-full bg-white/70 flex items-center justify-center mb-3 sm:mb-4 rotate-slow">
+           <i data-lucide="sparkles" class="w-8 sm:w-9 h-8 sm:h-9"></i>
+          </div>
+          <p class="display-font text-3xl sm:text-4xl">Bem-estar terapêutico</p>
+         </div>
+        </div>
+        <div class="hero-overlay absolute inset-0"></div>
+        <div class="absolute inset-x-0 bottom-0 p-4 sm:p-6 md:p-8">
+         <div class="glass-card rounded-2xl sm:rounded-[1.5rem] p-4 sm:p-5 md:p-6 max-w-md ml-auto bounce-in">
+          <p class="text-xs uppercase tracking-[0.3em] opacity-70 mb-2">Atendimento humanizado</p>
+          <p class="display-font text-2xl sm:text-3xl leading-tight mb-2">Um espaço pensado para desacelerar, respirar e restaurar.</p>
+          <p class="text-xs sm:text-sm opacity-80">Cada sessão é conduzida com atenção genuína às necessidades do seu corpo.</p>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </section>
+    <section id="sobre" class="section-anchor px-4 sm:px-6 md:px-10 lg:px-14 py-10 sm:py-12 md:py-16">
+     <div class="max-w-6xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-[280px,1fr] xl:grid-cols-[340px,1fr] gap-6 md:gap-10 lg:gap-12 items-center">
+       <div class="fade-up fade-up-delay-1 flex justify-center lg:justify-start order-2 lg:order-1">
+        <div class="relative">
+         <div class="absolute -inset-2 sm:-inset-3 rounded-full border opacity-50"></div><img id="aboutPhoto" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Retrato da terapeuta Amanda Matos" loading="lazy" onerror="this.style.display='none'; document.getElementById('aboutFallback').style.display='flex'; this.alt='Imagem indisponível';" class="w-56 h-56 sm:w-64 sm:h-64 md:w-72 md:h-72 rounded-full object-cover soft-glow relative z-10 shine">
+         <div id="aboutFallback" class="hidden w-56 h-56 sm:w-64 sm:h-64 md:w-72 md:h-72 rounded-full bg-[linear-gradient(135deg,#e6d8c4,#f7f2ea)] items-center justify-center soft-glow relative z-10">
+          <div class="text-center">
+           <i data-lucide="user-round" class="w-10 sm:w-12 h-10 sm:h-12 mx-auto mb-2 sm:mb-3"></i>
+           <p class="display-font text-2xl sm:text-3xl">Amanda Matos</p>
+          </div>
+         </div>
+        </div>
+       </div>
+       <div class="fade-up fade-up-delay-2 order-1 lg:order-2">
+        <div class="inline-flex items-center gap-2 sm:gap-3 mb-4 sm:mb-5">
+         <div class="w-8 sm:w-12 h-px gold-line"></div><span class="text-xs uppercase tracking-[0.35em] opacity-70">Sobre a terapeuta</span>
+        </div>
+        <h2 id="aboutTitle" class="display-font text-3xl sm:text-4xl md:text-5xl mb-4 sm:mb-5">Amanda Matos</h2>
+        <p id="aboutText" class="text-base sm:text-lg leading-relaxed opacity-90">Com uma trajetória que começou na psicologia e se expandiu para a massoterapia e terapias integrativas, Amanda Matos desenvolve um atendimento profundamente humano, atento e acolhedor. Seu trabalho une escuta terapêutica, conhecimento técnico e sensibilidade para compreender as necessidades de cada pessoa, cuidando do corpo, da mente e da energia de forma integrada. Cada sessão é pensada como uma experiência de alívio, reconexão e presença.</p>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mt-6 sm:mt-8">
+         <div class="rounded-2xl border p-4 sm:p-5 bg-white/60 hover:bg-white/80 transition-all duration-300 scale-in" style="animation-delay: 0.2s">
+          <i data-lucide="heart-handshake" class="w-5 sm:w-6 h-5 sm:h-6 mb-2 sm:mb-3"></i>
+          <p class="font-semibold text-sm sm:text-base mb-1">Cuidado humano</p>
+          <p class="text-xs sm:text-sm opacity-75">Escuta sensível e atendimento com presença real.</p>
+         </div>
+         <div class="rounded-2xl border p-4 sm:p-5 bg-white/60 hover:bg-white/80 transition-all duration-300 scale-in" style="animation-delay: 0.3s">
+          <i data-lucide="briefcase-medical" class="w-5 sm:w-6 h-5 sm:h-6 mb-2 sm:mb-3"></i>
+          <p class="font-semibold text-sm sm:text-base mb-1">Experiência profissional</p>
+          <p class="text-xs sm:text-sm opacity-75">Técnicas aplicadas com segurança e propósito terapêutico.</p>
+         </div>
+         <div class="rounded-2xl border p-4 sm:p-5 bg-white/60 hover:bg-white/80 transition-all duration-300 scale-in" style="animation-delay: 0.4s">
+          <i data-lucide="sparkles" class="w-5 sm:w-6 h-5 sm:h-6 mb-2 sm:mb-3"></i>
+          <p class="font-semibold text-sm sm:text-base mb-1">Visão integrativa</p>
+          <p class="text-xs sm:text-sm opacity-75">Equilíbrio entre corpo, mente e energia.</p>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </section>
+    <section id="servicos" class="section-anchor px-4 sm:px-6 md:px-10 lg:px-14 py-10 sm:py-12 md:py-16">
+     <div class="max-w-7xl mx-auto">
+      <div class="text-center max-w-3xl mx-auto mb-8 sm:mb-10 md:mb-12 fade-up">
+       <div class="inline-flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+        <div class="w-8 sm:w-10 h-px gold-line"></div><span class="text-xs uppercase tracking-[0.35em] opacity-70">Atendimentos</span>
+        <div class="w-8 sm:w-10 h-px gold-line"></div>
+       </div>
+       <h2 id="servicesTitle" class="display-font text-3xl sm:text-4xl md:text-5xl mb-3 sm:mb-4">Serviços terapêuticos</h2>
+       <p class="text-base sm:text-lg opacity-85">Técnicas pensadas para aliviar dores, reduzir tensões, favorecer a circulação e oferecer uma sensação profunda de relaxamento e recuperação.</p>
+      </div>
+      <div id="servicesGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6"></div>
+     </div>
+    </section>
+    <section id="exclusivos" class="section-anchor px-4 sm:px-6 md:px-10 lg:px-14 py-10 sm:py-12 md:py-16">
+     <div class="max-w-7xl mx-auto rounded-2xl sm:rounded-[2rem] p-6 sm:p-8 md:p-10 lg:p-12 soft-glow bg-white/70 border">
+      <div class="max-w-3xl mb-8 sm:mb-10 md:mb-12 fade-up">
+       <div class="inline-flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+        <div class="w-8 sm:w-12 h-px gold-line"></div><span class="text-xs uppercase tracking-[0.35em] opacity-70">Experiências especiais</span>
+       </div>
+       <h2 id="exclusiveTitle" class="display-font text-3xl sm:text-4xl md:text-5xl mb-3 sm:mb-4">Serviços Exclusivos</h2>
+       <p class="text-base sm:text-lg opacity-85">Tratamentos criados para necessidades específicas, com foco em bem-estar, leveza, relaxamento e recuperação corporal.</p>
+      </div>
+      <div id="exclusiveGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6"></div>
+     </div>
+    </section>
+    <section id="pagamento" class="section-anchor px-4 sm:px-6 md:px-10 lg:px-14 py-10 sm:py-12 md:py-16">
+     <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-[1.1fr,0.9fr] gap-6 sm:gap-8 items-start">
+      <div class="fade-up">
+       <div class="inline-flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+        <div class="w-8 sm:w-12 h-px gold-line"></div><span class="text-xs uppercase tracking-[0.35em] opacity-70">Facilidade para você</span>
+       </div>
+       <h2 class="display-font text-3xl sm:text-4xl md:text-5xl mb-3 sm:mb-4">Formas de pagamento</h2>
+       <p class="text-base sm:text-lg opacity-85 max-w-2xl">Escolha a forma mais confortável para seu atendimento. O processo de agendamento é simples, acolhedor e pensado para tornar sua experiência leve desde o primeiro contato.</p>
+      </div>
+      <div class="fade-up fade-up-delay-2 rounded-2xl sm:rounded-[2rem] border bg-white/75 p-6 sm:p-8 soft-glow">
+       <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-4 sm:mb-6">
+        <div class="rounded-xl sm:rounded-2xl border p-4 sm:p-5 flex items-center gap-2 sm:gap-3 bg-[#fffaf4] hover:bg-white/80 transition-all duration-300">
+         <i data-lucide="credit-card" class="w-4 sm:w-5 h-4 sm:h-5"></i> <span class="text-sm sm:text-base">Cartão de crédito</span>
+        </div>
+        <div class="rounded-xl sm:rounded-2xl border p-4 sm:p-5 flex items-center gap-2 sm:gap-3 bg-[#fffaf4] hover:bg-white/80 transition-all duration-300">
+         <i data-lucide="wallet-cards" class="w-4 sm:w-5 h-4 sm:h-5"></i> <span class="text-sm sm:text-base">Cartão de débito</span>
+        </div>
+        <div class="rounded-xl sm:rounded-2xl border p-4 sm:p-5 flex items-center gap-2 sm:gap-3 bg-[#fffaf4] hover:bg-white/80 transition-all duration-300">
+         <i data-lucide="qr-code" class="w-4 sm:w-5 h-4 sm:h-5"></i> <span class="text-sm sm:text-base">Pix</span>
+        </div>
+        <div class="rounded-xl sm:rounded-2xl border p-4 sm:p-5 flex items-center gap-2 sm:gap-3 bg-[#fffaf4] hover:bg-white/80 transition-all duration-300">
+         <i data-lucide="banknote" class="w-4 sm:w-5 h-4 sm:h-5"></i> <span class="text-sm sm:text-base">Dinheiro</span>
+        </div>
+       </div>
+       <div id="paymentNote" class="rounded-xl sm:rounded-2xl p-4 sm:p-5 border">
+        <p class="font-semibold text-sm sm:text-base mb-1">Parcelamento especial</p>
+        <p class="text-xs sm:text-sm">Parcelamos em até 3x sem juros para valores acima de R$600.</p>
+       </div>
+      </div>
+     </div>
+    </section>
+    <section id="depoimentos" class="section-anchor px-6 md:px-10 lg:px-14 py-14">
+     <div class="max-w-7xl mx-auto">
+      <div class="text-center max-w-3xl mx-auto mb-12 fade-up">
+       <div class="inline-flex items-center gap-3 mb-4">
+        <div class="w-10 h-px gold-line"></div><span class="text-xs uppercase tracking-[0.35em] opacity-70">Confiança de quem viveu a experiência</span>
+        <div class="w-10 h-px gold-line"></div>
+       </div>
+       <h2 id="testimonialsTitle" class="display-font text-4xl md:text-5xl mb-4">Depoimentos de clientes</h2>
+       <p class="text-lg opacity-85">Relatos de pessoas que encontraram alívio, relaxamento e acolhimento em cada atendimento.</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+       <article class="fade-up rounded-[2rem] border bg-white/80 p-7 soft-glow">
+        <div class="flex items-center gap-2 mb-4">
+         <i data-lucide="star" class="w-4 h-4"></i> <i data-lucide="star" class="w-4 h-4"></i> <i data-lucide="star" class="w-4 h-4"></i> <i data-lucide="star" class="w-4 h-4"></i> <i data-lucide="star" class="w-4 h-4"></i>
+        </div>
+        <p class="text-lg leading-relaxed mb-5">“Cheguei com muita tensão nas costas e saí leve. O atendimento transmite paz e segurança do começo ao fim.”</p>
+        <p class="font-semibold">Mariana S.</p>
+       </article>
+       <article class="fade-up fade-up-delay-2 rounded-[2rem] border bg-white/80 p-7 soft-glow">
+        <div class="flex items-center gap-2 mb-4">
+         <i data-lucide="star" class="w-4 h-4"></i> <i data-lucide="star" class="w-4 h-4"></i> <i data-lucide="star" class="w-4 h-4"></i> <i data-lucide="star" class="w-4 h-4"></i> <i data-lucide="star" class="w-4 h-4"></i>
+        </div>
+        <p class="text-lg leading-relaxed mb-5">“A massagem terapêutica ajudou muito nas minhas dores musculares. Além da técnica, o cuidado humano faz toda diferença.”</p>
+        <p class="font-semibold">Renata P.</p>
+       </article>
+       <article class="fade-up fade-up-delay-3 rounded-[2rem] border bg-white/80 p-7 soft-glow">
+        <div class="flex items-center gap-2 mb-4">
+         <i data-lucide="star" class="w-4 h-4"></i> <i data-lucide="star" class="w-4 h-4"></i> <i data-lucide="star" class="w-4 h-4"></i> <i data-lucide="star" class="w-4 h-4"></i> <i data-lucide="star" class="w-4 h-4"></i>
+        </div>
+        <p class="text-lg leading-relaxed mb-5">“Um espaço elegante, acolhedor e realmente terapêutico. Saí relaxada e com a sensação de corpo renovado.”</p>
+        <p class="font-semibold">Camila R.</p>
+       </article>
+      </div>
+     </div>
+    </section>
+    <section id="cta-final" class="section-anchor px-4 sm:px-6 md:px-10 lg:px-14 py-10 sm:py-12 md:py-16">
+     <div class="max-w-5xl mx-auto rounded-2xl sm:rounded-[2.2rem] overflow-hidden soft-glow border pulse-glow">
+      <div class="grid grid-cols-1 lg:grid-cols-[1.1fr,0.9fr]">
+       <div class="p-6 sm:p-8 md:p-10 lg:p-12 xl:p-14 bg-white/80">
+        <div class="inline-flex items-center gap-2 sm:gap-3 mb-3 sm:mb-5">
+         <div class="w-8 sm:w-12 h-px gold-line"></div><span class="text-xs uppercase tracking-[0.35em] opacity-70">Seu momento de cuidado começa aqui</span>
+        </div>
+        <h2 id="finalCtaTitle" class="display-font text-3xl sm:text-4xl md:text-5xl mb-4 sm:mb-5">Permita-se cuidar do seu corpo e da sua saúde.</h2>
+        <p class="text-base sm:text-lg opacity-85 mb-6 sm:mb-8">Agende sua sessão e viva uma experiência de alívio, relaxamento profundo e reconexão com o seu bem-estar.</p><a id="finalCtaButton" href="https://wa.me/5500000000000?text=Olá!%20Quero%20agendar%20uma%20sessão." target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 sm:gap-3 rounded-full px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base font-semibold transition-all duration-300 hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-offset-2 shine"> <i data-lucide="message-circle" class="w-4 sm:w-5 h-4 sm:h-5"></i> <span id="finalCtaButtonText">Agendar sessão pelo WhatsApp</span> </a>
+       </div>
+       <div class="relative min-h-64 sm:min-h-72 md:min-h-80 lg:min-h-auto">
+        <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&amp;fit=crop&amp;w=1200&amp;q=80" alt="Ambiente de spa e bem-estar" loading="lazy" onerror="this.style.display='none'; document.getElementById('ctaFallback').style.display='flex'; this.alt='Imagem indisponível';" class="absolute inset-0 w-full h-full object-cover">
+        <div id="ctaFallback" class="hidden absolute inset-0 items-center justify-center bg-[linear-gradient(135deg,#eadcc8,#f6f0e7)] animate-pulse">
+         <i data-lucide="flower-2" class="w-12 sm:w-14 h-12 sm:h-14 float-up"></i>
+        </div>
+        <div class="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,251,246,0.1),rgba(92,80,71,0.15))]"></div>
+       </div>
+      </div>
+     </div>
+    </section>
+   </main>
+   <footer class="w-full px-4 sm:px-6 md:px-10 lg:px-14 py-8 sm:py-10">
+    <div class="max-w-7xl mx-auto border-t pt-6 sm:pt-8">
+     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+      <div>
+       <p class="display-font text-2xl sm:text-3xl mb-1 sm:mb-2">Amanda Matos</p>
+       <p class="text-xs sm:text-sm opacity-75">Massoterapia terapêutica com acolhimento, técnica e cuidado integral.</p>
+      </div>
+      <div>
+       <p class="font-semibold text-sm sm:text-base mb-2 sm:mb-3">Instagram</p><a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 opacity-85 hover:opacity-100 transition text-xs sm:text-sm"> <i data-lucide="instagram" class="w-4 h-4"></i> <span>@amandamatos.massoterapia</span> </a>
+      </div>
+      <div>
+       <p class="font-semibold text-sm sm:text-base mb-2 sm:mb-3">WhatsApp</p><a href="https://wa.me/5500000000000?text=Olá!%20Quero%20agendar%20uma%20sessão." target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 opacity-85 hover:opacity-100 transition text-xs sm:text-sm"> <i data-lucide="message-circle" class="w-4 h-4"></i> <span>(00) 00000-0000</span> </a>
+      </div>
+      <div>
+       <p class="font-semibold text-sm sm:text-base mb-2 sm:mb-3">Informações</p>
+       <div class="space-y-1 sm:space-y-2 text-xs sm:text-sm opacity-85">
+        <p class="flex items-center gap-2"><i data-lucide="map-pin" class="w-3 sm:w-4 h-3 sm:h-4"></i> <span>Atendimento presencial · Sua cidade</span></p>
+        <p class="flex items-center gap-2"><i data-lucide="clock-3" class="w-3 sm:w-4 h-3 sm:h-4"></i> <span>Seg a Sex · 9h às 19h</span></p>
+       </div>
+      </div>
+     </div>
+    </div>
+   </footer>
+  </div>
+  <script>
+    const services = [
+      {
+        image: "https://images.unsplash.com/photo-1519823551278-64ac92734fb1?auto=format&fit=crop&w=1200&q=80",
+        name: "Massagem Relaxante",
+        price: "R$150",
+        duration: "60 minutos",
+        description: "Ideal para aliviar o estresse, reduzir tensões do dia a dia e promover uma sensação imediata de relaxamento profundo."
+      },
+      {
+        image: "https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=1200&q=80",
+        name: "Massagem com Pedras Quentes",
+        price: "R$170",
+        duration: "60 minutos",
+        description: "O calor das pedras auxilia na circulação, relaxa a musculatura e amplia a sensação de conforto e bem-estar."
+      },
+      {
+        image: "https://images.unsplash.com/photo-1507652313519-d4e9174996dd?auto=format&fit=crop&w=1200&q=80",
+        name: "Deep Tissue",
+        price: "R$180",
+        duration: "60 minutos",
+        description: "Técnica mais profunda para tratar tensões crônicas, rigidez muscular e pontos de dor persistentes."
+      },
+      {
+        image: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=1200&q=80",
+        name: "Massagem Terapêutica",
+        price: "R$170",
+        duration: "60 minutos",
+        description: "Focada no alívio de desconfortos musculares e na recuperação corporal com abordagem individualizada."
+      },
+      {
+        image: "https://images.unsplash.com/photo-1519415943484-9fa1873496d4?auto=format&fit=crop&w=1200&q=80",
+        name: "Ventosaterapia",
+        price: "R$150",
+        duration: "45 minutos",
+        description: "Ajuda a soltar tensões, estimular a circulação e favorecer a recuperação de áreas doloridas ou congestionadas."
+      },
+      {
+        image: "https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?auto=format&fit=crop&w=1200&q=80",
+        name: "Liberação Miofascial",
+        price: "R$180",
+        duration: "60 minutos",
+        description: "Excelente para melhorar mobilidade, aliviar dores e liberar aderências que limitam os movimentos do corpo."
+      }
+    ];
+
+    const exclusiveServices = [
+      {
+        icon: "waves",
+        name: "Drenagem Linfática Terapêutica",
+        price: "R$150",
+        duration: "60 minutos",
+        description: "Favorece a eliminação de líquidos, auxilia na sensação de leveza e contribui para a recuperação corporal."
+      },
+      {
+        icon: "footprints",
+        name: "Pernas Leves",
+        price: "R$150",
+        duration: "45 minutos",
+        description: "Experiência pensada para aliviar cansaço, inchaço e desconforto nas pernas, trazendo leveza e descanso."
+      },
+      {
+        icon: "sparkles",
+        name: "Trio Relax",
+        price: "R$130",
+        duration: "35 minutos",
+        description: "Um cuidado especial para desacelerar, aliviar tensões e oferecer bem-estar em uma experiência breve e restauradora."
+      }
+    ];
+
+    function createServiceCard(service) {
+      const article = document.createElement("article");
+      article.className = "rounded-2xl sm:rounded-[2rem] overflow-hidden border bg-white/80 soft-glow transition-all duration-300 hover:-translate-y-1 bounce-in";
+
+      article.innerHTML = `
+        <div class="relative h-48 sm:h-56 md:h-60 service-image">
+          <img
+            src="${service.image}"
+            alt="${service.name}"
+            loading="lazy"
+            class="absolute inset-0 w-full h-full object-cover"
+          />
+        </div>
+        <div class="p-4 sm:p-5 md:p-6">
+          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-4 mb-2 sm:mb-3">
+            <h3 class="display-font text-2xl sm:text-3xl leading-snug">${service.name}</h3>
+            <span class="text-xs sm:text-sm rounded-full border px-2 sm:px-3 py-1 whitespace-nowrap">${service.duration}</span>
+          </div>
+          <p class="text-sm sm:text-base opacity-80 leading-relaxed mb-4 sm:mb-5">${service.description}</p>
+          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
+            <p class="text-base sm:text-lg font-semibold">${service.price}</p>
+            <a href="https://wa.me/5500000000000?text=Olá!%20Tenho%20interesse%20em%20${encodeURIComponent(service.name)}." target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 rounded-full border px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium transition hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-offset-2">
+              <i data-lucide="arrow-up-right" class="w-3 sm:w-4 h-3 sm:h-4"></i>
+              Agendar
+            </a>
+          </div>
+        </div>
+      `;
+
+      const img = article.querySelector("img");
+      img.onerror = function () {
+        this.style.display = "none";
+        this.parentElement.style.background = "linear-gradient(135deg, #e8dccb, #f7f1e8)";
+        const fallback = document.createElement("div");
+        fallback.className = "absolute inset-0 flex items-center justify-center";
+        fallback.innerHTML = `<div class="text-center"><i data-lucide="flower-2" class="w-8 sm:w-10 h-8 sm:h-10 mx-auto mb-2 sm:mb-3"></i><p class="display-font text-2xl sm:text-3xl px-2">${service.name}</p></div>`;
+        this.parentElement.appendChild(fallback);
+        lucide.createIcons();
+      };
+
+      return article;
+    }
+
+    function createExclusiveCard(item) {
+      const article = document.createElement("article");
+      article.className = "rounded-2xl sm:rounded-[2rem] border bg-[#fffaf4] p-4 sm:p-5 md:p-6 soft-glow scale-in hover:bg-white/90 transition-all duration-300";
+      article.innerHTML = `
+        <div class="w-12 sm:w-14 h-12 sm:h-14 rounded-xl sm:rounded-2xl flex items-center justify-center border bg-white mb-3 sm:mb-5">
+          <i data-lucide="${item.icon}" class="w-5 sm:w-6 h-5 sm:h-6"></i>
+        </div>
+        <h3 class="display-font text-2xl sm:text-3xl mb-1 sm:mb-2 leading-snug">${item.name}</h3>
+        <p class="text-xs sm:text-sm opacity-75 mb-3 sm:mb-4">${item.duration}</p>
+        <p class="text-sm sm:text-base opacity-85 leading-relaxed mb-4 sm:mb-5">${item.description}</p>
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
+          <span class="text-base sm:text-lg font-semibold">${item.price}</span>
+          <a href="https://wa.me/5500000000000?text=Olá!%20Tenho%20interesse%20em%20${encodeURIComponent(item.name)}." target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 rounded-full border px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium transition hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-offset-2">
+            <i data-lucide="arrow-up-right" class="w-3 sm:w-4 h-3 sm:h-4"></i>
+            Agendar
+          </a>
+        </div>
+      `;
+      return article;
+    }
+
+    const servicesGrid = document.getElementById("servicesGrid");
+    services.forEach((service) => servicesGrid.appendChild(createServiceCard(service)));
+
+    const exclusiveGrid = document.getElementById("exclusiveGrid");
+    exclusiveServices.forEach((item) => exclusiveGrid.appendChild(createExclusiveCard(item)));
+
+    const defaultConfig = {
+      background_color: "#f6f0e8",
+      surface_color: "#fffaf4",
+      text_color: "#5c5047",
+      primary_action_color: "#b9975b",
+      secondary_action_color: "#8b7554",
+      font_family: "Cormorant Garamond",
+      font_size: 18,
+      hero_title: "Massoterapia terapêutica para aliviar dores e restaurar o equilíbrio do corpo.",
+      hero_subtitle: "Técnicas especializadas para reduzir tensões musculares, melhorar a circulação e proporcionar bem-estar profundo.",
+      hero_button_text: "Agendar pelo WhatsApp",
+      about_title: "Amanda Matos",
+      about_text: "Com uma trajetória que começou na psicologia e se expandiu para a massoterapia e terapias integrativas, Amanda Matos desenvolve um atendimento profundamente humano, atento e acolhedor. Seu trabalho une escuta terapêutica, conhecimento técnico e sensibilidade para compreender as necessidades de cada pessoa, cuidando do corpo, da mente e da energia de forma integrada. Cada sessão é pensada como uma experiência de alívio, reconexão e presença.",
+      services_title: "Serviços terapêuticos",
+      exclusive_title: "Serviços Exclusivos",
+      testimonials_title: "Depoimentos de clientes",
+      final_cta_title: "Permita-se cuidar do seu corpo e da sua saúde.",
+      final_cta_button: "Agendar sessão pelo WhatsApp"
+    };
+
+    const els = {
+      body: document.body,
+      app: document.getElementById("app"),
+      brandText: document.getElementById("brandText"),
+      brandSubtext: document.getElementById("brandSubtext"),
+      heroTitle: document.getElementById("heroTitle"),
+      heroSubtitle: document.getElementById("heroSubtitle"),
+      heroButtonText: document.getElementById("heroButtonText"),
+      heroButton: document.getElementById("heroButton"),
+      topWhatsappButton: document.getElementById("topWhatsappButton"),
+      aboutTitle: document.getElementById("aboutTitle"),
+      aboutText: document.getElementById("aboutText"),
+      servicesTitle: document.getElementById("servicesTitle"),
+      exclusiveTitle: document.getElementById("exclusiveTitle"),
+      testimonialsTitle: document.getElementById("testimonialsTitle"),
+      finalCtaTitle: document.getElementById("finalCtaTitle"),
+      finalCtaButtonText: document.getElementById("finalCtaButtonText"),
+      finalCtaButton: document.getElementById("finalCtaButton"),
+      paymentNote: document.getElementById("paymentNote")
+    };
+
+    function applyConfig(config) {
+      const current = { ...defaultConfig, ...config };
+      const baseSize = current.font_size || defaultConfig.font_size;
+      const headingFont = `${current.font_family || defaultConfig.font_family}, "Cormorant Garamond", serif`;
+      const bodyFont = `"Manrope", sans-serif`;
+
+      els.body.style.backgroundColor = current.background_color;
+      els.body.style.color = current.text_color;
+      els.app.style.background = `
+        radial-gradient(circle at top left, ${hexToRgba(current.primary_action_color, 0.14)}, transparent 28%),
+        radial-gradient(circle at bottom right, ${hexToRgba(current.primary_action_color, 0.10)}, transparent 24%),
+        linear-gradient(180deg, ${current.background_color} 0%, #fbf7f2 46%, #f1e8de 100%)
+      `;
+
+      document.querySelectorAll("section, footer, header, p, span, a, button, div, article").forEach((el) => {
+        if (!el.classList.contains("display-font")) {
+          el.style.fontFamily = bodyFont;
+        }
+      });
+
+      document.querySelectorAll(".display-font").forEach((el) => {
+        el.style.fontFamily = headingFont;
+      });
+
+      document.querySelectorAll("h1, h2, h3").forEach((el) => {
+        el.style.color = current.text_color;
+      });
+
+      document.querySelectorAll("p, span, a").forEach((el) => {
+        if (!el.closest("#heroButton") && !el.closest("#finalCtaButton") && !el.closest("#topWhatsappButton")) {
+          el.style.color = current.text_color;
+        }
+      });
+
+      document.querySelectorAll(".rounded-\\[2rem\\], .rounded-\\[2\\.2rem\\], .rounded-2xl").forEach((el) => {
+        if (el.className.includes("bg-white") || el.className.includes("glass-card") || el.className.includes("bg-[#fffaf4]")) {
+          el.style.backgroundColor = current.surface_color;
+        }
+        el.style.borderColor = hexToRgba(current.secondary_action_color, 0.22);
+      });
+
+      els.paymentNote.style.backgroundColor = hexToRgba(current.primary_action_color, 0.10);
+      els.paymentNote.style.borderColor = hexToRgba(current.primary_action_color, 0.28);
+
+      [els.heroButton, els.finalCtaButton, els.topWhatsappButton].forEach((btn) => {
+        btn.style.backgroundColor = current.primary_action_color;
+        btn.style.color = "#fffaf4";
+        btn.style.borderColor = current.primary_action_color;
+      });
+
+      document.querySelectorAll("a.border, .border").forEach((el) => {
+        if (!el.closest("#heroButton") && !el.closest("#finalCtaButton") && !el.closest("#topWhatsappButton")) {
+          el.style.borderColor = hexToRgba(current.secondary_action_color, 0.25);
+        }
+      });
+
+      document.querySelectorAll("a.border").forEach((el) => {
+        if (!el.closest("#heroButton") && !el.closest("#finalCtaButton") && !el.closest("#topWhatsappButton")) {
+          el.style.color = current.secondary_action_color;
+        }
+      });
+
+      els.heroTitle.style.fontSize = `${baseSize * 3}px`;
+      els.heroSubtitle.style.fontSize = `${baseSize * 1.1}px`;
+      els.aboutTitle.style.fontSize = `${baseSize * 2.5}px`;
+      els.servicesTitle.style.fontSize = `${baseSize * 2.5}px`;
+      els.exclusiveTitle.style.fontSize = `${baseSize * 2.5}px`;
+      els.testimonialsTitle.style.fontSize = `${baseSize * 2.5}px`;
+      els.finalCtaTitle.style.fontSize = `${baseSize * 2.4}px`;
+      els.aboutText.style.fontSize = `${baseSize}px`;
+      document.querySelectorAll("h3.display-font").forEach((el) => {
+        el.style.fontSize = `${baseSize * 1.6}px`;
+      });
+      document.querySelectorAll("p, a, span, button").forEach((el) => {
+        if (!el.closest("h1") && !el.closest("h2") && !el.closest("h3")) {
+          el.style.fontSize = el.classList.contains("text-sm") ? `${baseSize * 0.82}px` : `${baseSize * 0.95}px`;
+        }
+      });
+
+      els.heroTitle.textContent = current.hero_title;
+      els.heroSubtitle.textContent = current.hero_subtitle;
+      els.heroButtonText.textContent = current.hero_button_text;
+      els.aboutTitle.textContent = current.about_title;
+      els.aboutText.textContent = current.about_text;
+      els.servicesTitle.textContent = current.services_title;
+      els.exclusiveTitle.textContent = current.exclusive_title;
+      els.testimonialsTitle.textContent = current.testimonials_title;
+      els.finalCtaTitle.textContent = current.final_cta_title;
+      els.finalCtaButtonText.textContent = current.final_cta_button;
+    }
+
+    function hexToRgba(hex, alpha) {
+      const sanitized = hex.replace("#", "");
+      const full = sanitized.length === 3
+        ? sanitized.split("").map((c) => c + c).join("")
+        : sanitized;
+      const bigint = parseInt(full, 16);
+      const r = (bigint >> 16) & 255;
+      const g = (bigint >> 8) & 255;
+      const b = bigint & 255;
+      return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+    }
+
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange: async (config) => {
+          applyConfig(config);
+        },
+        mapToCapabilities: (config) => ({
+          recolorables: [
+            {
+              get: () => config.background_color || defaultConfig.background_color,
+              set: (value) => {
+                window.elementSdk.setConfig({ background_color: value });
+              }
+            },
+            {
+              get: () => config.surface_color || defaultConfig.surface_color,
+              set: (value) => {
+                window.elementSdk.setConfig({ surface_color: value });
+              }
+            },
+            {
+              get: () => config.text_color || defaultConfig.text_color,
+              set: (value) => {
+                window.elementSdk.setConfig({ text_color: value });
+              }
+            },
+            {
+              get: () => config.primary_action_color || defaultConfig.primary_action_color,
+              set: (value) => {
+                window.elementSdk.setConfig({ primary_action_color: value });
+              }
+            },
+            {
+              get: () => config.secondary_action_color || defaultConfig.secondary_action_color,
+              set: (value) => {
+                window.elementSdk.setConfig({ secondary_action_color: value });
+              }
+            }
+          ],
+          borderables: [],
+          fontEditable: {
+            get: () => config.font_family || defaultConfig.font_family,
+            set: (value) => {
+              window.elementSdk.setConfig({ font_family: value });
+            }
+          },
+          fontSizeable: {
+            get: () => config.font_size || defaultConfig.font_size,
+            set: (value) => {
+              window.elementSdk.setConfig({ font_size: value });
+            }
+          }
+        }),
+        mapToEditPanelValues: (config) => new Map([
+          ["hero_title", config.hero_title || defaultConfig.hero_title],
+          ["hero_subtitle", config.hero_subtitle || defaultConfig.hero_subtitle],
+          ["hero_button_text", config.hero_button_text || defaultConfig.hero_button_text],
+          ["about_title", config.about_title || defaultConfig.about_title],
+          ["about_text", config.about_text || defaultConfig.about_text],
+          ["services_title", config.services_title || defaultConfig.services_title],
+          ["exclusive_title", config.exclusive_title || defaultConfig.exclusive_title],
+          ["testimonials_title", config.testimonials_title || defaultConfig.testimonials_title],
+          ["final_cta_title", config.final_cta_title || defaultConfig.final_cta_title],
+          ["final_cta_button", config.final_cta_button || defaultConfig.final_cta_button]
+        ])
+      });
+
+      applyConfig(window.elementSdk.config || defaultConfig);
+    } else {
+      applyConfig(defaultConfig);
+    }
+
+    lucide.createIcons();
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9e123f42e3ec2538',t:'MTc3NDMxOTM1NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
